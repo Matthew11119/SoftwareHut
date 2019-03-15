@@ -3,6 +3,7 @@ ruby '2.4.4'
 source "https://gems.shefcompsci.org.uk" do
   gem 'activerecord-session_store'
   gem 'airbrake'
+  gem 'epi_cas'
   gem 'epi_deploy', group: :development
   gem 'capybara-select2', group: :test
 end
