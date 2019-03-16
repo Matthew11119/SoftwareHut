@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :students
+  resources :uni_modules
+  resources :criteria_results
+  resources :station_results
+  resources :criteria
+  resources :stations
+  resources :exams
   mount EpiCas::Engine, at: "/"
   devise_for :users
   match "/403", to: "errors#error_403", via: :all

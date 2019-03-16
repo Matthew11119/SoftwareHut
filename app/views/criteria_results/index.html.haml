@@ -1,0 +1,27 @@
+%h1 Listing criteria_results
+
+%table
+  %thead
+    %tr
+      %th Criteria feedback
+      %th Criteria mark
+      %th Answer
+      %th Station
+      %th
+      %th
+      %th
+
+  %tbody
+    - @criteria_results.each do |criteria_result|
+      %tr
+        %td= criteria_result.criteria_feedback_id
+        %td= criteria_result.criteria_mark
+        %td= criteria_result.answer
+        %td= criteria_result.station_id
+        %td= link_to 'Show', criteria_result
+        %td= link_to 'Edit', edit_criteria_result_path(criteria_result)
+        %td= link_to 'Destroy', criteria_result, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Criteria result', new_criteria_result_path

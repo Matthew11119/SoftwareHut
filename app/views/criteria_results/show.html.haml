@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Criteria feedback:
+  = @criteria_result.criteria_feedback_id
+%p
+  %b Criteria mark:
+  = @criteria_result.criteria_mark
+%p
+  %b Answer:
+  = @criteria_result.answer
+%p
+  %b Station:
+  = @criteria_result.station_id
+
+= link_to 'Edit', edit_criteria_result_path(@criteria_result)
+\|
+= link_to 'Back', criteria_results_path

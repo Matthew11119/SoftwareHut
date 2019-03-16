@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Student:
+  = @student.student_id
+%p
+  %b Forename:
+  = @student.forename
+%p
+  %b Surname:
+  = @student.surname
+%p
+  %b Regno:
+  = @student.regno
+
+= link_to 'Edit', edit_student_path(@student)
+\|
+= link_to 'Back', students_path

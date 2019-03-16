@@ -1,0 +1,27 @@
+%h1 Listing criteria
+
+%table
+  %thead
+    %tr
+      %th Criteria
+      %th Criteria description
+      %th Criteria critical
+      %th Station
+      %th
+      %th
+      %th
+
+  %tbody
+    - @criteria.each do |criterium|
+      %tr
+        %td= criterium.criteria_id
+        %td= criterium.criteria_description
+        %td= criterium.criteria_critical
+        %td= criterium.station_id
+        %td= link_to 'Show', criterium
+        %td= link_to 'Edit', edit_criterium_path(criterium)
+        %td= link_to 'Destroy', criterium, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Criterium', new_criterium_path

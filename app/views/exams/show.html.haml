@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Exam code:
+  = @exam.exam_code
+%p
+  %b Exam date:
+  = @exam.exam_date
+%p
+  %b Exam name:
+  = @exam.exam_name
+%p
+  %b Module code:
+  = @exam.module_code
+
+= link_to 'Edit', edit_exam_path(@exam)
+\|
+= link_to 'Back', exams_path

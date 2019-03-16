@@ -1,0 +1,33 @@
+%h1 Listing station_results
+
+%table
+  %thead
+    %tr
+      %th Result
+      %th Station
+      %th Student
+      %th Examiner name
+      %th Mark
+      %th Feedback
+      %th Audio
+      %th
+      %th
+      %th
+
+  %tbody
+    - @station_results.each do |station_result|
+      %tr
+        %td= station_result.result_id
+        %td= station_result.station_id
+        %td= station_result.student_id
+        %td= station_result.examiner_name
+        %td= station_result.mark
+        %td= station_result.feedback
+        %td= station_result.audio
+        %td= link_to 'Show', station_result
+        %td= link_to 'Edit', edit_station_result_path(station_result)
+        %td= link_to 'Destroy', station_result, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Station result', new_station_result_path

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Station:
+  = @station.station_id
+%p
+  %b Station name:
+  = @station.station_name
+%p
+  %b Pass mark:
+  = @station.pass_mark
+%p
+  %b Exam:
+  = @station.exam_id
+
+= link_to 'Edit', edit_station_path(@station)
+\|
+= link_to 'Back', stations_path
