@@ -15,4 +15,5 @@
 #
 
 class StationResult < ApplicationRecord
+  belongs_to :stations
 end

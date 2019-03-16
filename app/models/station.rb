@@ -12,4 +12,5 @@
 #
 
 class Station < ApplicationRecord
+  belongs_to :exams
 end

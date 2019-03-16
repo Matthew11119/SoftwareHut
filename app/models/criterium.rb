@@ -12,4 +12,5 @@
 #
 
 class Criterium < ApplicationRecord
+  belongs_to :stations
 end
