@@ -1,0 +1,20 @@
+%p#notice= notice
+
+%table
+  %tbody
+    %tr
+      %td= "Name:"
+      %td= @user.name
+    %tr
+      %td= "Username:"
+      %td= @user.username
+    %tr
+      %td= "User type:"
+      - if @user.admin
+        %td= "Admin"
+      - else
+        %td= "Module Lead"
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path

@@ -47,9 +47,10 @@
               = navbar_link_to :root, title: "Go to the home page", identifier: :home do
                 = fa_icon 'home'
                 Home
-              = navbar_link_to '#', title: "Go to another page", identifier: :another_page do
-                = fa_icon 'question-circle'
-                Another Page
+              = navbar_link_to '/users', title: "Go to the users page", identifier: :users do
+                = fa_icon 'users'
+                Users
+
             - if user_signed_in?
               %ul.nav.navbar-nav.navbar-right
                 %li.dropdown
