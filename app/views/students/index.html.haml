@@ -1,27 +1,60 @@
-%h1 Listing students
+!!!
+%html
+  %head
+    %title Module Lead - Student Selection
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "js/bootstrap.min.js", :type => "text/javascript"}
+  %body
+    .container
+      %br/
+      %header
+        %h1 Station #3: Ankle Sprain Examination
+      %br/
 
-%table
-  %thead
-    %tr
-      %th Student
-      %th Forename
-      %th Surname
-      %th Regno
-      %th
-      %th
-      %th
+      %p There are #{@students.size} students to be examined
 
-  %tbody
-    - @students.each do |student|
-      %tr
-        %td= student.student_id
-        %td= student.forename
-        %td= student.surname
-        %td= student.regno
-        %td= link_to 'Show', student
-        %td= link_to 'Edit', edit_student_path(student)
-        %td= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }
+      %table.table.table-striped.table-bordered.table-hover.table-condensed
+        %header
+          %h4
+            %u Students To Be Examined
+          %thead
+            %tr
+              %th First Name
+              %th Last Name
+              %th Student ID
+              %th Registration Number
+          %tbody
+            - @students.each do |student|
+              %tr
+                %td= student.forename
+                %td= student.surname
+                %td= student.student_id
+                %td= student.regno
+                -# Link to Matt's module lead page
+                %td= link_to 'Start Examination', student
+      = link_to 'Add New Student', new_student_path
+      %br/
+      %br/
 
-%br
+      %table.table.table-striped.table-bordered.table-hover.table-condensed
+        %header
+          %h4
+            %u Previous Students Examined
+        %thead
+          %tr
+            %th First Name
+            %th Last Name
+            %th Student ID
+            %th Registration Number
+        %tbody
+          - @students.each do |student|
+            %tr
+              %td= student.forename
+              %td= student.surname
+              %td= student.student_id
+              %td= student.regno
+              -# LInk to Matt's module lead page
+              %td= link_to 'View Script', student
+              %td= link_to 'Edit Script', student
 
-= link_to 'New Student', new_student_path
+      = link_to 'Back To Stations', :class => "btn-primary", new_station_path
