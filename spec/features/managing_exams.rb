@@ -64,8 +64,25 @@ describe 'Managing exams' do
         # Reject: Access exam edit page for completed exams
     end
 
-    # until story 53, when searching for exams
+    specify 'I can select an exam' do
+        # Done by Module Lead
+        # Accept: Acccess exam page for upcoming exams
+        # Reject: Accesss exam page for completed exams
+    end
+
+    specify 'I can view today\'s exams' do
+        # Done by Module Lead
+        # Accept: View exams happening today
+        # Reject: View exams not happening today
+    end
+
+    specify 'I can start an exam' do
+        # Done by Examiner
+        # Accept: Access and begin exam page, Starts examination session
+    end
     
+    # until story 64, when searching for exams
+
 
 
 end
