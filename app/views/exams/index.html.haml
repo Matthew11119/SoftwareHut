@@ -1,5 +1,8 @@
 %div#examsToday
-  %p Today's #{@exam_today.count>1? 'Exams':'Exam' }  &nbsp &nbsp #{Time.now.strftime("%d/%m/%Y")}
+  %p    
+    %h3{:style => "display: inline"} Today's #{@exam_today.count>1? 'Exams':'Exam' }   |
+    &nbsp &nbsp #{Time.now.strftime("%d/%m/%Y")}
+      
   %table.table
     %thead
       %tr
@@ -13,14 +16,11 @@
           %td= exam_today.name
           %td= link_to 'Select', exams_path
   = will_paginate @exam_today, :param_name => 'exam_today_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
-  
-  -# %nav{:aria-label=>"..."}
-  -#   %ul.pagination
-  -#     %li.disabled
-  -#       %a
 
 %div#examsUpcoming
-  %p Upcoming #{@exam_today.count>1? 'Exams':'Exam' } &nbsp &nbsp (Total = #{@exam_upcoming.count})
+  %p 
+    %h3{:style => "display: inline"}Upcoming #{@exam_today.count>1? 'Exams':'Exam' } 
+    &nbsp &nbsp Total = #{@exam_upcoming.count}
   %table.table
     %thead
       %tr
