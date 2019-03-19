@@ -4,6 +4,7 @@ class StationsController < ApplicationController
   # GET /stations
   def index
     @stations = Station.all
+    @exams = Exam.find(params[:exam_id])
   end
 
   # GET /stations/1

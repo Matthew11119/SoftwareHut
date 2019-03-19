@@ -29,8 +29,8 @@
                 %tr
                   %td= exam.exam_code
                   %td= exam.module_code
-                  %td= exam.exam_name
-                  %td= exam.exam_date
-                  %td= link_to 'Select Examination', stations
+                  %td= exam.name
+                  %td= exam.date
+                  %td= link_to 'Select Examination', stations_path(:exam_id => exam.id)
 
 = link_to 'New Exam', new_exam_path
