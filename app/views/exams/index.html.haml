@@ -1,27 +1,36 @@
-%h1 Listing exams
+!!!
+%html
+  %head
+    %title Module Lead - Exam Chooser
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "js/bootstrap.min.js", :type => "text/javascript"}
+  %body
+    .container
+      %br/
+      %header
+        .col-auto
+          %h2.d-inline-block
+            Examinations Chooser
+            %button.btn.btn-primary.float-right{:type => "button"} Log Out
+      %br/
+      %table.table.table-striped.table-bordered.table-hover.table-condensed
+        %header
+          %h5
+            %u Today's Examinations
+            %thead
+              %tr
+                %th Exam Code
+                %th Module Code
+                %th Exam Name
+                %th Exam Date
 
-%table
-  %thead
-    %tr
-      %th Exam code
-      %th Exam date
-      %th Exam name
-      %th Module code
-      %th
-      %th
-      %th
-
-  %tbody
-    - @exams.each do |exam|
-      %tr
-        %td= exam.exam_code
-        %td= exam.exam_date
-        %td= exam.exam_name
-        %td= exam.module_code
-        %td= link_to 'Show', exam
-        %td= link_to 'Edit', edit_exam_path(exam)
-        %td= link_to 'Destroy', exam, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+            %tbody
+              - @exams.each do |exam|
+                %tr
+                  %td= exam.exam_code
+                  %td= exam.module_code
+                  %td= exam.exam_name
+                  %td= exam.exam_date
+                  %td= link_to 'Select Examination', stations
 
 = link_to 'New Exam', new_exam_path
