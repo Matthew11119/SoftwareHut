@@ -10,7 +10,7 @@
       %header
         %h1 Station #{@station.id} : #{@station.station_name} Examination
       %br/
-
+      
       = simple_form_for :search, url: search_students_path, method: :post do |f|
         = f.input :student_id
         = f.input :forename

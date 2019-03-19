@@ -13,9 +13,7 @@
 #
 
 class Exam < ApplicationRecord
-<<<<<<< HEAD
-  belongs_to :uni_modules, optional: true
-=======
+
   belongs_to :uni_module, :foreign_key=>:module_code
 
   scope :undeployed, -> { where(status: 0).order(:date) }
@@ -23,6 +21,5 @@ class Exam < ApplicationRecord
   scope :completed, -> { where(status: 2).order(:date) }
   scope :archive, -> { where(status: 3).order(:date) }
   scope :templates, -> { where(status: 4).order(:date) }
-
->>>>>>> origin/module_lead
+  
 end
