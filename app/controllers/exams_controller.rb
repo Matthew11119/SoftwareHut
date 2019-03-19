@@ -3,9 +3,10 @@ class ExamsController < ApplicationController
 
   # GET /exams
   def index
-    @undeployed = Exam.undeployed
-    @deployed = Exam.deployed
-    @completed = Exam.completed
+    # @undeployed = Exam.undeployed
+    # @deployed = Exam.deployed
+    # @completed = Exam.completed
+    @exam_today = Exam.where("date = ?", [Time.now])
   end
 
   # GET /exams/1

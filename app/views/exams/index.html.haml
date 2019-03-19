@@ -1,5 +1,5 @@
 %div#examsToday
-  %p Today's Exams &nbsp &nbsp #{Time.now.strftime("%d/%m/%Y")}
+  %p Today's #{@exam_today.count>1? 'Exams':'Exam' }  &nbsp &nbsp #{Time.now.strftime("%d/%m/%Y")}
   %table.table
     %thead
       %tr
@@ -7,26 +7,18 @@
         %th{:scope=>"col"} Examination Title
         %th{:scope=>"col"} Action
     %tbody
-      %tr
-        %td code
-        %td title
-        %td= link_to "Select", exams_path
-      %tr
-        %td code
-        %td title
-        %td= link_to "Select", exams_path
-      %tr
-        %td code
-        %td title
-        %td= link_to "Select", exams_path
-      %tr
-        %td code
-        %td title
-        %td= link_to "Select", exams_path
-      %tr
-        %td code
-        %td title
-        %td= link_to "Select", exams_path
+      - @exam_today.limit(5).each do |exam_today|
+        %tr
+          %td= exam_today.module_code
+          %td= exam_today.name
+          %td= link_to 'Select', exams_path
+        -# %tr
+        -#   %td= product.name
+        -#   %td= product.description
+        -#   %td= product.cost
+        -#   %td= link_to 'Show', product
+        -#   %td= link_to 'Edit', edit_product_path(product)
+        -#   %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
   
   %p Upcoming Exams
   %table.table
