@@ -8,6 +8,7 @@ class StationsController < ApplicationController
 
   # GET /stations/1
   def show
+    @stations = Station.all
   end
 
   # GET /stations/new
@@ -48,7 +49,7 @@ class StationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station
-      @station = Station.find(params[:id])
+      @station = Station.find(params[:exam_id])
     end
 
     # Only allow a trusted parameter "white list" through.
