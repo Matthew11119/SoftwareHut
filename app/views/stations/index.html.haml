@@ -11,19 +11,20 @@
         %h1 MED1234 Exam: Stations
 
       %table.table.table-striped.table-bordered.table-hover.table-condensed
-      %thead
-        %tr
-          %th Station
-          %th Station Name
-          %th Pass Mark
-          %th Exam
-      %tbody
-        - @stations.each do |station|
+        %thead
           %tr
-            %td= station.station_id
-            %td= station.station_name
-            %td= station.pass_mark
-            %td= station.exam_id
-            %td= link_to 'Choose Station', station
+            %th Station No
+            %th Station Name
+            %th Pass Mark
+            %th Exam
+
+        %tbody
+          - @stations.each do |station|
+            %tr
+              %td= station.id
+              %td= station.station_name
+              %td= station.pass_mark
+              %td= station.exam_id
+              %td= link_to 'Choose Station', students_path(:station_id => station.id)
 
     = link_to 'New Station', new_station_path

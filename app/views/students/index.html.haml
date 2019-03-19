@@ -8,7 +8,7 @@
     .container
       %br/
       %header
-        %h1 Station #3: Ankle Sprain Examination
+        %h1 Station #{@station.id} : #{@station.station_name} Examination
       %br/
 
       %p There are #{@students.size} students to be examined
@@ -30,8 +30,8 @@
                 %td= student.surname
                 %td= student.student_id
                 %td= student.regno
-                -# Link to Matt's module lead page
                 %td= link_to 'Start Examination', student
+
       = link_to 'Add New Student', new_student_path
       %br/
       %br/
@@ -56,6 +56,5 @@
               -# LInk to Matt's module lead page
               %td= link_to 'View Script', student
               %td= link_to 'Edit Script', student
-
-      -# = link_to 'Back To Stations', :class => "btn-primary", new_station_path
-      %button.btn.btn-primary{:type => "submit"} Back to Stations
+      %form{:action => "/stations", :method => "GET"}
+        %button.btn.btn-primary{:type => "submit", :href => "#{@station_path}"} Back to Stations

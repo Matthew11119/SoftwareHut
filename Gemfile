@@ -85,3 +85,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
 end
+
+
+gem 'therubyracer'
+gem 'execjs'
