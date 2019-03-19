@@ -6,7 +6,8 @@ class ExamsController < ApplicationController
     # @undeployed = Exam.undeployed
     # @deployed = Exam.deployed
     # @completed = Exam.completed
-    @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:page], :per_page => 5)
+    @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
+    @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
   end
 
   # GET /exams/1

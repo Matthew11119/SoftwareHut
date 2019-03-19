@@ -12,14 +12,15 @@
           %td= exam_today.module_code
           %td= exam_today.name
           %td= link_to 'Select', exams_path
-  = will_paginate @exam_today, :renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
+  = will_paginate @exam_today, :param_name => 'exam_today_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
   
   -# %nav{:aria-label=>"..."}
   -#   %ul.pagination
   -#     %li.disabled
   -#       %a
-  
-  %p Upcoming Exams
+
+%div#examsUpcoming
+  %p Upcoming #{@exam_today.count>1? 'Exams':'Exam' } &nbsp &nbsp (Total = #{@exam_upcoming.count})
   %table.table
     %thead
       %tr
@@ -27,7 +28,9 @@
         %th{:scope=>"col"} Examination Title
         %th{:scope=>"col"} Action
     %tbody
-      %tr
-        %td code
-        %td title
-        %td= link_to "Select", exams_path
+      - @exam_upcoming.each do |exam_upcoming|
+        %tr
+          %td= exam_upcoming.module_code
+          %td= exam_upcoming.name
+          %td= link_to 'Select', exams_path
+  = will_paginate @exam_upcoming, :param_name => 'exam_upcoming_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
