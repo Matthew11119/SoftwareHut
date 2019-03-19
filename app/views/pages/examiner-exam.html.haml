@@ -69,20 +69,34 @@
     %table
       %tr
         %th{ style: 'height: 200px'}
-          %textarea{:cols => "30", :rows => "4", :placeholder => "Notes"}
+          %textarea{:cols => "50", :rows => "10", :placeholder => "Notes"}
 
-        %th
+        %th{style: 'width: 20%'}
           %img(src="/img/mic.png")
+          %button#record{:style => "width:150px", :type => "button"}record
         %th
-          %button{:style =>" width:50px"}Pass
-          %button{:style =>" width:50px"}Fail
+          .radio
+            %label
+              %input{name: "result", type: "radio", value: "pass"}
+              Pass
+          .radio
+            %label
+              %input{name: "result", type: "radio", value: "fail"}
+              Fail
+      %tr
+        %td
+        %td{:colspan => "2"}
+          %audio{:controls => "", :src => ""}
+            Your browser does not support the
+            %code audio element
+
       %tr
         %td
         %td
           %p#demo
-        %td
-          %button#startTimer{:style =>" width:50px"}Start timer
+        %td{:colspan => "2"}
+          %button#startTimer{:display => "block", :style =>" width:100%", :type => "button"}Start timer
       %tr
         %td
-        %td
-          %button{:style =>" width:100%"}Submit
+        %td{ style: 'width: 100%'}
+          %input{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :style => "width:100%"}

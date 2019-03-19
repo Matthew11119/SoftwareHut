@@ -30,6 +30,13 @@ function changeNot() {
   document.getElementById("partbox").style.backgroundColor = '#333388';
   document.getElementById("notbox").style.backgroundColor = '#00AAAA';
 
+function recordVoice(){
+  item = document.getElementById("record");
+  if (item.style.backgroundColor == "#FF0000"){
+    item.style.backgroundColor = "#7FFF00";
+  } else {
+    item.style.backgroundColor = "#FF0000";
+  }
 }
 
 function recordVoice(){
