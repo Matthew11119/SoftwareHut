@@ -8,7 +8,6 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  exam_id      :integer
-#  station_id   :integer
 #
 
 FactoryBot.define do

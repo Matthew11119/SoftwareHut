@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_03_18_135322) do
+=======
+ActiveRecord::Schema.define(version: 2019_03_18_213910) do
+>>>>>>> origin/module_lead
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "criteria", force: :cascade do |t|
-    t.integer "criteria_id"
     t.text "criteria_description"
     t.boolean "criteria_critical"
     t.integer "station_id"
@@ -25,7 +28,6 @@ ActiveRecord::Schema.define(version: 2019_03_18_135322) do
   end
 
   create_table "criteria_results", force: :cascade do |t|
-    t.integer "criteria_feedback_id"
     t.integer "criteria_mark"
     t.integer "answer"
     t.integer "station_id"
@@ -50,12 +52,12 @@ ActiveRecord::Schema.define(version: 2019_03_18_135322) do
 
   create_table "exams", force: :cascade do |t|
     t.string "exam_code"
-    t.date "exam_date"
-    t.string "exam_name"
+    t.date "date"
+    t.string "name"
     t.string "module_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "exam_id"
+    t.integer "status"
   end
 
   create_table "modules_students", id: false, force: :cascade do |t|
@@ -75,7 +77,6 @@ ActiveRecord::Schema.define(version: 2019_03_18_135322) do
   end
 
   create_table "station_results", force: :cascade do |t|
-    t.integer "result_id"
     t.integer "station_id"
     t.integer "student_id"
     t.string "examiner_name"
@@ -87,7 +88,6 @@ ActiveRecord::Schema.define(version: 2019_03_18_135322) do
   end
 
   create_table "stations", force: :cascade do |t|
-    t.integer "station_id"
     t.string "station_name"
     t.integer "pass_mark"
     t.integer "exam_id"
@@ -127,7 +127,6 @@ ActiveRecord::Schema.define(version: 2019_03_18_135322) do
     t.string "sn"
     t.string "givenname"
     t.boolean "admin"
-    t.string "name"
     t.index ["email"], name: "index_users_on_email"
     t.index ["username"], name: "index_users_on_username"
   end

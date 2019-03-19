@@ -7,7 +7,6 @@
 #  criteria_description :text
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  criteria_id          :integer
 #  station_id           :integer
 #
 

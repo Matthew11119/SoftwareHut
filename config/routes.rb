@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
   resources :students do
     post :search, on: :collection
   end
 
+=======
+  resources :exams
+  get '/templates', to: 'exams#index', as: 'templates', except: [:deploy]
+  get '/archive',   to: 'exams#index', as: 'archives', except: [:new, :create, :deploy]
+  #resources :templates
+  #resources :archives#, except: [:new, :create]
+  resources :students
+>>>>>>> origin/module_lead
   resources :uni_modules
   resources :criteria_results
   resources :station_results
   resources :criteria
   resources :stations
-  resources :exams
   mount EpiCas::Engine, at: "/"
   devise_for :users
   match "/403", to: "errors#error_403", via: :all
@@ -22,6 +30,8 @@ Rails.application.routes.draw do
 
   root to: "exams#index"
   resources :users
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
