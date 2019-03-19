@@ -1,5 +1,52 @@
 %h1 Listing exams
 
+-#
+  un-deployed:0, deployed:1, completed:2, archive:3, template:4
+
+%h1 Current Exams
+
+%table
+  %thead
+    %tr
+      %th Exam code
+      %th Exam date
+      %th Exam name
+      %th Module code
+      %th
+      %th
+      %th
+      %th
+
+  %tbody
+    %tr
+      %td Un-Deployed Exams
+    - @undeployed.each do |exam|
+      %tr
+        %td= exam.exam_code
+        %td= exam.date
+        %td= exam.name
+        %td= exam.module_code
+        %td= link_to 'View', exam
+        %td= link_to 'Edit', edit_exam_path(exam)
+        %td -#= link_to 'Deploy', deploy_exam_path(exam)
+        %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
+    %tr
+      %td Deployed Exams
+    - @deployed.each do |exam|
+      %tr
+        %td= exam.exam_code
+        %td= exam.date
+        %td= exam.name
+        %td= exam.module_code
+        %td= link_to 'View', exam
+        %td= link_to 'Edit', edit_exam_path(exam)
+        %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Exam', new_exam_path
+
+%h1 Completed Exams
 %table
   %thead
     %tr
@@ -12,16 +59,14 @@
       %th
 
   %tbody
-    - @exams.each do |exam|
+    - @completed.each do |exam|
       %tr
         %td= exam.exam_code
-        %td= exam.exam_date
-        %td= exam.exam_name
+        %td= exam.date
+        %td= exam.name
         %td= exam.module_code
-        %td= link_to 'Show', exam
+        %td= link_to 'View', exam
         %td= link_to 'Edit', edit_exam_path(exam)
-        %td= link_to 'Destroy', exam, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
-
-= link_to 'New Exam', new_exam_path

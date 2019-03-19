@@ -1,0 +1,19 @@
+%h1 Listing archives
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @archives.each do |archive|
+      %tr
+        %td= link_to 'Show', archive
+        %td= link_to 'Edit', edit_archive_path(archive)
+        %td= link_to 'Destroy', archive, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Archive', new_archive_path
