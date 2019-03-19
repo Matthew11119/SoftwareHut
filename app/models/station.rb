@@ -11,5 +11,5 @@
 #
 
 class Station < ApplicationRecord
-  belongs_to :exam
+  belongs_to :exam, :foreign_key=>:exam_code
 end
