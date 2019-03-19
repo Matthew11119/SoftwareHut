@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :students
+  resources :students do
+    post :search, on: :collection
+  end
+
   resources :uni_modules
   resources :criteria_results
   resources :station_results

@@ -53,6 +53,6 @@ class ExamsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def exam_params
-      params.require(:exam).permit(:exam_code, :exam_date, :exam_name, :module_code)
+      params.require(:exam).permit(:exam_code, :date, :name, :module_code)
     end
 end
