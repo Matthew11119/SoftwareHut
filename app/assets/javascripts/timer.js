@@ -2,7 +2,17 @@
 window.onload = function(){
   var timerButton = document.getElementById("startTimer");
   startTimer.onclick = runTimer;
+  var timerButton = document.getElementById("record");
+  record.onclick = recordVoice;
+}
 
+function recordVoice(){
+  item = document.getElementById("record");
+  if (item.style.backgroundColor == "#FF0000"){
+    item.style.backgroundColor = "#7FFF00";
+  } else {
+    item.style.backgroundColor = "#FF0000";
+  }
 }
 
 function runTimer(){
