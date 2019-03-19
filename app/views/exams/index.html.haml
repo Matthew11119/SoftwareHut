@@ -7,18 +7,17 @@
         %th{:scope=>"col"} Examination Title
         %th{:scope=>"col"} Action
     %tbody
-      - @exam_today.limit(5).each do |exam_today|
+      - @exam_today.each do |exam_today|
         %tr
           %td= exam_today.module_code
           %td= exam_today.name
           %td= link_to 'Select', exams_path
-        -# %tr
-        -#   %td= product.name
-        -#   %td= product.description
-        -#   %td= product.cost
-        -#   %td= link_to 'Show', product
-        -#   %td= link_to 'Edit', edit_product_path(product)
-        -#   %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+  = will_paginate @exam_today
+  
+  -# %nav{:aria-label=>"..."}
+  -#   %ul.pagination
+  -#     %li.disabled
+  -#       %a
   
   %p Upcoming Exams
   %table.table
