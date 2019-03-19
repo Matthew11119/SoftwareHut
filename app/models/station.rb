@@ -12,5 +12,5 @@
 #
 
 class Station < ApplicationRecord
-  belongs_to :exams
+  belongs_to :exams, optional: true
 end

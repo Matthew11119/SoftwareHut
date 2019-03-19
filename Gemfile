@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby '2.4.1'
+
 source "https://gems.shefcompsci.org.uk" do
   gem 'activerecord-session_store'
   gem 'airbrake'
@@ -7,13 +7,18 @@ source "https://gems.shefcompsci.org.uk" do
   gem 'epi_deploy', group: :development
   gem 'capybara-select2', group: :test
 end
-
+#################
+# Labclass specific Gems
+gem 'devise_security_extension', source: 'https://gems.shefcompsci.org.uk'
+gem 'rails_email_validator'
+gem "audited"
+################
 gem 'rails', '5.2.1'
 gem 'bootsnap'
 gem 'responders'
 gem 'thin'
 
-gem 'sqlite3', '1.3.13', group: [:development, :test]
+gem 'sqlite3', group: [:development, :test]
 gem 'pg'
 
 gem 'haml-rails'
@@ -26,6 +31,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'select2-rails'
 gem 'epi_js'
+gem 'switchery-rails'
 
 gem 'simple_form'
 gem 'draper'
@@ -55,6 +61,7 @@ end
 group :development do
   gem 'listen'
   gem 'web-console'
+  gem 'spring'
 
   gem 'capistrano', '~> 3.4'
   gem 'capistrano-rails', require: false
@@ -78,6 +85,3 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
 end
-
-gem 'therubyracer'
-gem 'execjs'
