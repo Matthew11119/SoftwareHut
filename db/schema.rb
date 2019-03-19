@@ -100,8 +100,7 @@ ActiveRecord::Schema.define(version: 2019_03_18_213910) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "uni_modules", force: :cascade do |t|
-    t.string "module_code"
+  create_table "uni_modules", primary_key: "module_code", id: :string, force: :cascade do |t|
     t.string "module_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
