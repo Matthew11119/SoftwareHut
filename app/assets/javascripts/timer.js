@@ -4,6 +4,32 @@ window.onload = function(){
   startTimer.onclick = runTimer;
   var timerButton = document.getElementById("record");
   record.onclick = recordVoice;
+  var fullButton = document.getElementById("full");
+  fullButton.onclick = changeFull;
+  var partButton = document.getElementById("part");
+  partButton.onclick = changePart;
+  var notButton = document.getElementById("not");
+  notButton.onclick = changeNot;
+}
+
+function changeFull(){
+  document.getElementById("fullbox").style.backgroundColor = '#00AAAA';
+  document.getElementById("partbox").style.backgroundColor = '#333388';
+  document.getElementById("notbox").style.backgroundColor = '#333388';
+}
+
+function changePart(){
+  document.getElementById("fullbox").style.backgroundColor = '#333388';
+  document.getElementById("partbox").style.backgroundColor = '#00AAAA';
+  document.getElementById("notbox").style.backgroundColor = '#333388';
+
+}
+
+function changeNot() {
+  document.getElementById("fullbox").style.backgroundColor = '#333388';
+  document.getElementById("partbox").style.backgroundColor = '#333388';
+  document.getElementById("notbox").style.backgroundColor = '#00AAAA';
+
 }
 
 function recordVoice(){
