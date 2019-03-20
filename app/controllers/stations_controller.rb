@@ -8,6 +8,9 @@ class StationsController < ApplicationController
 
   # GET /stations/1
   def show
+    # @station = Station.paginate(:page => params[:station], :per_page => 10)
+    @station_show = @station.paginate(:page => params[:station], :per_page => 10)
+    @exam_show = Exam.where(:exam_code=>params[:id])
   end
 
   # GET /stations/new
