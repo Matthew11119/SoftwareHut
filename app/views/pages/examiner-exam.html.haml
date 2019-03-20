@@ -8,13 +8,13 @@
   %script{:crossorigin => "anonymous", :integrity => "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", :src => "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"}
 
 %body
-  .header{:style => "background-color: #00CED1"}
-    %h3
+  .header{:style => "background-color: #00CED1; width:100%"}
+    %h2
       MED 1094 Ankle Sprain Examination
     %h1
       %b
         #3 Station 3
-    %h6{:align => "right"}
+    %h5{:align => "right"}
       #demo
       %button#startTimer{:display => "block", :style =>" width:50%", :type => "button"}Start timer
 
@@ -23,77 +23,54 @@
 
 
   %form
-    %h6
-      Washes Hands
-    .radio-inline{id: "fullbox", :style => "width: 30%; border: 1px solid; background-color: #333388"}
-      %label{:style => "color: white"}
+    %h4
+      %b Washes Hands
+    %label{:style => "color: white; width:30%; height:5em"}
+      .radio-inline{id: "fullbox", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
         %input{name: "result", type: "radio", id: "full", value: "full", :style => "width: 100%"}
         Fully Met
-    .radio-inline{id: "partbox", :style => "width: 30%; border: 1px solid; background-color: #333388"}
-      %label{:style => "color: white"}
+    %label{:style => "color: white; width: 30%; height:5em"}
+      .radio-inline{id: "partbox", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
         %input{name: "result", type: "radio", id: "part", value: "part", :style => "width: 100%"}
         Partially Met
-    .radio-inline{id: "notbox", :style => "width: 30%; border: 1px solid; background-color: #333388"}
-      %label{:style => "color: white"}
+    %label{:style => "color: white; width:30%; height:5em"}
+      .radio-inline{id: "notbox", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
         %input{name: "result", type: "radio", id: "not", value: "not", :style => "width: 100%", :checked => "color: #ff0000"}
         Not Met
-    %p Feedback
-    %textarea{:cols => "100", :rows => "3", :placeholder => "Comments"}
+    %h5 Feedback
+    %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
 
-    %h6
-      Observes Patients
+    %h4
+      %b Observes Patients
     %p{:style => "color:red"}Ask candidate what they are observing form
     %p Comfort, colour, pain, conscious level
-    .radio-inline{id: "fullbox", :style => "width: 30%; border: 1px solid; background-color: #333388"}
-      %label{:style => "color: white"}
-        %input{name: "result", type: "radio", id: "full", value: "full", :style => "width: 100%"}
+    %label{:style => "color: white; width:30%; height:5em"}
+      .radio-inline{id: "fullbox2", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
+        %input{name: "result2", type: "radio", id: "full2", value: "full", :style => "width: 100%"}
         Fully Met
-    .radio-inline{id: "partbox", :style => "width: 30%; border: 1px solid; background-color: #333388"}
-      %label{:style => "color: white"}
-        %input{name: "result", type: "radio", id: "part", value: "part", :style => "width: 100%"}
+    %label{:style => "color: white; width: 30%; height:5em"}
+      .radio-inline{id: "partbox2", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
+        %input{name: "result2", type: "radio", id: "part2", value: "part", :style => "width: 100%"}
         Partially Met
-    .radio-inline{id: "notbox", :style => "width: 30%; border: 1px solid; background-color: #333388"}
-      %label{:style => "color: white"}
-        %input{name: "result", type: "radio", id: "not", value: "not", :style => "width: 100%", :checked => "color: #ff0000"}
+    %label{:style => "color: white; width:30%; height:5em"}
+      .radio-inline{id: "notbox2", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
+        %input{name: "result2", type: "radio", id: "not2", value: "not", :style => "width: 100%", :checked => "color: #ff0000"}
         Not Met
-    %p Feedback
-    %textarea{:cols => "100", :rows => "3", :placeholder => "Comments"}
+    %h5 Feedback
+    %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
 
-    %button#record{:style => "width:150px", :type => "button"}record
-    %p#timer2
-    %button#stopRecord{:style => "width:150px", :type => "button"}stop recording
+    %button#record{:class => "btn btn-danger", :style => "width:15em; background-color:#FF5555; color:white", :type => "button"}record
+    #timer2{:style => "color:red"}
+    %p{:style => "text-align: right"} Pass/Fail
+    %button#stopRecord{:class => "btn btn-danger", :style => "width:15em; background-color:#FF5555; color:white", :type => "button"}stop recording
+    %button#resultButton{:style => "width:15em; background-color:#AAAAFF", :class => "btn float-right", :type => "button", :value => "Pass"}Pass
 
-    %table
-      %tr
-        %th{ style: 'height: 200px'}
-          %textarea{:cols => "50", :rows => "10", :placeholder => "Notes"}
+    %h4{:style => "padding-top: 2em"}
+      %b Overall Feedback
+    %textarea{:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :placeholder => "Overall Comments"}
 
-        %th{style: 'width: 20%'}
-          %img(src="/img/mic.png")
+    %input{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :class => "btn float-right", :style => "background-color:#6666FF; color: white; width: 25%; padding-top:1em"}
 
-        %th
-          .radio
-            %label
-              %input{name: "result", type: "radio", value: "pass"}
-              Pass
-          .radio
-            %label
-              %input{name: "result", type: "radio", value: "fail"}
-              Fail
-      %tr
-        %td
-        %td{:colspan => "2"}
-          %audio{:controls => "", :src => ""}
-            Your browser does not support the
-            %code audio element
-
-      %tr
-        %td
-        %td
-          %p#demo
-        %td{:colspan => "2"}
-          %button#startTimer{:display => "block", :style =>" width:100%", :type => "button"}Start timer
-      %tr
-        %td
-        %td{ style: 'width: 100%'}
-          %input{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :style => "width:100%"}
+    %audio{:controls => "", :src => ""}
+      Your browser does not support the
+      %code audio element
