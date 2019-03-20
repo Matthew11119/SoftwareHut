@@ -14,10 +14,10 @@
   %tbody
     - @stations.each do |station|
       %tr
-        %td= station.station_id
+        %td= station.id
         %td= station.station_name
         %td= station.pass_mark
-        %td= station.exam_id
+        %td= station.exam_code
         %td= link_to 'Show', station
         %td= link_to 'Edit', edit_station_path(station)
         %td= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' }

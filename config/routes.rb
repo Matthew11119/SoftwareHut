@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get '/archive',   to: 'exams#index', as: 'archives', except: [:new, :create, :deploy]
   #resources :templates
   #resources :archives#, except: [:new, :create]
-  resources :students
+  resources :students do
+    post :search, on: :collection
+  end
   resources :uni_modules
   resources :criteria_results
   resources :station_results
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
   get :ie_warning, to: 'errors#ie_warning'
   get :javascript_warning, to: 'errors#javascript_warning'
 
-  root to: "pages#home"
+  root to: "students#index"
   resources :users
 
 

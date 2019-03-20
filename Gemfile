@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby '2.4.4'
+ruby '2.4.1'
 source "https://gems.shefcompsci.org.uk" do
   gem 'activerecord-session_store'
   gem 'airbrake'
@@ -78,3 +78,6 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
 end
+
+gem 'therubyracer'
+gem 'execjs'

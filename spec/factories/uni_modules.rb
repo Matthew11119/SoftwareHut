@@ -2,7 +2,8 @@
 #
 # Table name: uni_modules
 #
-#  module_code :string           not null, primary key
+#  id          :bigint(8)        not null, primary key
+#  module_code :string
 #  module_name :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

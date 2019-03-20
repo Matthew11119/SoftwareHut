@@ -1,27 +1,84 @@
-%h1 Listing students
+!!!
+%html
+  %head
+    %title Module Lead - Student Selection
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "js/bootstrap.min.js", :type => "text/javascript"}
+  %body
+    .container
+      %header
+        %h4 MED 1094 Ankle Sprain Examination
+        .inline
+          %h2 #3 Stations
+          %h5 Select a student below to examine
+      %br/
 
-%table
-  %thead
-    %tr
-      %th Student
-      %th Forename
-      %th Surname
-      %th Regno
-      %th
-      %th
-      %th
+      .panel.panel-default
+        .panel-body
+          %p Search student by
+          = simple_form_for :search, url: search_students_path, method: :post do |f|
+            .d-inline
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-user
+              = f.input :student_id, as: :string, required: false, label: false do
+                = f.input_field :student_id, class: "form-control", :placeholder => "Student ID"
 
-  %tbody
-    - @students.each do |student|
-      %tr
-        %td= student.student_id
-        %td= student.forename
-        %td= student.surname
-        %td= student.regno
-        %td= link_to 'Show', student
-        %td= link_to 'Edit', edit_student_path(student)
-        %td= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-user
+            = f.input :surname, as: :string, required: false, label: false do
+              = f.input_field :surname, class: "form-control", :placeholder => "Surname"
 
-%br
+            .pull-right
+              = link_to 'Reset', students_path, :class => 'btn'
+              .pull-right{:style => "margin-left:25px"}
+                = f.submit 'Search', :class => 'btn'
 
-= link_to 'New Student', new_student_path
+      %table.table.table-hover
+        %header
+          %h4
+            %u Students To Be Examined
+          %p There are #{@students.size} students to be examined
+
+          %thead.bg-primary
+            %tr
+              %th First Name
+              %th Last Name
+              %th Student ID
+              %th Registration Number
+              %th Action
+          %tbody
+            - @students.each do |student|
+              %tr
+                %td= student.forename
+                %td= student.surname
+                %td= student.student_id
+                %td= student.regno
+                %td= link_to 'Start Examination', student
+
+      = link_to 'Add New Student', new_student_path, :class => 'btn'
+      %br/
+
+      %table.table.table-hover
+        %header
+          %h4
+            %u Previous Students Examined
+        %thead.bg-primary
+          %tr
+            %th First Name
+            %th Last Name
+            %th Student ID
+            %th Registration Number
+            %th Action
+        %tbody
+          - @students.each do |student|
+            %tr
+              %td= student.forename
+              %td= student.surname
+              %td= student.student_id
+              %td= student.regno
+              %td= link_to 'View/Edit', student
+
+      %form{:action => "/stations", :method => "GET"}
+        %button.btn.btn-primary{:type => "submit", :href => "#{@station_path}"} Back to Stations
+
+      %br/

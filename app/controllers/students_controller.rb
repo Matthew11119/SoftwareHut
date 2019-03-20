@@ -6,6 +6,11 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
+  def search
+    @students = Student.where(student_id: params[:search][:student_id])
+    render :index
+  end
+
   # GET /students/1
   def show
   end
