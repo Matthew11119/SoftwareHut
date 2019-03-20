@@ -2,6 +2,7 @@
 %head
   = javascript_include_tag 'timer'
   %link{:crossorigin => "anonymous", :href => "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", :integrity => "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", :rel => "stylesheet"}/
+  %link{:href => "exam_button.css", :rel => "stylesheet", :type => "text/css"}/
   %script{:crossorigin => "anonymous", :integrity => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", :src => "https://code.jquery.com/jquery-3.3.1.slim.min.js"}
   %script{:crossorigin => "anonymous", :integrity => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1", :src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"}
   %script{:crossorigin => "anonymous", :integrity => "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", :src => "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"}
@@ -10,11 +11,39 @@
 
 %body
 
+  %h3
+    MED 1094 Ankle Sprain Examination
   %h1
     %b
-      %u John Doe
+      #3 Station 3
+  %h6{:align => "right"}
+    #demo
+    %button#startTimer{:display => "block", :style =>" width:100%", :type => "button"}Start timer
+
+  %p{:align => "center"}
+    John Doe           001473829
+
 
   %form
+    %h6
+      Washes Hands
+    .radio-inline{id: "fullbox", :style => "width: 30%; border: 1px solid; background-color: #333388"}
+      %label{:style => "color: white"}
+        %input{name: "result", type: "radio", id: "full", value: "full", :style => "width: 100%"}
+        Fully Met
+    .radio-inline{id: "partbox", :style => "width: 30%; border: 1px solid; background-color: #333388"}
+      %label{:style => "color: white"}
+        %input{name: "result", type: "radio", id: "part", value: "part", :style => "width: 100%"}
+        Partially Met
+    .radio-inline{id: "notbox", :style => "width: 30%; border: 1px solid; background-color: #333388"}
+      %label{:style => "color: white"}
+        %input{name: "result", type: "radio", id: "not", value: "not", :style => "width: 100%", :checked => "color: #ff0000"}
+        Not Met
+    %p Feedback
+    %textarea{:cols => "100", :rows => "3", :placeholder => "Comments"}
+
+
+
     %table{:style=>"border: 1px; width: 100%; border-style: solid"}
       %tr{:style=>"border: 1px; width: 100%; border-style: solid"}
         %th Criteria
