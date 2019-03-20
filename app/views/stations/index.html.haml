@@ -1,16 +1,24 @@
-%h1 Listing stations
+!!!
+%html
+  %head
+    %title Station Selection
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "js/bootstrap.min.js", :type => "text/javascript"}
+  %body
+    .container
+      %br/
+      %header
+        %h1 #{@exam.inspect} Exam: Stations
 
-%table
-  %thead
-    %tr
-      %th Station
-      %th Station name
-      %th Pass mark
-      %th Exam
-      %th
-      %th
-      %th
+      %table.table.table-striped.table-bordered.table-hover.table-condensed
+        %thead
+          %tr
+            %th Station No
+            %th Station Name
+            %th Pass Mark
+            %th Exam
 
+<<<<<<< HEAD
   %tbody
     - @stations.each do |station|
       %tr
@@ -21,7 +29,15 @@
         %td= link_to 'Show', station
         %td= link_to 'Edit', edit_station_path(station)
         %td= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' }
+=======
+        %tbody
+          - @stations.each do |station|
+            %tr
+              %td= station.id
+              %td= station.station_name
+              %td= station.pass_mark
+              %td= station.exam_id
+              %td= link_to 'Choose Station', students_path(:station_id => station.id)
+>>>>>>> 72bf0f198559e571e0ac5cc9c0d3d3075803d59c
 
-%br
-
-= link_to 'New Station', new_station_path
+    = link_to 'New Station', new_station_path

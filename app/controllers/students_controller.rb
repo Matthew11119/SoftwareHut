@@ -4,13 +4,18 @@ class StudentsController < ApplicationController
   # GET /students
   def index
     @students = Student.all
+    @station = Station.find(params[:station_id])
   end
 
   def search
     @students = Student.where(student_id: params[:search][:student_id])
     render :index
   end
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 72bf0f198559e571e0ac5cc9c0d3d3075803d59c
   # GET /students/1
   def show
   end

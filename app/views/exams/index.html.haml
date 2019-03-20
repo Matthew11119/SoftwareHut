@@ -1,8 +1,45 @@
+!!!
+%html
+  %head
+    %title Module Lead - Exam Chooser
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "js/bootstrap.min.js", :type => "text/javascript"}
+  %body
+    .container
+      %br/
+      %header
+        .col-auto
+          %h2.d-inline-block
+            Examinations Chooser
+            %button.btn.btn-primary.float-right{:type => "button"} Log Out
+      %br/
+      %table.table.table-striped.table-bordered.table-hover.table-condensed
+        %header
+          %h5
+            %u Today's Examinations
+            %thead
+              %tr
+                %th Exam Code
+                %th Module Code
+                %th Exam Name
+                %th Exam Date
+
+            %tbody
+              - Array(@exams).each do |exam|
+                %tr
+                  %td= exam.exam_code
+                  %td= exam.module_code
+                  %td= exam.name
+                  %td= exam.date
+                  %td= link_to 'Select Examination', stations_path(:exam_id => exam.id)
+
+= link_to 'New Exam', new_exam_path
+
 %div#examsToday
-  %p    
+  %p
     %h3{:style => "display: inline"} Today's #{@exam_today.count>1? 'Exams':'Exam' }   |
     &nbsp &nbsp #{Time.now.strftime("%d/%m/%Y")}
-      
+
   %table.table
     %thead
       %tr
@@ -18,8 +55,8 @@
   = will_paginate @exam_today, :param_name => 'exam_today_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
 
 %div#examsUpcoming
-  %p 
-    %h3{:style => "display: inline"}Upcoming #{@exam_today.count>1? 'Exams':'Exam' } 
+  %p
+    %h3{:style => "display: inline"}Upcoming #{@exam_today.count>1? 'Exams':'Exam' }
     &nbsp &nbsp Total = #{@exam_upcoming.count}
   %table.table
     %thead

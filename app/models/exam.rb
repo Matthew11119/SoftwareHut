@@ -13,12 +13,17 @@
 #
 
 class Exam < ApplicationRecord
+<<<<<<< HEAD
   belongs_to :uni_module, :foreign_key=>:module_code, :primary_key=>:exam_code
+=======
+
+  belongs_to :uni_module, :foreign_key=>:module_code
+>>>>>>> 72bf0f198559e571e0ac5cc9c0d3d3075803d59c
 
   scope :undeployed, -> { where(status: 0).order(:date) }
   scope :deployed, -> { where(status: 1).order(:date) }
   scope :completed, -> { where(status: 2).order(:date) }
   scope :archive, -> { where(status: 3).order(:date) }
   scope :templates, -> { where(status: 4).order(:date) }
-
+  
 end
