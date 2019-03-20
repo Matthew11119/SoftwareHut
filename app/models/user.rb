@@ -29,5 +29,8 @@
 class User < ApplicationRecord
   include EpiCas::DeviseHelper
 
+  scope :admins, -> { where(admin: true) }
+  scope :module_leads, -> { where(admin: false) }
+
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   end

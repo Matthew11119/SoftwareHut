@@ -4,6 +4,7 @@ class StudentsController < ApplicationController
   # GET /students
   def index
     @students = Student.all
+    @modules = UniModule.all
   end
 
   # GET /students/1
