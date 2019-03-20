@@ -26,11 +26,13 @@
       %tr
         %th{:scope=>"col"} Module Code
         %th{:scope=>"col"} Examination Title
+        %th{:scope=>"col"} Date
         %th{:scope=>"col"} Action
     %tbody
       - @exam_upcoming.each do |exam_upcoming|
         %tr
           %td= exam_upcoming.module_code
           %td= exam_upcoming.name
+          %td= exam_upcoming.date
           %td= link_to 'Select', exams_path
   = will_paginate @exam_upcoming, :param_name => 'exam_upcoming_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
