@@ -10,8 +10,18 @@ window.onload = function(){
   partButton.onclick = changePart;
   var notButton = document.getElementById("not");
   notButton.onclick = changeNot;
+  //These will be removed / refactored when OCSEs are available
+  var fullButton = document.getElementById("full2");
+  fullButton.onclick = changeFull2;
+  var partButton = document.getElementById("part2");
+  partButton.onclick = changePart2;
+  var notButton = document.getElementById("not2");
+  notButton.onclick = changeNot2;
+
   var recTimer = document.getElementById("timer2");
   recTimer.onclick = countUp;
+  var resBut = document.getElementById("resultButton");
+  resBut.onclick = changePass;
 }
 
 
@@ -34,6 +44,23 @@ function changeNot() {
   document.getElementById("notbox").style.backgroundColor = '#00AAAA';
 }
 
+function changeFull2(){
+  document.getElementById("fullbox2").style.backgroundColor = '#00AAAA';
+  document.getElementById("partbox2").style.backgroundColor = '#333388';
+  document.getElementById("notbox2").style.backgroundColor = '#333388';
+}
+
+function changePart2(){
+  document.getElementById("fullbox2").style.backgroundColor = '#333388';
+  document.getElementById("partbox2").style.backgroundColor = '#00AAAA';
+  document.getElementById("notbox2").style.backgroundColor = '#333388';
+}
+
+function changeNot2() {
+  document.getElementById("fullbox2").style.backgroundColor = '#333388';
+  document.getElementById("partbox2").style.backgroundColor = '#333388';
+  document.getElementById("notbox2").style.backgroundColor = '#00AAAA';
+}
 //function recordVoice(){
 //  item = document.getElementById("record");
 //  if (item.style.backgroundColor == "#FF0000"){
@@ -90,7 +117,7 @@ function loopCount(origTime, intValue){
     seconds = "0" + seconds;
   }
 
-  document.getElementById("timer2").innerHTML = "Recording - " + minutes + " : " + seconds + "s";
+  document.getElementById("timer2").innerHTML = "Recording - " + minutes + " : " + seconds;
   var stopButton = document.getElementById("stopRecord")
   stopButton.onclick = function(){
     stopRec(intValue);
@@ -101,4 +128,15 @@ function stopRec(intValue){
   clearInterval(intValue);
   document.getElementById("timer2").innerHTML = "Recording finished";
   document.getElementById("record").onclick = countUp;
+}
+
+function changePass()
+{
+    if (this.value=="Pass"){
+      this.value = "Fail";
+      document.getElementById("resultButton").innerHTML = "Fail";
+    } else {
+      this.value = "Pass";
+      document.getElementById("resultButton").innerHTML = "Pass";
+    }
 }
