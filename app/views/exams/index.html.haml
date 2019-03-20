@@ -14,7 +14,7 @@
         %tr
           %td= exam_today.module_code
           %td= exam_today.name
-          %td= link_to 'Select', station_path(exam_today.module_code)
+          %td= link_to 'Select', station_path(exam_today.exam_code)
   = will_paginate @exam_today, :param_name => 'exam_today_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
 
 %div#examsUpcoming
