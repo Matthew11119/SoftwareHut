@@ -2,9 +2,8 @@
 #
 # Table name: exams
 #
-#  id          :bigint(8)        not null, primary key
 #  date        :date
-#  exam_code   :string
+#  exam_code   :string           not null, primary key
 #  module_code :string
 #  name        :string
 #  status      :integer
