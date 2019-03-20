@@ -1,9 +1,5 @@
 source "https://rubygems.org"
-<<<<<<< HEAD
 ruby '2.4.1'
-=======
-
->>>>>>> 72bf0f198559e571e0ac5cc9c0d3d3075803d59c
 source "https://gems.shefcompsci.org.uk" do
   gem 'activerecord-session_store'
   gem 'airbrake'
@@ -90,9 +86,5 @@ group :test do
   gem 'simplecov'
 end
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 72bf0f198559e571e0ac5cc9c0d3d3075803d59c
 gem 'therubyracer'
 gem 'execjs'

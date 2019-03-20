@@ -11,9 +11,5 @@
 #
 
 class Station < ApplicationRecord
-<<<<<<< HEAD
   belongs_to :exam, :foreign_key=>:exam_code
-=======
-  belongs_to :exams, optional: true
->>>>>>> 72bf0f198559e571e0ac5cc9c0d3d3075803d59c
 end
