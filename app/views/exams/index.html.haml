@@ -28,7 +28,7 @@
         %td= exam.module_code
         %td= link_to 'View', exam
         %td= link_to 'Edit', edit_exam_path(exam)
-        %td -#= link_to 'Deploy', deploy_exam_path(exam)
+        %td= link_to 'Deploy', ''
         %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
     %tr
       %td Deployed Exams
@@ -40,6 +40,7 @@
         %td= exam.module_code
         %td= link_to 'View', exam
         %td= link_to 'Edit', edit_exam_path(exam)
+        %td= link_to 'Results', ''
         %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

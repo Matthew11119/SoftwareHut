@@ -63,9 +63,10 @@
                       = navbar_link_to '/templates', title: "Go to the templates page", identifier: :templates do
                         = fa_icon 'copy'
                         Templates
-                      = navbar_link_to '/archive', title: "Go to the archive page", identifier: :archive do
-                        = fa_icon 'archive'
+                      = navbar_link_to '/archives', title: "Go to the archive page", identifier: :archive do
+                        = fa_icon 'file-archive-o'
                         Archive
+              
               - if can?(:read, User)
                 = navbar_link_to '/users', title: "Go to the users page", identifier: :users do
                   = fa_icon 'users'
