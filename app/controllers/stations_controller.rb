@@ -48,6 +48,10 @@ class StationsController < ApplicationController
     redirect_to stations_url, notice: 'Station was successfully destroyed.'
   end
 
+  # /stations/id/detail
+  def detail
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station

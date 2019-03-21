@@ -10,8 +10,12 @@ Rails.application.routes.draw do
   resources :criteria_results
   resources :station_results
   resources :criteria
-  resources :stations
-  mount EpiCas::Engine, at: "/"
+  resources :stations do
+    member do
+      get 'detail'
+    end
+  end
+  mount EpiCas::Engine, at: "/" 
   devise_for :users
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all
