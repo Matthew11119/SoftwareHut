@@ -4,9 +4,8 @@
   %thead
     %tr
       %th Student
-      %th Forename
-      %th Surname
-      %th Regno
+      %th Name
+      %th Registration Number
       %th
       %th
       %th
@@ -15,8 +14,7 @@
     - @students.each do |student|
       %tr
         %td= student.student_id
-        %td= student.forename
-        %td= student.surname
+        %td= student.forename + " " + student.surname
         %td= student.regno
         %td= link_to 'Show', student
         %td= link_to 'Edit', edit_student_path(student)
@@ -25,3 +23,29 @@
 %br
 
 = link_to 'New Student', new_student_path
+= link_to 'Import Students CSV', ''
+
+
+%h1 Modules
+
+%table
+  %thead
+    %tr
+      %th Module code
+      %th Module name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @modules.each do |uni_module|
+      %tr
+        %td= uni_module.module_code
+        %td= uni_module.module_name
+        %td= link_to 'Show', uni_module
+        %td= link_to 'Edit', edit_uni_module_path(uni_module)
+        %td= link_to 'Delete', uni_module, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Uni module', new_uni_module_path
