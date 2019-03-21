@@ -1,6 +1,6 @@
 !!!
 %head
-  = javascript_include_tag 'timer'
+  = javascript_include_tag 'exam_management'
   %link{:crossorigin => "anonymous", :href => "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", :integrity => "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", :rel => "stylesheet"}/
   %script{:crossorigin => "anonymous", :integrity => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", :src => "https://code.jquery.com/jquery-3.3.1.slim.min.js"}
   %script{:crossorigin => "anonymous", :integrity => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1", :src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"}
@@ -28,16 +28,16 @@
     %h4
       %b Washes Hands
     %label
-      .radio-inline{id: "fullbox", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
-        %input{name: "result", type: "radio", id: "full", value: "full", :style => "width: 100%"}
+      .radio-inline{id: "fullbox"}
+        %input{name: "result", type: "radio", id: "full", value: "full"}
         Fully Met
     %label
-      .radio-inline{id: "partbox", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
-        %input{name: "result", type: "radio", id: "part", value: "part", :style => "width: 100%"}
+      .radio-inline{id: "partbox"}
+        %input{name: "result", type: "radio", id: "part", value: "part"}
         Partially Met
     %label
-      .radio-inline{id: "notbox", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
-        %input{name: "result", type: "radio", id: "not", value: "not", :style => "width: 100%", :checked => "color: #ff0000"}
+      .radio-inline{id: "notbox"}
+        %input{name: "result", type: "radio", id: "not", value: "not"}
         Not Met
     %h5 Feedback
     %textarea{:rows => "3", :placeholder => "Comments"}
@@ -47,21 +47,21 @@
     %p{:style => "color:red"}Ask candidate what they are observing form
     %p Comfort, colour, pain, conscious level
     %label
-      .radio-inline{id: "fullbox2", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
-        %input{name: "result2", type: "radio", id: "full2", value: "full", :style => "width: 100%"}
+      .radio-inline{id: "fullbox2"}
+        %input{name: "result2", type: "radio", id: "full2", value: "full"}
         Fully Met
     %label
-      .radio-inline{id: "partbox2", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
-        %input{name: "result2", type: "radio", id: "part2", value: "part", :style => "width: 100%"}
+      .radio-inline{id: "partbox2"}
+        %input{name: "result2", type: "radio", id: "part2", value: "part"}
         Partially Met
     %label
-      .radio-inline{id: "notbox2", :style => "width: 100%; border: 1px solid; height: 5em; background-color: #333388"}
-        %input{name: "result2", type: "radio", id: "not2", value: "not", :style => "width: 100%", :checked => "color: #ff0000"}
+      .radio-inline{id: "notbox2"}
+        %input{name: "result2", type: "radio", id: "not2", value: "not"}
         Not Met
     %h5 Feedback
     %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
 
-    %button#record{:class => "btn btn-danger", :style => "width:15em; background-color:#FF5555; color:white", :type => "button"}record
+    %button#record{:class => "btn btn-danger", :type => "button"}record
     #timer2
     %p{:style => "text-align: right"} Pass/Fail
     %button#stopRecord{:class => "btn btn-danger", :type => "button"}stop recording
@@ -71,4 +71,4 @@
       %b Overall Feedback
     %textarea{:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :placeholder => "Overall Comments"}
 
-    %input#submitButton{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :class => "btn float-right"}
+    %input#submitButton{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :class => "btn float-right", :style => "background-color:#6666FF; color: white; width: 25%; padding-top:1em"}
