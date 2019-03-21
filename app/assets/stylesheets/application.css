@@ -1,5 +1,6 @@
 /*
   *= require bootstrap_setup
+  *= require scaffolds
   *= require font-awesome
   *= require select2
   *= require select2-bootstrap
@@ -10,13 +11,5 @@
   *= require custom_flash
   *= require environment_notice
 
-  *= require archives
-  *= require criteria
-  *= require criteria_results
-  *= require exams
-  *= require station_results
-  *= require stations
-  *= require students
-  *= require templates
-  *= require uni_modules
+  *= require home
 */

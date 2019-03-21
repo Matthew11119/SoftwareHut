@@ -8,6 +8,9 @@ source "https://gems.shefcompsci.org.uk" do
   gem 'capybara-select2', group: :test
 end
 
+#custom rubygems
+gem 'prawn'
+
 gem 'rails', '5.2.1'
 gem 'bootsnap'
 gem 'responders'
