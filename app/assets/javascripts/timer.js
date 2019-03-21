@@ -61,14 +61,6 @@ function changeNot2() {
   document.getElementById("partbox2").style.backgroundColor = '#333388';
   document.getElementById("notbox2").style.backgroundColor = '#00AAAA';
 }
-//function recordVoice(){
-//  item = document.getElementById("record");
-//  if (item.style.backgroundColor == "#FF0000"){
-//    item.style.backgroundColor = "#7FFF00";
-//  } else {
-//    item.style.backgroundColor = "#FF0000";
-//  }
-//}
 
 function runTimer(){
   var countDownDate = new Date().getTime() + (20 * 60 * 1000);
