@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_18_213910) do
+ActiveRecord::Schema.define(version: 2019_03_20_130724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,8 +46,7 @@ ActiveRecord::Schema.define(version: 2019_03_18_213910) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "exams", force: :cascade do |t|
-    t.string "exam_code"
+  create_table "exams", primary_key: "exam_code", id: :string, force: :cascade do |t|
     t.date "date"
     t.string "name"
     t.string "module_code"
@@ -100,8 +99,7 @@ ActiveRecord::Schema.define(version: 2019_03_18_213910) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "uni_modules", force: :cascade do |t|
-    t.string "module_code"
+  create_table "uni_modules", primary_key: "module_code", id: :string, force: :cascade do |t|
     t.string "module_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
