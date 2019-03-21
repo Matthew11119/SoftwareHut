@@ -1,9 +1,6 @@
 input[type="radio"] {
     display: none;
-}
-
-#timer2{
-  color: red;
+    width: 100%;
 }
 
 label{
@@ -20,14 +17,17 @@ textarea{
   width: 50%;
 }
 
-.header{
-  background-color: #00CED1;
-  width: 100%;
+#timer2{
+  color: red;
 }
 
 #record{
   width: 15em;
-  background-color: #AAAAFF;
+  color: white;
+}
+
+#stopRecord{
+  width: 15em;
   color: white;
 }
 
@@ -41,4 +41,18 @@ textarea{
   color: white;
   width: 25%;
   padding-top: 1em;
+}
+
+.radio-inline{
+  background-color: #333388;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+  height: 5em;
+}
+
+.header{
+  background-color: #00CED1;
+  width: 100%;
 }
