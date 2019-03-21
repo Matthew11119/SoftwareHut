@@ -1,0 +1,21 @@
+%div#formHead
+    %p MED 1094 Ankle Sprain Examination
+    %h3 #3 Station 3
+    Enter examiner details
+%div#formBody
+    %nav.navbar.navbar-default.navbar-static-top
+        %div.container
+            %ul.nav.navbar-nav.navbar-center
+                %li.navbar-text Remaining
+                %li.navbar-text Completed
+
+    %h4.text-center{:style=>"padding-top:2.406em"} Welcome to the Station Landing Page
+
+    %div#formBodyForm
+        = simple_form_for(@station_result_detail) do |f|
+            = f.input :examiner_name, :label => "Who are you?"
+            %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
+                = f.button :submit, class: 'btn btn-primary pull-right', style:'background-color:#22A7F0;border-color:#22A7F0'            
+                = link_to 'Back', detail_station_path, class: 'btn pull-right',style:'color:#22A7F0'
+    %p.text-center{:style=>'color:#9E9E9E;padding-bottom:1.375em'} To proceed, please enter your name for future references
+= link_to 'Back to View Station Page', exams_path, class:'pull-right', style:'color:#313131'

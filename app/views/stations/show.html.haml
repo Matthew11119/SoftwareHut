@@ -1,6 +1,8 @@
 %div#stationsView
     #{@exam_show.first.module_code}
-    %h3{:style=>"margin-top:0"} #{@exam_show.first.exam_code} #{@exam_show.first.name}
+    %br
+    %h3{:style=>"margin-top:0;display:inline"} #{@exam_show.first.exam_code} #{@exam_show.first.name}
+    %span.pull-right There #{@station.count>1? 'are':'is'} #{@station.count} #{@station.count>1? 'stations':'station'} available
 
     %table.table
         %thead
