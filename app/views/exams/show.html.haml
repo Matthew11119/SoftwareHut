@@ -12,6 +12,9 @@
 %p
   %b Module code:
   = @exam.module_code
+%p
+  %b Status:
+  = status_string(@exam.status)
 
 = link_to 'Edit', edit_exam_path(@exam)
 \|

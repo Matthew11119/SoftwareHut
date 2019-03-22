@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
-  #get '/templates', to: 'templates#index', except: [:deploy]
-  #get '/archives', to: 'archives#index', except: [:new, :create, :deploy]
-  resources :exams
-  resources :templates, except: [:deploy]
-  resources :archives, except: [:new, :create, :deploy]
+  resources :exams, except: [:unarchive]
+  resources :archives, except: [:new, :create, :set_as_deployed]
+  resources :templates, except: [:set_as_deployed, :unarchive]
   resources :students
   resources :uni_modules
   resources :criteria_results

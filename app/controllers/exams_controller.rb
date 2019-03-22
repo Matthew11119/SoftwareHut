@@ -37,7 +37,7 @@ class ExamsController < ApplicationController
   # PATCH/PUT /exams/1
   def update
     if @exam.update(exam_params)
-      redirect_to @exam, notice: 'Exam was successfully updated.'
+      redirect_to exams_path, notice: 'Exam was successfully updated.'
     else
       render :edit
     end
@@ -57,6 +57,6 @@ class ExamsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def exam_params
-      params.require(:exam).permit(:exam_code, :date, :name, :module_code)
+      params.require(:exam).permit(:exam_code, :date, :name, :module_code, :status)
     end
 end
