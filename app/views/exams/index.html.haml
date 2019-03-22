@@ -4,7 +4,7 @@
   -#
     un-deployed:0, deployed:1, completed:2, archive:3, template:4
 
-  %h1 Current Exams
+  %h1 Un-Deployed Exams
 
   %table
     %thead
@@ -19,8 +19,6 @@
         %th
 
     %tbody
-      %tr
-        %td Un-Deployed Exams
       - @undeployed.each do |exam|
         %tr
           %td= exam.exam_code
@@ -31,8 +29,26 @@
           %td= link_to 'Edit', edit_exam_path(exam)
           %td= link_to('Deploy', exam_path(exam, :exam => {:status => 1} ), :method => :put)
           %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Exam', new_exam_path
+
+  %h1 Deployed Exams
+
+  %table
+    %thead
       %tr
-        %td Deployed Exams
+        %th Exam code
+        %th Exam date
+        %th Exam name
+        %th Module code
+        %th
+        %th
+        %th
+        %th
+
+    %tbody
       - @deployed.each do |exam|
         %tr
           %td= exam.exam_code
@@ -46,8 +62,6 @@
           %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
 
   %br
-
-  = link_to 'New Exam', new_exam_path
 
   %h1 Completed Exams
   %table
