@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :exams, except: [:unarchive]
   resources :archives, except: [:new, :create, :set_as_deployed]
   resources :templates, except: [:set_as_deployed, :unarchive]
+  resources :answers
   resources :students
   resources :uni_modules
   resources :criteria_results
