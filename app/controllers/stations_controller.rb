@@ -53,6 +53,7 @@ class StationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def station_params
-      params.require(:station).permit(:station_id, :station_name, :pass_mark, :exam_id)
+      params.require(:station).permit([:station_id, :station_name, :pass_mark, :exam_id,
+        :criteria_attributes => [:criteria_id, :criteria_description, :criteria_critical, :station_id]])
     end
 end

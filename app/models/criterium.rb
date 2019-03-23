@@ -11,5 +11,5 @@
 #
 
 class Criterium < ApplicationRecord
-  belongs_to :stations
+  belongs_to :station, :foreign_key=>:station_id
 end

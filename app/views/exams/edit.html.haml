@@ -4,4 +4,7 @@
 
 = link_to 'Show', @exam
 \|
+= link_to 'Delete', @exam, method: :delete, data: { confirm: 'Are you sure?' }
+\|
 = link_to 'Back', exams_path
+

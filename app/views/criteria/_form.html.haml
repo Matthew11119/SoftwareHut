@@ -4,9 +4,8 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :criteria_id
-    = f.input :criteria_description
-    = f.input :criteria_critical
+    = f.input :criteria_description, label: 'Criteria Description'
+    = f.input :criteria_critical, label: 'Critical'
     = f.input :station_id
 
   .form-actions

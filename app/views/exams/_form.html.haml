@@ -1,13 +1,45 @@
 -# frozen_string_literal: true
-= simple_form_for(@exam) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+= simple_form_for(@exam) do |exam|
+  = exam.error_notification
+  = exam.error_notification message: exam.object.errors[:base].to_sentence if exam.object.errors[:base].present?
 
-  .form-inputs
-    = f.input :exam_code
-    = f.input :date
-    = f.input :name
-    = f.input :module_code
+  -# Exam Fields
+  .exam.form-inputs
+    = exam.input :exam_code
+    = exam.input :date
+    = exam.input :name
+    = exam.input :module_code
+    
+
+
+    -# Stations Fields
+    = exam.simple_fields_for :stations do |station|
+      = station.error_notification
+      = station.error_notification message: station.object.errors[:base].to_sentence if station.object.errors[:base].present?
+
+      = station.input :station_name
+      = station.input :pass_mark
+
+
+
+      -# Criteria Fields
+      = station.simple_fields_for :criteria do |criterium|
+        = criterium.error_notification
+        = criterium.error_notification message: criterium.object.errors[:base].to_sentence if criterium.object.errors[:base].present?
+        
+        = criterium.input :criteria_description
+        = criterium.input :criteria_critical
+        = criterium.input :station_id 
+
+
+
+      -# Answers Fields
+      = station.simple_fields_for :answers do |answer|
+        = answer.error_notification
+        = answer.error_notification message: answer.object.errors[:base].to_sentence if answer.object.errors[:base].present?
+        
+        = answer.input :text
+        = answer.input :score
 
   .form-actions
-    = f.button :submit
+    = exam.button :submit
