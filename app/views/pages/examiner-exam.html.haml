@@ -1,6 +1,5 @@
 !!!
 %head
-  = javascript_include_tag 'exam_management'
   = javascript_include_tag 'recordFile'
   %link{:crossorigin => "anonymous", :href => "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", :integrity => "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", :rel => "stylesheet"}/
   %script{:crossorigin => "anonymous", :integrity => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", :src => "https://code.jquery.com/jquery-3.3.1.slim.min.js"}
@@ -67,7 +66,8 @@
     %button#stopRecord{:class => "btn btn-danger", :type => "button"}stop recording
     %button#resultButton{:class => "btn float-right", :type => "button", :value => "Pass"}Pass
     %a#download
-    %audio#recordedAudio
+    %p
+      %audio#recordedAudio
     %h4{:style => "padding-top: 2em"}
       %b Overall Feedback
     %textarea{:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :placeholder => "Overall Comments"}

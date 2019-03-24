@@ -11,12 +11,12 @@ window.onload = function(){
   var notButton = document.getElementById("not");
   notButton.onclick = changeNot;
   //These will be removed / refactored when OCSEs are available
-  var fullButton = document.getElementById("full2");
-  fullButton.onclick = changeFull2;
-  var partButton = document.getElementById("part2");
-  partButton.onclick = changePart2;
-  var notButton = document.getElementById("not2");
-  notButton.onclick = changeNot2;
+  var fullButton2 = document.getElementById("full2");
+  fullButton2.onclick = changeFull2;
+  var partButton2 = document.getElementById("part2");
+  partButton2.onclick = changePart2;
+  var notButton2 = document.getElementById("not2");
+  notButton2.onclick = changeNot2;
 
   var recTimer = document.getElementById("timer2");
   recTimer.onclick = countUp;
