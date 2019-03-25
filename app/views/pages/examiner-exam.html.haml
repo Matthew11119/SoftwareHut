@@ -26,17 +26,16 @@
   %form
     %h4
       %b Washes Hands
-    %label
-      .radio-inline{id: "fullbox"}
-        %input{name: "result", type: "radio", id: "full", value: "full"}
+
+    .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
+      %label.btn.btn-primary.active
+        %input#option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
         Fully Met
-    %label
-      .radio-inline{id: "partbox"}
-        %input{name: "result", type: "radio", id: "part", value: "part"}
+      %label.btn.btn-primary
+        %input#option2{:autocomplete => "off", :name => "options", :type => "radio"}/
         Partially Met
-    %label
-      .radio-inline{id: "notbox"}
-        %input{name: "result", type: "radio", id: "not", value: "not"}
+      %label.btn.btn-primary
+        %input#option3{:autocomplete => "off", :name => "options", :type => "radio"}/
         Not Met
     %h5 Feedback
     %textarea{:rows => "3", :placeholder => "Comments"}
@@ -45,17 +44,15 @@
       %b Observes Patients
     %p{:style => "color:red"}Ask candidate what they are observing form
     %p Comfort, colour, pain, conscious level
-    %label
-      .radio-inline{id: "fullbox2"}
-        %input{name: "result2", type: "radio", id: "full2", value: "full"}
+    .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
+      %label.btn.btn-primary.active
+        %input#option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
         Fully Met
-    %label
-      .radio-inline{id: "partbox2"}
-        %input{name: "result2", type: "radio", id: "part2", value: "part"}
+      %label.btn.btn-primary
+        %input#option2{:autocomplete => "off", :name => "options", :type => "radio"}/
         Partially Met
-    %label
-      .radio-inline{id: "notbox2"}
-        %input{name: "result2", type: "radio", id: "not2", value: "not"}
+      %label.btn.btn-primary
+        %input#option3{:autocomplete => "off", :name => "options", :type => "radio"}/
         Not Met
     %h5 Feedback
     %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
