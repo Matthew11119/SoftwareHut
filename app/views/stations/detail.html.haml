@@ -1,7 +1,7 @@
 %div#formHead
-    %p MED 1094 Ankle Sprain Examination
-    %h3 #3 Station 3
-    Enter examiner details
+    %p #{@exam_show.first.exam_code} #{@exam_show.first.name}
+    %h3 #{@stations.first.station_name}
+    %span.pull-right{:style=>"padding-right:1.625em"} Enter examiner details
 %div#formBody
     %nav.navbar.navbar-default.navbar-static-top
         %div.container
@@ -16,6 +16,6 @@
             = f.input :examiner_name, :label => "Who are you?"
             %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
                 = f.button :submit, 'Continue',class: 'btn btn-primary pull-right', style:'background-color:#22A7F0;border-color:#22A7F0;padding:0.438em 3.875em'            
-                = link_to 'Back', detail_station_path, class: 'btn pull-right',style:'color:#22A7F0'
+                = link_to 'Back', station_path, class: 'btn pull-right',style:'color:#22A7F0'
     %p.text-center{:style=>'color:#9E9E9E;padding-bottom:1.375em'} To proceed, please enter your name for future references
-= link_to 'Back to View Station Page', exams_path, class:'pull-right', style:'color:#313131'
+= link_to 'Back to View Station Page', station_path, class:'pull-right', style:'color:#313131'

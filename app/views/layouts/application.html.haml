@@ -72,7 +72,7 @@
                   Users
 
 
-
+            
             - if user_signed_in?
               %ul.nav.navbar-nav.navbar-right
                 %li.dropdown
@@ -83,6 +83,11 @@
                     %li
                       = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
                         = fa_icon 'sign-out', text: 'Log out'
+            -# - if (user_signed_in? && current_page?(:action=>'detail'))
+            -#   %ul.nav.navbar-nav.navbar_right
+            -#     %li
+            -#       = fa_icon 'user', text: 'READY SCREEN'                  
+                
 
       #main-container.container
 

@@ -17,7 +17,7 @@
                     %td= index+1
                     %td= station.station_name
                     -# %td count
-                    %td= link_to 'Select', detail_station_path()    
+                    %td= link_to 'Select', detail_station_path(:station_name=>station.station_name)    
     = will_paginate @station_show,:param_name => 'station'  ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
     %hr
     = link_to "Back to Overview Page", exams_path, :class=>"btn btn-primary pull-right"
