@@ -2,9 +2,10 @@
 #
 # Table name: criteria
 #
-#  id                   :bigint(8)        not null, primary key
+#  id                   :bigint(8)        not null, primary keyW
 #  criteria_critical    :boolean
 #  criteria_description :text
+#  number               :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  station_id           :integer

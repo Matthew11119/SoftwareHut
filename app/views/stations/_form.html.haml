@@ -1,12 +1,40 @@
--# frozen_string_literal: true
-= simple_form_for(@station) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
-    = f.input :station_name
-    = f.input :pass_mark
-    = f.input :exam_code
+
+-# Station Fields
+%h4 
+  Station
+= simple_form_for(@station) do |station|
+
+  = station.error_notification
+  = station.error_notification message: station.object.errors[:base].to_sentence if station.object.errors[:base].present?
+  .form-inline.form-group-border
+    = station.input :station_name
+    = station.input :pass_mark
+
+
+  .split.left
+    -# Criteria Fields
+    %h4 Criteria
+    = station.simple_fields_for :criteria,  @station.criteria.sort_by(&:number) do |criterium|
+      = criterium.error_notification
+      = criterium.error_notification message: criterium.object.errors[:base].to_sentence if criterium.object.errors[:base].present?
+      .form-group-border.form-inline
+        .form-group
+          .form-inline
+            = criterium.input :number
+          = criterium.input :criteria_critical, label: 'Critical'
+        = criterium.input :criteria_description, label: 'Description'
+
+
+  .split.right
+    -# Answers Fields
+    %h4 Answers
+    = station.simple_fields_for :answers, @station.answers.sort_by(&:score) do |answer|
+      = answer.error_notification
+      = answer.error_notification message: answer.object.errors[:base].to_sentence if answer.object.errors[:base].present?
+      .form-group-border
+        = answer.input_field :text, class: 'form-control string'
+        = answer.input :score
 
   .form-actions
-    = f.button :submit
+    = station.button :submit

@@ -2,6 +2,28 @@
 
 = render 'form'
 
+%br
+
+-Station.where(exam_id: @exam.exam_code).each do |station|
+  %h3= station[:station_name]
+  
+  = link_to 'Edit Station', edit_station_path(station), class: 'btn btn-default'
+
+  %table.table.thead-dark.table-bordered
+    %thead
+      %tr
+        %th Criteria
+        - answers = Answer.where(station_id: station.id).order(:score)
+        - answers.each do |answer|
+          %th= answer[:text]
+
+    %tbody
+      - Criterium.where(station_id: station.id).order(:number).each do |criterium|
+        %tr
+          %td= criterium[:criteria_description]
+          -answers.each do |a|
+            %td 
+          
 = link_to 'Show', @exam
 \|
 = link_to 'Delete', @exam, method: :delete, data: { confirm: 'Are you sure?' }
