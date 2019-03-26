@@ -60,4 +60,12 @@ class StudentsController < ApplicationController
     def student_params
       params.require(:student).permit(:student_id, :forename, :surname, :regno)
     end
+
+    def show_tables
+      if clicked on remaining
+        render ""
+      else
+        render ""
+      end
+    end
 end

@@ -4,6 +4,7 @@
     %title Module Lead - Student Selection
     %link{:href => "css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
     %script{:src => "js/bootstrap.min.js", :type => "text/javascript"}
+    %script{:src => "assets/"}
   %body
     .container
       %div#blueHeader
@@ -11,10 +12,6 @@
         %p
           %h3{:style => "display: inline"} #3 Station |
           &nbsp &nbsp Select a student below to examine
-
-
-      %br/
-
       %div#formBody
         %nav.navbar.navbar-default.navbar-static-top
           %div.container
@@ -27,13 +24,9 @@
           %p Search student by
           = simple_form_for :search, url: search_students_path, method: :post do |f|
             .d-inline
-              %span.input-group-addon
-                %span.glyphicon.glyphicon-user
               = f.input :student_id, as: :string, required: false, label: false do
                 = f.input_field :student_id, class: "form-control", :placeholder => "Student ID"
 
-            %span.input-group-addon
-              %span.glyphicon.glyphicon-user
             = f.input :surname, as: :string, required: false, label: false do
               = f.input_field :surname, class: "form-control", :placeholder => "Surname"
 
