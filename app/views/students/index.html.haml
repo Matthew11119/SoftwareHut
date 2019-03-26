@@ -8,7 +8,7 @@
   %body
     .container
       %div#blueHeader
-        %h3{:style => "display: inline"} MED1094 Ankle Spraign Examination
+        %h3{:style => "display: inline"} MED1094 Ankle Sprain Examination
         %p
           %h3{:style => "display: inline"} #3 Station |
           &nbsp &nbsp Select a student below to examine
@@ -16,8 +16,10 @@
         %nav.navbar.navbar-default.navbar-static-top
           %div.container
             %ul.nav.navbar-nav.navbar-center
-              %li.navbar-text Remaining
-              %li.navbar-text Completed
+              = navbar_link_to '#', title: 'Remaining', identifier: :Students do
+                Remaining
+              = navbar_link_to '#', title: 'Remaining', identifier: :Students do
+                Completed
 
       .panel.panel-default
         .panel-body

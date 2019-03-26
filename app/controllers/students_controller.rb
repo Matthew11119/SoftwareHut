@@ -4,11 +4,13 @@ class StudentsController < ApplicationController
   # GET /students
   def index
     @students = Student.all
+    # @examined_students = Student.where.not(params[:student])
+    # @remaining_students = Student.where(params[:student])
     # @station = Station.find(params[:station_id])
   end
 
   def search
-    @students = Student.where(student_id: params[:search][:student_id])
+    @students = Student.where(student_id: params[:search][:student_id]).or(Student.where(surname: params[:search][:surname]) )
     render :index
   end
   # GET /students/1
@@ -59,13 +61,5 @@ class StudentsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def student_params
       params.require(:student).permit(:student_id, :forename, :surname, :regno)
-    end
-
-    def show_tables
-      if clicked on remaining
-        render ""
-      else
-        render ""
-      end
     end
 end
