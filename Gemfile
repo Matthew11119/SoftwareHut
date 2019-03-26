@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby '2.4.1'
+ruby '2.4.4'
 source "https://gems.shefcompsci.org.uk" do
   gem 'activerecord-session_store'
   gem 'airbrake'
@@ -52,6 +52,7 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'delayed-plugins-airbrake'
 gem 'daemons'
+gem 'simple_form'
 
 group :development, :test do
   gem 'rspec-rails'
