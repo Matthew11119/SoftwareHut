@@ -55,6 +55,11 @@ class StationsController < ApplicationController
     # @index = 
   end
 
+  # /stations/id/
+  def detail_form
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station
