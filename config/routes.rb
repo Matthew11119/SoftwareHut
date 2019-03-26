@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :stations do
     member do
       get 'detail'
+      get 'detail_form'
+      post 'detail_form'
     end
   end
   mount EpiCas::Engine, at: "/" 
