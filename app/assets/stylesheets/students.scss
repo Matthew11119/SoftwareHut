@@ -1,3 +1,50 @@
 // Place all the styles related to the Students controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#examsToday{
+    padding-top: 3.250em // 52px
+}
+
+#examsUpcoming{
+    padding-top: 3.750em; // 60px
+    padding-bottom: 5em
+}
+
+#formHead {
+    margin-top: 2.375em; // 38px
+    background-color:#22A7F0;
+    color:#FFFFFF;
+    padding-left:1.625em; // 26px
+    padding-top:1.063em; // 17px
+    padding-bottom:1.063em; //17px
+}
+
+#formHead p{
+    margin:0
+}
+
+#formHead h3{
+    display: inline;
+    margin:0
+}
+
+#formBody {
+    background-color:#FAFAFA;
+}
+
+#formBody ul{
+    text-align: center
+}
+
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+#formBodyForm{
+    padding-top:2.438em; // 39px
+    padding-bottom:3.781em; // 60px
+    padding-left:2.956em; // 47.3px
+    padding-right:2.956em; //47.3px
+}
