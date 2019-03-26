@@ -57,7 +57,8 @@ class StationsController < ApplicationController
 
   # /stations/id/
   def detail_form
-    
+    @exam_show = Exam.where(:exam_code=>params[:station_result][:exam_code])
+    @stations = Station.all.where(:station_name=>params[:station_result][:station_name])
   end
 
   private
@@ -76,7 +77,7 @@ class StationsController < ApplicationController
       @station_result_detail = StationResult.new
     end
 
-    def detail_params1
-      params.require(:station_result_detail).permit(:examiner_name)
-    end
+    # def detail_params1
+    #   params.require(:stations).permit(:examiner_name)
+    # end
 end
