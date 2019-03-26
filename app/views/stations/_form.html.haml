@@ -1,18 +1,18 @@
 
 
 -# Station Fields
-%h4 
-  Station
 = simple_form_for(@station) do |station|
 
-  = station.error_notification
-  = station.error_notification message: station.object.errors[:base].to_sentence if station.object.errors[:base].present?
-  .form-inline.form-group-border
-    = station.input :station_name
-    = station.input :pass_mark
+  .form-section
+    %h4 Station
+    = station.error_notification
+    = station.error_notification message: station.object.errors[:base].to_sentence if station.object.errors[:base].present?
+    .form-inline
+      = station.input :station_name
+      = station.input :pass_mark
 
 
-  .split.left
+  .form-section
     -# Criteria Fields
     %h4 Criteria
     = station.simple_fields_for :criteria,  @station.criteria.sort_by(&:number) do |criterium|
@@ -25,16 +25,21 @@
           = criterium.input :criteria_critical, label: 'Critical'
         = criterium.input :criteria_description, label: 'Description'
 
+    .form-controls
+      = link_to 'New Criteria', criterium_path(@station.id), class: 'btn btn-default', method: :post
 
-  .split.right
+  .form-section
     -# Answers Fields
     %h4 Answers
     = station.simple_fields_for :answers, @station.answers.sort_by(&:score) do |answer|
       = answer.error_notification
       = answer.error_notification message: answer.object.errors[:base].to_sentence if answer.object.errors[:base].present?
       .form-group-border
-        = answer.input_field :text, class: 'form-control string'
+        = answer.input :text, label: 'Name'
         = answer.input :score
+
+    .form-controls
+      = link_to 'New Answer', answer_path(@station.id), class: 'btn btn-default', method: :post
 
   .form-actions
     = station.button :submit

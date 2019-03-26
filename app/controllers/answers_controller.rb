@@ -21,10 +21,14 @@ class AnswersController < ApplicationController
 
   # POST /answers
   def create
-    @answer = Answer.new(answer_params)
+    @answer = Answer.new
+
+    @answer[:text] = ''
+    @answer[:score] = 0
+    @answer[:station_id] = params[:id]
 
     if @answer.save
-      redirect_to @answer, notice: 'Answer was successfully created.'
+      redirect_to edit_station_path(@answer.station), notice: 'Answer was successfully created.'
     else
       render :new
     end

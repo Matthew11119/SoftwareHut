@@ -1,15 +1,21 @@
 Rails.application.routes.draw do
 
-  resources :answers
+  
   resources :exams
   resources :archives, except: [:new, :create]
   resources :templates
   resources :students
   resources :uni_modules
+
+  resources :stations
+  resources :criteria
+  post 'criteria/:id', to: 'criteria#create'
+  resources :answers
+  post 'answers/:id', to: 'answers#create'
+  
   resources :criteria_results
   resources :station_results
-  resources :criteria#, except: [:index]
-  resources :stations#, except: [:index]
+  
   mount EpiCas::Engine, at: "/"
   devise_for :users
   match "/403", to: "errors#error_403", via: :all
