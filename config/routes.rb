@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get 'detail'
     end
   end
-  mount EpiCas::Engine, at: "/" 
+  mount EpiCas::Engine, at: "/"
   devise_for :users
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get :ie_warning, to: 'errors#ie_warning'
   get :javascript_warning, to: 'errors#javascript_warning'
 
-  root to: "pages#examiner-exam"
+  root to: "osce_exam#examiner-exam"
   resources :users
 
 
