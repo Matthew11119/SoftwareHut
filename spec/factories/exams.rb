@@ -2,14 +2,13 @@
 #
 # Table name: exams
 #
-#  id          :bigint(8)        not null, primary key
-#  exam_code   :string
-#  exam_date   :date
-#  exam_name   :string
+#  date        :date
+#  exam_code   :string           not null, primary key
 #  module_code :string
+#  name        :string
+#  status      :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  exam_id     :integer
 #
 
 FactoryBot.define do

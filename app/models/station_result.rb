@@ -9,7 +9,6 @@
 #  mark          :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  result_id     :integer
 #  station_id    :integer
 #  student_id    :integer
 #

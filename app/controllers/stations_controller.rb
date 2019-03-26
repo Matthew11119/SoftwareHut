@@ -8,6 +8,9 @@ class StationsController < ApplicationController
 
   # GET /stations/1
   def show
+    # @station = Station.paginate(:page => params[:station], :per_page => 10)
+    @station_show = @station.paginate(:page => params[:station], :per_page => 10)
+    @exam_show = Exam.where(:exam_code=>params[:id])
   end
 
   # GET /stations/new
@@ -45,10 +48,15 @@ class StationsController < ApplicationController
     redirect_to stations_url, notice: 'Station was successfully destroyed.'
   end
 
+  # /stations/id/detail
+  def detail
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station
-      @station = Station.find(params[:id])
+      # @station = Station.find(params[:id])
+      @station = Station.where(:exam_code=>params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

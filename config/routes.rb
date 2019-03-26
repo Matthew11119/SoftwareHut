@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
 
+  resources :exams
+  get '/templates', to: 'exams#index', as: 'templates', except: [:deploy]
+  get '/archive',   to: 'exams#index', as: 'archives', except: [:new, :create, :deploy]
+  #resources :templates
+  #resources :archives#, except: [:new, :create]
   resources :students
   resources :uni_modules
   resources :criteria_results
   resources :station_results
   resources :criteria
-  resources :stations
-  resources :exams
-  mount EpiCas::Engine, at: "/"
+  resources :stations do
+    member do
+      get 'detail'
+    end
+  end
+  mount EpiCas::Engine, at: "/" 
   devise_for :users
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all
@@ -19,6 +27,8 @@ Rails.application.routes.draw do
 
   root to: "pages#examiner-exam"
   resources :users
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

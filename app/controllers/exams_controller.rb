@@ -3,7 +3,11 @@ class ExamsController < ApplicationController
 
   # GET /exams
   def index
-    @exams = Exam.all
+    # @undeployed = Exam.undeployed
+    # @deployed = Exam.deployed
+    # @completed = Exam.completed
+    @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
+    @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
   end
 
   # GET /exams/1
@@ -53,6 +57,6 @@ class ExamsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def exam_params
-      params.require(:exam).permit(:exam_code, :exam_date, :exam_name, :module_code)
+      params.require(:exam).permit(:exam_code, :date, :name, :module_code)
     end
 end
