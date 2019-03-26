@@ -6,7 +6,7 @@
   %script{:crossorigin => "anonymous", :integrity => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1", :src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"}
   %script{:crossorigin => "anonymous", :integrity => "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", :src => "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"}
 %body
-  .header
+  .p-3.mb-2.bg-primary.text-white
     %h2
       MED 1094 Ankle Sprain Examination
     %h1
@@ -14,10 +14,10 @@
         #3 Station 3
     %h5{:align => "right"}
       #demo
-      %button#startTimer{:display => "block", :type => "button"}Start timer
+      %button.btn.btn-secondary#startTimer{:display => "block", :type => "button"}Start timer
 
-    %p{:align => "center"}
-      John Doe           001473829
+  %p{:align => "center"}
+    John Doe           001473829
 
   %h1
     %b
@@ -56,11 +56,11 @@
         Not Met
     %h5 Feedback
     %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
-
-    %button#record{:class => "btn btn-danger", :type => "button"}record
+    .btn-group{"aria-label" => "Basic example", :role => "group"}
+      %button.btn.btn-danger#record{:type => "button"}record
+      %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
     #timer2
     %p{:style => "text-align: right"} Pass/Fail
-    %button#stopRecord{:class => "btn btn-danger", :type => "button"}stop recording
     %button#resultButton{:class => "btn float-right", :type => "button", :value => "Pass"}Pass
     %a#download
     %p

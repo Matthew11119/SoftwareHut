@@ -1,18 +1,20 @@
 window.onload = function(){
+
+  navigator.mediaDevices.getUserMedia({audio:true})
+        .then(stream => {handlerFunction(stream)})
   var record = document.getElementById("record");
   var stopRecord = document.getElementById("stopRecord");
   var timerButton = document.getElementById("startTimer");
   startTimer.onclick = runTimer;
   record.onclick = countUp;
   var recTimer = document.getElementById("timer2");
-  recTimer.onclick = countUp;
+  //recTimer.onclick = countUp;
   var resBut = document.getElementById("resultButton");
   resBut.onclick = changePass;
 
 
 
-  navigator.mediaDevices.getUserMedia({audio:true})
-        .then(stream => {handlerFunction(stream)})
+
 
 
   function handlerFunction(stream) {
@@ -36,21 +38,16 @@ window.onload = function(){
   }
 
   record.onclick = e => {
+
     console.log('I was clicked')
     record.disabled = true;
     record.style.backgroundColor = "blue"
     stopRecord.disabled=false;
     audioChunks = [];
     rec.start();
+    countUp();
   }
-  stopRecord.onclick = e => {
-    console.log("I was clicked")
-    record.disabled = false;
-    stop.disabled=true;
-    record.style.backgroundColor = "red"
-    rec.stop();
 
-  }
 }
 
 function runTimer(){
@@ -99,6 +96,9 @@ function loopCount(origTime, intValue){
   if (seconds < 10){
     seconds = "0" + seconds;
   }
+  if (minutes == 3){
+    stopRec(intValue);
+  }
 
   document.getElementById("timer2").innerHTML = "Recording - " + minutes + " : " + seconds;
   var stopButton = document.getElementById("stopRecord")
@@ -109,6 +109,11 @@ function loopCount(origTime, intValue){
 
 function stopRec(intValue){
   clearInterval(intValue);
+  console.log("I was clicked")
+  record.disabled = false;
+  stop.disabled=true;
+  record.style.backgroundColor = "red"
+  rec.stop();
   document.getElementById("timer2").innerHTML = "Recording finished";
   document.getElementById("record").onclick = countUp;
 }
