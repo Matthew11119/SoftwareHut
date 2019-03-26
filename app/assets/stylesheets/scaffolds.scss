@@ -74,6 +74,10 @@ div {
   }
 }
 
+h3{
+  margin-top: 8px;
+}
+
 label {
   display: block;
 }
@@ -112,6 +116,9 @@ label {
 
 .form-section{
   @extend .rounded;
-  padding: 0px 8px 8px;
+  padding: 8px;
   margin-bottom: 12px;
+  div:last-child{
+    margin-bottom: 0px;
+  }
 }

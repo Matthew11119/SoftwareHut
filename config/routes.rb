@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   resources :students
   resources :uni_modules
 
-  resources :stations
-  resources :criteria
+  resources :stations, only: [:new,:edit,:update,:destroy]
+  post 'stations/:id', to: 'stations#create'
+  resources :criteria, only: [:new,:edit,:update,:destroy]
   post 'criteria/:id', to: 'criteria#create'
-  resources :answers
+  resources :answers, only: [:new,:edit,:update,:destroy]
   post 'answers/:id', to: 'answers#create'
   
   resources :criteria_results

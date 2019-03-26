@@ -1,7 +1,11 @@
-
-
 -# Station Fields
 = simple_form_for(@station) do |station|
+
+  .form-actions
+    = link_to 'Back', edit_exam_path(@station.exam_id), class: 'btn btn-default'
+    = link_to 'View', @station, class: 'btn btn-default'
+    = station.button :submit, 'Save'
+  %br
 
   .form-section
     %h4 Station
@@ -40,6 +44,3 @@
 
     .form-controls
       = link_to 'New Answer', answer_path(@station.id), class: 'btn btn-default', method: :post
-
-  .form-actions
-    = station.button :submit

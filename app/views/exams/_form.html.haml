@@ -3,12 +3,16 @@
   = exam.error_notification
   = exam.error_notification message: exam.object.errors[:base].to_sentence if exam.object.errors[:base].present?
 
+  .form-actions
+    = link_to 'Back', exams_path, class: 'btn btn-default'
+    = link_to 'View', @exam, class: 'btn btn-default'
+    = exam.button :submit, 'Save'
+  %br
+  
   -# Exam Fields
-  .exam.form-inputs
+  .exam.form-inputs.form-section
+    = exam.input :name
     = exam.input :exam_code
     = exam.input :date
-    = exam.input :name
     = exam.input :module_code
 
-  .form-actions
-    = exam.button :submit

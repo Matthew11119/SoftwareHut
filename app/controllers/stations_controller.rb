@@ -1,30 +1,20 @@
 class StationsController < ApplicationController
   before_action :set_station, only: [:show, :edit, :update, :destroy]
 
-  # GET /stations
-  def index
-    @stations = Station.all
-  end
-
-  # GET /stations/1
-  def show
-  end
-
-  # GET /stations/new
-  def new
-    @station = Station.new
-  end
-
   # GET /stations/1/edit
   def edit
   end
 
   # POST /stations
   def create
-    @station = Station.new(station_params)
+    @station = Station.new
+
+    @station.station_name = "New Station"
+    @station.pass_mark = 0
+    @station.exam_id = params[:id]
 
     if @station.save
-      redirect_to @station, notice: 'Station was successfully created.'
+      redirect_to edit_station_path(@station.id), notice: 'Station was successfully created.'
     else
       render :new
     end
@@ -33,7 +23,7 @@ class StationsController < ApplicationController
   # PATCH/PUT /stations/1
   def update
     if @station.update(station_params)
-      redirect_to @station, notice: 'Station was successfully updated.'
+      redirect_to edit_station_path(@station.id), notice: 'Station was successfully updated.'
     else
       render :edit
     end
