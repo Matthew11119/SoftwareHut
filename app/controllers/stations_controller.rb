@@ -1,8 +1,8 @@
 class StationsController < ApplicationController
   before_action :set_station, only: [:show, :edit, :update, :destroy]
-
+  before_action :create_station_result_detail 
   # GET /stations
-  def index
+  def index 
     @stations = Station.all
   end
 
@@ -50,6 +50,9 @@ class StationsController < ApplicationController
 
   # /stations/id/detail
   def detail
+    @exam_show = Exam.where(:exam_code=>params[:id])
+    @stations = Station.all.where(:station_name=>params[:station_name])
+    # @index = 
   end
 
   private
@@ -62,5 +65,13 @@ class StationsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def station_params
       params.require(:station).permit(:station_id, :station_name, :pass_mark, :exam_id)
+    end
+
+    def create_station_result_detail
+      @station_result_detail = StationResult.new
+    end
+
+    def detail_params1
+      params.require(:station_result_detail).permit(:examiner_name)
     end
 end
