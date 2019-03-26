@@ -6,17 +6,11 @@
     %script{:src => "js/bootstrap.min.js", :type => "text/javascript"}
   %body
     .container
-      %header
-        %h4 MED 1094 Ankle Sprain Examination
-        .inline
-          %h2 #3 Stations
-          %h5 Select a student below to examine
-      %br/
-
       %div#examsToday
+        %h4{:style => "display: inline"} MED1094 Ankle Spraign Examination
         %p
-          %h3{:style => "display: inline"} MED31907   |
-          &nbsp &nbsp asdf
+          %h2{:style => "display: inline"} #3 Station |
+          &nbsp &nbsp Select a student below to examine
 
       %div#formBody
         %nav.navbar.navbar-default.navbar-static-top
@@ -24,7 +18,6 @@
             %ul.nav.navbar-nav.navbar-center
               %li.navbar-text Remaining
               %li.navbar-text Completed
-
 
       .panel.panel-default
         .panel-body
