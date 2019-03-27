@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_20_134836) do
+ActiveRecord::Schema.define(version: 2019_03_25_122642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.string "text"
+    t.integer "score"
+    t.integer "station_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "criteria", force: :cascade do |t|
     t.text "criteria_description"
@@ -21,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_03_20_134836) do
     t.integer "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number"
   end
 
   create_table "criteria_results", force: :cascade do |t|
@@ -87,7 +96,11 @@ ActiveRecord::Schema.define(version: 2019_03_20_134836) do
     t.integer "pass_mark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.string "exam_code"
+=======
+    t.string "exam_id"
+>>>>>>> master
   end
 
   create_table "students", force: :cascade do |t|

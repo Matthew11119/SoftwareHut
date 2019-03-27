@@ -1,30 +1,38 @@
 Rails.application.routes.draw do
 
-  #get '/templates', to: 'templates#index', except: [:deploy]
-  #get '/archives', to: 'archives#index', except: [:new, :create, :deploy]
-  resources :exams
-  resources :templates, except: [:deploy]
-  resources :archives, except: [:new, :create, :deploy]
-  resources :students
-  resources :uni_modules
-  resources :criteria_results
-  resources :station_results
-  resources :criteria
-  resources :stations
-  mount EpiCas::Engine, at: "/"
-  devise_for :users
-  match "/403", to: "errors#error_403", via: :all
-  match "/404", to: "errors#error_404", via: :all
-  match "/422", to: "errors#error_422", via: :all
-  match "/500", to: "errors#error_500", via: :all
+    resources :exams
+    resources :archives, except: [:new, :create]
+    resources :templates
+    resources :students do
+      collection { post :my_import}
+    end
+    resources :uni_modules
 
-  get :ie_warning, to: 'errors#ie_warning'
-  get :javascript_warning, to: 'errors#javascript_warning'
+    resources :stations
+    resources :criteria
+    post 'criteria/:id', to: 'criteria#create'
+    resources :answers
+    post 'answers/:id', to: 'answers#create'
 
-  root to: "osce_exam#index"
-  resources :users
+    resources :criteria_results
+    resources :station_results
+
+    mount EpiCas::Engine, at: "/"
+    devise_for :users
+    match "/403", to: "errors#error_403", via: :all
+    match "/404", to: "errors#error_404", via: :all
+    match "/422", to: "errors#error_422", via: :all
+    match "/500", to: "errors#error_500", via: :all
+
+    get :ie_warning, to: 'errors#ie_warning'
+    get :javascript_warning, to: 'errors#javascript_warning'
+
+    root to: "pages#home"
+    resources :users
 
 
-
+  resources :students do
+    collection { post :my_import}
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

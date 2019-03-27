@@ -8,6 +8,7 @@
 #  station_name :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  exam_id      :string
 #
 
 require 'rails_helper'

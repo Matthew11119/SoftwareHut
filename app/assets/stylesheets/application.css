@@ -1,5 +1,6 @@
 /*
   *= require bootstrap_setup
+  *= require scaffolds
   *= require font-awesome
   *= require select2
   *= require select2-bootstrap
@@ -12,4 +13,5 @@
   *= require exam_design
   *= require exams
   *= require stations
+  *= require scaffolds
 */

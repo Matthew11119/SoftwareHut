@@ -3,11 +3,14 @@ class ExamsController < ApplicationController
 
   # GET /exams
   def index
-    # @undeployed = Exam.undeployed
-    # @deployed = Exam.deployed
-    # @completed = Exam.completed
-    @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
-    @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
+    if can?(:manage, Exam)
+      @undeployed = Exam.undeployed
+      @deployed = Exam.deployed
+      @completed = Exam.completed
+    else
+      @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
+      @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
+    end
   end
 
   # GET /exams/1
@@ -17,6 +20,7 @@ class ExamsController < ApplicationController
   # GET /exams/new
   def new
     @exam = Exam.new
+    @exam.stations.build
   end
 
   # GET /exams/1/edit
@@ -25,7 +29,7 @@ class ExamsController < ApplicationController
 
   # POST /exams
   def create
-    @exam = Exam.new(exam_params)
+    @exam = Exam.new({:status => 0}.merge(exam_params))
 
     if @exam.save
       redirect_to @exam, notice: 'Exam was successfully created.'
@@ -37,7 +41,7 @@ class ExamsController < ApplicationController
   # PATCH/PUT /exams/1
   def update
     if @exam.update(exam_params)
-      redirect_to @exam, notice: 'Exam was successfully updated.'
+      redirect_to exams_path, notice: 'Exam was successfully updated.'
     else
       render :edit
     end
@@ -57,6 +61,9 @@ class ExamsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def exam_params
-      params.require(:exam).permit(:exam_code, :date, :name, :module_code)
+      params.require(:exam).permit(:exam_code, :date, :name, :module_code, :status,
+        :stations_attributes => [:station_id, :station_name, :pass_mark, :exam_id,
+          :criteria_attributes => [:criteria_id, :criteria_description, :criteria_critical, :station_id]]
+      )
     end
 end

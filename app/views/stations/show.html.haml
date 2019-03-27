@@ -4,20 +4,26 @@
     %h3{:style=>"margin-top:0;display:inline"} #{@exam_show.first.exam_code} #{@exam_show.first.name}
     %span.pull-right There #{@station.count>1? 'are':'is'} #{@station.count} #{@station.count>1? 'stations':'station'} available
 
-    %table.table
-        %thead
-            %tr
-                %th{:scope=>"col"} #
-                %th{:scope=>"col"} Station Name
-                -# %th{:scope=>"col"} Student's Completed
-                %th{:scope=>"col"} Action
-        %tbody
-            - @station_show.each_with_index do |station, index|
-                %tr
-                    %td= index+1
-                    %td= station.station_name
-                    -# %td count
-                    %td= link_to 'Select', detail_station_path(:station_name=>station.station_name)    
-    = will_paginate @station_show,:param_name => 'station'  ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
-    %hr
-    = link_to "Back to Overview Page", exams_path, :class=>"btn btn-primary pull-right"
+%h3= @station[:station_name]
+%p
+  %b Pass mark:
+  = @station.pass_mark
+
+%table.table.thead-dark.table-bordered
+  %thead
+    %tr
+      %th Criteria
+      - answers = Answer.where(station_id: @station.id).order(:score)
+      - answers.each do |answer|
+        %th= answer[:text]
+
+  %tbody
+    - Criterium.where(station_id: @station.id).order(:number).each do |criterium|
+      %tr
+        %td= criterium[:criteria_description]
+        -answers.each do |a|
+          %td
+
+= link_to 'Edit', edit_station_path(@station)
+\|
+= link_to 'Back', stations_path

@@ -1,17 +1,35 @@
 %p#notice= notice
 
-%p
-  %b Exam code:
-  = @exam.exam_code
+%h3
+  = @exam.exam_code + " - "
+  = @exam.name
 %p
   %b Exam date:
   = @exam.date
 %p
-  %b Exam name:
-  = @exam.name
-%p
   %b Module code:
   = @exam.module_code
+%p
+  %b Status:
+  = status_string(@exam.status)
+
+-Station.where(exam_id: @exam.exam_code).each do |station|
+  %h3= station[:station_name]
+
+  %table.table.thead-dark.table-bordered
+    %thead
+      %tr
+        %th Criteria
+        - answers = Answer.where(station_id: station.id).order(:score)
+        - answers.each do |answer|
+          %th= answer[:text]
+
+    %tbody
+      - Criterium.where(station_id: station.id).each do |criterium|
+        %tr
+          %td= criterium[:criteria_description]
+          -answers.each do |a|
+            %td
 
 = link_to 'Edit', edit_exam_path(@exam)
 \|
