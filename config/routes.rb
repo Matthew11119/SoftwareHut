@@ -1,22 +1,16 @@
 Rails.application.routes.draw do
 
+  #get '/templates', to: 'templates#index', except: [:deploy]
+  #get '/archives', to: 'archives#index', except: [:new, :create, :deploy]
   resources :exams
-  get '/templates', to: 'exams#index', as: 'templates', except: [:deploy]
-  get '/archive',   to: 'exams#index', as: 'archives', except: [:new, :create, :deploy]
-  #resources :templates
-  #resources :archives#, except: [:new, :create]
+  resources :templates, except: [:deploy]
+  resources :archives, except: [:new, :create, :deploy]
   resources :students
   resources :uni_modules
   resources :criteria_results
   resources :station_results
   resources :criteria
-  resources :stations do
-    member do
-      get 'detail'
-      get 'detail_form'
-      post 'detail_form'
-    end
-  end
+  resources :stations
   mount EpiCas::Engine, at: "/"
   devise_for :users
   match "/403", to: "errors#error_403", via: :all
@@ -27,7 +21,7 @@ Rails.application.routes.draw do
   get :ie_warning, to: 'errors#ie_warning'
   get :javascript_warning, to: 'errors#javascript_warning'
 
-  root to: "osce_exam#examiner-exam"
+  root to: "exams#index"
   resources :users
 
 
