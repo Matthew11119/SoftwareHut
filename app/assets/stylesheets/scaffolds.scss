@@ -20,15 +20,10 @@ pre {
 }
 
 a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
+  color: rgb(44, 44, 44);
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: rgb(66, 66, 66);
   }
 }
 
@@ -81,4 +76,42 @@ div {
 
 label {
   display: block;
+}
+
+.table{
+  margin-top: 10px;
+}
+
+.form-group-border {
+  @extend .rounded;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+.thead-dark {
+  th {
+    background-color: rgb(230, 230, 230);
+  }
+}
+
+.rounded {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #ccc;
+}
+
+.form-group.text{
+  width: 60%;
+  height: 100%;
+  *{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.form-section{
+  @extend .rounded;
+  padding: 0px 8px 8px;
+  margin-bottom: 12px;
 }

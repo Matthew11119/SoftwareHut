@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Text:
+  = @answer.text
+%p
+  %b Score:
+  = @answer.score
+%p
+  %b Station:
+  = @answer.station_id
+
+= link_to 'Edit', edit_answer_path(@answer)
+\|
+= link_to 'Back', answers_path

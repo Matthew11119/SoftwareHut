@@ -1,11 +1,11 @@
 -# frozen_string_literal: true
-= simple_form_for(@criterium) do |f|
+= simple_form_for(@answer) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :criteria_description, label: 'Criteria Description'
-    = f.input :criteria_critical, label: 'Critical'
+    = f.input :text
+    = f.input :score
     = f.input :station_id
 
   .form-actions
