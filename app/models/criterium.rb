@@ -2,7 +2,7 @@
 #
 # Table name: criteria
 #
-#  id                   :bigint(8)        not null, primary keyW
+#  id                   :bigint(8)        not null, primary key
 #  criteria_critical    :boolean
 #  criteria_description :text
 #  number               :integer

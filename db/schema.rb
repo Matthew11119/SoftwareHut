@@ -64,6 +64,13 @@ ActiveRecord::Schema.define(version: 2019_03_25_122642) do
     t.integer "status"
   end
 
+  create_table "modules_students", id: false, force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "module_id", null: false
+    t.index ["module_id", "student_id"], name: "index_modules_students_on_module_id_and_student_id"
+    t.index ["student_id", "module_id"], name: "index_modules_students_on_student_id_and_module_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
@@ -92,19 +99,13 @@ ActiveRecord::Schema.define(version: 2019_03_25_122642) do
     t.string "exam_id"
   end
 
-  create_table "students", primary_key: "regno", id: :integer, default: nil, force: :cascade do |t|
-    t.string "username"
+  create_table "students", force: :cascade do |t|
+    t.string "student_id"
     t.string "forename"
     t.string "surname"
+    t.integer "regno"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "students_uni_modules", id: false, force: :cascade do |t|
-    t.bigint "regno", null: false
-    t.bigint "module_id", null: false
-    t.index ["module_id", "regno"], name: "index_modules_students_on_module_id_and_student_id"
-    t.index ["regno", "module_id"], name: "index_modules_students_on_student_id_and_module_id"
   end
 
   create_table "uni_modules", primary_key: "module_code", id: :string, force: :cascade do |t|

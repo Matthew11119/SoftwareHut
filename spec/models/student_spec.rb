@@ -2,12 +2,13 @@
 #
 # Table name: students
 #
+#  id         :bigint(8)        not null, primary key
 #  forename   :string
-#  regno      :integer          not null, primary key
+#  regno      :integer
 #  surname    :string
-#  username   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  student_id :string
 #
 
 require 'rails_helper'
