@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get :ie_warning, to: 'errors#ie_warning'
   get :javascript_warning, to: 'errors#javascript_warning'
 
-  root to: "exams#index"
+  root to: "osce_exam#index"
   resources :users
 
 
