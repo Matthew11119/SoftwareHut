@@ -1,18 +1,25 @@
 %p#notice= notice
 
-%p
-  %b Station:
-  = @station.station_id
-%p
-  %b Station name:
-  = @station.station_name
+%h3= @station[:station_name]
 %p
   %b Pass mark:
   = @station.pass_mark
-%p
-  %b Exam:
-  = @station.exam_id
 
+%table.table.thead-dark.table-bordered
+  %thead
+    %tr
+      %th Criteria
+      - answers = Answer.where(station_id: @station.id).order(:score)
+      - answers.each do |answer|
+        %th= answer[:text]
+
+  %tbody
+    - Criterium.where(station_id: @station.id).order(:number).each do |criterium|
+      %tr
+        %td= criterium[:criteria_description]
+        -answers.each do |a|
+          %td 
+            
 = link_to 'Edit', edit_station_path(@station)
 \|
 = link_to 'Back', stations_path

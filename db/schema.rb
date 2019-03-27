@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_18_213910) do
+ActiveRecord::Schema.define(version: 2019_03_25_122642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.string "text"
+    t.integer "score"
+    t.integer "station_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "criteria", force: :cascade do |t|
     t.text "criteria_description"
@@ -21,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_03_18_213910) do
     t.integer "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number"
   end
 
   create_table "criteria_results", force: :cascade do |t|
@@ -46,21 +55,13 @@ ActiveRecord::Schema.define(version: 2019_03_18_213910) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "exams", force: :cascade do |t|
-    t.string "exam_code"
+  create_table "exams", primary_key: "exam_code", id: :string, force: :cascade do |t|
     t.date "date"
     t.string "name"
     t.string "module_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status"
-  end
-
-  create_table "modules_students", id: false, force: :cascade do |t|
-    t.bigint "student_id", null: false
-    t.bigint "module_id", null: false
-    t.index ["module_id", "student_id"], name: "index_modules_students_on_module_id_and_student_id"
-    t.index ["student_id", "module_id"], name: "index_modules_students_on_student_id_and_module_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -86,22 +87,27 @@ ActiveRecord::Schema.define(version: 2019_03_18_213910) do
   create_table "stations", force: :cascade do |t|
     t.string "station_name"
     t.integer "pass_mark"
-    t.integer "exam_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "exam_id"
   end
 
-  create_table "students", force: :cascade do |t|
-    t.string "student_id"
+  create_table "students", primary_key: "regno", id: :integer, default: nil, force: :cascade do |t|
+    t.string "username"
     t.string "forename"
     t.string "surname"
-    t.integer "regno"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "uni_modules", force: :cascade do |t|
-    t.string "module_code"
+  create_table "students_uni_modules", id: false, force: :cascade do |t|
+    t.bigint "regno", null: false
+    t.bigint "module_id", null: false
+    t.index ["module_id", "regno"], name: "index_modules_students_on_module_id_and_student_id"
+    t.index ["regno", "module_id"], name: "index_modules_students_on_student_id_and_module_id"
+  end
+
+  create_table "uni_modules", primary_key: "module_code", id: :string, force: :cascade do |t|
     t.string "module_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -12,7 +12,7 @@ class TemplatesController < ApplicationController
 
   # GET /templates/new
   def new
-    @template = Template.new
+    @template = Exam.new
   end
 
   # GET /templates/1/edit
