@@ -98,14 +98,16 @@
       %thead
         %tr
           %th{:scope=>"col"} Module Code
+          %th{:scope=>"col"} Exam Code
           %th{:scope=>"col"} Examination Title
           %th{:scope=>"col"} Action
       %tbody
         - @exam_today.each do |exam_today|
           %tr
             %td= exam_today.module_code
+            %td= exam_today.exam_code
             %td= exam_today.name
-            %td= link_to 'Select', station_path(exam_today.module_code)
+            %td= link_to 'Select', station_path(exam_today.exam_code)
     = will_paginate @exam_today, :param_name => 'exam_today_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
 
   %div#examsUpcoming
@@ -116,12 +118,16 @@
       %thead
         %tr
           %th{:scope=>"col"} Module Code
+          %th{:scope=>"col"} Exam Code
           %th{:scope=>"col"} Examination Title
+          %th{:scope=>"col"} Date
           %th{:scope=>"col"} Action
       %tbody
         - @exam_upcoming.each do |exam_upcoming|
           %tr
             %td= exam_upcoming.module_code
+            %td= exam_upcoming.exam_code
             %td= exam_upcoming.name
+            %td= exam_upcoming.date
             %td= link_to 'Select', exams_path
     = will_paginate @exam_upcoming, :param_name => 'exam_upcoming_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
