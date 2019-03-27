@@ -96,11 +96,7 @@ ActiveRecord::Schema.define(version: 2019_03_25_122642) do
     t.integer "pass_mark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
-    t.string "exam_code"
-=======
     t.string "exam_id"
->>>>>>> master
   end
 
   create_table "students", force: :cascade do |t|
