@@ -38,6 +38,8 @@ GEM
       activemodel (= 5.2.1)
       activesupport (= 5.2.1)
       arel (>= 9.0)
+    activerecord-import (1.0.1)
+      activerecord (>= 3.2)
     activerecord-session_store (1.1.1.1)
       actionpack (>= 4.0)
       activerecord (>= 4.0)
@@ -378,6 +380,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-import
   activerecord-session_store!
   airbrake!
   annotate
@@ -438,4 +441,4 @@ RUBY VERSION
    ruby 2.4.4p296
 
 BUNDLED WITH
-   1.16.0
+   2.0.1

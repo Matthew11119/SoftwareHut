@@ -48,7 +48,7 @@
                 = navbar_link_to :root, title: "Go to the home page", identifier: :home do
                   = fa_icon 'home'
                   Home
-              
+
               - if can?(:read, Exam)
                 %li.dropdown
                   %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
@@ -66,7 +66,7 @@
                       = navbar_link_to '/archives', title: "Go to the archive page", identifier: :archive do
                         = fa_icon 'file-archive-o'
                         Archive
-              
+
               - if can?(:read, User)
                 = navbar_link_to '/users', title: "Go to the users page", identifier: :users do
                   = fa_icon 'users'
