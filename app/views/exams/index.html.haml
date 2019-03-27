@@ -90,10 +90,10 @@
   %br
 - else
   %div#examsToday
-    %p    
+    %p
       %h3{:style => "display: inline"} Today's #{@exam_today.count>1? 'Exams':'Exam' }   |
       &nbsp &nbsp #{Time.now.strftime("%d/%m/%Y")}
-        
+
     %table.table
       %thead
         %tr
@@ -111,8 +111,8 @@
     = will_paginate @exam_today, :param_name => 'exam_today_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
 
   %div#examsUpcoming
-    %p 
-      %h3{:style => "display: inline"}Upcoming #{@exam_today.count>1? 'Exams':'Exam' } 
+    %p
+      %h3{:style => "display: inline"}Upcoming #{@exam_today.count>1? 'Exams':'Exam' }
       &nbsp &nbsp Total = #{@exam_upcoming.count}
     %table.table
       %thead

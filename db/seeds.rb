@@ -69,4 +69,3 @@ Answer.find_or_create_by(text: 'Partially met', score: 1, station_id: 2)
 Answer.find_or_create_by(text: 'Not met',       score: 0, station_id: 2)
 Criterium.find_or_create_by(number: 2, criteria_description: "Example criteria 5", criteria_critical: false, station_id: 2)
 Criterium.find_or_create_by(number: 1, criteria_description: "Example criteria 6", criteria_critical: false, station_id: 2)
-

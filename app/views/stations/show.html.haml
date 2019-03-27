@@ -3,7 +3,7 @@
   %p
     %b Pass mark:
     = @station.pass_mark
-    
+
     %table.table.thead-dark.table-bordered
       %thead
         %tr
@@ -11,19 +11,19 @@
           - answers = Answer.where(station_id: @station.id).order(:score)
           - answers.each do |answer|
             %th= answer[:text]
-    
+
       %tbody
         - Criterium.where(station_id: @station.id).order(:number).each do |criterium|
           %tr
             %td= criterium[:criteria_description]
             -answers.each do |a|
-              %td 
-                
+              %td
+
     = link_to 'Edit', edit_station_path(@station)
     \|
     = link_to 'Back', stations_path
 
-- else 
+- else
   %div#stationsView
     #{@exam_show.first.module_code}
     %br
@@ -42,7 +42,7 @@
               %td= index+1
               %td= station.station_name
               -# %td count
-              %td= link_to 'Select', detail_station_path(:station_name=>station.station_name)    
+              %td= link_to 'Select', detail_station_path(:station_name=>station.station_name)
     = will_paginate @station_show,:param_name => 'station'  ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
     %hr
     = link_to "Back to Overview Page", exams_path, :class=>"btn btn-primary pull-right"
