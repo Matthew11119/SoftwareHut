@@ -71,3 +71,14 @@
 
     %input#submitButton{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :class => "btn float-right"}
 = link_to 'New Station result', new_station_result_path
+
+%table
+  %tr
+    %th name
+    %th x
+  %tr
+    - @osces.each do |osce|
+      %td= osce.id
+      %td= osce.criteria_description
+      %td= osce.criteria_critical
+      %td= osce.station_id
