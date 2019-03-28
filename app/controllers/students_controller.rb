@@ -33,14 +33,23 @@ class StudentsController < ApplicationController
     end
   end
 
+  def destroy_multiple
+    Student.delete(params[:student_regnos])
+    respond_to do |format|
+      format.html { redirect_to students_url, notice: 'Students were successfully deleted' }
+      format.json { head :no_content }
+    end
+  end
+
+
   # DELETE /students/1
   def destroy
     @student.destroy
     redirect_to students_url, notice: 'Student was successfully destroyed.'
   end
 
-  def my_import
-    Student.my_import(params[:file])
+  def student_import
+    Student.student_import(params[:file])
     redirect_to students_path, notice: "Students added successfully"
   end
   private
@@ -51,6 +60,6 @@ class StudentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def student_params
-      params.require(:student).permit(:forename, :surname, :username, :regno)
+      params.require(:forename, :surname, :username, :regno)
     end
 end

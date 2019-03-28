@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     resources :archives, except: [:new, :create]
     resources :templates
     resources :students do
-      collection { post :my_import}
+      collection { post :student_import}
+      collection do
+        delete 'destroy_multiple'
+      end
     end
     resources :uni_modules
 

@@ -9,6 +9,7 @@ source "https://gems.shefcompsci.org.uk" do
 end
 
 gem 'activerecord-import'
+gem 'select_all-rails'
 
 gem 'rails', '5.2.1'
 gem 'bootsnap'
