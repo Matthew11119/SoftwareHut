@@ -13,6 +13,12 @@ class StationResultsController < ApplicationController
   # GET /station_results/new
   def new
     @station_result = StationResult.new
+    @station_result.criteria_results.new
+    @osces = Criterium.all
+    #    @osces = Criterium.where(:station_id=>params[:id])
+    #    @stations = Station.where(:station_name=>params[:station_name])
+    #    @exam_show = Exam.where(:exam_code=>params[:id])
+    @students = Student.where(:id=>params[:id])
   end
 
   # GET /station_results/1/edit
@@ -22,7 +28,7 @@ class StationResultsController < ApplicationController
   # POST /station_results
   def create
     @station_result = StationResult.new(station_result_params)
-
+    
     if @station_result.save
       redirect_to @station_result, notice: 'Station result was successfully created.'
     else
@@ -53,6 +59,7 @@ class StationResultsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def station_result_params
-      params.require(:station_result).permit(:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
+      params.require(:station_result).permit([:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
+        :criteria_results => [:id, :answer, :criteria_mark, :station_id]])
     end
 end

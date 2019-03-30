@@ -2,4 +2,20 @@
 
 = render 'form'
 
-= link_to 'Back', station_results_path
+%p= link_to 'Submit', station_results_path
+
+%table
+  %tr
+    %th name
+    %th Criteria discription
+    %th Criteria Critical
+    %th Station id
+
+  - @osces.each do |osce|
+    %tr
+      %td= osce.id
+      %td= osce.criteria_description
+      %td= osce.criteria_critical
+      %td= osce.station_id
+
+%p= link_to 'Back', station_results_path

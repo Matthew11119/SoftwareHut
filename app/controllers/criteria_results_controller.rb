@@ -13,6 +13,12 @@ class CriteriaResultsController < ApplicationController
   # GET /criteria_results/new
   def new
     @criteria_result = CriteriaResult.new
+    @osces = Criterium.all
+    #    @osces = Criterium.where(:station_id=>params[:id])
+    #    @stations = Station.where(:station_name=>params[:station_name])
+    #    @exam_show = Exam.where(:exam_code=>params[:id])
+    @students = Student.where(:id=>params[:id])
+
   end
 
   # GET /criteria_results/1/edit
