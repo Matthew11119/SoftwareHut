@@ -1,45 +1,64 @@
 require 'rails_helper'
 
-describe 'Managing users' do
-    
-    specify  'I can add an admin' do 
+describe 'Managing Users' do
+    specify 'I can add an admin' do
         # Done by Admin
         # Accept: New admin created in database
+        visit '/users'
+        click_link 'New User'
+        fill_in 'Username', with: 'abcdefg'
+        fill_in 'Forename', with: 'Sam'
+        fill_in 'Surname', with: 'Fung'
+        check 'Admin'
+        click_button 'Create User'
+        expect(page).to have_content 'User was successfully created'
+        # within(:css, 'table') { expect(page).to have_content 'abcdefg'}
     end
 
-    specify 'I can delete an admin ' do
-        # Done by Admin
-        # Reject: Selected admin is still in database
+    specify 'I can see a list of admins' do
+      # Done by admin
+      # Accept: Both admins are visible
+      admin1 = FactoryBot.create :admin, username: 'admin1'
+      admin2 = FactoryBot.create :admin, username: 'admin2'
+      modulelead1 = FactoryBot.create :modulelead, username: 'modulelead1'
+      visit '/users'
+      expect(page).to have_content 'admin1'
+      expect(page).to have_content 'admin2'
     end
 
-    specify 'I can add a module lead' do
-        # Done by Admin
-        # Accept: New module lead in database
+    specify 'I can delete an admin' do
+      # Done by admin
+      # Accept: The admin created is no longer in the list
+      admin1 = FactoryBot.create :admin, username: 'admin1'
+      modulelead1 = FactoryBot.create :modulelead, username: 'modulelead1'
+      visit '/users'
+      click_link 'Delete'
+      expect(page).to have_content 'modulelead1'
+      expect(page).to_note have_content 'admin1'
     end
 
-    specify 'I can delete a module lead' do
-        # Done by Admin
-        # Reject: Selected module lead is still in database
+    specify 'I can add a module lead'
+      # Done by admin
+      # Accept: The module lead appears in the database
+      visit '/users'
+      click_link 'New User'
+      fill_in 'Username', with: 'abcdefg'
+      fill_in 'Forename', with: 'Sam'
+      fill_in 'Surname', with: 'Fung'
+      click_button 'Create User'
+      expect(page).to have_content 'User was successfully created'
     end
 
-    specify 'I can import students from a csv' do
-        # Done by Admin
-        # Accept: Students are imported into database
+    specify 'I can delete a module lead'
+      # Done by admin
+      # Accept: The module lead is no longer in the list
+      admin1 = FactoryBot.create :admin, username: 'admin1'
+      modulelead1 = FactoryBot.create :modulelead, username: 'modulelead1'
+      visit '/users'
+      within 'tr', text: 'modulelead1' do
+        click_link 'Delete'
+      end
+      expect(page).to have_content 'admin1'
+      expect(page).to_note have_content 'modulelead1'
     end
-
-    specify 'I can import students based on their module' do
-        # Done by Admin
-        # Accept: Students are imported into database
-    end
-
-    specify 'I can add new student from a form' do
-        # Done by Examiner
-        # Accept: Student is added into the database after completing a form
-    end
-
-    specify 'I can delete a student' do
-        # Done by ?
-        # Reject: Selected student is still in database
-    end
-
 end

@@ -1,10 +1,17 @@
 require 'rails_helper'
 
 describe 'Managing exams' do
-
     specify 'I can create new exam from an archived' do
         # Done by Admin
         # Accept: New exam is saved into database
+        visit '/exams'
+        click_link 'New Exam'
+        fill_in 'Exam code', with: 'COMU07'
+        fill_in 'Name', with: 'Exam Name'
+        fill_in 'Date', with: '2019/10/10'
+        fill_in 'Module code', with: 'COM1001'
+        click_button 'Create Exam'
+        expect(page).to have_content 'Exam was successfully created'
     end
 
     specify 'I can create new exam from a blank' do
@@ -12,12 +19,12 @@ describe 'Managing exams' do
         # Accept: New exam is saved into database
     end
 
-    specify 'I can assign student to exam' do 
+    specify 'I can assign student to exam' do
         # Done by Admin
         # Accept: Students are linked to exam
     end
 
-    specify 'I can view students who have not been examined' do 
+    specify 'I can view students who have not been examined' do
         # Done by Examiner
         # Accept: Display students who have not been accessed
     end
@@ -30,9 +37,9 @@ describe 'Managing exams' do
     specify 'I can submit an exam' do
         # Done by Examiner
         # Accept: The form is saved in database
-    end 
+    end
 
-    specify 'I can unarchive an archived exam' do 
+    specify 'I can unarchive an archived exam' do
         # Done by admin
         # Accept: Exam boolean is set false
     end
@@ -80,8 +87,9 @@ describe 'Managing exams' do
         # Done by Examiner
         # Accept: Access and begin exam page, Starts examination session
     end
-    
+
     # until story 64, when searching for exams
+
 
 
 

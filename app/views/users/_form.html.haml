@@ -12,3 +12,14 @@
 
   .form-actions
     = f.button :submit
+
+
+        specify 'I can delete an admin' do
+          admintest = FactoryBot.create :admin, username: 'AdminUsername'
+          # moduleleadtest = FactoryBot.create :modulelead, username: 'ModuleleadUsername'
+          visit '/'
+          click_link 'Delete'
+          expact(page).to have_content 'Are you sure?'
+          click_button 'OK'
+          expect(page).to_not have_content 'AdminUsername'
+        end
