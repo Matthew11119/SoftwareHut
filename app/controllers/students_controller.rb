@@ -62,4 +62,14 @@ class StudentsController < ApplicationController
     def student_params
       params.require(:student).permit(:student_id, :forename, :surname, :regno)
     end
+
+    def show_remaining
+      @remaining_students = Student.all
+      render :index
+    end
+
+    def show_completed
+      @completed_students = Student.all
+      render :index
+    end
 end
