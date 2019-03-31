@@ -43,7 +43,7 @@
       %tr
         %td= uni_module.module_code
         %td= uni_module.module_name
-        %td= link_to 'Edit', edit_uni_module_path(uni_module)
+        %td= link_to 'Edit', edit_uni_module_path(uni_module), class: 'ajax-modal'
         %td= link_to 'Delete', uni_module, method: :delete, data: { confirm: 'Are you sure?' }
 %h5
   = link_to 'New module', new_uni_module_path, class: 'ajax-modal'

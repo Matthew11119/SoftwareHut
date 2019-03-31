@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(version: 2019_03_25_122642) do
 
   create_table "students_uni_modules", id: false, force: :cascade do |t|
     t.bigint "regno", null: false
-    t.bigint "module_id", null: false
-    t.index ["module_id", "regno"], name: "index_modules_students_on_module_id_and_regno"
-    t.index ["regno", "module_id"], name: "index_modules_students_on_regno_and_module_id"
+    t.bigint "uni_module_id", null: false
+    t.index ["regno", "uni_module_id"], name: "index_modules_students_on_regno_and_module_id"
+    t.index ["uni_module_id", "regno"], name: "index_modules_students_on_module_id_and_regno"
   end
 
   create_table "uni_modules", primary_key: "module_code", id: :string, force: :cascade do |t|
