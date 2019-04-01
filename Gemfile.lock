@@ -103,6 +103,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
+    capybara-screenshot (1.0.22)
+      capybara (>= 1.0, < 4)
+      launchy
     capybara-select2 (1.0.1)
       capybara
       rspec
@@ -409,6 +412,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   capybara
+  capybara-screenshot
   capybara-select2!
   coffee-rails
   daemons

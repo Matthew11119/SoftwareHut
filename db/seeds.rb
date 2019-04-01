@@ -43,6 +43,3 @@ Exam.create(date:'2019-5-1', exam_code:'EX0028',module_code:'COM1003',name:'Exam
 Exam.create(date:'2019-5-2', exam_code:'EX0029',module_code:'COM1002',name:'Examination name 29')
 
 Station.create(pass_mark:70,station_name:'station name1',exam_id:)
-
-
-

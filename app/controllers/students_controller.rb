@@ -4,9 +4,10 @@ class StudentsController < ApplicationController
   # GET /students
   def index
     @students = Student.all
-    # @examined_students = Student.where.not(params[:student])
-    # @remaining_students = Student.where(params[:student])
-    # @station = Station.find(params[:station_id])
+    @results = StationResult.all
+    @examined_students = Student.joins(:results).where("'students.id' = 'results.id'")
+    # @remaining_students = Student.join(:results).where.not("'students.id' = 'results.id'")
+    #@remaining_students = (@students-students_examined) | (students-examined)
   end
 
   def search

@@ -1,8 +1,8 @@
 - content_for :title, "Users"
 
-%h1 Listing Users
+%h1 Admins
 
-%table
+%table.table.table-hover
   %thead
     %tr
       %th Name
@@ -12,14 +12,37 @@
       %th
 
   %tbody
-    - @users.each do |user|
+    - @admins.each do |user|
       %tr
-        %td= user.name
+        %td= user.givenname + " " + user.sn
         %td= user.username
         %td= link_to 'Show', user
         %td= link_to 'Edit', edit_user_path(user)
-        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }
+%br
 
+= link_to 'New User', new_user_path
+
+
+%h1 Module Leads
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Name
+      %th Username
+      %th
+      %th
+      %th
+
+  %tbody
+    - @module_leads.each do |user|
+      %tr
+        %td= user.givenname + " " + user.sn
+        %td= user.username
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }
 %br
 
 = link_to 'New User', new_user_path

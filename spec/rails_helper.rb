@@ -1,5 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
 SimpleCov.start 'rails'
 
 ENV["RAILS_ENV"] ||= 'test'
@@ -132,6 +134,7 @@ Capybara.configure do |config|
   config.server = :thin
   config.match = :prefer_exact
 end
+Capybara.current_driver= :poltergeist
 
 def wait_for_ajax
   Timeout.timeout(Capybara.default_max_wait_time) do

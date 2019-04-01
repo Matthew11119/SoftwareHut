@@ -17,6 +17,7 @@ gem 'rails', '5.2.1'
 gem 'bootsnap'
 gem 'responders'
 gem 'thin'
+gem 'capybara-screenshot', :group => :test
 
 gem 'sqlite3', group: [:development, :test]
 gem 'pg'
