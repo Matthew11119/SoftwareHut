@@ -31,8 +31,9 @@ class StationsController < ApplicationController
 
   # DELETE /stations/1
   def destroy
+    exam_id = @station.exam_id
     @station.destroy
-    redirect_to stations_url, notice: 'Station was successfully destroyed.'
+    redirect_to edit_exam_path(exam_id), notice: 'Station was successfully destroyed.'
   end
 
   private
