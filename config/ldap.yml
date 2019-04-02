@@ -9,12 +9,7 @@ development:
   <<: *unishef
 
 test:
-  host: localhost
-  port: 1389
-  attribute: uid
-  base: ou=Users
-  ssl: false
-
+  <<: *unishef
 qa:
   <<: *unishef
 

@@ -1,0 +1,24 @@
+= render 'top'
+
+%table.table.table-hover
+  %header
+    %h4
+      %u Previous Students Examined
+    %p There are #{@examined_students.size} students that have completed their examination
+  %thead.bg-primary
+    %tr
+      %th First Name
+      %th Last Name
+      %th Student ID
+      %th Registration Number
+      %th Action
+  %tbody
+    - @examined_students.each do |student|
+      %tr
+        %td= student.forename
+        %td= student.surname
+        %td= student.student_id
+        %td= student.regno
+        %td= link_to 'View/Edit', student
+
+= render 'bottom'

@@ -13,5 +13,5 @@
 
 class Student < ApplicationRecord
   has_and_belongs_to_many :uni_modules
-
+  has_many :station_results, dependent: :destroy
 end

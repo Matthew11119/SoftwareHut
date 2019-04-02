@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_230935) do
+ActiveRecord::Schema.define(version: 2019_03_25_122642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.string "text"
+    t.integer "score"
+    t.integer "station_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "criteria", force: :cascade do |t|
     t.text "criteria_description"
@@ -21,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_03_19_230935) do
     t.integer "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number"
   end
 
   create_table "criteria_results", force: :cascade do |t|
@@ -46,8 +55,7 @@ ActiveRecord::Schema.define(version: 2019_03_19_230935) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "exams", force: :cascade do |t|
-    t.string "exam_code"
+  create_table "exams", primary_key: "exam_code", id: :string, force: :cascade do |t|
     t.date "date"
     t.string "name"
     t.string "module_code"
@@ -88,7 +96,7 @@ ActiveRecord::Schema.define(version: 2019_03_19_230935) do
     t.integer "pass_mark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "exam_code"
+    t.string "exam_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -100,8 +108,7 @@ ActiveRecord::Schema.define(version: 2019_03_19_230935) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "uni_modules", force: :cascade do |t|
-    t.string "module_code"
+  create_table "uni_modules", primary_key: "module_code", id: :string, force: :cascade do |t|
     t.string "module_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   #resources :archives#, except: [:new, :create]
   resources :students do
     post :search, on: :collection
-    post :show_remaining_students, on: :collection
-    post :show_examined_students, on: :collection
+    get :show_remaining, on: :collection
+    get :show_examined, on: :collection
   end
 
   resources :uni_modules

@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 describe 'Choosing students' do
+    let(:user) { FactoryBot.create(:user) }
+    before { login_as user }
+
     specify 'I can see the station & module that I have previously selected' do
+      visit '/'
       expect(page).to have_content 'Title'
       expect(page).to have_content 'Module Code'
     end
-
 
     specify 'I can choose a student and start the examination' do
       student1 = FactoryBot.create :student, name: 'Student Name'
@@ -63,9 +66,6 @@ describe 'Choosing students' do
     expect(page).to_not have_content 'Name2'
   end
 
-  specify 'I can go back to the Stations page'
-    click_button 'Back to Stations'
-    expect(page).to have_content
 
   specify 'I can delete a product' do
     product1 = FactoryBot.create :product, name: 'Product2BeDeleted'

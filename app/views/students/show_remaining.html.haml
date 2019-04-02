@@ -4,7 +4,7 @@
   %header
     %h4
       %u Students To Be Examined
-    %p There are #{@students.size} students to be examined
+    %p There are #{@remaining_students.size} students to be examined
 
     %thead.bg-primary
       %tr
@@ -14,7 +14,7 @@
         %th Registration Number
         %th Action
     %tbody
-      - @students.each do |student|
+      - @remaining_students.each do |student|
         %tr
           %td= student.forename
           %td= student.surname

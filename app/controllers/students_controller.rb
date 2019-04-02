@@ -4,16 +4,23 @@ class StudentsController < ApplicationController
   # GET /students
   def index
     @students = Student.all
-    @results = StationResult.all
-    @examined_students = Student.joins(:results).where("'students.id' = 'results.id'")
-    # @remaining_students = Student.join(:results).where.not("'students.id' = 'results.id'")
-    #@remaining_students = (@students-students_examined) | (students-examined)
+    @remaining_students = Student.left_joins(:station_results).where(station_results: { id: nil })
+    @examined_students = Student.joins(:station_results)
   end
 
-  def search
-    @students = Student.where(student_id: params[:search][:student_id]).or(Student.where(surname: params[:search][:surname]) )
+  def show_remaining
+    @remaining_students = Student.left_joins(:station_results).where(station_results: { id: nil })
+  end
+
+  def show_examined
+    @examined_students = Student.joins(:station_results)
+  end
+
+  def search_remaining
+    @students = Student.where(student_id: params[:search][:student_id]).or(Student.where(surname: params[:search][:surname]))
     render :index
   end
+
   # GET /students/1
   def show
   end

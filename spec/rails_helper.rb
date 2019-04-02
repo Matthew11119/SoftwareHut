@@ -123,18 +123,12 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, phantomjs_logger: PoltergeistWarningSuppressor)
 end
 
-Capybara.register_server :thin do |app, port|
-  require 'rack/handler/thin'
-  Rack::Handler::Thin.run(app, Port: port)
-end
-
 Capybara.configure do |config|
   config.asset_host = 'http://localhost:3000'
   config.javascript_driver = :poltergeist
   config.server = :thin
   config.match = :prefer_exact
 end
-Capybara.current_driver= :poltergeist
 
 def wait_for_ajax
   Timeout.timeout(Capybara.default_max_wait_time) do
