@@ -1,28 +1,31 @@
 = render 'form'
 %br
-= link_to 'New Station', station_path(@exam.exam_code), class: 'btn btn-default', method: :post
-%br
-%br
 
--Station.where(exam_id: @exam.exam_code).each do |station|
-  .form-section
-    %h3 
-      = station[:station_name]
-      = link_to 'Edit Station', edit_station_path(station), class: 'btn btn-default'
+.form-section
+  %h3
+    Stations
+    = link_to 'New Station', station_path(@exam.exam_code), class: 'btn btn-default', method: :post
+  
+  -Station.where(exam_id: @exam.exam_code).each do |station|
+    .form-section
+      %h4
+        = station[:station_name]
+        = link_to 'Edit', edit_station_path(station), class: 'btn btn-default'
+        = link_to 'Delete', station_path(station['id']), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
 
-    %table.table.thead-dark.table-bordered
-      %thead
-        %tr
-          %th Criteria
-          - answers = Answer.where(station_id: station.id).order(:score)
-          - answers.each do |answer|
-            %th= answer[:text]
-
-      %tbody
-        - Criterium.where(station_id: station.id).order(:number).each do |criterium|
+      %table.table.thead-dark.table-bordered
+        %thead
           %tr
-            %td= criterium[:criteria_description]
-            -answers.each do |a|
-              %td 
-%br
-= link_to 'Delete', @exam, method: :delete, data: { confirm: 'Are you sure?' }
+            %th Criteria
+            - answers = Answer.where(station_id: station.id).order(:score)
+            - answers.each do |answer|
+              %th= answer[:text]
+
+        %tbody
+          - Criterium.where(station_id: station.id).order(:number).each do |criterium|
+            %tr
+              %td= criterium[:criteria_description]
+              -answers.each do |a|
+                %td 
+  %br
+= link_to 'Delete', @exam, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
