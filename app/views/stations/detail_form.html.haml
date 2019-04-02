@@ -9,7 +9,14 @@
                 %li.navbar-text.item-form Remaining
                 %li.navbar-text.item-form Completed
     %div#div-search
-        = simple_form_for(:form_search) do |f|
+        
+        = simple_form_for :form_search, remote: true  do |f|
             = f.input :student_id, :placeholder => "Student ID", :label=>false
             = f.input :student_surname, :placeholder => "Surname", :label=>false
-    %div#div-result
+            -# = f.button :student_search, 'Enter'
+            -# %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
+            -# = f.button :student_search, 'Enter',class: 'btn btn-primary pull-right', style:'background-color:#22A7F0;border-color:#22A7F0;padding:0.438em 3.875em'            
+                -# = link_to 'Reset', station_path, style:'color:#22A7F0'
+        
+            
+    -# %div#div-result

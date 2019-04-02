@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :uni_modules
   resources :criteria_results
   resources :station_results
-  resources :stations do
+  resources :stations, only: [:show] do
     member do
       get 'detail'
       get 'detail_form'
