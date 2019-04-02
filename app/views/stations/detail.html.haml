@@ -12,13 +12,13 @@
     %h4.text-center{:style=>"padding-top:2.406em"} Welcome to the Station Landing Page
 
     %div#formBodyForm
-        = simple_form_for(@station_result_detail, url: detail_form_station_path) do |f|
+        = simple_form_for(:form_homepage, url: detail_form_station_path) do |f|
             = f.input :examiner_name, :label => "Who are you?", :placeholder => "Name"          
             = f.hidden_field :exam_code, :value => @exam_show.first.exam_code
             = f.hidden_field :station_name, :value=> @stations.first.station_name
             = f.hidden_field :title, :value=> "values"
             %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
                 = f.button :submit, 'Continue',class: 'btn btn-primary pull-right', style:'background-color:#22A7F0;border-color:#22A7F0;padding:0.438em 3.875em'            
-                = link_to 'Back', station_path, class: 'btn pull-right',style:'color:#22A7F0'
+                = link_to 'Back', station_path, class: 'btn pull-right ajax-modal',style:'color:#22A7F0'
     %p.text-center{:style=>'color:#9E9E9E;padding-bottom:1.375em'} To proceed, please enter your name for future references
 = link_to 'Back to View Station Page', station_path, class:'pull-right', style:'color:#313131'

@@ -1,6 +1,5 @@
 class StationsController < ApplicationController
   before_action :set_station, only: [:show, :edit, :update, :destroy]
-  before_action :create_station_result_detail 
   # GET /stations
   def index 
     @stations = Station.all
@@ -57,8 +56,8 @@ class StationsController < ApplicationController
 
   # /stations/id/
   def detail_form
-    @exam_show = Exam.where(:exam_code=>params[:station_result][:exam_code])
-    @stations = Station.all.where(:station_name=>params[:station_result][:station_name])
+    @exam_show = Exam.where(:exam_code=>params[:form_homepage][:exam_code])
+    @stations = Station.all.where(:station_name=>params[:form_homepage][:station_name])
   end
 
   private
@@ -75,11 +74,4 @@ class StationsController < ApplicationController
         :answers_attributes  => [:id, :text, :score, :station_id]])
     end
 
-    def create_station_result_detail
-      @station_result_detail = StationResult.new
-    end
-
-    # def detail_params1
-    #   params.require(:stations).permit(:examiner_name)
-    # end
 end
