@@ -8,6 +8,9 @@ source "https://gems.shefcompsci.org.uk" do
   gem 'capybara-select2', group: :test
 end
 
+gem 'activerecord-import'
+gem 'select_all-rails'
+
 gem 'rails', '5.2.1'
 gem 'bootsnap'
 gem 'responders'
