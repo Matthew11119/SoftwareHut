@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2019_03_25_122642) do
     t.integer "pass_mark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "exam_id"
+    t.string "exam_code"
   end
 
   create_table "students", primary_key: "regno", id: :integer, default: nil, force: :cascade do |t|

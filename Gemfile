@@ -8,6 +8,8 @@ source "https://gems.shefcompsci.org.uk" do
   gem 'capybara-select2', group: :test
 end
 
+#custom rubygems
+gem 'prawn'
 gem 'activerecord-import'
 gem 'select_all-rails'
 

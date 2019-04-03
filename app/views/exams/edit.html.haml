@@ -4,9 +4,9 @@
 
 %br
 
--Station.where(exam_id: @exam.exam_code).each do |station|
+-Station.where(exam_code: @exam.exam_code).each do |station|
   %h3= station[:station_name]
-  
+
   = link_to 'Edit Station', edit_station_path(station), class: 'btn btn-default'
 
   %table.table.thead-dark.table-bordered
@@ -22,11 +22,10 @@
         %tr
           %td= criterium[:criteria_description]
           -answers.each do |a|
-            %td 
-          
+            %td
+
 = link_to 'Show', @exam
 \|
 = link_to 'Delete', @exam, method: :delete, data: { confirm: 'Are you sure?' }
 \|
 = link_to 'Back', exams_path
-
