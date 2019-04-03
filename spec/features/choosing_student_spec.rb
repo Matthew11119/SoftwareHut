@@ -34,6 +34,4 @@ describe 'Managing students' do
     click_button 'Start Examination'
     expect(page).to redirect_to '/'
   end
-
-
 end

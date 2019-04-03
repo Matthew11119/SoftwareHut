@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
     @examined_students = Student.joins(:station_results)
   end
 
-  def search_remaining
+  def search
     @students = Student.where(student_id: params[:search][:student_id]).or(Student.where(surname: params[:search][:surname]))
     render :index
   end
