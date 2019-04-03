@@ -50,4 +50,4 @@
           = answer.input :score
         .form-group
           -# = link_to 'Copy', answer_path(id: @station.id, from: @answer.id), class: 'btn btn-default', method: :post
-          = link_to 'Delete', answer_path(answer.object.id, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
+          = link_to 'Delete', answer_path(answer.object.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
