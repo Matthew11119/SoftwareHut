@@ -53,13 +53,18 @@ class StationsController < ApplicationController
     @stations = Station.all.where(:station_name=>params[:station_name])
     # @index = 
   end
-
+  
+  def detail_form_search
+  end
   # /stations/id/
   def detail_form
     @exam_show = Exam.where(:exam_code=>params[:form_homepage][:exam_code])
     @stations = Station.all.where(:station_name=>params[:form_homepage][:station_name])
+    detail_form_search
   end
 
+ 
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station
