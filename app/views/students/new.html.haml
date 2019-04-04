@@ -6,8 +6,10 @@
       %h2.modal-title Import from CSV
     .modal-body
       = form_tag student_import_students_path, multipart: true do
-        = file_field_tag :file
-        = submit_tag "Upload Students"
+        .pull-left
+          = file_field_tag :file
+        .pull-right
+          = submit_tag "Upload Students"
 
     = simple_form_for(@student) do |f|
       .modal-header

@@ -1,5 +1,18 @@
-%h1 Editing uni_module
+.modal-dialog
+  .modal-content
+    = simple_form_for(@uni_module) do |f|
+      .modal-header
+        %button.close{ type: :button, data: { dismiss: :modal } }
+          %span &times;
+        %h2.modal-title Edit module
+        = f.error_notification
+        = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-= render 'form'
-\|
-= link_to 'Back', students_path
+      .modal-body
+        = f.input :module_code
+        = f.input :module_name
+
+      .modal-footer
+        .pull-left
+          = dismiss_modal_button
+        = f.button :submit

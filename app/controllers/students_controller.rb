@@ -11,27 +11,19 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    render layout: false
   end
 
   # POST /students
   def create
     @student = Student.new(student_params)
-
     if @student.save
-      redirect_to @student, notice: 'Student was successfully created.'
+      redirect_to students_path, notice: 'Student was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /students/1
-  def update
-    if @student.update(student_params)
-      redirect_to @student, notice: 'Student was successfully updated.'
-    else
-      render :edit
-    end
-  end
 
   def destroy_multiple
     Student.delete(params[:student_regnos])
@@ -41,17 +33,11 @@ class StudentsController < ApplicationController
     end
   end
 
-
-  # DELETE /students/1
-  def destroy
-    @student.destroy
-    redirect_to students_url, notice: 'Student was successfully destroyed.'
-  end
-
   def student_import
     Student.student_import(params[:file])
     redirect_to students_path, notice: "Students added successfully"
   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student
@@ -60,6 +46,6 @@ class StudentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def student_params
-      params.require(:forename, :surname, :username, :regno)
+      params.require(:student).permit(:username, :forename, :surname, :regno)
     end
 end

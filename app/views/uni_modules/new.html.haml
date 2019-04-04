@@ -4,7 +4,7 @@
       .modal-header
         %button.close{ type: :button, data: { dismiss: :modal } }
           %span &times;
-        %h2.modal-title New student
+        %h2.modal-title New module
         = f.error_notification
         = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 

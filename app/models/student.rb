@@ -14,15 +14,6 @@
 class Student < ApplicationRecord
   has_and_belongs_to_many :uni_modules
 
-  #def self.my_import(file)
-  #  columns = [:surname, :forename, :username, :regno]
-  #  values = CSV.read(file.path, headers: true)
-  #  Student.import columns, values, ignore: true
-
-
-
-
-
   def self.student_import(file)
     students = []
     columns = [:surname, :forename, :username, :regno]
