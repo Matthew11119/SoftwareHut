@@ -54,8 +54,10 @@ class StationsController < ApplicationController
     # @index = 
   end
   
+  # POST /stations/id/detail_form 
   def detail_form_search
   end
+
   # /stations/id/
   def detail_form
     @exam_show = Exam.where(:exam_code=>params[:form_homepage][:exam_code])

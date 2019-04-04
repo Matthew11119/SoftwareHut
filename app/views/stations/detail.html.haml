@@ -12,8 +12,8 @@
     %h4.text-center{:style=>"padding-top:2.406em"} Welcome to the Station Landing Page
 
     %div#formBodyForm
-        = simple_form_for(:form_homepage, url: detail_form_station_path) do |f|
-            = f.input :examiner_name, :label => "Who are you?", :placeholder => "Name"          
+        = simple_form_for(:form_homepage, url: detail_form_station_path,html: { novalidate: false }) do |f|
+            = f.input :examiner_name, :label => "Who are you?", :placeholder => "Name", required: true
             = f.hidden_field :exam_code, :value => @exam_show.first.exam_code
             = f.hidden_field :station_name, :value=> @stations.first.station_name
             = f.hidden_field :title, :value=> "values"
