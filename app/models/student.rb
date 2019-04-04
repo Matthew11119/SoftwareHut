@@ -2,13 +2,16 @@
 #
 # Table name: students
 #
-#  id         :bigint(8)        not null, primary key
 #  forename   :string
 #  regno      :integer
 #  surname    :string
+#  username   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  student_id :string
+#
+# Indexes
+#
+#  index_students_on_regno  (regno)
 #
 
 class Student < ApplicationRecord
@@ -18,7 +21,7 @@ class Student < ApplicationRecord
     students = []
     columns = [:surname, :forename, :username, :regno]
     CSV.foreach(file.path, headers: true) do |row|
-      if !Student.exists?(row[3])
+      if !Student.exists?(:regno =>row[3])
         students << Student.new(row.to_hash)
       end
     end

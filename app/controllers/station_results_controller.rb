@@ -8,6 +8,17 @@ class StationResultsController < ApplicationController
 
   # GET /station_results/1
   def show
+    @station_result = StationResult.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = Prawn::Document.new
+        pdf.text "Hello World"
+        send_data pdf.render, filename: "{@station_result.student_id}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   # GET /station_results/new
@@ -53,6 +64,6 @@ class StationResultsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def station_result_params
-      params.require(:station_result).permit(:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
+      params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
     end
 end

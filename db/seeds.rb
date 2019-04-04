@@ -42,7 +42,7 @@ Exam.find_or_create_by(date:'2019-4-29', exam_code:'EX0027', module_code:'COM100
 Exam.find_or_create_by(date:'2019-5-1',  exam_code:'EX0028', module_code:'COM1003', name:'Examination name 28', status: 0)
 Exam.find_or_create_by(date:'2019-5-2',  exam_code:'EX0029', module_code:'COM1002', name:'Examination name 29', status: 0)
 
-Station.find_or_create_by(station_name: 'Station 1', pass_mark: 3, exam_id: 'EX001')
+Station.find_or_create_by(id: 1station_name: 'Station 1', pass_mark: 3, exam_id: 'EX001')
 Answer.find_or_create_by(text: 'Fully met',     score: 2, station_id: 1)
 Answer.find_or_create_by(text: 'Partially met', score: 1, station_id: 1)
 Answer.find_or_create_by(text: 'Not met',       score: 0, station_id: 1)
@@ -57,4 +57,3 @@ Answer.find_or_create_by(text: 'Partially met', score: 1, station_id: 2)
 Answer.find_or_create_by(text: 'Not met',       score: 0, station_id: 2)
 Criterium.find_or_create_by(number: 2, criteria_description: "Example criteria 5", criteria_critical: false, station_id: 2)
 Criterium.find_or_create_by(number: 1, criteria_description: "Example criteria 6", criteria_critical: false, station_id: 2)
-

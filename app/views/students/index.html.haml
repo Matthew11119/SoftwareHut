@@ -10,8 +10,8 @@
       %th Username
       %th Student ID
       %th
-        %input{type: "checkbox", id:"selectAll"}
-      %th= submit_tag "Delete selection", class: "btn btn-primary btn-xs", data: { confirm: 'Are you sure?' }
+      /  %input{type: "checkbox", id:"selectAll"}
+      / %th= submit_tag "Delete selection", class: "btn btn-primary btn-xs", data: { confirm: 'Are you sure?' }
 
   %tbody
     - @students.each do |student|
@@ -20,7 +20,7 @@
         %td= student.forename
         %td= student.username
         %td= student.regno
-        %td= check_box_tag "student_regnos[]", student.regno, false, class: 'selectable'
+        / %td= check_box_tag "student_regnos[]", student.regno, false, class: 'selectable'
 
 %h5
   = link_to 'Import or create new students', new_student_path, class: 'ajax-modal'
