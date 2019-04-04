@@ -3,7 +3,7 @@
 
   .form-actions
     = link_to 'Back', edit_exam_path(@station.exam_id), class: 'btn btn-default'
-    = link_to 'View', @station, class: 'btn btn-default'
+    = link_to 'View', @station.exam, class: 'btn btn-default'
     = station.button :submit, 'Save'
   %br
 
