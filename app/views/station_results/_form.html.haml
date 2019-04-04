@@ -33,46 +33,45 @@
         %b= @student.forename student.surname        student.ids
       John Doe           001473829
 
-      %form
-        = f.input :examiner_name
-        %fieldset
-          %legend
-          - @osces.each do |osce|
-            %h4
-              %b= osce.criteria_description
-            %p{:style => "color:red"}Ask candidate what they are observing form
-            %p Comfort, colour, pain, conscious level
-            = f.fields_for criteria_results_url do |c|
-              = c.input :answer
-              .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
-                %label.btn.btn-primary.active.option1bg
-                  %input.option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
-                  Fully Met
-                %label.btn.btn-primary
-                  %input.option2{:autocomplete => "off", :name => "options", :type => "radio"}/
-                  Partially Met
-                %label.btn.btn-primary
-                  %input.option3{:autocomplete => "off", :name => "options", :type => "radio"}/
-                  Not Met
-              %h5 Feedback
-              %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
 
-        .btn-group{"aria-label" => "Basic example", :role => "group"}
-          %button.btn.btn-danger#record{:type => "button"}record
-          %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
-        #timer2
-        %p{:style => "text-align: right"} Pass/Fail
-        %button#resultButton{:class => "btn float-right", :type => "button", :value => "Pass"}Pass
-        %a#download
-        %p
-          = f.input :audio, as: :hidden, :input_html => {:id => "#recordedAudio"}
-          %audio#recordedAudio
-        %h4{:style => "padding-top: 2em"}
-          %b Overall Feedback
-        = f.input :feedback, as: :text, :input_html => {:style => "width:150%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Overall Comments"}
+      = f.input :examiner_name
+      %fieldset
+        %legend
+        - @osces.each do |osce|
+          %h4
+            %b= osce.criteria_description
+          %p{:style => "color:red"}Ask candidate what they are observing form
+          %p Comfort, colour, pain, conscious level
+          = f.fields_for criteria_results_url do |c|
+            = c.input :answer
+            .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
+              %label.btn.btn-primary.active.option1bg
+                %input.option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
+                Fully Met
+              %label.btn.btn-primary
+                %input.option2{:autocomplete => "off", :name => "options", :type => "radio"}/
+                Partially Met
+              %label.btn.btn-primary
+                %input.option3{:autocomplete => "off", :name => "options", :type => "radio"}/
+                Not Met
+            %h5 Feedback
+            %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
+      .btn-group{"aria-label" => "Basic example", :role => "group"}
+        %button.btn.btn-danger#record{:type => "button"}record
+        %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
+      #timer2
+      %p{:style => "text-align: right"} Pass/Fail
+      %button#resultButton{:class => "btn float-right", :type => "button", :value => "Pass"}Pass
+      %a#download
+      %p
+        = f.input :audio, as: :hidden, :input_html => {:id => "#recordedAudio"}
+        %audio#recordedAudio
+      %h4{:style => "padding-top: 2em"}
+        %b Overall Feedback
+      = f.input :feedback, as: :text, :input_html => {:style => "width:150%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Overall Comments"}
 
-        %input#submitButton{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :class => "btn float-right"}
+      %input#submitButton{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :class => "btn float-right"}
 
 
   .form-actions
-    = f.button :submit
+    = f.submit

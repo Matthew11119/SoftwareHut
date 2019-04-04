@@ -27,8 +27,8 @@ class StationResultsController < ApplicationController
 
   # POST /station_results
   def create
-    @station_result = StationResult.new(station_result_params)
-    
+    @station_result = StationResult.new(post_params)
+    puts "TEST"
     if @station_result.save
       redirect_to @station_result, notice: 'Station result was successfully created.'
     else
@@ -61,5 +61,9 @@ class StationResultsController < ApplicationController
     def station_result_params
       params.require(:station_result).permit([:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
         :criteria_results => [:id, :answer, :criteria_mark, :station_id]])
+    end
+
+    def post_params
+      params.require(:post).permit!
     end
 end
