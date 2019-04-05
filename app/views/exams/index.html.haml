@@ -89,7 +89,7 @@
 
   %br
 - else
-  %div#examsToday
+  %div#examsToday.table-search
     %p    
       %h3{:style => "display: inline"} Today's #{@exam_today.count>1? 'Exams':'Exam' }   |
       &nbsp &nbsp #{Time.now.strftime("%d/%m/%Y")}
@@ -110,7 +110,7 @@
             %td= link_to 'Select', station_path(exam_today.exam_code)
     = will_paginate @exam_today, :param_name => 'exam_today_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
 
-  %div#examsUpcoming
+  %div#examsUpcoming.table-search
     %p 
       %h3{:style => "display: inline"}Upcoming #{@exam_today.count>1? 'Exams':'Exam' } 
       &nbsp &nbsp Total = #{@exam_upcoming.count}

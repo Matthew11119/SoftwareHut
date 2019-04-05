@@ -24,7 +24,7 @@
     = link_to 'Back', stations_path
 
 - else 
-  %div#stationsView
+  %div#stationsView.table-search
     #{@exam_show.first.module_code}
     %br
     %h3{:style=>"margin-top:0;display:inline"} #{@exam_show.first.exam_code} #{@exam_show.first.name}
