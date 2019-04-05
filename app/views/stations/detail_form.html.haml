@@ -9,13 +9,31 @@
                 %li.navbar-text.item-form Remaining
                 %li.navbar-text.item-form Completed
     %div#div-search    
-        = simple_form_for :form_search do |f|
-            = f.input :student_id, :placeholder => "Student ID", :label=>false
+        = simple_form_for :form_search do |f|        
+            = f.input :student_id, :placeholder => "Student ID", :label=>"Search by"
             = f.input :student_surname, :placeholder => "Surname", :label=>false
-            = f.submit 'Enter'
+            %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
+                = f.button :submit, 'Search', class: 'btn btn-primary pull-right ajax-modal', style:'background-color:#22A7F0;border-color:#22A7F0;padding:0.438em 3.875em'
+                = link_to 'Reset', detail_form_station_path, class: 'btn pull-right',style:'color:#22A7F0' # path not working
             -# %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
             -# = f.button :student_search, 'Enter',class: 'btn btn-primary pull-right', style:'background-color:#22A7F0;border-color:#22A7F0;padding:0.438em 3.875em'            
                 -# = link_to 'Reset', station_path, style:'color:#22A7F0'
-        
-            
-    -# %div#div-result
+
+        %hr
+ 
+    %div#div-result.table-search
+        %table.table
+            %thead
+                %tr
+                    %th{:scope=>"col"} Student ID
+                    %th{:scope=>"col"} Student Name
+                    %th{:scope=>"col"} Registration No
+                    %th{:scope=>"col"} 
+                    %th{:scope=>"col"}
+            %tbody
+                %tr
+                    %td 001691222
+                    %td Nelson Lim
+                    %td 18017444
+                    %td
+                    %td Select

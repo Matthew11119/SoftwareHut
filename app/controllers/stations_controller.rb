@@ -62,7 +62,7 @@ class StationsController < ApplicationController
   def detail_form
     @exam_show = Exam.where(:exam_code=>params[:form_homepage][:exam_code])
     @stations = Station.all.where(:station_name=>params[:form_homepage][:station_name])
-    detail_form_search
+  
   end
 
  
