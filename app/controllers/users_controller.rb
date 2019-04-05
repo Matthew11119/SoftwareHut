@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def index
     @admins = User.admins
     @module_leads = User.module_leads
+    @moderators = User.moderators
   end
 
   # GET /users/1
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit( :givenname, :sn, :username, :admin )
+      params.require(:user).permit( :givenname, :sn, :username, :user_type )
 
     end
 end

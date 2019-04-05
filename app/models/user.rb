@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id                 :bigint(8)        not null, primary key
-#  admin              :boolean
 #  current_sign_in_at :datetime
 #  current_sign_in_ip :inet
 #  dn                 :string
@@ -12,10 +11,12 @@
 #  last_sign_in_at    :datetime
 #  last_sign_in_ip    :inet
 #  mail               :string
+#  moderator          :boolean
 #  ou                 :string
 #  sign_in_count      :integer          default(0), not null
 #  sn                 :string
 #  uid                :string
+#  user_type          :string
 #  username           :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -29,8 +30,9 @@
 class User < ApplicationRecord
   include EpiCas::DeviseHelper
 
-  scope :admins, -> { where(admin: true) }
-  scope :module_leads, -> { where(admin: false) }
+  scope :admins,       -> { where(user_type: "Admin") }
+  scope :module_leads, -> { where(user_type: "Module Lead") }
+  scope :moderators,    -> { where(user_type: "Moderator") }
 
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   end
