@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :students do
     collection { post :my_import}
   end
-  resources :exams
+  resources :exams do
+    resources :stations do
+      resources :station_results
+    end
+  end
   get '/templates', to: 'exams#index', as: 'templates', except: [:deploy]
   get '/archive',   to: 'exams#index', as: 'archives', except: [:new, :create, :deploy]
   #resources :templates
@@ -14,13 +18,15 @@ Rails.application.routes.draw do
   resources :uni_modules
   resources :criteria_results
   resources :station_results
-  resources :stations do
-    member do
-      get 'detail'
-      get 'detail_form'
-      post 'detail_form'
-    end
-  end
+  # resources :stations do
+  #   member do
+  #     get 'detail'
+  #     get 'detail_form'
+  #     post 'detail_form'
+  #   end
+  # end
+  # resources :stations 
+  
 
   root to: "pages#home"
   resources :users

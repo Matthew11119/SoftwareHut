@@ -13,6 +13,8 @@ class StationResultsController < ApplicationController
   # GET /station_results/new
   def new
     @station_result = StationResult.new
+    @exam_show = Exam.where(:exam_code=>params[:exam_id])    
+    @stations = Station.all.where(:id=>params[:station_id])
   end
 
   # GET /station_results/1/edit

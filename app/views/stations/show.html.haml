@@ -24,25 +24,45 @@
     = link_to 'Back', stations_path
 
 - else 
-  %div#stationsView.table-search
-    #{@exam_show.first.module_code}
-    %br
-    %h3{:style=>"margin-top:0;display:inline"} #{@exam_show.first.exam_code} #{@exam_show.first.name}
-    %span.pull-right There #{@station.count>1? 'are':'is'} #{@station.count} #{@station.count>1? 'stations':'station'} available
+  %div#examsToday.table-search
+    %p    
+      %h3{:style => "display: inline"} Today's #{@exam_today.count>1? 'Exams':'Exam' }   |
+      &nbsp &nbsp #{Time.now.strftime("%d/%m/%Y")}
+        
     %table.table
       %thead
         %tr
-          %th{:scope=>"col"} #
-          %th{:scope=>"col"} Station Name
-          -# %th{:scope=>"col"} Student's Completed
+          %th{:scope=>"col"} Module Code
+          %th{:scope=>"col"} Exam Code
+          %th{:scope=>"col"} Examination Title
           %th{:scope=>"col"} Action
-        %tbody
-          - @station_show.each_with_index do |station, index|
-            %tr
-              %td= index+1
-              %td= station.station_name
-              -# %td count
-              %td= link_to 'Select', detail_station_path(:station_name=>station.station_name)    
-    = will_paginate @station_show,:param_name => 'station'  ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
-    %hr
-    = link_to "Back to Overview Page", exams_path, :class=>"btn btn-primary pull-right"
+      %tbody
+        - @exam_today.each do |exam_today|
+          %tr
+            %td= exam_today.module_code
+            %td= exam_today.exam_code
+            %td= exam_today.name
+            %td= link_to 'Select', station_path(exam_today.exam_code)
+    = will_paginate @exam_today, :param_name => 'exam_today_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
+
+  %div#examsUpcoming.table-search
+    %p 
+      %h3{:style => "display: inline"}Upcoming #{@exam_today.count>1? 'Exams':'Exam' } 
+      &nbsp &nbsp Total = #{@exam_upcoming.count}
+    %table.table
+      %thead
+        %tr
+          %th{:scope=>"col"} Module Code
+          %th{:scope=>"col"} Exam Code
+          %th{:scope=>"col"} Examination Title
+          %th{:scope=>"col"} Date
+          %th{:scope=>"col"} Action
+      %tbody
+        - @exam_upcoming.each do |exam_upcoming|
+          %tr
+            %td= exam_upcoming.module_code
+            %td= exam_upcoming.exam_code
+            %td= exam_upcoming.name
+            %td= exam_upcoming.date
+            %td= link_to 'Select', exams_path
+    = will_paginate @exam_upcoming, :param_name => 'exam_upcoming_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"

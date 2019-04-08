@@ -1,0 +1,24 @@
+%div#formHead
+    %p #{@exam_show.first.exam_code} #{@exam_show.first.name}
+    %h3 #{@stations.first.station_name}
+    %span.pull-right{:style=>"padding-right:1.625em"} Enter examiner details
+%div#formBody
+    %nav.navbar.navbar-default.navbar-static-top
+        %div.container
+            %ul.nav.navbar-nav.navbar-center
+                %li.navbar-text Remaining
+                %li.navbar-text Completed
+
+    %h4.text-center{:style=>"padding-top:2.406em"} Welcome to the Station Landing Page
+
+    %div#formBodyForm
+        = simple_form_for(:form_homepage, url: new_exam_station_station_result_path(:exam_id=>@stations.first.exam_id,:station_id=>@stations.first.id),html: { novalidate: false }) do |f|
+            = f.input :examiner_name, :label => "Who are you?", :placeholder => "Name", required: true
+            = f.hidden_field :exam_code, :value => @exam_show.first.exam_code
+            = f.hidden_field :station_name, :value=> @stations.first.station_name
+            = f.hidden_field :title, :value=> "values"
+            %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
+                = f.button :submit, 'Continue',class: 'btn btn-primary pull-right', style:'background-color:#22A7F0;border-color:#22A7F0;padding:0.438em 3.875em'            
+                = link_to 'Back', exam_stations_path(params[:exam_id]), class: 'btn pull-right',style:'color:#22A7F0'
+    %p.text-center{:style=>'color:#9E9E9E;padding-bottom:1.375em'} To proceed, please enter your name for future references
+= link_to 'Back to View Station Page', exam_stations_path(:exam_id), class:'pull-right', style:'color:#313131'

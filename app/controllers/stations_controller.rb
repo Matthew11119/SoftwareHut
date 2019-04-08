@@ -1,20 +1,20 @@
 class StationsController < ApplicationController
-  before_action :set_station, only: [:show, :edit, :update, :destroy]
+  before_action :set_station, only: [:index, :show, :edit, :update, :destroy]
   # GET /stations
   def index 
-    @stations = Station.all
+    @exam_show = Exam.where(:exam_code=>params[:exam_id])
+    @station_show = @stations.paginate(:page => params[:station], :per_page => 10)
   end
 
   # GET /stations/1
   def show
-    # @station = Station.paginate(:page => params[:station], :per_page => 10)
-    @station_show = @station.paginate(:page => params[:station], :per_page => 10)
-    @exam_show = Exam.where(:exam_code=>params[:id])
+    
   end
 
   # GET /stations/new
   def new
     @station = Station.new
+    
   end
 
   # GET /stations/1/edit
@@ -49,7 +49,7 @@ class StationsController < ApplicationController
 
   # /stations/id/detail
   def detail
-    @exam_show = Exam.where(:exam_code=>params[:id])
+    @exam_show = Exam.where(:exam_code=>params[:exam_id])
     @stations = Station.all.where(:station_name=>params[:station_name])
     # @index = 
   end
@@ -70,8 +70,7 @@ class StationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station
-      # @station = Station.find(params[:id])
-      @station = Station.where(:exam_id=>params[:id])
+      @stations = Station.where(:exam_id=>params[:exam_id])
     end
 
     # Only allow a trusted parameter "white list" through.
