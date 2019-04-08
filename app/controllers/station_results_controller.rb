@@ -23,13 +23,13 @@ class StationResultsController < ApplicationController
 
   # POST /station_results
   def create
-    @station_result = StationResult.new(station_result_params)
+    # @station_result = StationResult.new(station_result_params)
 
-    if @station_result.save
-      redirect_to @station_result, notice: 'Station result was successfully created.'
-    else
-      render :new
-    end
+    # if @station_result.save
+    #   redirect_to @station_result, notice: 'Station result was successfully created.'
+    # else
+    #   render :new
+    # end
   end
 
   # PATCH/PUT /station_results/1
@@ -54,7 +54,7 @@ class StationResultsController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def station_result_params
-      params.require(:station_result).permit(:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
-    end
+    # def station_result_params
+    #   params.require(:station_result).permit(:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
+    # end
 end

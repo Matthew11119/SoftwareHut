@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   resources :exams do
     resources :stations do
-      resources :station_results
+      resources :station_results        
     end
   end
   get '/templates', to: 'exams#index', as: 'templates', except: [:deploy]
