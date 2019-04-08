@@ -1,5 +1,9 @@
 $('document').ready(function() {
     
+    $("#form-ready-screen").on("ajax:success", (event)=>alert('good'));
+    $("#form-ready-screen").on("ajax:error", (event)=>alert('bad'));
+
+
     $('#label-help').text("Select a student below to begin examination");
 
     $(".item-form:contains('Remaining')").css({
