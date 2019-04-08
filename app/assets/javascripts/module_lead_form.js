@@ -1,6 +1,13 @@
 $('document').ready(function() {
     
     $("#form-ready-screen").on("ajax:success", (event)=>alert('good'));
+    // $("#form-ready-screen").on("ajax:success", (event)=>
+    //     $('#formBodyForm').replaceWith("<%= escape_javascript(render('student_chooser_page')) %>")        
+    //     );
+    
+
+    $("#form-ready-screen").on("ajax:success", (event)=>$('#formBody').empty());
+
     $("#form-ready-screen").on("ajax:error", (event)=>alert('bad'));
 
 

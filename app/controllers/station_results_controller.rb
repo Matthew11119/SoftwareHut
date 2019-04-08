@@ -23,7 +23,8 @@ class StationResultsController < ApplicationController
 
   # POST /station_results
   def create
-    # @station_result = StationResult.new(station_result_params)
+    # @station_result = StationResult.new(station_result_params) # Create with the examiner name
+    
 
     # if @station_result.save
     #   redirect_to @station_result, notice: 'Station result was successfully created.'
