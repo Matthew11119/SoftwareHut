@@ -5,10 +5,7 @@
 
   .form-inputs
     = f.input :username
-    = f.input :givenname, label: 'Forename'
-    = f.input :sn, label: 'Surname'
-    = f.input :user_type, collection: ["Admin", "Module Lead", "Moderator"], include_blank: false, include_hidden: false
-
+    = f.input :user_type, collection: ["Moderator", "Module Lead","Admin"], include_blank: false, include_hidden: false, value: "Moderator"
 
   .form-actions
     = f.button :submit
