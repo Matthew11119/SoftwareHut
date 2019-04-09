@@ -29,9 +29,9 @@
 class User < ApplicationRecord
   include EpiCas::DeviseHelper
 
-  scope :admins,       -> { where(user_type: "Admin") }
-  scope :module_leads, -> { where(user_type: "Module Lead") }
-  scope :moderators,    -> { where(user_type: "Moderator") }
+  scope :admins,       -> { where(user_type: "Admin").where.not(givenname: nil) }
+  scope :module_leads, -> { where(user_type: "Module Lead").where.not(givenname: nil) }
+  scope :moderators,    -> { where(user_type: "Moderator").where.not(givenname: nil) }
 
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   end

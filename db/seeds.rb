@@ -8,10 +8,10 @@
 
 # run rake db:seed
 
-User.create(username: "acc17lm", user_type:"Admin")
+User.create(username: "acc17lm",  user_type:"Admin")
 User.create(username: "aca17zsc", user_type:"Admin")
 User.create(username: "aca17scf", user_type:"Admin")
-User.create(username: "acc17lm", user_type:"Admin")
+User.create(username: "aca17mjs", user_type:"Admin")
 User.create(username: "aca18mlj", user_type:"Admin")
 
 UniModule.find_or_create_by(module_code:'COM1001',module_name:'Computer Science 1')
