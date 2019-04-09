@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_194424) do
+ActiveRecord::Schema.define(version: 2019_04_09_125944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_194424) do
     t.string "dn"
     t.string "sn"
     t.string "givenname"
-    t.boolean "moderator"
     t.string "user_type"
     t.index ["email"], name: "index_users_on_email"
     t.index ["username"], name: "index_users_on_username"

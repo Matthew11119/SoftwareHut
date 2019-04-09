@@ -11,7 +11,6 @@
 #  last_sign_in_at    :datetime
 #  last_sign_in_ip    :inet
 #  mail               :string
-#  moderator          :boolean
 #  ou                 :string
 #  sign_in_count      :integer          default(0), not null
 #  sn                 :string

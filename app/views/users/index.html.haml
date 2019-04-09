@@ -1,6 +1,6 @@
 - content_for :title, "Users"
 
-= link_to 'New User', new_user_path
+= link_to 'New User', new_user_path, class: 'btn btn-default'
 
 %h1 Admins
 
@@ -12,7 +12,7 @@
       %th
       %th
       %th
-
+ 
   %tbody
     - @admins.each do |user|
       %tr
