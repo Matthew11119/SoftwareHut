@@ -7,7 +7,7 @@
     = f.input :username
     = f.input :givenname, label: 'Forename'
     = f.input :sn, label: 'Surname'
-    = f.input :admin
+    = f.input :user_type, collection: ["Admin", "Module Lead", "Moderator"], include_blank: false, include_hidden: false
 
 
   .form-actions

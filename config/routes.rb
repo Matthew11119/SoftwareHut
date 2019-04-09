@@ -1,28 +1,32 @@
 Rails.application.routes.draw do
   mount EpiCas::Engine, at: "/"
-  devise_for :users
-  # resources :archives, except: [:new, :create]
-  # resources :templates
-  resources :students do
-    collection { post :my_import}
-  end
+
   resources :exams
-  get '/templates', to: 'exams#index', as: 'templates', except: [:deploy]
-  get '/archive',   to: 'exams#index', as: 'archives', except: [:new, :create, :deploy]
-  #resources :templates
-  #resources :archives#, except: [:new, :create]
+  resources :archives, except: [:new, :create]
+  resources :templates
+  resources :students do
+    collection { post :student_import}
+    collection do
+      delete 'destroy_multiple'
+    end
+  end
   resources :uni_modules
-  resources :criteria_results
-  resources :station_results
-  resources :stations do
+
+  resources :stations, only: [:new,:edit,:update,:destroy] do
     member do
       get 'detail'
       get 'detail_form'
       post 'detail_form'
     end
   end
+  post 'stations/:id', to: 'stations#create'
+  resources :criteria, only: [:new,:edit,:update,:destroy]
+  post 'criteria/:id', to: 'criteria#create'
+  resources :answers, only: [:new,:edit,:update,:destroy]
+  post 'answers/:id', to: 'answers#create'
 
   root to: "pages#home"
+  devise_for :users
   resources :users
 
   resources :criteria

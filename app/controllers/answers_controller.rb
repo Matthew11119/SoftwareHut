@@ -22,15 +22,23 @@ class AnswersController < ApplicationController
   # POST /answers
   def create
     @answer = Answer.new
+    
+    #if :from == 0  
+    #else
+    #  puts "new via copy"
+    #  @answer[:text]       = 'Copied text' #Answer.find(params[:from])[:text]
+    #  @answer[:score]      = 1000 #Answer.find(params[:from])[:score]
+    #end
 
-    @answer[:text] = ''
-    @answer[:score] = 0
+
+    @answer[:text]       = ''
+    @answer[:score]      = 0
     @answer[:station_id] = params[:id]
 
     if @answer.save
       redirect_to edit_station_path(@answer.station), notice: 'Answer was successfully created.'
     else
-      render :new
+      redirect_to edit_station_path(@answer.station), notice: 'Error creating new Answer.'
     end
   end
 
@@ -45,8 +53,9 @@ class AnswersController < ApplicationController
 
   # DELETE /answers/1
   def destroy
+    station_id = @answer.station_id
     @answer.destroy
-    redirect_to answers_url, notice: 'Answer was successfully destroyed.'
+    redirect_to edit_station_path(station_id), notice: 'Answer was successfully destroyed.'
   end
 
   private

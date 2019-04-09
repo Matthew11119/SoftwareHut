@@ -1,5 +1,7 @@
-%h1 Listing students
+%h1 Students and Modules
+%h2 Current students
 
+= form_tag destroy_multiple_students_path, method: :delete
 %table.table.table-hover
   %thead
     %tr
@@ -8,7 +10,8 @@
       %th Username
       %th Student ID
       %th
-      %th
+      /  %input{type: "checkbox", id:"selectAll"}
+      / %th= submit_tag "Delete selection", class: "btn btn-primary btn-xs", data: { confirm: 'Are you sure?' }
 
   %tbody
     - @students.each do |student|
@@ -17,18 +20,14 @@
         %td= student.forename
         %td= student.username
         %td= student.regno
-        %td= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }
+        / %td= check_box_tag "student_regnos[]", student.regno, false, class: 'selectable'
 
-%br
-
-= link_to 'New Student', new_student_path
-%br
-= form_tag my_import_students_path, multipart: true do
-  = file_field_tag :file
-  = submit_tag "Upload Students"
+%h5
+  = link_to 'Import or create new students', new_student_path, class: 'ajax-modal'
 
 
-%h1 Modules
+
+%h2 Modules
 
 %table.table.table-hover
   %thead
@@ -44,9 +43,7 @@
       %tr
         %td= uni_module.module_code
         %td= uni_module.module_name
-        %td= link_to 'Show', uni_module
-        %td= link_to 'Edit', edit_uni_module_path(uni_module)
+        %td= link_to 'Edit', edit_uni_module_path(uni_module), class: 'ajax-modal'
         %td= link_to 'Delete', uni_module, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-= link_to 'New Uni module', new_uni_module_path
+%h5
+  = link_to 'New module', new_uni_module_path, class: 'ajax-modal'
