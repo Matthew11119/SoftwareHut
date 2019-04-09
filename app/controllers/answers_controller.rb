@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /answers
   def index
     @answers = Answer.all

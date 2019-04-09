@@ -1,6 +1,7 @@
 class StationsController < ApplicationController
   before_action :set_station, only: [:show, :edit, :update, :destroy]
   before_action :create_station_result_detail 
+  authorize_resource
   # GET /stations
   def index 
     @stations = Station.all

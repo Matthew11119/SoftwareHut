@@ -1,6 +1,6 @@
 class CriteriaController < ApplicationController
   before_action :set_criterium, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /criteria
   def index
     @criteria = Criterium.all

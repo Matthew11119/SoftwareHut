@@ -1,6 +1,6 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /templates
   def index
     @templates = Exam.templates

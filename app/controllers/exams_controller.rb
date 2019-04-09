@@ -1,6 +1,6 @@
 class ExamsController < ApplicationController
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /exams
   def index
     if can?(:manage, Exam)

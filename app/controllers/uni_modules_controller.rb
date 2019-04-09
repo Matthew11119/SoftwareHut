@@ -1,6 +1,6 @@
 class UniModulesController < ApplicationController
   before_action :set_uni_module, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /uni_modules
   def index
     @uni_modules = UniModule.all
