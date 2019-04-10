@@ -41,7 +41,11 @@ class ExamsController < ApplicationController
   # PATCH/PUT /exams/1
   def update
     if @exam.update(exam_params)
-      redirect_to edit_exam_path, notice: 'Exam was successfully updated.'
+      if params[:exam].has_key?(:status) && !params[:exam].has_key?(:name)
+        redirect_to exams_url, notice: 'Exam was successfully updated.'
+      else
+        redirect_to edit_exam_path, notice: 'Exam was successfully updated.'
+      end
     else
       render :edit
     end
