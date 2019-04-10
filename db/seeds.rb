@@ -14,6 +14,9 @@ User.create(username: "aca17scf", user_type:"Admin")
 User.create(username: "aca17mjs", user_type:"Admin")
 User.create(username: "aca18mlj", user_type:"Admin")
 
+User.create(username: "nr1jcd", user_type:"Admin")
+
+
 UniModule.find_or_create_by(module_code:'COM1001',module_name:'Computer Science 1')
 UniModule.find_or_create_by(module_code:'COM1002',module_name:'Computer Science 2')
 UniModule.find_or_create_by(module_code:'COM1003',module_name:'Computer Science 3')
