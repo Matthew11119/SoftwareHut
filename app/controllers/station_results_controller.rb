@@ -24,7 +24,10 @@ class StationResultsController < ApplicationController
   # POST /station_results
   def create
     # @station_result = StationResult.new(station_result_params) # Create with the examiner name
-    
+    if params[:form_homepage][:examiner_name].present?
+      new
+      render :student_chooser_page
+    end
 
     # if @station_result.save
     #   redirect_to @station_result, notice: 'Station result was successfully created.'
@@ -48,10 +51,26 @@ class StationResultsController < ApplicationController
     redirect_to station_results_url, notice: 'Station result was successfully destroyed.'
   end
 
+  # GET /exams/:exam_id/stations/:station_id/station_results/:station_result_id/examiner_detail
+  def examiner_detail
+    set_module_lead_basic
+  end
+  
+  # POST /exams/:exam_id/stations/:station_id/station_results/:station_result_id/remaining_students
+  def remaining_students
+    set_module_lead_basic
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station_result
       @station_result = StationResult.find(params[:id])
+    end
+
+    def set_module_lead_basic
+      @station_result = StationResult.new
+      @exam_show = Exam.where(:exam_code=>params[:exam_id])    
+      @stations = Station.all.where(:id=>params[:station_id])  
     end
 
     # Only allow a trusted parameter "white list" through.

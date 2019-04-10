@@ -1,3 +1,7 @@
+%div#formHead    
+    %p #{@exam_show.first.exam_code} #{@exam_show.first.name}
+    %h3 #{@stations.first.station_name}
+    %span#label-help.pull-right{:style=>"padding-right:1.625em"} #label-help
 %div#formBody
     %nav.navbar.navbar-default.navbar-static-top
         %div.container
@@ -8,7 +12,7 @@
     %h4.text-center{:style=>"padding-top:2.406em"} Welcome to the Station Landing Page
 
     %div#formBodyForm
-        = simple_form_for(:form_homepage, url:exam_station_station_results_path(:exam_id=>params[:exam_id],:station_id=>params[:station_id]) ,html: { novalidate: false , id:'form-ready-screen'}) do |f|
+        = simple_form_for(:form_homepage, url:exam_station_station_result_remaining_students_path(:exam_id=>params[:exam_id],:station_id=>params[:station_id]) ,html: { novalidate: false , id:'form-ready-screen'}) do |f|
             = f.input :examiner_name, :label => "Who are you?", :placeholder => "Name", required: true
             = f.hidden_field :exam_code, :value => @exam_show.first.exam_code
             = f.hidden_field :station_name, :value=> @stations.first.station_name

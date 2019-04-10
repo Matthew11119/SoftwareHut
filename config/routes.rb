@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   resources :students do
     collection { post :my_import}
   end
+  
   resources :exams do
     resources :stations do
-      resources :station_results        
+      resources :station_results do 
+        get :examiner_detail
+        post :remaining_students  
+      end       
     end
   end
   get '/templates', to: 'exams#index', as: 'templates', except: [:deploy]
