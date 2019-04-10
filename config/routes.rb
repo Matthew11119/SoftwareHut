@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
   end
   post 'stations/:id', to: 'stations#create'
+
   resources :criteria, only: [:new,:edit,:update,:destroy]
   post 'criteria/:id', to: 'criteria#create'
   resources :answers, only: [:new,:edit,:update,:destroy]
@@ -28,11 +29,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
   devise_for :users
   resources :users
-
-  resources :criteria
-  post 'criteria/:id', to: 'criteria#create'
-  resources :answers
-  post 'answers/:id', to: 'answers#create'
 
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all
