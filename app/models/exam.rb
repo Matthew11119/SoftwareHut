@@ -12,8 +12,8 @@
 #
 
 class Exam < ApplicationRecord
-  belongs_to :uni_module, :foreign_key=>:module_code
-  
+  has_and_belongs_to_many :students
+
   has_many :stations, inverse_of: :exam
 
   scope :undeployed, -> { where(status: 0).order(:date) }

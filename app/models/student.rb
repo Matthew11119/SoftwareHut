@@ -15,7 +15,7 @@
 #
 
 class Student < ApplicationRecord
-  has_and_belongs_to_many :uni_modules
+  has_and_belongs_to_many :exams
 
   def self.student_import(file)
     students = []
