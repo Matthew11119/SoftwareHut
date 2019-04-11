@@ -10,10 +10,10 @@
       %td= @user.username
     %tr
       %td= "User type:"
-      - if @user.admin
-        %td= "Admin"
-      - else
-        %td= "Module Lead"
+      %td= @user.user_type
+    %tr
+      %td= "Email:"
+      %td= @user.email
 
 = link_to 'Edit', edit_user_path(@user)
 \|

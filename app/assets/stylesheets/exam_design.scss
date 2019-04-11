@@ -1,0 +1,76 @@
+$color_1: white;
+$color_2: red;
+$background_color_1: #AAAAFF;
+$background_color_2: #6666FF;
+$background_color_3: #333388;
+$background_color_4: #00CED1;
+$border_color_1: #000000;
+
+input[type="radio"] {
+	display: none;
+	width: 100%;
+}
+
+label {
+	width: 30%;
+	color: $color_1;
+}
+
+textarea {
+	width: 100%;
+}
+
+h5{
+	margin: 1em;
+}
+
+#startTimer {
+	width: 50%;
+}
+
+#timer2 {
+	color: $color_2;
+	font-size: 15px;
+}
+
+#record {
+	width: 15em;
+	color: $color_1;
+	margin-top: 1em;
+}
+
+#stopRecord {
+	width: 15em;
+	color: $color_1;
+	margin-top: 1em;
+}
+
+#resultButton {
+	width: 15em;
+	background-color: $background_color_1;
+}
+
+#submitButton {
+	background-color: $background_color_2;
+	color: $color_1;
+	width: 25%;
+	margin-top: 5em;
+}
+
+.radio-inline {
+	background-color: $background_color_3;
+	width: 100%;
+	border-width: 1px;
+	border-style: solid;
+	border-color: $border_color_1;
+	height: 5em;
+}
+
+.header {
+	background-color: $background_color_4;
+	width: 100%;
+}
+
+p{
+	padding-left: 10px;
+}

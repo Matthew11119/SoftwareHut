@@ -1,8 +1,16 @@
 - content_for :title, "Users"
 
-%h1 Admins
+= link_to 'New User', new_user_path, class: 'btn btn-default'
+
+
 
 %table.table.table-hover
+
+  %thead
+    %tr
+      %th
+        %h1 Admins
+        
   %thead
     %tr
       %th Name
@@ -10,7 +18,7 @@
       %th
       %th
       %th
-
+ 
   %tbody
     - @admins.each do |user|
       %tr
@@ -19,14 +27,15 @@
         %td= link_to 'Show', user
         %td= link_to 'Edit', edit_user_path(user)
         %td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }
-%br
-
-= link_to 'New User', new_user_path
 
 
-%h1 Module Leads
 
-%table.table.table-hover
+
+  %thead
+    %tr
+      %th
+        %h1 Module Leads
+
   %thead
     %tr
       %th Name
@@ -43,6 +52,28 @@
         %td= link_to 'Show', user
         %td= link_to 'Edit', edit_user_path(user)
         %td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }
-%br
 
-= link_to 'New User', new_user_path
+
+
+
+  %thead
+    %tr
+      %th
+        %h1 Moderators
+
+  %thead
+    %tr
+      %th Name
+      %th Username
+      %th
+      %th
+      %th
+
+  %tbody
+    - @moderators.each do |user|
+      %tr
+        %td= user.givenname + " " + user.sn
+        %td= user.username
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }

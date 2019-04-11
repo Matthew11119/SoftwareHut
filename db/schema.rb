@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_04_11_142725) do
+=======
+ActiveRecord::Schema.define(version: 2019_04_09_125944) do
+>>>>>>> bdc2ab97c6405ec1037b1d17a82e3dfe6ae3bfe6
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,7 +129,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_142725) do
     t.string "dn"
     t.string "sn"
     t.string "givenname"
-    t.boolean "admin"
+    t.string "user_type"
     t.index ["email"], name: "index_users_on_email"
     t.index ["username"], name: "index_users_on_username"
   end

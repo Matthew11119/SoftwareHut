@@ -12,7 +12,7 @@
 
 class Station < ApplicationRecord
   belongs_to :exam, :foreign_key=>:exam_id
-  
+
   has_many :answers, inverse_of: :station
   accepts_nested_attributes_for :answers
 

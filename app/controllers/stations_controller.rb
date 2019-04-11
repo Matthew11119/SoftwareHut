@@ -1,5 +1,23 @@
 class StationsController < ApplicationController
   before_action :set_station, only: [:show, :edit, :update, :destroy]
+  before_action :create_station_result_detail 
+  authorize_resource
+  # GET /stations
+  def index 
+    @stations = Station.all
+  end
+
+  # GET /stations/1
+  def show
+    # @station = Station.paginate(:page => params[:station], :per_page => 10)
+    @station_show = @station.paginate(:page => params[:station], :per_page => 10)
+    @exam_show = Exam.where(:exam_code=>params[:id])
+  end
+
+  # GET /stations/new
+  def new
+    @station = Station.new
+  end
 
   # GET /stations/1/edit
   def edit
@@ -36,10 +54,24 @@ class StationsController < ApplicationController
     redirect_to edit_exam_path(exam_id), notice: 'Station was successfully destroyed.'
   end
 
+  # /stations/id/detail
+  def detail
+    @exam_show = Exam.where(:exam_code=>params[:id])
+    @stations = Station.all.where(:station_name=>params[:station_name])
+    # @index = 
+  end
+
+  # /stations/id/
+  def detail_form
+    @exam_show = Exam.where(:exam_code=>params[:station_result][:exam_code])
+    @stations = Station.all.where(:station_name=>params[:station_result][:station_name])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station
-      @station = Station.find(params[:id])
+      # @station = Station.find(params[:id])
+      @station = Station.where(:exam_id=>params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
@@ -48,4 +80,12 @@ class StationsController < ApplicationController
         :criteria_attributes => [:id, :number, :criteria_description, :criteria_critical, :station_id],
         :answers_attributes  => [:id, :text, :score, :station_id]])
     end
+
+    def create_station_result_detail
+      @station_result_detail = StationResult.new
+    end
+
+    # def detail_params1
+    #   params.require(:stations).permit(:examiner_name)
+    # end
 end
