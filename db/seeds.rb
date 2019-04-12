@@ -8,13 +8,13 @@
 
 # run rake db:seed
 
-User.create(username: "acc17lm")
-User.create(username: "aca17zsc")
-User.create(username: "aca17scf")
-User.create(username: "aca17mjs")
-User.create(username: "aca18mlj")
+User.create(username: "acc17lm",  user_type:"Admin")
+User.create(username: "aca17zsc", user_type:"Admin")
+User.create(username: "aca17scf", user_type:"Admin")
+User.create(username: "aca17mjs", user_type:"Admin")
+User.create(username: "aca18mlj", user_type:"Admin")
 
-User.create(username: "nr1jcd")
+User.create(username: "nr1jcd", user_type:"Admin")
 
 
 UniModule.find_or_create_by(module_code:'COM1001',module_name:'Computer Science 1')
@@ -80,4 +80,3 @@ Station.find_or_create_by(station_name: 'Station 9 examination name 01', pass_ma
 Station.find_or_create_by(station_name: 'Station 10 examination name 01', pass_mark: 70, exam_id:'EX0001')
 Station.find_or_create_by(station_name: 'Station 11 examination name 01', pass_mark: 70, exam_id:'EX0001')
 Station.find_or_create_by(station_name: 'Station 12 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.create(station_name: 'Station 1 exam 1', pass_mark: 10, exam_id:'EX0001')
