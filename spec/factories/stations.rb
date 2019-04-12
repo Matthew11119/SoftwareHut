@@ -7,7 +7,7 @@
 #  station_name :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  exam_id      :string
+#  exam_id      :integer
 #
 
 FactoryBot.define do

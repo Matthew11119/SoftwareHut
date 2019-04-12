@@ -95,9 +95,9 @@ ActiveRecord::Schema.define(version: 2019_04_10_104330) do
   create_table "stations", force: :cascade do |t|
     t.string "station_name"
     t.integer "pass_mark"
+    t.integer "exam_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "exam_id"
   end
 
   create_table "students", id: false, force: :cascade do |t|
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2019_04_10_104330) do
     t.string "dn"
     t.string "sn"
     t.string "givenname"
-    t.string "user_type"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email"
     t.index ["username"], name: "index_users_on_username"
   end
