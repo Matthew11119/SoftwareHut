@@ -61,6 +61,11 @@ class StationResultsController < ApplicationController
     set_module_lead_basic
   end
 
+  # GET /exams/:exam_id/stations/:station_id/station_results/:station_result_id/completed_students
+  def completed_students
+    set_module_lead_basic
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station_result

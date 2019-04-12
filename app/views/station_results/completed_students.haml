@@ -5,9 +5,9 @@
 %div#formBody
     %nav.navbar.navbar-default.navbar-static-top
         %div.container
-            %ul.nav.navbar-nav.navbar-center                
-                %li= link_to 'Remaining', exam_station_station_result_remaining_students_path(:exam_id=>params[:exam_id], :station_id=>params[:station_id],:station_result_id=>params[:station_result_id]), method: :post, id: 'bold-select'
-                %li= link_to 'Completed', exam_station_station_result_completed_students_path(:exam_id=>params[:exam_id], :station_id=>params[:station_id],:station_result_id=>params[:station_result_id])
+            %ul.nav.navbar-nav.navbar-center
+                %li= link_to 'Remaining', exam_station_station_result_remaining_students_path(:exam_id=>params[:exam_id], :station_id=>params[:station_id],:station_result_id=>params[:station_result_id]), method: :post
+                %li= link_to 'Completed', exam_station_station_result_completed_students_path(:exam_id=>params[:exam_id], :station_id=>params[:station_id],:station_result_id=>params[:station_result_id]), id: 'bold-select'
     %div#div-search    
         = simple_form_for :form_search do |f|        
             = f.input :student_id, :placeholder => "Student ID", :label=>"Search by"
@@ -38,3 +38,4 @@
                 -#     %td= exam_today.exam_code
                 -#     %td= exam_today.name 
                 -#     %td= link_to 'Select', exam_stations_path(@exam_today.first.exam_code)
+    

@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     resources :stations do
       resources :station_results do 
         get :examiner_detail
-        post :remaining_students  
+        post :remaining_students
+        get :completed_students  
       end       
     end
   end
