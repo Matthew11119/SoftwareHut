@@ -80,3 +80,4 @@ Station.find_or_create_by(station_name: 'Station 9 examination name 01', pass_ma
 Station.find_or_create_by(station_name: 'Station 10 examination name 01', pass_mark: 70, exam_id:'EX0001')
 Station.find_or_create_by(station_name: 'Station 11 examination name 01', pass_mark: 70, exam_id:'EX0001')
 Station.find_or_create_by(station_name: 'Station 12 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.create(station_name: 'Station 1 exam 1', pass_mark: 10, exam_id:'EX0001')

@@ -7,7 +7,7 @@
 #  station_name :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  exam_id      :integer
+#  exam_id      :string
 #
 
 class Station < ApplicationRecord
