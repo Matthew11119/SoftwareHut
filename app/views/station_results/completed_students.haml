@@ -14,7 +14,7 @@
             = f.input :student_surname, :placeholder => "Surname", :label=>false
             %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
                 = f.button :submit, 'Search', class: 'btn btn-primary pull-right ajax-modal', style:'background-color:#22A7F0;border-color:#22A7F0;padding:0.438em 3.875em'
-                = link_to 'Reset', new_exam_station_station_result_path(:exam_id=>@stations.first.exam_id,:station_id=>@stations.first.id) , class: 'btn pull-right',style:'color:#22A7F0'
+                = link_to 'Reset', exam_station_station_result_completed_students_path(:exam_id=>params[:exam_id], :station_id=>params[:station_id],:station_result_id=>params[:station_result_id]) , class: 'btn pull-right',style:'color:#22A7F0'
             -# %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
             -# = f.button :student_search, 'Enter',class: 'btn btn-primary pull-right', style:'background-color:#22A7F0;border-color:#22A7F0;padding:0.438em 3.875em'            
                 -# = link_to 'Reset', station_path, style:'color:#22A7F0'
