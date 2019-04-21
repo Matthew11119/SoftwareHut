@@ -1,20 +1,15 @@
 class ExamsController < ApplicationController
+  include ExamsHelper
+
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
   authorize_resource
+  
   # GET /exams
   def index
     if can?(:manage, Exam)
-      @undeployed = Exam.undeployed
-      @deployed = Exam.deployed
-      @completed = Exam.completed
-      render 'index'
-    elsif can?(:edit, CriteriaResult)
-      @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
-      @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
-      render 'index_module_lead'
+      index_admin
     else
-      @exams = Exam.completed
-      render 'index_moderator'
+      render template: 'errors/error_403', status: 403
     end
   end
 
