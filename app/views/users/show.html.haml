@@ -4,7 +4,10 @@
   %tbody
     %tr
       %td= "Name:"
-      %td= @user.givenname + " " + @user.sn
+      - if @user.givenname.blank? or @user.sn.blank?
+        %td Available after first login
+      - else
+        %td= @user.givenname.to_s + " " + @user.sn.to_s
     %tr
       %td= "Username:"
       %td= @user.username
@@ -13,7 +16,10 @@
       %td= @user.user_type
     %tr
       %td= "Email:"
-      %td= @user.email
+      - if @user.givenname.blank? or @user.sn.blank?
+        %td Available after first login
+      - else
+        %td= @user.givenname.to_s + " " + @user.sn.to_s
 
 = link_to 'Edit', edit_user_path(@user)
 \|
