@@ -16,18 +16,26 @@ class CriteriaResult < ApplicationRecord
 
   private
     def calculate_crit_mark
-      puts "RUNNING CALCULATE"
-      puts answer_before_type_cast
-      if answer_before_type_cast == "Fully Met"
-        self.criteria_mark = 2
-        self.answer = 0
-      elsif answer_before_type_cast == "Partially Met"
-        self.criteria_mark = 1
-        self.answer = 1
+
+      if criteria_mark == 1
+        if answer_before_type_cast == "Not Met"
+          self.criteria_mark = -1000
+        else
+          self.criteria_mark = 2
+        end
       else
-        self.criteria_mark = 0
-        self.answer = 2
+
+        if answer_before_type_cast == "Fully Met"
+          self.criteria_mark = 2
+          self.answer = 0
+        elsif answer_before_type_cast == "Partially Met"
+          self.criteria_mark = 1
+          self.answer = 1
+        else
+          self.criteria_mark = 0
+          self.answer = 2
+        end
       end
-      puts self.criteria_mark
     end
+
 end

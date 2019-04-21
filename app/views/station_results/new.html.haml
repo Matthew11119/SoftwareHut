@@ -43,8 +43,11 @@
           %p{:style => "color:red"}Ask candidate what they are observing form
           %p Comfort, colour, pain, conscious level
           = f.fields_for :criteria_results do |c|
-            
-            = c.text_field :answer
+            - if osce.criteria_critical
+              = c.text_field :answer
+            - else
+              = c.text_field :answer
+              = c.hidden_field :criteria_mark, value: 1
             .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
               %label.btn.btn-primary.active.option1bg
                 %input.option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/

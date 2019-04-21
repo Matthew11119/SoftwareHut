@@ -17,6 +17,16 @@ class StationResult < ApplicationRecord
   belongs_to :stations, :foreign_key=>:station_id
   has_many :criteria_results, :foreign_key=>:id
   accepts_nested_attributes_for :criteria_results
+  after_validation :calculate_mark
 
+  private
+    def calculate_mark
+      puts "Criteria result"
+      subtotal = 0
+      self.criteria_results.each do |i|
+        subtotal += i.criteria_mark
+      end
+      puts subtotal
+    end
 
 end
