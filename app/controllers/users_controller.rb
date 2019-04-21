@@ -24,9 +24,9 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    @user.get_info_from_ldap
-
     if @user.save
+      @user.get_info_from_ldap
+      @user.update(user_params)
       redirect_to users_path, notice: 'User was successfully created.'
     else
       render :new

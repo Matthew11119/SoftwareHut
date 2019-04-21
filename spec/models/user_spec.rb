@@ -2,7 +2,6 @@
 #
 # Table name: users
 #
-#  id                 :bigint(8)        not null, primary key
 #  current_sign_in_at :datetime
 #  current_sign_in_ip :inet
 #  dn                 :string
@@ -16,7 +15,7 @@
 #  sn                 :string
 #  uid                :string
 #  user_type          :string
-#  username           :string
+#  username           :string           not null, primary key
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
