@@ -22,6 +22,11 @@ class ExamsController < ApplicationController
   def show
   end
 
+  def student_import
+    Exam.student_import(params[:file])
+    #redirect_to students_path, notice: "Students added successfully"
+  end
+
   # GET /exams/new
   def new
     @exam = Exam.new

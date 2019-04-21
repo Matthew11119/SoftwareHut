@@ -3,15 +3,11 @@
 # Table name: students
 #
 #  forename   :string
-#  regno      :integer
+#  regno      :integer          not null, primary key
 #  surname    :string
 #  username   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#
-# Indexes
-#
-#  index_students_on_regno  (regno)
 #
 
 FactoryBot.define do

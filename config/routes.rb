@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   mount EpiCas::Engine, at: "/"
 
-  resources :exams
+  resources :exams do
+    collection { post :student_import}
+    get 'import'
+  end
   resources :archives, except: [:new, :create]
   resources :templates
   resources :students do
@@ -10,7 +13,6 @@ Rails.application.routes.draw do
       delete 'destroy_multiple'
     end
   end
-  resources :uni_modules
 
   resources :stations, only: [:new,:edit,:update,:destroy] do
     member do
