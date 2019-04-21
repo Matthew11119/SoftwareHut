@@ -16,7 +16,7 @@ class CriteriaResult < ApplicationRecord
 
   private
     def calculate_crit_mark
-
+      puts answer_before_type_cast
       if criteria_mark == 1
         if answer_before_type_cast == "Not Met"
           self.criteria_mark = -1000

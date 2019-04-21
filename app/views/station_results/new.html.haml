@@ -5,7 +5,9 @@
 = simple_form_for(@station_result) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
+  - @station_result.errors.full_messages.each do |message|
+    %li
+      = message
   .form-inputs
 
 
@@ -43,20 +45,17 @@
           %p{:style => "color:red"}Ask candidate what they are observing form
           %p Comfort, colour, pain, conscious level
           = f.fields_for :criteria_results do |c|
-            - if osce.criteria_critical
-              = c.text_field :answer
-            - else
-              = c.text_field :answer
+            - if !osce.criteria_critical
               = c.hidden_field :criteria_mark, value: 1
             .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
-              %label.btn.btn-primary.active.option1bg
-                %input.option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
+              %label.btn.btn-primary
+                = c.radio_button :answer, 'Fully Met'
                 Fully Met
               %label.btn.btn-primary
-                %input.option2{:autocomplete => "off", :name => "options", :type => "radio"}/
+                = c.radio_button :answer, 'Partially Met'
                 Partially Met
               %label.btn.btn-primary
-                %input.option3{:autocomplete => "off", :name => "options", :type => "radio"}/
+                = c.radio_button :answer, 'Not Met'
                 Not Met
             %h5 Feedback
             %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
