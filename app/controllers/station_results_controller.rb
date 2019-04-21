@@ -13,7 +13,7 @@ class StationResultsController < ApplicationController
   # GET /station_results/new
   def new
     @station_result = StationResult.new
-    @station_result.criteria_results.new
+    @station_result.criteria_results.build
     @osces = Criterium.all
     #    @osces = Criterium.where(:station_id=>params[:id])
     #    @stations = Station.where(:station_name=>params[:station_name])
@@ -28,10 +28,17 @@ class StationResultsController < ApplicationController
   # POST /station_results
   def create
     @station_result = StationResult.new(post_params)
+    @osces = Criterium.all
+    @criteria_result = @station_result.criteria_results
+    
+
+    #@criteria_result = CriteriaRestult.new(criteria_params)
     puts "TEST"
     if @station_result.save
+      puts "WORKED"
       redirect_to @station_result, notice: 'Station result was successfully created.'
     else
+      puts "DIDN'T WORK"
       render :new
     end
   end
@@ -64,6 +71,13 @@ class StationResultsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit!
+      params.require(:station_result).permit([:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
+        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_id]}])
+      #params.permit(:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
+      #params.permit(criteria_results: [:id, :answer, :criteria_mark, :station_id])
+    end
+
+    def criteria_params
+      params.require(:criteria_results).permit(:id, :answer, :criteria_mark, :station_id)
     end
 end
