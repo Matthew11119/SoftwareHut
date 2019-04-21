@@ -7,9 +7,14 @@ class ExamsController < ApplicationController
       @undeployed = Exam.undeployed
       @deployed = Exam.deployed
       @completed = Exam.completed
-    else
+      render 'index'
+    elsif can?(:edit, CriteriaResult)
       @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
       @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
+      render 'index_module_lead'
+    else
+      @exams = Exam.completed
+      render 'index_moderator'
     end
   end
 

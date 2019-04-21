@@ -24,6 +24,11 @@ class StudentsController < ApplicationController
     end
   end
 
+  # DELETE /students/1
+  def destroy
+    @student.destroy
+    redirect_to students_url, notice: 'Student was successfully destroyed.'
+  end
 
   def destroy_multiple
     Student.delete(params[:student_regnos])
