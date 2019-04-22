@@ -1,6 +1,7 @@
 class StationsController < ApplicationController
-  before_action :set_station, only: [:show, :edit, :update, :destroy]
-  before_action :create_station_result_detail 
+  #before_action :set_station, only: [:show, :edit, :update, :destroy]
+  #before_action :create_station_result_detail 
+  authorize_resource
   # GET /stations
   def index 
     @stations = Station.all
@@ -20,14 +21,20 @@ class StationsController < ApplicationController
 
   # GET /stations/1/edit
   def edit
+    @station = Station.find(params[:id])
+    render :edit
   end
 
   # POST /stations
   def create
-    @station = Station.new(station_params)
+    @station = Station.new
+
+    @station.station_name = "New Station"
+    @station.pass_mark = 0
+    @station.exam_id = params[:id]
 
     if @station.save
-      redirect_to @station, notice: 'Station was successfully created.'
+      redirect_to edit_station_path(@station.id), notice: 'Station was successfully created.'
     else
       render :new
     end
@@ -35,8 +42,9 @@ class StationsController < ApplicationController
 
   # PATCH/PUT /stations/1
   def update
+    @station = Station.find params[:id]
     if @station.update(station_params)
-      redirect_to @station, notice: 'Station was successfully updated.'
+      redirect_to edit_station_path(@station.id), notice: 'Station was successfully updated.'
     else
       render :edit
     end
@@ -44,8 +52,10 @@ class StationsController < ApplicationController
 
   # DELETE /stations/1
   def destroy
+    @station = Station.find params[:id]
+    exam_id = @station.exam_id
     @station.destroy
-    redirect_to stations_url, notice: 'Station was successfully destroyed.'
+    redirect_to edit_exam_path(exam_id), notice: 'Station was successfully destroyed.'
   end
 
   # /stations/id/detail

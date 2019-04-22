@@ -1,6 +1,6 @@
 class ArchivesController < ApplicationController
   before_action :set_archive, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /archives
   def index
     @archives = Exam.archive

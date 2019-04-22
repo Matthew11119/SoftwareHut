@@ -1,7 +1,11 @@
-
-
 -# Station Fields
 = simple_form_for(@station) do |station|
+
+  .form-actions
+    = link_to 'Back', edit_exam_path(@station.exam_id), class: 'btn btn-default'
+    = link_to 'View', @station.exam, class: 'btn btn-default'
+    = station.button :submit, 'Save'
+  %br
 
   .form-section
     %h4 Station
@@ -14,32 +18,36 @@
 
   .form-section
     -# Criteria Fields
-    %h4 Criteria
+    %h4 
+      Criteria
+      = link_to 'New Criteria', criterium_path(id: @station.id, from: 0), class: 'btn btn-default', method: :post
     = station.simple_fields_for :criteria,  @station.criteria.sort_by(&:number) do |criterium|
       = criterium.error_notification
       = criterium.error_notification message: criterium.object.errors[:base].to_sentence if criterium.object.errors[:base].present?
-      .form-group-border.form-inline
+      .form-group-border.form-group.form-inline
         .form-group
-          .form-inline
+          .form-group-vertical
             = criterium.input :number
-          = criterium.input :criteria_critical, label: 'Critical'
-        = criterium.input :criteria_description, label: 'Description'
+            = criterium.input :criteria_critical, label: 'Critical'
+        .form-group
+          = criterium.input :criteria_description, label: 'Description'
+        .form-group
+          -# = link_to 'Copy', criterium_path(id: @station.id, from: @criterium.id), class: 'btn btn-default', method: :post
+          = link_to 'Delete', criterium_path(criterium.object.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
 
-    .form-controls
-      = link_to 'New Criteria', criterium_path(@station.id), class: 'btn btn-default', method: :post
 
   .form-section
     -# Answers Fields
-    %h4 Answers
+    %h4 
+      Answers
+      = link_to 'New Answer', answer_path(id: @station.id, from: 0), class: 'btn btn-default', method: :post
     = station.simple_fields_for :answers, @station.answers.sort_by(&:score) do |answer|
       = answer.error_notification
       = answer.error_notification message: answer.object.errors[:base].to_sentence if answer.object.errors[:base].present?
-      .form-group-border
-        = answer.input :text, label: 'Name'
-        = answer.input :score
-
-    .form-controls
-      = link_to 'New Answer', answer_path(@station.id), class: 'btn btn-default', method: :post
-
-  .form-actions
-    = station.button :submit
+      .form-group-border.form-inline
+        .form-group.form-inline
+          = answer.input :text, label: 'Name'
+          = answer.input :score
+        .form-group
+          -# = link_to 'Copy', answer_path(id: @station.id, from: @answer.id), class: 'btn btn-default', method: :post
+          = link_to 'Delete', answer_path(answer.object.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'

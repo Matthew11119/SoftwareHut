@@ -1,30 +1,28 @@
 class UniModulesController < ApplicationController
   before_action :set_uni_module, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /uni_modules
   def index
     @uni_modules = UniModule.all
   end
 
-  # GET /uni_modules/1
-  def show
-  end
 
   # GET /uni_modules/new
   def new
     @uni_module = UniModule.new
+    render layout: false
   end
 
   # GET /uni_modules/1/edit
   def edit
+    render layout: false
   end
 
   # POST /uni_modules
   def create
     @uni_module = UniModule.new(uni_module_params)
-
     if @uni_module.save
-      redirect_to @uni_module, notice: 'Uni module was successfully created.'
+      redirect_to students_path, notice: 'Uni module was successfully created.'
     else
       render :new
     end
@@ -33,7 +31,7 @@ class UniModulesController < ApplicationController
   # PATCH/PUT /uni_modules/1
   def update
     if @uni_module.update(uni_module_params)
-      redirect_to @uni_module, notice: 'Uni module was successfully updated.'
+      redirect_to students_path, notice: 'Uni module was successfully updated.'
     else
       render :edit
     end
@@ -42,7 +40,7 @@ class UniModulesController < ApplicationController
   # DELETE /uni_modules/1
   def destroy
     @uni_module.destroy
-    redirect_to uni_modules_url, notice: 'Uni module was successfully destroyed.'
+    redirect_to students_path, notice: 'Uni module was successfully destroyed.'
   end
 
   private

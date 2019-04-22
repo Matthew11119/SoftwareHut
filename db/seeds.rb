@@ -8,10 +8,19 @@
 
 # run rake db:seed
 
+User.create(username: "acc17lm",  user_type:"Admin")
+User.create(username: "aca17zsc", user_type:"Admin")
+User.create(username: "aca17scf", user_type:"Admin")
+User.create(username: "aca17mjs", user_type:"Admin")
+User.create(username: "aca18mjl", user_type:"Admin")
+
+User.create(username: "nr1jcd", user_type:"Admin")
+
+
 UniModule.find_or_create_by(module_code:'COM1001',module_name:'Computer Science 1')
 UniModule.find_or_create_by(module_code:'COM1002',module_name:'Computer Science 2')
 UniModule.find_or_create_by(module_code:'COM1003',module_name:'Computer Science 3')
-Exam.find_or_create_by(date:'2019-03-27', exam_code:'EX0001', module_code:'COM1001', name:'Examination name 01', status:1)
+Exam.find_or_create_by(date:'2019-04-22', exam_code:'EX0001', module_code:'COM1001', name:'Examination name 01', status:1)
 Exam.find_or_create_by(date:'2019-3-20', exam_code:'EX001',  module_code:'COM1001', name:'Examination name 1',  status: 0)
 Exam.find_or_create_by(date:'2019-3-20', exam_code:'EX002',  module_code:'COM1002', name:'Examination name 2',  status: 1)
 Exam.find_or_create_by(date:'2019-3-21', exam_code:'EX003',  module_code:'COM1003', name:'Examination name 3',  status: 0)
@@ -43,18 +52,6 @@ Exam.find_or_create_by(date:'2019-5-1',  exam_code:'EX0028', module_code:'COM100
 Exam.find_or_create_by(date:'2019-5-2',  exam_code:'EX0029', module_code:'COM1002', name:'Examination name 29', status: 0)
 
 Station.find_or_create_by(station_name: 'Station 1', pass_mark: 3, exam_id: 'EX001')
-Station.find_or_create_by(station_name: 'Station 1 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 2 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 3 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 4 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 5 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 6 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 7 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 8 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 9 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 10 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 11 examination name 01', pass_mark: 70, exam_id:'EX0001')
-Station.find_or_create_by(station_name: 'Station 12 examination name 01', pass_mark: 70, exam_id:'EX0001')
 Answer.find_or_create_by(text: 'Fully met',     score: 2, station_id: 1)
 Answer.find_or_create_by(text: 'Partially met', score: 1, station_id: 1)
 Answer.find_or_create_by(text: 'Not met',       score: 0, station_id: 1)
@@ -69,3 +66,17 @@ Answer.find_or_create_by(text: 'Partially met', score: 1, station_id: 2)
 Answer.find_or_create_by(text: 'Not met',       score: 0, station_id: 2)
 Criterium.find_or_create_by(number: 2, criteria_description: "Example criteria 5", criteria_critical: false, station_id: 2)
 Criterium.find_or_create_by(number: 1, criteria_description: "Example criteria 6", criteria_critical: false, station_id: 2)
+
+
+Station.find_or_create_by(station_name: 'Station 1 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 2 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 3 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 4 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 5 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 6 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 7 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 8 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 9 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 10 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 11 examination name 01', pass_mark: 70, exam_id:'EX0001')
+Station.find_or_create_by(station_name: 'Station 12 examination name 01', pass_mark: 70, exam_id:'EX0001')
