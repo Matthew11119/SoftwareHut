@@ -17,4 +17,22 @@ module ExamsHelper
             "Error: status doesn't exist"
         end
     end
+
+    def index_admin
+        @undeployed = Exam.undeployed
+        @deployed = Exam.deployed
+        @completed = Exam.completed
+        render 'exams/index'
+    end
+
+    def index_module_lead
+        @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
+        @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
+        render 'exams/index_module_lead'
+    end
+
+    def index_moderator
+        @exams = Exam.completed
+        render 'exams/index_moderator'
+    end
 end

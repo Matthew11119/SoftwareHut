@@ -1,6 +1,6 @@
 class StationResultsController < ApplicationController
   before_action :set_station_result, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /station_results
   def index
     @station_results = StationResult.all
@@ -8,6 +8,17 @@ class StationResultsController < ApplicationController
 
   # GET /station_results/1
   def show
+    @station_result = StationResult.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = Prawn::Document.new
+        pdf.text "Hello World"
+        send_data pdf.render, filename: "{@station_result.student_id}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   # GET /station_results/new
@@ -76,6 +87,11 @@ class StationResultsController < ApplicationController
       @station_result = StationResult.new
       @exam_show = Exam.where(:exam_code=>params[:exam_id])    
       @stations = Station.all.where(:id=>params[:station_id])  
+    end
+    
+      # Only allow a trusted parameter "white list" through.
+    def station_result_params
+      params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
     end
 
     # Only allow a trusted parameter "white list" through.

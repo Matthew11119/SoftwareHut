@@ -8,11 +8,12 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  exam_id      :string
+#  template_id  :integer
 #
 
 class Station < ApplicationRecord
   belongs_to :exam, :foreign_key=>:exam_id
-  
+
   has_many :answers, inverse_of: :station
   accepts_nested_attributes_for :answers
 

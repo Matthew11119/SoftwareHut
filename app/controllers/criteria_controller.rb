@@ -1,6 +1,6 @@
 class CriteriaController < ApplicationController
   before_action :set_criterium, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /criteria
   def index
     @criteria = Criterium.all
@@ -47,8 +47,9 @@ class CriteriaController < ApplicationController
 
   # DELETE /criteria/1
   def destroy
+    station_id = @criterium.station_id
     @criterium.destroy
-    redirect_to criteria_url, notice: 'Criterium was successfully destroyed.'
+    redirect_to edit_station_path(station_id), notice: 'Criterium was successfully destroyed.'
   end
 
   private

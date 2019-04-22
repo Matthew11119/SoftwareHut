@@ -3,7 +3,7 @@
   %p
     %b Pass mark:
     = @station.pass_mark
-    
+
     %table.table.thead-dark.table-bordered
       %thead
         %tr
@@ -11,14 +11,14 @@
           - answers = Answer.where(station_id: @station.id).order(:score)
           - answers.each do |answer|
             %th= answer[:text]
-    
+
       %tbody
         - Criterium.where(station_id: @station.id).order(:number).each do |criterium|
           %tr
             %td= criterium[:criteria_description]
             -answers.each do |a|
-              %td 
-                
+              %td
+
     = link_to 'Edit', edit_station_path(@station)
     \|
     = link_to 'Back', stations_path
@@ -66,3 +66,5 @@
             %td= exam_upcoming.date
             %td= link_to 'Select', exams_path
     = will_paginate @exam_upcoming, :param_name => 'exam_upcoming_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
+    -# %hr
+    -# = link_to "Back to Overview Page", exams_path, :class=>"btn btn-primary pull-right"

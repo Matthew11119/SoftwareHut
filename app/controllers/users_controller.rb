@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /users
   def index
     @admins = User.admins
     @module_leads = User.module_leads
+    @moderators = User.moderators
   end
 
   # GET /users/1
@@ -23,9 +24,10 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      @user.get_info_from_ldap
+      @user.update(user_params)
+      redirect_to users_path, notice: 'User was successfully created.'
     else
       render :new
     end
@@ -33,8 +35,9 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    @user.get_info_from_ldap
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to users_path, notice: 'User was successfully updated.'
     else
       render :edit
     end
@@ -54,7 +57,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit( :givenname, :sn, :username, :admin )
+      params.require(:user).permit( :givenname, :sn, :username, :user_type )
 
     end
 end

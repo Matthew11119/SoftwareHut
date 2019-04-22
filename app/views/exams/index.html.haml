@@ -64,7 +64,7 @@
   %br
 
   %h1 Completed Exams
-  %table
+  %table.table.table-hover
     %thead
       %tr
         %th Exam code
@@ -85,10 +85,12 @@
           %td= link_to 'View', exam
           %td= link_to 'Edit', edit_exam_path(exam)
           %td= link_to 'Results', ''
+          %td= link_to('Move to Deployed', exam_path(exam, :exam => {:status => 1} ), :method => :put)
+          %td= link_to('Move to Archive', exam_path(exam, :exam => {:status => 3} ), :method => :put)
           %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
 
   %br
-- else
+- elsif can?(:edit, CriteriaResult)
   %div#examsToday.table-search
     %p    
       %h3{:style => "display: inline"} Today's #{@exam_today.count>1? 'Exams':'Exam' }   |

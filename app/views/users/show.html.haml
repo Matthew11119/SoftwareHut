@@ -4,16 +4,22 @@
   %tbody
     %tr
       %td= "Name:"
-      %td= @user.givenname + " " + @user.sn
+      - if @user.givenname.blank? or @user.sn.blank?
+        %td Available after first login
+      - else
+        %td= @user.givenname.to_s + " " + @user.sn.to_s
     %tr
       %td= "Username:"
       %td= @user.username
     %tr
       %td= "User type:"
-      - if @user.admin
-        %td= "Admin"
+      %td= @user.user_type
+    %tr
+      %td= "Email:"
+      - if @user.givenname.blank? or @user.sn.blank?
+        %td Available after first login
       - else
-        %td= "Module Lead"
+        %td= @user.givenname.to_s + " " + @user.sn.to_s
 
 = link_to 'Edit', edit_user_path(@user)
 \|

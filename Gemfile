@@ -11,6 +11,7 @@ end
 #custom rubygems
 gem 'prawn'
 gem 'activerecord-import'
+gem 'select_all-rails'
 
 gem 'rails', '5.2.1'
 gem 'bootsnap'

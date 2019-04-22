@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /students
   def index
     @students = Student.all
@@ -11,25 +11,16 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    render layout: false
   end
 
   # POST /students
   def create
     @student = Student.new(student_params)
-
     if @student.save
-      redirect_to @student, notice: 'Student was successfully created.'
+      redirect_to students_path, notice: 'Student was successfully created.'
     else
       render :new
-    end
-  end
-
-  # PATCH/PUT /students/1
-  def update
-    if @student.update(student_params)
-      redirect_to @student, notice: 'Student was successfully updated.'
-    else
-      render :edit
     end
   end
 
@@ -39,10 +30,19 @@ class StudentsController < ApplicationController
     redirect_to students_url, notice: 'Student was successfully destroyed.'
   end
 
-  def my_import
-    Student.my_import(params[:file])
+  def destroy_multiple
+    Student.delete(params[:student_regnos])
+    respond_to do |format|
+      format.html { redirect_to students_url, notice: 'Students were successfully deleted' }
+      format.json { head :no_content }
+    end
+  end
+
+  def student_import
+    Student.student_import(params[:file])
     redirect_to students_path, notice: "Students added successfully"
   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student
@@ -51,6 +51,6 @@ class StudentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def student_params
-      params.require(:student).permit(:forename, :surname, :username, :regno)
+      params.require(:student).permit(:username, :forename, :surname, :regno)
     end
 end

@@ -1,15 +1,15 @@
 class ExamsController < ApplicationController
-  before_action :set_exam, only: [:show, :edit, :update, :destroy]
+  include ExamsHelper
 
+  before_action :set_exam, only: [:show, :edit, :update, :destroy]
+  authorize_resource
+  
   # GET /exams
   def index
     if can?(:manage, Exam)
-      @undeployed = Exam.undeployed
-      @deployed = Exam.deployed
-      @completed = Exam.completed
+      index_admin
     else
-      @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
-      @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
+      render template: 'errors/error_403', status: 403
     end
   end
 
@@ -32,7 +32,7 @@ class ExamsController < ApplicationController
     @exam = Exam.new({:status => 0}.merge(exam_params))
 
     if @exam.save
-      redirect_to @exam, notice: 'Exam was successfully created.'
+      redirect_to edit_exam_path, notice: 'Exam was successfully created.'
     else
       render :new
     end
@@ -41,7 +41,11 @@ class ExamsController < ApplicationController
   # PATCH/PUT /exams/1
   def update
     if @exam.update(exam_params)
-      redirect_to exams_path, notice: 'Exam was successfully updated.'
+      if params[:exam].has_key?(:status) && !params[:exam].has_key?(:name)
+        redirect_to exams_url, notice: 'Exam was successfully updated.'
+      else
+        redirect_to edit_exam_path, notice: 'Exam was successfully updated.'
+      end
     else
       render :edit
     end

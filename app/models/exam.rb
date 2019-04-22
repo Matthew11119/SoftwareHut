@@ -13,7 +13,7 @@
 
 class Exam < ApplicationRecord
   belongs_to :uni_module, :foreign_key=>:module_code
-  
+
   has_many :stations, inverse_of: :exam
 
   scope :undeployed, -> { where(status: 0).order(:date) }
