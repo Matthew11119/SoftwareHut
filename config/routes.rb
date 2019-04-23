@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount EpiCas::Engine, at: "/"
 
+  resources :station_results
   resources :exams
   resources :archives, except: [:new, :create]
   resources :templates
