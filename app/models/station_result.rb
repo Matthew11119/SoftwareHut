@@ -21,12 +21,12 @@ class StationResult < ApplicationRecord
 
   private
     def calculate_mark
-      puts "Criteria result"
+      #puts "Criteria result"
       subtotal = 0
       self.criteria_results.each do |i|
         subtotal += i.criteria_mark
       end
-      puts subtotal
+      #puts subtotal
     end
 
 end

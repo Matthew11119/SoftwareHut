@@ -29,7 +29,7 @@ class StationResultsController < ApplicationController
     #    @osces = Criterium.where(:station_id=>params[:id])
     #    @stations = Station.where(:station_name=>params[:station_name])
     #    @exam_show = Exam.where(:exam_code=>params[:id])
-    @students = Student.where(:id=>params[:id])
+    #@students = Student.where(:id=>params[:id])
   end
 
   # GET /station_results/1/edit
@@ -76,12 +76,12 @@ class StationResultsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def station_result_params
       params.require(:station_result).permit([:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        :criteria_results => [:id, :answer, :criteria_mark, :station_id, :feedback]])
+        :criteria_results => [:id, :answer, :criteria_mark, :station_result_id, :feedback]])
     end
 
     def post_params
       params.require(:station_result).permit([:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_id, :feedback]}])
+        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback]}])
       #params.permit(:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
       #params.permit(criteria_results: [:id, :answer, :criteria_mark, :station_id])
     end
