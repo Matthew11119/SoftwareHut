@@ -41,7 +41,7 @@ class StationResultsController < ApplicationController
     @station_result = StationResult.new(post_params)
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
-
+    puts @station_result.station_id
 
     #@criteria_result = CriteriaRestult.new(criteria_params)
     puts "TEST"

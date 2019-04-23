@@ -12,12 +12,14 @@
 #
 
 class CriteriaResult < ApplicationRecord
-  belongs_to :station_result
+  belongs_to :stations
   before_validation :calculate_crit_mark
 
   private
     def calculate_crit_mark
       puts answer_before_type_cast
+      #query = CriteriaResult.select('answers.score').joins(:stations, :answers).where('answer.text = "Fully Met"')
+      #puts query
       if criteria_mark == 1
         if answer_before_type_cast == "Not Met"
           self.criteria_mark = -1000
