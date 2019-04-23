@@ -1,5 +1,36 @@
-%h1 New exam
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{ type: :button, data: { dismiss: :modal } }
+        %span &times;
 
-= render 'form'
+
+    = simple_form_for(@exam) do |exam|
+      .modal-header
+        %h2.modal-title New exam from blank
+        = exam.error_notification
+        = exam.error_notification message: exam.object.errors[:base].to_sentence if exam.object.errors[:base].present?
+
+      .modal-body
+        %h3 Exam
+        %h6 Name
+        = exam.input :name
+        %h6 Exam Code
+        = exam.input :exam_code
+        %h6 Date
+        = exam.input :date
+        %h6 Module Code
+        = exam.input :module_code
+
+      .modal-footer
+        .pull-left
+          = dismiss_modal_button
+        = exam.button :submit, 'Save'
 
 = link_to 'Back', exams_path
+
+.form-actions
+  = link_to 'Back', exams_path, class: 'btn btn-default'
+  = link_to 'View', @exam, class: 'btn btn-default'
+
+%br
