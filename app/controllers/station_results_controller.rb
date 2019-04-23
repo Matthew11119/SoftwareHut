@@ -41,8 +41,6 @@ class StationResultsController < ApplicationController
     @station_result = StationResult.new(post_params)
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
-    puts @station_result.station_id
-
     #@criteria_result = CriteriaRestult.new(criteria_params)
     puts "TEST"
     if @station_result.save
@@ -78,12 +76,12 @@ class StationResultsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def station_result_params
       params.require(:station_result).permit([:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        :criteria_results => [:id, :answer, :criteria_mark, :station_id]])
+        :criteria_results => [:id, :answer, :criteria_mark, :station_id, :feedback]])
     end
 
     def post_params
       params.require(:station_result).permit([:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_id]}])
+        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_id, :feedback]}])
       #params.permit(:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
       #params.permit(criteria_results: [:id, :answer, :criteria_mark, :station_id])
     end

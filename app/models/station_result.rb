@@ -14,7 +14,7 @@
 #
 
 class StationResult < ApplicationRecord
-  belongs_to :stations, :foreign_key=>:station_id
+  belongs_to :station, :foreign_key=>:station_id
   has_many :criteria_results, :foreign_key=>:id
   accepts_nested_attributes_for :criteria_results
   after_validation :calculate_mark

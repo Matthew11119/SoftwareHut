@@ -55,7 +55,8 @@
                 = c.radio_button :answer, 'Not Met'
                 Not Met
             %h5 Feedback
-            %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
+            = c.input :feedback, as: :text, :input_html => {:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Feedback"}
+
       .btn-group{"aria-label" => "Basic example", :role => "group"}
         %button.btn.btn-danger#record{:type => "button"}record
         %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
