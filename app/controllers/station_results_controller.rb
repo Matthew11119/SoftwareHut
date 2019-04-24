@@ -45,20 +45,23 @@ class StationResultsController < ApplicationController
   # POST /station_results
   def create
     @station_result = StationResult.new(post_params)
-    puts "Station result details" + @station_result.inspect
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
-    puts "Criteria result details " + @criteria_result.inspect
+    @criteria_result.each do |i|
+      updated_criteria = calculate_crit_mark(i)
+      i.write_attribute(:answer, updated_criteria.answer)
+      i.write_attribute(:criteria_mark, updated_criteria.criteria_mark)
+    end
+    calculate_mark
     @exam_show = Exam.where(exam_code: 'EX001').take
     @station = Station.where(id: 1).take
     @student = Student.take
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
     @osces = Criterium.where(station_id:1)
-    #@criteria_result.id = params[:id]
-    #puts "TEST" + params[:criteria_results_attributes]
     if @station_result.save
       puts "WORKED"
-      redirect_to @station_result, notice: 'Station result was successfully created.'
+      puts @station_result.inspect
+      #redirect_to @station_result, notice: 'Station result was successfully created.'
     else
       puts "DIDN'T WORK"
       render :new
@@ -95,11 +98,43 @@ class StationResultsController < ApplicationController
     def post_params
       params.require(:station_result).permit([:station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
         {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback]}])
-      #params.permit(:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
-      #params.permit(criteria_results: [:id, :answer, :criteria_mark, :station_id])
     end
 
     def criteria_params
       params.require(:criteria_results).permit(:id, :answer, :criteria_mark, :station_id)
     end
+
+    def calculate_crit_mark(crit)
+
+      puts crit.inspect
+      if crit.criteria_mark == 1
+        if crit.answer_before_type_cast == "Not Met"
+          crit.criteria_mark = -1000
+        else
+          crit.criteria_mark = 2
+        end
+      else
+        newAnswer = Answer.select("score").where("text = ?", crit.answer_before_type_cast).first
+        puts newAnswer.inspect
+        puts crit.answer_before_type_cast
+        crit.criteria_mark = newAnswer.score
+        if crit.answer_before_type_cast == "Fully met"
+          crit.answer = 0
+        elsif crit.answer_before_type_cast == "Partially met"
+          crit.answer = 1
+        else
+          crit.answer = 2
+        end
+      end
+      return crit
+    end
+
+    def calculate_mark
+      subtotal = 0
+      @criteria_result.each do |i|
+        subtotal += i.criteria_mark
+      end
+      @station_result.write_attribute(:mark, subtotal)
+    end
+
 end

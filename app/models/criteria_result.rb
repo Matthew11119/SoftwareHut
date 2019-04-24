@@ -22,32 +22,6 @@
 class CriteriaResult < ApplicationRecord
   belongs_to :station_result, optional: true, :foreign_key=>:station_result_id
   has_one :station_result
-  #before_validation :calculate_crit_mark
   attr_accessor :criteria_mark, :id
-
-  private
-    def calculate_crit_mark
-
-      puts CriteriaResult.inspect
-      if criteria_mark == 1
-        if answer_before_type_cast == "Not Met"
-          self.criteria_mark = -1000
-        else
-          self.criteria_mark = 2
-        end
-      else
-        newAnswer = Answer.select("score").where("text = ?", answer_before_type_cast).first
-        puts newAnswer.inspect
-        puts answer_before_type_cast
-        self.criteria_mark = newAnswer.score
-        if answer_before_type_cast == "Fully met"
-          self.answer = 0
-        elsif answer_before_type_cast == "Partially met"
-          self.answer = 1
-        else
-          self.answer = 2
-        end
-      end
-    end
 
 end
