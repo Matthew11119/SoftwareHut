@@ -37,7 +37,6 @@
           %h4
             %b= osce.criteria_description
           %p{:style => "color:red"}Ask candidate what they are observing form
-          %p Comfort, colour, pain, conscious level
           = f.fields_for :criteria_results do |c|
             - if !osce.criteria_critical
               = c.hidden_field :criteria_mark, value: 1
@@ -52,7 +51,7 @@
                 = c.radio_button :answer, 'Not met'
                 Not Met
             %h5 Feedback
-            = c.input :feedback, as: :text, :input_html => {:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Feedback"}
+            = c.input :feedback, as: :text, :input_html => {:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Feedback"}, label: false
       .btn-group{"aria-label" => "Basic example", :role => "group"}
         %button.btn.btn-danger#record{:type => "button"}record
         %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
@@ -65,12 +64,9 @@
         %audio#recordedAudio
       %h4{:style => "padding-top: 2em"}
         %b Overall Feedback
-      = f.input :feedback, as: :text, :input_html => {:style => "width:150%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Overall Comments"}
-
-      %input#submitButton{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :class => "btn float-right"}
-
+      = f.input :feedback, as: :text, :input_html => {:style => "width:150%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Overall Comments"}, label: false
 
   .form-actions
-    = f.submit
+    = f.submit "Submit", :class => "btn float-right", :id => "submitButton"
 
 %p= link_to 'Back', station_results_path

@@ -59,11 +59,8 @@ class StationResultsController < ApplicationController
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
     @osces = Criterium.where(station_id:1)
     if @station_result.save
-      puts "WORKED"
-      puts @station_result.inspect
-      #redirect_to @station_result, notice: 'Station result was successfully created.'
+      redirect_to @station_result, notice: 'Station result was successfully created.'
     else
-      puts "DIDN'T WORK"
       render :new
     end
   end
