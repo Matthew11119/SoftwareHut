@@ -25,7 +25,13 @@ class StationResultsController < ApplicationController
   def new
     @station_result = StationResult.new
     @station_result.criteria_results.build
-    @osces = Criterium.all
+    @exam_show = Exam.where(exam_code: 'EX001').take
+    @station = Station.where(id: 1).take
+    @student = Student.take
+    @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
+    @osces = Criterium.where(station_id:1)
+    @station_result_id = StationResult.all.count + 1
+    puts "Station result id is " + @station_result_id.to_s
     #    @osces = Criterium.where(:station_id=>params[:id])
     #    @stations = Station.where(:station_name=>params[:station_name])
     #    @exam_show = Exam.where(:exam_code=>params[:id])
@@ -39,10 +45,17 @@ class StationResultsController < ApplicationController
   # POST /station_results
   def create
     @station_result = StationResult.new(post_params)
+    puts "Station result details" + @station_result.inspect
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
-    #@criteria_result = CriteriaRestult.new(criteria_params)
-    puts "TEST"
+    puts "Criteria result details " + @criteria_result.inspect
+    @exam_show = Exam.where(exam_code: 'EX001').take
+    @station = Station.where(id: 1).take
+    @student = Student.take
+    @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
+    @osces = Criterium.where(station_id:1)
+    #@criteria_result.id = params[:id]
+    #puts "TEST" + params[:criteria_results_attributes]
     if @station_result.save
       puts "WORKED"
       redirect_to @station_result, notice: 'Station result was successfully created.'
@@ -80,7 +93,7 @@ class StationResultsController < ApplicationController
     end
 
     def post_params
-      params.require(:station_result).permit([:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
+      params.require(:station_result).permit([:station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
         {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback]}])
       #params.permit(:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
       #params.permit(criteria_results: [:id, :answer, :criteria_mark, :station_id])

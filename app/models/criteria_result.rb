@@ -20,24 +20,15 @@
 #
 
 class CriteriaResult < ApplicationRecord
-  belongs_to :station_result
-  before_validation :calculate_crit_mark
+  belongs_to :station_result, optional: true, :foreign_key=>:station_result_id
+  has_one :station_result
+  #before_validation :calculate_crit_mark
+  attr_accessor :criteria_mark, :id
 
   private
     def calculate_crit_mark
-      #puts answer_before_type_cast
-      #query = CriteriaResult.select('answers.score').joins(:stations, :answers).where('answer.text = "Fully Met"')
-      #puts query
-      #@answer = Answer.select('score').where(text: 'Fully Met').first
-      #puts "First answer is "
-      #print @answer.inspect
-      #if @answer.first.to_i == 2
-    #    puts "YESSSSS"
-      #else
-      #  puts "There was something wrong"
-      #end
 
-      #CriteriaResult.joins(station_result: [station: :answers]).where(answers: {text: 'Fully Met'})
+      puts CriteriaResult.inspect
       if criteria_mark == 1
         if answer_before_type_cast == "Not Met"
           self.criteria_mark = -1000

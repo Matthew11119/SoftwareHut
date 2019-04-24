@@ -1,4 +1,3 @@
-%h1 New station_result
 = simple_form_for(@station_result) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
@@ -7,9 +6,7 @@
       = message
   .form-inputs
 
-
-    = f.input :mark
-
+    =f.hidden_field :station_id, value: @station.id
 
     !!!
     %head
@@ -21,17 +18,17 @@
     %body
       .p-3.mb-2.bg-primary.text-white
         %h2
-          MED 1094 Ankle Sprain Examination
+          =@exam_show.name
         %h1
           %b
-            #3 Station 3
+            Station
+            =@station.id
         %h5{:align => "right"}
           #demo
           %button.btn.btn-secondary#startTimer{:display => "block", :type => "button"}Start timer
       %p{:align => "center"}
 
-      John Doe           001473829
-
+      =@display_student
 
       = f.input :examiner_name
       %fieldset
@@ -56,7 +53,6 @@
                 Not Met
             %h5 Feedback
             = c.input :feedback, as: :text, :input_html => {:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Feedback"}
-
       .btn-group{"aria-label" => "Basic example", :role => "group"}
         %button.btn.btn-danger#record{:type => "button"}record
         %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
@@ -76,20 +72,5 @@
 
   .form-actions
     = f.submit
-
-
-%table
-  %tr
-    %th name
-    %th Criteria discription
-    %th Criteria Critical
-    %th Station id
-
-  - @osces.each do |osce|
-    %tr
-      %td= osce.id
-      %td= osce.criteria_description
-      %td= osce.criteria_critical
-      %td= osce.station_id
 
 %p= link_to 'Back', station_results_path

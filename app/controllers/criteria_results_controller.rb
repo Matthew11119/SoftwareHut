@@ -59,6 +59,6 @@ class CriteriaResultsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def criteria_result_params
-      params.require(:criteria_result).permit(:criteria_feedback_id, :criteria_mark, :answer, :station_id)
+      params.require(:criteria_result).permit(:criteria_mark, :answer, :feedback, :station_id)
     end
 end
