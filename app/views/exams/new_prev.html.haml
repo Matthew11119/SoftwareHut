@@ -1,4 +1,5 @@
-%h2 New exams
+%h1 FROM PREVIOUS
+%h2 New exams from previous
 
 .modal-dialog
   .modal-content
@@ -7,7 +8,7 @@
         %span &times;
 
 
-    = simple_form_for(@exam) do |f|
+    = simple_form_for(@exam_new) do |f|
       .modal-header
         %h2.modal-title New exam from blank
         = f.error_notification

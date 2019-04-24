@@ -3,7 +3,7 @@ class ExamsController < ApplicationController
 
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
   authorize_resource
-  
+
   # GET /exams
   def index
     if can?(:manage, Exam)
@@ -21,6 +21,22 @@ class ExamsController < ApplicationController
   def new
     @exam = Exam.new
     @exam.stations.build
+  end
+
+  def newblank
+    @examBlank = Exam.new
+    @examBlank.stations.build
+  end
+
+  def new_prev
+    @exam_new = Exam.where(:exam_code=>params[:format]).first
+    puts @exam_new.inspect
+    #@exam_new.stations.build
+  end
+
+  def newtemp
+    @exam = Exam.new
+    @exam.staions.build
   end
 
   # GET /exams/1/edit

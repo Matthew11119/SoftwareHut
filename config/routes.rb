@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
   mount EpiCas::Engine, at: "/"
 
-  resources :exams
+  resources :station_results
+  resources :exams do
+    collection do
+      get 'new_blank'
+      post 'new_blank', to: 'exams#create'
+      get 'new_prev'
+      post 'new_prev', to: 'exams#create'
+      get 'new_temp'
+      post 'new_temp', to: 'exams#create'
+    end
+  end
   resources :archives, except: [:new, :create]
   resources :templates
   resources :students do

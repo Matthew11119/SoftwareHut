@@ -28,10 +28,11 @@
         %td= link_to 'Edit', edit_exam_path(exam)
         %td= link_to('Deploy', exam_path(exam, :exam => {:status => 1} ), :method => :put)
         %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'New Exam from this exam', new_prev_exams_path(exam)
 
 %br
 
-= link_to 'New Exam', new_exam_path
+= link_to 'New Exam from blank', new_exam_path
 
 
 %h1 Deployed Exams
