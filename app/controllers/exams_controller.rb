@@ -17,6 +17,11 @@ class ExamsController < ApplicationController
   def show
   end
 
+  #GET /results
+  def results
+    index_moderator
+  end
+
   # GET /exams/new
   def new
     @exam = Exam.new

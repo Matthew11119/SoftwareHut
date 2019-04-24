@@ -77,6 +77,10 @@
                   = fa_icon 'graduation-cap'
                   Students
 
+              - if can?(:read, CriteriaResult)
+                = navbar_link_to '/results', title: "Go to the results page", identifier: :criteria_result do
+                  = fa_icon 'bar-chart'
+                  Results
             
             - if user_signed_in?
               %ul.nav.navbar-nav.navbar-right

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   resources :answers, only: [:new,:edit,:update,:destroy]
   post 'answers/:id', to: 'answers#create'
 
+  get 'results', to: 'exams#results'
+
   root to: "pages#home"
   devise_for :users
   resources :users
