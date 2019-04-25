@@ -5,7 +5,7 @@
   %h3
     Stations
     = link_to 'New Station', station_path(@exam.exam_code), class: 'btn btn-default', method: :post
-  
+
   -Station.where(exam_id: @exam.exam_code).each do |station|
     .form-section
       %h4
@@ -26,6 +26,6 @@
             %tr
               %td= criterium[:criteria_description]
               -answers.each do |a|
-                %td 
+                %td
   %br
 = link_to 'Delete', @exam, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'

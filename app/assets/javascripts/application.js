@@ -1,5 +1,6 @@
 //= require jquery
 //= require select_all.js
+//= require selectAll
 //= require jquery_ujs
 //= require ajax_setup
 //= require ajax_modal
@@ -9,8 +10,3 @@
 //= require modal
 //= require select2
 //= require select2_init
-
-
-$(function() {
-  $("#selectAll").select_all();
-});

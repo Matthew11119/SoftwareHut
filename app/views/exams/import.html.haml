@@ -1,0 +1,13 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{ type: :button, data: { dismiss: :modal } }
+        %span &times;
+      %h2.modal-title Import from CSV 
+    .modal-body
+      = form_tag student_import_exams_path, multipart: true do
+        .pull-left
+          = file_field_tag :file
+        .pull-right
+          = submit_tag "Upload Students"
+      %br
