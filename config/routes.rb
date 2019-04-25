@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :station_results do
     member do
       get 'ready_screen'
+      get 'completed_students'
     end
   end
   resources :stations, only: [:new,:edit,:update,:destroy, :show] do

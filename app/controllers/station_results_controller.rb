@@ -19,7 +19,11 @@ class StationResultsController < ApplicationController
     #                           disposition: "inline"
     #   end
     # end
-    
+    set_instance_variable
+  end
+
+  def completed_students
+    set_instance_variable
   end
 
   # GET /station_results/new
@@ -67,6 +71,12 @@ class StationResultsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_station_result
       @station_result = StationResult.find(params[:id])
+    end
+
+    # For EXAMINER
+    def set_instance_variable
+      @exam_show = Exam.where(:exam_code=>Station.find(params[:id]).exam_id)
+      @stations = Station.where(:id=>params[:id])   
     end
 
     # Only allow a trusted parameter "white list" through.

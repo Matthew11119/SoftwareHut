@@ -26,4 +26,25 @@
 -# \|
 -# = link_to 'Back', station_results_path
 
-hello
+%div#formHead
+  %p #{@exam_show.first.exam_code} #{@exam_show.first.name}
+  %h3 #{@stations.first.station_name}
+  %span#label-help.pull-right{:style=>"padding-right:1.625em"} #label-help
+
+%div#formBody
+  %nav.navbar.navbar-default.navbar-static-top
+    %div.container
+      %ul.nav.navbar-nav.navbar-center
+        %li= link_to 'Remaining', exam_path(:id=>@exam_show.first.exam_code), id: 'bold-select'
+        %li= link_to 'Completed', completed_students_station_result_path(:id=>params[:id])
+  %div#div-search
+    = simple_form_for :form_search, remote:true do |f| 
+      = f.input :student_id, :placeholder => "Student ID", :label=>"Search by"
+      = f.input :student_surname, :placeholder => "Surname", :label=>false
+      %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
+        = f.button :submit, 'Search', class: 'btn btn-primary pull-right ajax-modal', style:'background-color:#22A7F0;border-color:#22A7F0;padding:0.438em 3.875em'
+        = link_to 'Reset', station_result_path(params[:id]), class: 'btn pull-right', style:'color:#22A7F0' 
+    %hr
+  %div#div-result.table-search
+    %h5{:style=>'display: inline'} Remaining Students
+    &nbsp &nbsp Total

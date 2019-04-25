@@ -54,3 +54,34 @@
 #formBodyForm label {
     color:#22A7F0;
 }
+
+#div-search{
+    padding-left:3em;
+    padding-right:3em;
+    padding-top:3.5em;
+    padding-bottom:3.1em
+}
+
+#div-search label{
+    color:#454545;
+}
+
+#div-result{
+    padding-left:2.956em; // 47.3px
+    padding-right:2.956em; // 47.3px
+    padding-bottom:2.375em; // 38px
+}
+
+.table-search thead th{
+    text-align: center;
+    background-color:#343A40;
+    color: #FFFFFF;
+    font-weight:bold;
+}
+
+.table-search tbody{
+    background-color: white;
+    text-align: center
+}
+
+
