@@ -21,4 +21,17 @@ class Exam < ApplicationRecord
   scope :completed, -> { where(status: 2).order(:date) }
   scope :archive, -> { where(status: 3).order(:date) }
   scope :templates, -> { where(status: 4).order(:date) }
+
+
+  def self.student_import(file)
+    students = []
+    columns = [:surname, :forename, :username, :regno]
+    CSV.foreach(file.path, headers: true) do |row|
+      if !Student.exists?(:regno =>row[3])
+        students << Student.new(row.to_hash)
+      end
+    end
+    Student.import(columns, students)
+  end
+
 end

@@ -1,0 +1,20 @@
+%h1 Completed Exams
+%table.table.table-hover
+  %thead
+    %tr
+      %th Exam code
+      %th Exam date
+      %th Exam name
+      %th Module code
+      %th
+
+  %tbody
+    - @exams.each do |exam|
+      %tr
+        %td= exam.exam_code
+        %td= exam.date
+        %td= exam.name
+        %td= exam.module_code
+        %td= link_to 'Results', ''
+
+%br

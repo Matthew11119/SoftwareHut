@@ -7,14 +7,24 @@ class ExamsController < ApplicationController
       @undeployed = Exam.undeployed
       @deployed = Exam.deployed
       @completed = Exam.completed
-    else
+      render 'index'
+    elsif can?(:edit, CriteriaResult)
       @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
       @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
+      render 'index_module_lead'
+    else
+      @exams = Exam.completed
+      render 'index_moderator'
     end
   end
 
   # GET /exams/1
   def show
+  end
+
+  def student_import
+    Exam.student_import(params[:file])
+    #redirect_to students_path, notice: "Students added successfully"
   end
 
   # GET /exams/new
@@ -41,7 +51,11 @@ class ExamsController < ApplicationController
   # PATCH/PUT /exams/1
   def update
     if @exam.update(exam_params)
-      redirect_to edit_exam_path, notice: 'Exam was successfully updated.'
+      if params[:exam].has_key?(:status) && !params[:exam].has_key?(:name)
+        redirect_to exams_url, notice: 'Exam was successfully updated.'
+      else
+        redirect_to edit_exam_path, notice: 'Exam was successfully updated.'
+      end
     else
       render :edit
     end

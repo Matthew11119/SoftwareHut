@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   mount EpiCas::Engine, at: "/"
 
-  resources :exams
+  resources :exams do
+    collection { post :student_import}
+    get 'import'
+  end
   resources :archives, except: [:new, :create]
   resources :templates
   resources :students do
@@ -20,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
   post 'stations/:id', to: 'stations#create'
+
   resources :criteria, only: [:new,:edit,:update,:destroy]
   post 'criteria/:id', to: 'criteria#create'
   resources :answers, only: [:new,:edit,:update,:destroy]

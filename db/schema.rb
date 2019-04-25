@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2019_04_11_142725) do
-=======
-ActiveRecord::Schema.define(version: 2019_04_09_125944) do
->>>>>>> bdc2ab97c6405ec1037b1d17a82e3dfe6ae3bfe6
+ActiveRecord::Schema.define(version: 2019_04_21_181619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_04_09_125944) do
     t.integer "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "feedback"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -69,10 +66,17 @@ ActiveRecord::Schema.define(version: 2019_04_09_125944) do
   end
 
   create_table "exams_students", id: false, force: :cascade do |t|
-    t.bigint "student_id", null: false
-    t.bigint "exam_id", null: false
+    t.integer "student_id", null: false
+    t.string "exam_id", null: false
     t.index ["exam_id", "student_id"], name: "index_exams_students_on_exam_id_and_student_id"
     t.index ["student_id", "exam_id"], name: "index_exams_students_on_student_id_and_exam_id"
+  end
+
+  create_table "modules_students", id: false, force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "module_id", null: false
+    t.index ["module_id", "student_id"], name: "index_modules_students_on_module_id_and_student_id"
+    t.index ["student_id", "module_id"], name: "index_modules_students_on_student_id_and_module_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -100,17 +104,28 @@ ActiveRecord::Schema.define(version: 2019_04_09_125944) do
     t.integer "pass_mark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "template_id"
     t.string "exam_id"
   end
 
-  create_table "students", id: false, force: :cascade do |t|
+  create_table "students", primary_key: "regno", id: :integer, default: nil, force: :cascade do |t|
     t.string "forename"
     t.string "surname"
-    t.integer "regno"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
-    t.index ["regno"], name: "index_students_on_regno"
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "uni_modules", primary_key: "module_code", id: :string, force: :cascade do |t|
+    t.string "module_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

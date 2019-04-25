@@ -1,6 +1,6 @@
 class StationsController < ApplicationController
-  before_action :set_station, only: [:show, :edit, :update, :destroy]
-  before_action :create_station_result_detail 
+  #before_action :set_station, only: [:show, :edit, :update, :destroy]
+  #before_action :create_station_result_detail 
   authorize_resource
   # GET /stations
   def index 
@@ -21,6 +21,8 @@ class StationsController < ApplicationController
 
   # GET /stations/1/edit
   def edit
+    @station = Station.find(params[:id])
+    render :edit
   end
 
   # POST /stations
@@ -40,6 +42,7 @@ class StationsController < ApplicationController
 
   # PATCH/PUT /stations/1
   def update
+    @station = Station.find params[:id]
     if @station.update(station_params)
       redirect_to edit_station_path(@station.id), notice: 'Station was successfully updated.'
     else
@@ -49,6 +52,7 @@ class StationsController < ApplicationController
 
   # DELETE /stations/1
   def destroy
+    @station = Station.find params[:id]
     exam_id = @station.exam_id
     @station.destroy
     redirect_to edit_exam_path(exam_id), notice: 'Station was successfully destroyed.'
