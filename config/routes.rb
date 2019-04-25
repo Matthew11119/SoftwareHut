@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   resources :uni_modules
 
-  resources :stations, only: [:new,:edit,:update,:destroy] do
+  resources :stations, only: [:new,:edit,:update,:destroy, :show] do
     member do
       get 'detail'
       get 'detail_form'

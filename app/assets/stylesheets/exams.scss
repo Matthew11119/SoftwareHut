@@ -10,3 +10,18 @@
     padding-top: 3.750em; // 60px
     padding-bottom: 5em
 }
+
+.table-search{    
+}
+
+.table-search thead th{
+    text-align: center;
+    background-color:#343A40;
+    color: #FFFFFF;
+    font-weight:bold;
+}
+
+.table-search tbody{
+    background-color:white;
+    text-align:center;
+}
