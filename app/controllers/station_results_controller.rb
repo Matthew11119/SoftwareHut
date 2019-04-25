@@ -22,7 +22,13 @@ class StationResultsController < ApplicationController
     set_instance_variable
   end
 
+  # GET /station_results/1/completed_students
   def completed_students
+    set_instance_variable
+  end
+
+  # GET /station_results/1/add_student
+  def add_student
     set_instance_variable
   end
 

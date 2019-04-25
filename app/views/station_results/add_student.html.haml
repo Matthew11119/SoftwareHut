@@ -1,0 +1,18 @@
+%div#formHead
+    %p #{@exam_show.first.exam_code} #{@exam_show.first.name}
+    %h3 #{@stations.first.station_name}
+    %span#label-help.pull-right{:style=>"padding-right:1.625em"} #label-help
+%div#formBody
+    %nav.navbar.navbar-default.navbar-static-top
+        %div.container
+            %ul.nav.navbar-nav.navbar-center
+                %li= link_to 'Entering New Student'
+    %div#div-new-student
+        = simple_form_for :new_student do |f|
+            = f.input :username, :placeholder => "Username", :label=>"Student Information"
+            = f.input :regno, :placeholder => "Registration Number", :label=>false
+            = f.input :forename, :placeholder => "Forename", :label=>false
+            = f.input :surname, :placeholder => "Surname", :label=>false 
+            %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
+                = f.button :submit, 'Enter', class: 'btn btn-primary pull-right form-button'
+                = link_to 'Reset', station_result_path(params[:id]), class: 'btn pull-right', style:'color:#22A7F0'
