@@ -56,6 +56,12 @@ class StationResultsController < ApplicationController
     redirect_to station_results_url, notice: 'Station result was successfully destroyed.'
   end
 
+  # GET /station_results/1/ready_screen
+  def ready_screen
+    @exam_show = Exam.where(:exam_code=>Station.find(params[:id]).exam_id)
+    @stations = Station.where(:id=>params[:id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_station_result

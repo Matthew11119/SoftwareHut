@@ -11,12 +11,16 @@ Rails.application.routes.draw do
     end
   end
   resources :uni_modules
-
+  resources :station_results do
+    member do
+      get 'ready_screen'
+    end
+  end
   resources :stations, only: [:new,:edit,:update,:destroy, :show] do
     member do
-      get 'detail'
-      get 'detail_form'
-      post 'detail_form'
+      # get 'detail'
+      # get 'detail_form'
+      # post 'detail_form'
     end
   end
   post 'stations/:id', to: 'stations#create'
