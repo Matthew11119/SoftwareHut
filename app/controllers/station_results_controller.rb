@@ -19,7 +19,9 @@ class StationResultsController < ApplicationController
     #                           disposition: "inline"
     #   end
     # end
+
     set_instance_variable
+    puts @stations.first.id
   end
 
   # GET /station_results/1/completed_students
@@ -38,31 +40,31 @@ class StationResultsController < ApplicationController
     @new_student.get_info_from_ldap
     if !(@new_student.sn.nil?)
       render 'search_new_student'
-    else 
+    else
       render 'search_no_student'
     end
   end
 
   # POST /station_results/1
   def new_student
-    
+
   end
 
   # GET /station_results/new
   def new
+    #set_instance_variable
+    puts params[:format]
+    puts params.inspect
+    puts @stations.inspect
+    @student = Student.where(username: params[:username]).first
+    puts @student.inspect
+    @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
+    @station = Station.where(:id=>params[:station_id]).first
     @station_result = StationResult.new
     @station_result.criteria_results.build
-    @exam_show = Exam.where(exam_code: 'EX001').take
-    @station = Station.where(id: 1).take
-    @student = Student.take
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
-    @osces = Criterium.where(station_id:1)
+    @osces = Criterium.where(station_id:params[:station_id])
     @station_result_id = StationResult.all.count + 1
-    puts "Station result id is " + @station_result_id.to_s
-    #    @osces = Criterium.where(:station_id=>params[:id])
-    #    @stations = Station.where(:station_name=>params[:station_name])
-    #    @exam_show = Exam.where(:exam_code=>params[:id])
-    #@students = Student.where(:id=>params[:id])
   end
 
   # GET /station_results/1/edit
@@ -74,15 +76,15 @@ class StationResultsController < ApplicationController
     @station_result = StationResult.new(post_params)
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
-    @station = Station.where(id: 1).take
+    @station = Station.where(:id=>params[:station_id]).first
     @criteria_result.each do |i|
       updated_criteria = calculate_crit_mark(i)
       i.write_attribute(:answer, updated_criteria.answer)
       i.write_attribute(:criteria_mark, updated_criteria.criteria_mark)
     end
     calculate_mark
-    @exam_show = Exam.where(exam_code: 'EX001').take
-    @student = Student.take
+    @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
+    @student = Student.where(username: params[:username]).first
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
     @osces = Criterium.where(station_id:1)
     if @station_result.save
@@ -122,7 +124,7 @@ class StationResultsController < ApplicationController
     # For EXAMINER
     def set_instance_variable
       @exam_show = Exam.where(:exam_code=>Station.find(params[:id]).exam_id)
-      @stations = Station.where(:id=>params[:id])   
+      @stations = Station.where(:id=>params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
