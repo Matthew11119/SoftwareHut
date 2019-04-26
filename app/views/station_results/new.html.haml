@@ -56,6 +56,10 @@
         %button.btn.btn-danger#record{:type => "button"}record
         %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
       #timer2
+      %a#download
+      %p
+        = f.file_field :audio, id:"#recordedAudio"
+        %audio#recordedAudio
       %p Manual Pass/Fail
       .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
         %label.btn.btn-primary
@@ -67,11 +71,7 @@
         %label.btn.btn-primary
           Fail
           = f.radio_button :mark, 0
-      %button#resultButton{:class => "btn float-right", :type => "button", :value => "Pass"}Pass
-      %a#download
-      %p
-        = f.input :audio, as: :hidden, :input_html => {:id => "#recordedAudio"}
-        %audio#recordedAudio
+
       %h4{:style => "padding-top: 2em"}
         %b Overall Feedback
       = f.input :feedback, as: :text, :input_html => {:style => "width:150%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Overall Comments"}, label: false
