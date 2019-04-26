@@ -8,7 +8,7 @@ class Ability
       can :manage, :all
     elsif user.user_type == "Module Lead"
       can [:read, :edit, :update], [CriteriaResult]
-      can [:ready_screen, :show, :completed_students, :add_student], [StationResult]
+      can [:ready_screen, :show, :completed_students, :add_student, :search_new_student], [StationResult]
       can [:index, :show], [Exam]
     elsif user.user_type == "Moderator"
       can [:read], [StationResult, CriteriaResult]

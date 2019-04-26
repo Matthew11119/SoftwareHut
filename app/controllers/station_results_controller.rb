@@ -29,7 +29,12 @@ class StationResultsController < ApplicationController
 
   # GET /station_results/1/add_student
   def add_student
-    set_instance_variable
+    render layout:false
+  end
+
+  # POST /station_results/1/search_new_student
+  def search_new_student
+    render 'search_new_student'
   end
 
   # GET /station_results/new

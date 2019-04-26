@@ -48,3 +48,20 @@
   %div#div-result.table-search
     %h5{:style=>'display: inline'} Remaining Students
     &nbsp &nbsp Total
+    
+    %table.table
+      %thead
+        %tr
+          %th{:scope=>"col"} Username
+          %th{:scope=>"col"} Surname
+          %th{:scope=>"col"} Forename
+          %th{:scope=>"col"} Action
+        %tbody
+          %tr
+            %td aca18mjl
+            %td Lim
+            %td Ming
+            %td= link_to 'Select'            
+    = link_to 'Add New Student', add_student_station_result_path(params[:id]) , :class=>"btn btn-primary pull-left form-button2 ajax-modal"
+      
+    
