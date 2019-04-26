@@ -27,7 +27,7 @@ module ExamsHelper
 
     def index_module_lead
         @exam_today = Exam.where("date = ?", [Time.now]).paginate(:page => params[:exam_today_page], :per_page => 5)
-        @exam_upcoming = Exam.where("date > ?",[Time.now]).paginate(:page => params[:exam_upcoming_page], :per_page => 10)
+        @exam_upcoming = Exam.all.paginate(:page => params[:exam_upcoming_page], :per_page => 10)
         render 'exams/index_module_lead'
     end
 
