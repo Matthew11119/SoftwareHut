@@ -1,0 +1,13 @@
+%hr
+%table.table
+    %thead
+        %tr
+            %th{:scope=>"col"} Username
+            %th{:scope=>"col"} Student Name
+            %th{:scope=>"col"} Email
+    %tbody
+        %tr
+            %td #{@new_student.username} 
+            %td #{@new_student.givenname} #{@new_student.sn} 
+            %td #{@new_student.email}
+= link_to 'Add student', station_result_path(params[:id]), method: :post,class: 'btn form-button2 ajax-modal'

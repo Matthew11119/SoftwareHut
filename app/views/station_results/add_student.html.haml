@@ -1,7 +1,7 @@
 .modal-dialog
     .modal-content
         -# =simple_form_for :new_student, remote: true do |f|
-        =simple_form_for :new_student, :url => search_new_student_station_result_path(params[:id]), remote: true do |f|
+        =simple_form_for :new_student_form, :url => search_new_student_station_result_path(params[:id]), remote: true do |f|
             .modal-header.new-student-header
                 %button.close{ type: :button, data: {dismiss: :modal} }
                     %span &times;
@@ -9,9 +9,8 @@
             .modal-body.new-student-body
                 = f.input :username, :placeholder => "Username", :label=>"Student Information"
                 %div#modal-footer
-                    .pull-left
+                    .pull-left#close-button
                         = dismiss_modal_button
-                    = f.button :submit, value: 'Search', class: 'pull-right'
-                %hr                                
-        %div#new_student_info
+                    = f.button :submit, value: 'Search', class: 'pull-right'                         
+        %div#new_student_info.modal-body
             

@@ -10,15 +10,16 @@ Rails.application.routes.draw do
       delete 'destroy_multiple'
     end
   end
-  resources :uni_modules
+  resources :uni_modules    
   resources :station_results do
     member do
       get 'ready_screen'
       get 'completed_students'
       get 'add_student'
       post 'search_new_student'
-    end
+    end    
   end
+  post '/station_results/:id', to: 'station_results#new_student'  
   resources :stations, only: [:new,:edit,:update,:destroy, :show] do
     member do
       # get 'detail'

@@ -34,7 +34,18 @@ class StationResultsController < ApplicationController
 
   # POST /station_results/1/search_new_student
   def search_new_student
-    render 'search_new_student'
+    @new_student = User.new(username: params[:new_student_form][:username])
+    @new_student.get_info_from_ldap
+    if !(@new_student.sn.nil?)
+      render 'search_new_student'
+    else 
+      render 'search_no_student'
+    end
+  end
+
+  # POST /station_results/1
+  def new_student
+    
   end
 
   # GET /station_results/new
