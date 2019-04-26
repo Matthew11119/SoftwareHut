@@ -47,6 +47,7 @@ class StationResultsController < ApplicationController
     @station_result = StationResult.new(post_params)
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
+    @station = Station.where(id: 1).take
     @criteria_result.each do |i|
       updated_criteria = calculate_crit_mark(i)
       i.write_attribute(:answer, updated_criteria.answer)
@@ -54,7 +55,6 @@ class StationResultsController < ApplicationController
     end
     calculate_mark
     @exam_show = Exam.where(exam_code: 'EX001').take
-    @station = Station.where(id: 1).take
     @student = Student.take
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
     @osces = Criterium.where(station_id:1)
@@ -127,11 +127,16 @@ class StationResultsController < ApplicationController
     end
 
     def calculate_mark
-      subtotal = 0
-      @criteria_result.each do |i|
-        subtotal += i.criteria_mark
+      if @station_result.mark == 2
+        @station_result.write_attribute(:mark, @station.pass_mark)
+      elsif @station_result.mark = 0
+        @station_result.write_attribute(:mark, 0)
+      else
+        subtotal = 0
+        @criteria_result.each do |i|
+          subtotal += i.criteria_mark
+        end
+        @station_result.write_attribute(:mark, subtotal)
       end
-      @station_result.write_attribute(:mark, subtotal)
     end
-
 end

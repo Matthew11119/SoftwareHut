@@ -33,30 +33,40 @@
       = f.input :examiner_name
       %fieldset
         %legend
-        - @osces.each do |osce|
-          %h4
-            %b= osce.criteria_description
-          %p{:style => "color:red"}Ask candidate what they are observing form
-          = f.fields_for :criteria_results do |c|
-            - if !osce.criteria_critical
-              = c.hidden_field :criteria_mark, value: 1
-            .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
-              %label.btn.btn-primary
-                = c.radio_button :answer, 'Fully met'
-                Fully Met
-              %label.btn.btn-primary
-                = c.radio_button :answer, 'Partially met'
-                Partially Met
-              %label.btn.btn-primary
-                = c.radio_button :answer, 'Not met'
-                Not Met
-            %h5 Feedback
-            = c.input :feedback, as: :text, :input_html => {:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Feedback"}, label: false
+          - @osces.each do |osce|
+            %h4
+              %b= osce.criteria_description
+            %p{:style => "color:red"}Ask candidate what they are observing form
+            = f.fields_for :criteria_results do |c|
+              - if !osce.criteria_critical
+                = c.hidden_field :criteria_mark, value: 1
+              .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
+                %label.btn.btn-primary
+                  = c.radio_button :answer, 'Fully met'
+                  Fully Met
+                %label.btn.btn-primary
+                  = c.radio_button :answer, 'Partially met'
+                  Partially Met
+                %label.btn.btn-primary
+                  = c.radio_button :answer, 'Not met'
+                  Not Met
+              %h5 Feedback
+              = c.input :feedback, as: :text, :input_html => {:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Feedback"}, label: false
       .btn-group{"aria-label" => "Basic example", :role => "group"}
         %button.btn.btn-danger#record{:type => "button"}record
         %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
       #timer2
-      %p{:style => "text-align: right"} Pass/Fail
+      %p Manual Pass/Fail
+      .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
+        %label.btn.btn-primary
+          No override
+          = f.radio_button :mark, 1, :input_html => {:checked => 1}
+        %label.btn.btn-primary
+          Pass
+          = f.radio_button :mark, 2
+        %label.btn.btn-primary
+          Fail
+          = f.radio_button :mark, 0
       %button#resultButton{:class => "btn float-right", :type => "button", :value => "Pass"}Pass
       %a#download
       %p
