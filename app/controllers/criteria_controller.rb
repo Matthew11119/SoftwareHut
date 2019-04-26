@@ -17,22 +17,23 @@ class CriteriaController < ApplicationController
 
   # GET /criteria/1/edit
   def edit
+    @criterium = Criterium.new
   end
 
   # POST /criteria
   def create
     @criterium = Criterium.new
-
+    puts "Params are " + params.to_s
     @criterium[:number] = 0
     @criterium[:criteria_description] = ''
     @criterium[:criteria_critical] = false
     @criterium[:station_id] = params[:id]
-    
+
 
     if @criterium.save
       redirect_to edit_station_path(@criterium.station), notice: 'Criterium was successfully created.'
     else
-      render :new
+      redirect_to new_criterium_path(@criterium.number)
     end
   end
 

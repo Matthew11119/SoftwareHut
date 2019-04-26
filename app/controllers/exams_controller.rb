@@ -21,6 +21,7 @@ class ExamsController < ApplicationController
   def new
     @exam = Exam.new
     @exam.stations.build
+    @exam.exam_code = 'NEW001'
   end
 
   def newblank

@@ -1,9 +1,9 @@
 class StationsController < ApplicationController
   #before_action :set_station, only: [:show, :edit, :update, :destroy]
-  #before_action :create_station_result_detail 
+  #before_action :create_station_result_detail
   authorize_resource
   # GET /stations
-  def index 
+  def index
     @stations = Station.all
   end
 
@@ -16,7 +16,20 @@ class StationsController < ApplicationController
 
   # GET /stations/new
   def new
+    puts "New is running"
     @station = Station.new
+    if @station.id = nil
+      @station.id = Station.all.count + 1
+    puts "Station id is " + @station.id
+    end
+  end
+
+  def create
+    @station = Station.new
+    if @station.id = nil
+      @station.id = Station.all.count + 1
+    end
+    
   end
 
   # GET /stations/1/edit
@@ -62,7 +75,7 @@ class StationsController < ApplicationController
   def detail
     @exam_show = Exam.where(:exam_code=>params[:id])
     @stations = Station.all.where(:station_name=>params[:station_name])
-    # @index = 
+    # @index =
   end
 
   # /stations/id/

@@ -2,7 +2,10 @@
 = simple_form_for(@station) do |station|
 
   .form-actions
-    = link_to 'Back', edit_exam_path(@station.exam_id), class: 'btn btn-default'
+    - if @station.exam_id != nil
+      = link_to 'Back', edit_exam_path(@station.exam_id), class: 'btn btn-default'
+    - else
+      = link_to 'Back', station_path(Exam.all.count + 1), class: 'btn btn-default'
     = link_to 'View', @station.exam, class: 'btn btn-default'
     = station.button :submit, 'Save'
   %br
@@ -18,9 +21,12 @@
 
   .form-section
     -# Criteria Fields
-    %h4 
+    %h4
       Criteria
-      = link_to 'New Criteria', criterium_path(id: @station.id, from: 0), class: 'btn btn-default', method: :post
+      - if @station.id != nil
+        = link_to 'New Criteria', criterium_path(id: @station.id, from: 0), class: 'btn btn-default', method: :post
+      - else
+        = link_to 'New Criteria', criterium_path(id: Station.all.count + 1, from: 0), class: 'btn btn-default', method: :post
     = station.simple_fields_for :criteria,  @station.criteria.sort_by(&:number) do |criterium|
       = criterium.error_notification
       = criterium.error_notification message: criterium.object.errors[:base].to_sentence if criterium.object.errors[:base].present?
@@ -38,9 +44,13 @@
 
   .form-section
     -# Answers Fields
-    %h4 
+    %h4
       Answers
-      = link_to 'New Answer', answer_path(id: @station.id, from: 0), class: 'btn btn-default', method: :post
+      - if @station.id != nil
+        = link_to 'New Answer', answer_path(id: @station.id, from: 0), class: 'btn btn-default', method: :post
+      - else
+        = link_to 'New Answer', answer_path(id: Station.all.count + 1), class: 'btn btn-default', method: :post
+
     = station.simple_fields_for :answers, @station.answers.sort_by(&:score) do |answer|
       = answer.error_notification
       = answer.error_notification message: answer.object.errors[:base].to_sentence if answer.object.errors[:base].present?
