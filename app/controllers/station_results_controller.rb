@@ -20,6 +20,9 @@ class StationResultsController < ApplicationController
     #   end
     # end
     set_instance_variable
+    if (defined?params[:form_homepage][:examiner_name])
+      @examiner_name = params[:form_homepage][:examiner_name]
+    end
   end
 
   # GET /station_results/1/completed_students
