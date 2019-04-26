@@ -1,0 +1,137 @@
+#bold-select {
+    font-weight: bold;
+    color: #22A7F0    
+}
+
+#formHead {
+    margin-top: 2.375em; // 38px
+    background-color:#22A7F0;
+    color:#FFFFFF;
+    padding-left:1.625em; // 26px
+    padding-top:1.063em; // 17px
+    padding-bottom:1.063em; //17px
+}
+
+#formHead {
+    margin-top: 2.375em; // 38px
+    background-color:#22A7F0;
+    color:#FFFFFF;
+    padding-left:1.625em; // 26px
+    padding-top:1.063em; // 17px
+    padding-bottom:1.063em; //17px
+}
+
+#formHead p{
+    margin:0
+}
+
+#formHead h3{
+    display: inline;
+    margin:0
+}
+
+#formBody {
+    background-color:#FAFAFA;
+}
+
+#formBody ul{
+    text-align: center
+}
+
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+#formBodyForm{
+    padding-top:2.438em; // 39px
+    padding-bottom:3.781em; // 60px
+    padding-left:2.956em; // 47.3px
+    padding-right:2.956em; //47.3px
+}
+
+#formBodyForm label {
+    color:#22A7F0;
+}
+
+#div-search{
+    padding-left:3em;
+    padding-right:3em;
+    padding-top:3.5em;
+    padding-bottom:3.1em
+}
+
+#div-search label{
+    color:#454545;
+}
+
+#div-result{
+    padding-left:2.956em; // 47.3px
+    padding-right:2.956em; // 47.3px
+    padding-bottom:2.375em; // 38px
+}
+
+.table-search thead th{
+    text-align: center;
+    background-color:#343A40;
+    color: #FFFFFF;
+    font-weight:bold;
+}
+
+.table-search tbody{
+    background-color: white;
+    text-align: center
+}
+
+#div-new-student {
+    padding-left:3em;
+    padding-right:3em;
+    padding-top:3.5em;
+    padding-bottom:3.1em
+}
+
+#div-new-student label {
+    color:#454545;
+}
+
+.form-button {
+    background-color:#22A7F0;
+    border-color:#22A7F0;
+    padding:0.438em 3.875em;
+}
+
+.form-button2{
+    background-color:#343A40;
+    border-color:#343A40;
+    padding:0.438em 3.875em;
+    color:#FFFFFF;
+}
+
+.new-student-header {
+    background-color: #343A40;
+    color: #FFFFFF;
+}
+
+.new-student-header button {
+    color:#FFFFFF;
+    opacity: 1
+}
+
+.new-student-body {
+    padding-top: 2.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+.new-student-body label {
+    color: #343A40;    
+}
+
+#modal-footer{
+    padding-bottom: 2.8em;
+}
+
+#new_student_info{
+    
+}
