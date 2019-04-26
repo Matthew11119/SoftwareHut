@@ -45,7 +45,7 @@ class StationResultsController < ApplicationController
 
   # POST /station_results/1
   def new_student
-    
+    render 'new_student_success'
   end
 
   # GET /station_results/new
