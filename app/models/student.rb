@@ -3,19 +3,15 @@
 # Table name: students
 #
 #  forename   :string
-#  regno      :integer
+#  regno      :integer          not null, primary key
 #  surname    :string
 #  username   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-# Indexes
-#
-#  index_students_on_regno  (regno)
-#
 
 class Student < ApplicationRecord
-  has_and_belongs_to_many :uni_modules
+  has_and_belongs_to_many :exams
 
   def self.student_import(file)
     students = []

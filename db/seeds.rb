@@ -8,14 +8,13 @@
 
 # run rake db:seed
 
-User.create(username: "acc17lm",  user_type:"Admin")
-User.create(username: "aca17zsc", user_type:"Admin")
-User.create(username: "aca17scf", user_type:"Admin")
-User.create(username: "aca17mjs", user_type:"Admin")
-User.create(username: "aca18mjl", user_type:"Admin")
+User.find_or_create_by(username: "acc17lm",  user_type:"Admin")
+User.find_or_create_by(username: "aca17zsc", user_type:"Admin")
+User.find_or_create_by(username: "aca17scf", user_type:"Admin")
+User.find_or_create_by(username: "aca17mjs", user_type:"Admin")
+User.find_or_create_by(username: "aca18mlj", user_type:"Admin")
 
-User.create(username: "nr1jcd", user_type:"Admin")
-
+User.find_or_create_by(username: "nr1jcd", user_type:"Admin")
 
 UniModule.find_or_create_by(module_code:'COM1001',module_name:'Computer Science 1')
 UniModule.find_or_create_by(module_code:'COM1002',module_name:'Computer Science 2')
@@ -80,3 +79,21 @@ Station.find_or_create_by(station_name: 'Station 9 examination name 01', pass_ma
 Station.find_or_create_by(station_name: 'Station 10 examination name 01', pass_mark: 70, exam_id:'EX0001')
 Station.find_or_create_by(station_name: 'Station 11 examination name 01', pass_mark: 70, exam_id:'EX0001')
 Station.find_or_create_by(station_name: 'Station 12 examination name 01', pass_mark: 70, exam_id:'EX0001')
+
+
+
+
+#Completed Exams
+Exam.find_or_create_by(date:'2019-3-28', exam_code:'EX0099', module_code:'COM1003', name:'Examination name 99', status: 2)
+Exam.find_or_create_by(date:'2019-3-29', exam_code:'EX0098', module_code:'COM1002', name:'Examination name 98', status: 2)
+Exam.find_or_create_by(date:'2019-3-1',  exam_code:'EX0097', module_code:'COM1003', name:'Examination name 97', status: 2)
+Exam.find_or_create_by(date:'2019-3-2',  exam_code:'EX0096', module_code:'COM1002', name:'Examination name 96', status: 2)
+
+Station.find_or_create_by(station_name: 'Station 1', pass_mark: 3, exam_id: 'EX0099')
+Answer.find_or_create_by(text: 'Fully met',     score: 2, station_id: 3)
+Answer.find_or_create_by(text: 'Partially met', score: 1, station_id: 3)
+Answer.find_or_create_by(text: 'Not met',       score: 0, station_id: 3)
+Criterium.find_or_create_by(number: 1, criteria_description: "Example criteria 1", criteria_critical: false, station_id: 3)
+Criterium.find_or_create_by(number: 2, criteria_description: "Example criteria 2", criteria_critical: false, station_id: 3)
+Criterium.find_or_create_by(number: 3, criteria_description: "Example criteria 3", criteria_critical: true,  station_id: 3)
+Criterium.find_or_create_by(number: 4, criteria_description: "Example criteria 4", criteria_critical: false, station_id: 3)
