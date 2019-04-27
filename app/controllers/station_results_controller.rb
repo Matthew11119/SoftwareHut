@@ -20,8 +20,15 @@ class StationResultsController < ApplicationController
     #   end
     # end
 
-    set_instance_variable
-    puts @stations.first.id
+    if can?(:manage, Exam)
+      @station_result = StationResult.find(params[:id])
+    elsif can?(:edit, CriteriaResult)
+      set_instance_variable
+      if (defined?params[:form_homepage][:examiner_name])
+        @examiner_name = params[:form_homepage][:examiner_name]
+      end
+    end
+
   end
 
   # GET /station_results/1/completed_students
@@ -47,7 +54,7 @@ class StationResultsController < ApplicationController
 
   # POST /station_results/1
   def new_student
-
+    render 'new_student_success'
   end
 
   # GET /station_results/new
@@ -71,24 +78,31 @@ class StationResultsController < ApplicationController
   def edit
   end
 
+  # GET /exams/results/EX0099/students/1
+  def student_result
+    @student = Student.find(params[:regno])
+    @exam = Exam.find(params[:exam_code])
+
+  end
+
   # POST /station_results
   def create
+    puts "THIS SHOULD CREATE"
     @station_result = StationResult.new(post_params)
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
-    @station = Station.where(:id=>params[:station_id]).first
+    @station = Station.where(:id => params[:station_id]).first
     @criteria_result.each do |i|
       updated_criteria = calculate_crit_mark(i)
       i.write_attribute(:answer, updated_criteria.answer)
       i.write_attribute(:criteria_mark, updated_criteria.criteria_mark)
     end
     calculate_mark
-    @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
-    @student = Student.where(username: params[:username]).first
-    @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
-    @osces = Criterium.where(station_id:1)
+    @student = Student.where(:id=>params[:student_id]).first
+    puts @station_result.student_id
     if @station_result.save
-      redirect_to @station_result, notice: 'Station result was successfully created.'
+      puts "REDIRECT"
+      redirect_to completed_students_station_result_path(params[:station_id]), notice: 'Station result was successfully created.'
     else
       render :new
     end
@@ -129,12 +143,12 @@ class StationResultsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def station_result_params
-      params.require(:station_result).permit([:result_id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        :criteria_results => [:id, :answer, :criteria_mark, :station_result_id, :feedback]])
+      params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
+        :criteria_result_attributes => [:id, :criteria_feedback_id, :criteria_mark, :answer, :station_id])
     end
 
     def post_params
-      params.require(:station_result).permit([:station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
+      params.require(:station_result).permit([:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
         {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback]}])
     end
 

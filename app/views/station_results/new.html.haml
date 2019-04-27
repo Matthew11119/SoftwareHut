@@ -1,4 +1,4 @@
-= simple_form_for(@station_result) do |f|
+= simple_form_for(@station_result)  do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
   - @station_result.errors.full_messages.each do |message|
@@ -7,7 +7,7 @@
   .form-inputs
 
     =f.hidden_field :station_id, value: @station.id
-
+    =f.hidden_field :student_id, value: @student.id
     !!!
     %head
       = javascript_include_tag 'recordFile'
@@ -29,7 +29,6 @@
       %p{:align => "center"}
 
       =@display_student
-
       = f.input :examiner_name
       %fieldset
         %legend

@@ -3,9 +3,9 @@
 # Table name: students
 #
 #  forename   :string
-#  regno      :integer          not null, primary key
+#  regno      :integer
 #  surname    :string
-#  username   :string
+#  username   :string           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

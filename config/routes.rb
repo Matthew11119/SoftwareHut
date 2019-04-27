@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   get 'station_results/new/:student_id/:station_id', to: 'station_results#new'
-
+  post '/station_results/new/:student_id/:station_id', to: 'station_results#new'
   post '/station_results/:id', to: 'station_results#new_student'
   resources :stations, only: [:new,:edit,:update,:destroy, :show] do
     member do
@@ -41,7 +41,11 @@ Rails.application.routes.draw do
   resources :answers, only: [:new,:edit,:update,:destroy]
   post 'answers/:id', to: 'answers#create'
 
-  get 'results', to: 'exams#results'
+  get 'results', to: 'exams#results', as: 'results'
+  get 'exams/results/:id', to: 'exams#exam_results', as: 'exam_results'
+  resources :station_results, only: [:show, :new, :edit, :update, :destroy]
+  get 'exams/results/:exam_code/students/:student_regno', to: 'station_results#student_result', as: 'student_result'
+  resources :criteria_results, only: [:new, :edit, :update, :destroy]
 
   root to: "pages#home"
   devise_for :users

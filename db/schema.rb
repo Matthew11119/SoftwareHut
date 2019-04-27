@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_21_181619) do
+ActiveRecord::Schema.define(version: 2019_04_27_150231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,8 +67,9 @@ ActiveRecord::Schema.define(version: 2019_04_21_181619) do
   end
 
   create_table "exams_students", id: false, force: :cascade do |t|
-    t.integer "student_id", null: false
+    t.string "student_id", null: false
     t.string "exam_id", null: false
+    t.integer "mark"
     t.index ["exam_id", "student_id"], name: "index_exams_students_on_exam_id_and_student_id"
     t.index ["student_id", "exam_id"], name: "index_exams_students_on_student_id_and_exam_id"
   end
@@ -109,12 +110,12 @@ ActiveRecord::Schema.define(version: 2019_04_21_181619) do
     t.string "exam_id"
   end
 
-  create_table "students", primary_key: "regno", id: :integer, default: nil, force: :cascade do |t|
+  create_table "students", primary_key: "username", id: :string, force: :cascade do |t|
     t.string "forename"
     t.string "surname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username"
+    t.integer "regno"
   end
 
   create_table "templates", force: :cascade do |t|
