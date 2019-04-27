@@ -13,5 +13,5 @@
 
 class ExamsStudent < ApplicationRecord
   belongs_to :student
-  belongs_to :client
+  belongs_to :exam
 end
