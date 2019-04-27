@@ -3,7 +3,7 @@
 # Table name: exams_students
 #
 #  exam_id    :string           not null
-#  student_id :integer          not null
+#  student_id :string           not null
 #
 # Indexes
 #
