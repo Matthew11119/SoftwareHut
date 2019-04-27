@@ -32,6 +32,11 @@ class ExamsController < ApplicationController
     render 'exams/show_module_lead'
   end
 
+  def student_import
+    Exam.student_import(params[:file])
+    #redirect_to students_path, notice: "Students added successfully"
+  end
+
   # GET /exams/new
   def new
     @exam = Exam.new

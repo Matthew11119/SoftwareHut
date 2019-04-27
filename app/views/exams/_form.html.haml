@@ -8,7 +8,7 @@
     = link_to 'View', @exam, class: 'btn btn-default'
     = exam.button :submit, 'Save'
   %br
-  
+
   -# Exam Fields
   .exam.form-inputs.form-section
     %h3 Exam
@@ -17,3 +17,5 @@
     = exam.input :date
     = exam.input :module_code
 
+= link_to 'Import or create new students', exam_import_path(@exam), class: 'ajax-modal'
+%br

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   mount EpiCas::Engine, at: "/"
 
-  resources :exams
+  resources :exams do
+    collection { post :student_import}
+    get 'import'
+  end
   resources :archives, except: [:new, :create]
   resources :templates
   resources :students do
@@ -37,6 +40,11 @@ Rails.application.routes.draw do
   root to: "pages#home"
   devise_for :users
   resources :users
+
+  resources :criteria
+  post 'criteria/:id', to: 'criteria#create'
+  resources :answers
+  post 'answers/:id', to: 'answers#create'
 
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all
