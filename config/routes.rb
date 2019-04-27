@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
   post '/station_results/:id', to: 'station_results#new_student'
-  resources :stations, only: [:new,:edit,:update,:destroy, :show] do
+  resources :stations, only: [:new,:edit,:update,:destroy, :show, :index] do
     member do
       # get 'detail'
       # get 'detail_form'

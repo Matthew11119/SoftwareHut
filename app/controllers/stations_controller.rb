@@ -26,10 +26,22 @@ class StationsController < ApplicationController
 
   def create
     @station = Station.new
-    if @station.id = nil
-      @station.id = Station.all.count + 1
+
+    @station[:pass_mark] = 0
+    @station[:station_name] = ''
+    @station[:exam_id] = 0
+    @station[:template_id] = 0
+    if @criterium.save
+      redirect_to edit_station_path(@criterium.station), notice: 'Criterium was successfully created.'
+    else
+      redirect_to new_station_path, notice: 'There was an error'
     end
-    
+
+    #  pass_mark    :integer
+    #  station_name :string
+    #  created_at   :datetime         not null
+    #  updated_at   :datetime         not null
+    #  exam_id      :string
   end
 
   # GET /stations/1/edit
