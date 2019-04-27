@@ -7,7 +7,7 @@ class ExamsController < ApplicationController
   # GET /exams
   def index
     if can?(:manage, Exam)
-      index_admin    
+      index_admin
     else
       render template: 'errors/error_403', status: 403
     end
@@ -61,10 +61,16 @@ class ExamsController < ApplicationController
 
   # POST /exams
   def create
-    @exam = Exam.new({:status => 0}.merge(exam_params))
+    @exam = Exam.new
+    #@exam = Exam.new({:status => 0}.merge(exam_params))
+    @exam[:exam_code] = Exam.all.count + 1
+    @exam[:date] = '01/01/2019'
+    @exam[:name] = ''
+    @exam[:module_code] = 'COM1001'
+    @exam[:status] = 'Undeployed'
 
     if @exam.save
-      redirect_to edit_exam_path, notice: 'Exam was successfully created.'
+      redirect_to edit_exam_path(@exam), notice: 'Exam was successfully created.'
     else
       render :new
     end

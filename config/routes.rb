@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'new_temp', to: 'exams#create'
     end
   end
+  post '/exams/new', to: 'exams#create'
   resources :archives, except: [:new, :create]
   resources :templates
   resources :students do

@@ -31,7 +31,7 @@ class StationsController < ApplicationController
     @station[:station_name] = ''
     @station[:exam_id] = 0
     @station[:template_id] = 0
-    if @criterium.save
+    if @station.save
       redirect_to edit_station_path(@criterium.station), notice: 'Criterium was successfully created.'
     else
       redirect_to new_station_path, notice: 'There was an error'

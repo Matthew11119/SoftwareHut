@@ -13,6 +13,9 @@
   .form-section
     %h4 Station
     = station.error_notification
+    - @station.errors.full_messages.each do |message|
+      %li
+        = message
     = station.error_notification message: station.object.errors[:base].to_sentence if station.object.errors[:base].present?
     .form-inline
       = station.input :station_name
