@@ -70,9 +70,10 @@ class StationResultsController < ApplicationController
 
   # GET /exams/results/EX0099/students/1
   def student_result
-    @student = Student.find(params[:regno])
+    @student = Student.find(params[:username])
     @exam = Exam.find(params[:exam_code])
-    
+    @station_results = StationResult.where( username: @student.username, station_id: @exam.stations.collect(&:id) )
+    render :index
   end
 
   # POST /station_results
@@ -122,6 +123,6 @@ class StationResultsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def station_result_params
       params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        :criteria_result_attributes => [:id, :criteria_feedback_id, :criteria_mark, :answer, :station_id])
+        :criteria_result_attributes => [:id, :criteria_mark, :answer, :station_result_id])
     end
 end

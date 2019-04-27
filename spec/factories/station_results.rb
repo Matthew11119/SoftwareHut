@@ -7,10 +7,14 @@
 #  examiner_name :string
 #  feedback      :string
 #  mark          :integer
+#  username      :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  station_id    :integer
+<<<<<<< HEAD
 #  student_id    :string
+=======
+>>>>>>> moderator
 #
 
 FactoryBot.define do
