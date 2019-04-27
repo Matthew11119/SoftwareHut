@@ -90,25 +90,34 @@ Exam.find_or_create_by(date:'2019-3-29', exam_code:'EX0098', module_code:'COM100
 Exam.find_or_create_by(date:'2019-3-1',  exam_code:'EX0097', module_code:'COM1003', name:'Examination name 97', status: 2)
 Exam.find_or_create_by(date:'2019-3-2',  exam_code:'EX0096', module_code:'COM1002', name:'Examination name 96', status: 2)
 
-Station.find_or_create_by(station_name: 'Station 1', pass_mark: 3, exam_id: 'EX0099')
-Answer.find_or_create_by(text: 'Fully met',     score: 2, station_id: 3)
-Answer.find_or_create_by(text: 'Partially met', score: 1, station_id: 3)
-Answer.find_or_create_by(text: 'Not met',       score: 0, station_id: 3)
-Criterium.find_or_create_by(number: 1, criteria_description: "Example criteria 1", criteria_critical: false, station_id: 3)
-Criterium.find_or_create_by(number: 2, criteria_description: "Example criteria 2", criteria_critical: false, station_id: 3)
-Criterium.find_or_create_by(number: 3, criteria_description: "Example criteria 3", criteria_critical: true,  station_id: 3)
-Criterium.find_or_create_by(number: 4, criteria_description: "Example criteria 4", criteria_critical: false, station_id: 3)
-
-
+Station.find_or_create_by(id: 100, station_name: 'Station 1', pass_mark: 3, exam_id: 'EX0099')
+Answer.find_or_create_by(id: 100, text: 'Fully met',     score: 2, station_id: 100)
+Answer.find_or_create_by(id: 101, text: 'Partially met', score: 1, station_id: 100)
+Answer.find_or_create_by(id: 102, text: 'Not met',       score: 0, station_id: 100)
+Criterium.find_or_create_by(number: 1, criteria_description: "Example criteria 1", criteria_critical: false, station_id: 100)
+Criterium.find_or_create_by(number: 2, criteria_description: "Example criteria 2", criteria_critical: false, station_id: 100)
+Criterium.find_or_create_by(number: 3, criteria_description: "Example criteria 3", criteria_critical: true,  station_id: 100)
+Criterium.find_or_create_by(number: 4, criteria_description: "Example criteria 4", criteria_critical: false, station_id: 100)
 
 
 
 
 #Students
-# exam = Exam.find("EX0001")
-# exam.students.find_or_create_by(forename: "Student", surname: "1", regno: 000001, username: "cia18sjc")
-# exam.students.find_or_create_by(forename: "Student", surname: "2", regno: 000002, username: "s2")
-# exam.students.find_or_create_by(forename: "Student", surname: "3", regno: 000003, username: "s3")
-# exam.students.find_or_create_by(forename: "Student", surname: "4", regno: 000004, username: "s4")
-# exam.students.find_or_create_by(forename: "Student", surname: "5", regno: 000005, username: "s5")
-# exam.students.find_or_create_by(forename: "Student", surname: "6", regno: 000006, username: "s6")
+exam = Exam.find("EX0099")
+exam.students.find_or_create_by(forename: "Student", surname: "1", username: "s1", regno: 000001)
+exam.students.find_or_create_by(forename: "Student", surname: "2", username: "s2", regno: 000002)
+exam.students.find_or_create_by(forename: "Student", surname: "3", username: "s3", regno: 000003)
+exam.students.find_or_create_by(forename: "Student", surname: "4", username: "s4", regno: 000004)
+exam.students.find_or_create_by(forename: "Student", surname: "5", username: "s5", regno: 000005)
+exam.students.find_or_create_by(forename: "Student", surname: "6", username: "s6", regno: 000006)
+
+
+
+
+#Results
+StationResult.find_or_create_by(id: 1, audio: nil, examiner_name: "Jeff", feedback: "Feedback stuff here", mark: 5, username: "s1", station_id: 100)
+s = StationResult.find(1)
+s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1)
+s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 2)
+s.criteria_results.find_or_create_by(answer: 101, criteria_mark: 1, feedback: "Generic Feedback", station_result_id: 3)
+s.criteria_results.find_or_create_by(answer: 102, criteria_mark: 0, feedback: "Generic Feedback", station_result_id: 4)

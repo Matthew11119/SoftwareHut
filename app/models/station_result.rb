@@ -7,15 +7,14 @@
 #  examiner_name :string
 #  feedback      :string
 #  mark          :integer
+#  username      :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  station_id    :integer
-#  student_id    :integer
-#
 
 class StationResult < ApplicationRecord
-  belongs_to :stations, :foreign_key=>:station_id
+  belongs_to :station, :foreign_key=>:station_id
 
-  has_many :criteria_results, inverse_of: :station_result
+  has_many :criteria_results, inverse_of: :station_results
   accepts_nested_attributes_for :criteria_results
 end

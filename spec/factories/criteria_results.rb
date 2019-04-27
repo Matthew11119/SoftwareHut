@@ -2,13 +2,13 @@
 #
 # Table name: criteria_results
 #
-#  id            :bigint(8)        not null, primary key
-#  answer        :integer
-#  criteria_mark :integer
-#  feedback      :text
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  station_id    :integer
+#  id                :bigint(8)        not null, primary key
+#  answer            :integer
+#  criteria_mark     :integer
+#  feedback          :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  station_result_id :integer
 #
 
 FactoryBot.define do

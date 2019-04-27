@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_150231) do
+ActiveRecord::Schema.define(version: 2019_04_27_181717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_150231) do
   create_table "criteria_results", force: :cascade do |t|
     t.integer "criteria_mark"
     t.integer "answer"
-    t.integer "station_id"
+    t.integer "station_result_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "feedback"
@@ -90,13 +90,13 @@ ActiveRecord::Schema.define(version: 2019_04_27_150231) do
 
   create_table "station_results", force: :cascade do |t|
     t.integer "station_id"
-    t.integer "student_id"
     t.string "examiner_name"
     t.integer "mark"
     t.string "feedback"
     t.string "audio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
   end
 
   create_table "stations", force: :cascade do |t|
