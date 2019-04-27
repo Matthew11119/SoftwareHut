@@ -10,7 +10,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  station_id    :integer
-#  student_id    :integer
+#  student_id    :string
 #
 
 require 'rails_helper'
