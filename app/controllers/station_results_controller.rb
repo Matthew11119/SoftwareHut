@@ -98,11 +98,11 @@ class StationResultsController < ApplicationController
       i.write_attribute(:criteria_mark, updated_criteria.criteria_mark)
     end
     calculate_mark
-    @student = Student.where(:id=>params[:student_id]).first
+    @student = Student.where(:username=>params[:student_id]).first
     puts @station_result.student_id
     if @station_result.save
       puts "REDIRECT"
-      redirect_to completed_students_station_result_path(params[:station_id]), notice: 'Station result was successfully created.'
+      redirect_to completed_students_station_result_path(@station_result.station_id), notice: 'Station result was successfully created.'
     else
       render :new
     end

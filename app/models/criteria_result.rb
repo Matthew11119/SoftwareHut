@@ -21,7 +21,7 @@
 
 class CriteriaResult < ApplicationRecord
   belongs_to :station_result, optional: true, :foreign_key=>:station_result_id
-  has_one :station_result
+  #has_one :station_result
   attr_accessor :criteria_mark, :id
 
 end
