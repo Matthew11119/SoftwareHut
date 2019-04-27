@@ -1,27 +1,67 @@
-%p#notice= notice
+-# %p#notice= notice
 
-%p
-  %b Result:
-  = @station_result.result_id
-%p
-  %b Station:
-  = @station_result.station_id
-%p
-  %b Student:
-  = @station_result.student_id
-%p
-  %b Examiner name:
-  = @station_result.examiner_name
-%p
-  %b Mark:
-  = @station_result.mark
-%p
-  %b Feedback:
-  = @station_result.feedback
-%p
-  %b Audio:
-  = @station_result.audio
+-# %p
+-#   %b Result:
+-#   = @station_result.result_id
+-# %p
+-#   %b Station:
+-#   = @station_result.station_id
+-# %p
+-#   %b Student:
+-#   = @station_result.student_id
+-# %p
+-#   %b Examiner name:
+-#   = @station_result.examiner_name
+-# %p
+-#   %b Mark:
+-#   = @station_result.mark
+-# %p
+-#   %b Feedback:
+-#   = @station_result.feedback
+-# %p
+-#   %b Audio:
+-#   = @station_result.audio
 
-= link_to 'Edit', edit_station_result_path(@station_result)
-\|
-= link_to 'Back', station_results_path
+-# = link_to 'Edit', edit_station_result_path(@station_result)
+-# \|
+-# = link_to 'Back', station_results_path
+
+%div#formHead
+  %p #{@exam_show.first.exam_code} #{@exam_show.first.name}
+  %h3 #{@stations.first.station_name}
+  %span#label-help.pull-right{:style=>"padding-right:1.625em"} Select a student below to begin examination
+
+%div#formBody
+  %nav.navbar.navbar-default.navbar-static-top
+    %div.container
+      %ul.nav.navbar-nav.navbar-center
+        %li= link_to 'Remaining', station_result_path(params[:id]), id: 'bold-select'
+        %li= link_to 'Completed', completed_students_station_result_path(:id=>params[:id])
+  %div#div-search
+    = simple_form_for :form_search, remote:true do |f| 
+      = f.input :student_id, :placeholder => "Student ID", :label=>"Search by"
+      = f.input :student_surname, :placeholder => "Surname", :label=>false
+      %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
+        = f.button :submit, 'Search', class: 'btn btn-primary pull-right form-button ajax-modal'
+        = link_to 'Reset', station_result_path(params[:id]), class: 'btn pull-right', style:'color:#22A7F0' 
+    %hr
+  %div#div-result.table-search
+    %h5{:style=>'display: inline'} Remaining Students
+    &nbsp &nbsp Total
+    
+    %table.table
+      %thead
+        %tr
+          %th{:scope=>"col"} Username
+          %th{:scope=>"col"} Surname
+          %th{:scope=>"col"} Forename
+          %th{:scope=>"col"} Action
+        %tbody
+          %tr
+            %td aca18mjl
+            %td Lim
+            %td Ming
+            %td= link_to 'Select'            
+    = link_to 'Add New Student', add_student_station_result_path(params[:id]) , :class=>"btn btn-primary pull-left form-button2 ajax-modal"
+      
+    

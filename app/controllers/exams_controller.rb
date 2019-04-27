@@ -7,7 +7,7 @@ class ExamsController < ApplicationController
   # GET /exams
   def index
     if can?(:manage, Exam)
-      index_admin
+      index_admin    
     else
       render template: 'errors/error_403', status: 403
     end
@@ -15,6 +15,21 @@ class ExamsController < ApplicationController
 
   # GET /exams/1
   def show
+    if can?(:manage, Exam)
+
+    elsif can?(:edit, CriteriaResult)
+      show_module_lead
+    else
+      render template: 'errors/error_403', status: 403
+    end
+  end
+
+  # GET /exams/1 for Module Lead
+  def show_module_lead
+    @exam_show = Exam.where(:exam_code=>params[:id])
+    @stations = Station.where(:exam_id=>params[:id])
+    @station_show = @stations.paginate(:page => params[:station], :per_page=>10)
+    render 'exams/show_module_lead'
   end
 
   #GET /results

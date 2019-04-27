@@ -1,42 +1,43 @@
-%div#examsToday
+%div#examsToday.table-search
     %p
         %h3{:style => "display: inline"} Today's #{@exam_today.count>1? 'Exams':'Exam' }   |
         &nbsp &nbsp #{Time.now.strftime("%d/%m/%Y")}
 
     %table.table
         %thead
-        %tr
-            %th{:scope=>"col"} Module Code
-            %th{:scope=>"col"} Exam Code
-            %th{:scope=>"col"} Examination Title
-            %th{:scope=>"col"} Action
-        %tbody
-        - @exam_today.each do |exam_today|
             %tr
-            %td= exam_today.module_code
-            %td= exam_today.exam_code
-            %td= exam_today.name
-            %td= link_to 'Select', station_path(exam_today.exam_code)
+                %th{:scope=>"col"} Module Code
+                %th{:scope=>"col"} Exam Code
+                %th{:scope=>"col"} Examination Title
+                %th{:scope=>"col"} Action
+        %tbody
+            - @exam_today.each do |exam_today|
+                %tr
+                %td= exam_today.module_code
+                %td= exam_today.exam_code
+                %td= exam_today.name
+                -# %td= link_to 'Select', station_path(exam_today.exam_code)
+                %td= link_to 'Select', exam_path(exam_today.exam_code)
     = will_paginate @exam_today, :param_name => 'exam_today_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
 
-    %div#examsUpcoming
-    %p
-        %h3{:style => "display: inline"}Other #{@exam_today.count>1? 'Exams':'Exam' }
-        &nbsp &nbsp Total = #{@exam_upcoming.count}
-    %table.table
-        %thead
-        %tr
-            %th{:scope=>"col"} Module Code
-            %th{:scope=>"col"} Exam Code
-            %th{:scope=>"col"} Examination Title
-            %th{:scope=>"col"} Date
-            %th{:scope=>"col"} Action
-        %tbody
-        - @exam_upcoming.each do |exam_upcoming|
-            %tr
-            %td= exam_upcoming.module_code
-            %td= exam_upcoming.exam_code
-            %td= exam_upcoming.name
-            %td= exam_upcoming.date
-            %td= link_to 'Select', station_path(exam_upcoming.exam_code)
-    = will_paginate @exam_upcoming, :param_name => 'exam_upcoming_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
+    %div#examsUpcoming.table-search
+        %p
+            %h3{:style => "display: inline"}Other #{@exam_today.count>1? 'Exams':'Exam' }
+            &nbsp &nbsp Total = #{@exam_upcoming.count}
+        %table.table
+            %thead
+                %tr
+                    %th{:scope=>"col"} Module Code
+                    %th{:scope=>"col"} Exam Code
+                    %th{:scope=>"col"} Examination Title
+                    %th{:scope=>"col"} Date
+                    %th{:scope=>"col"} Action
+            %tbody
+                - @exam_upcoming.each do |exam_upcoming|
+                    %tr
+                    %td= exam_upcoming.module_code
+                    %td= exam_upcoming.exam_code
+                    %td= exam_upcoming.name
+                    %td= exam_upcoming.date
+                    %td= link_to 'Select', station_path(exam_upcoming.exam_code)
+        = will_paginate @exam_upcoming, :param_name => 'exam_upcoming_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"

@@ -1,0 +1,22 @@
+%div#stationsView.table-search
+    #{@exam_show.first.module_code}
+    %br
+    %h3{:style=>"margin-top:0;display:inline"} #{@exam_show.first.exam_code} #{@exam_show.first.name}
+    %span.pull-right There #{@stations.count>1? 'are':'is'} #{@stations.count} #{@stations.count>1? 'stations':'station'} available
+    %table.table
+        %thead
+            %tr
+            %th{:scope=>"col"} #
+            %th{:scope=>"col"} Station Name
+            -# %th{:scope=>"col"} Student's Completed
+            %th{:scope=>"col"} Action
+        %tbody
+            - @station_show.each_with_index do |station, index|
+                %tr
+                    %td= index+1
+                    %td= station.station_name                    
+                    -# %td= link_to 'Select', exam_station_path(:exam_id=>@stations.first.exam_id,:id=>station.station_name)    
+                    %td= link_to 'Select', ready_screen_station_result_path(:id=>station.id) 
+    = will_paginate @station_show,:param_name => 'station'  ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
+    %hr
+    = link_to "Back to Overview Page", root_path, :class=>"btn btn-primary pull-right"
