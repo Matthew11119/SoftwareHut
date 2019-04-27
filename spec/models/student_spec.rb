@@ -3,6 +3,7 @@
 # Table name: students
 #
 #  forename   :string
+#  regno      :integer
 #  surname    :string
 #  username   :string           not null, primary key
 #  created_at :datetime         not null
