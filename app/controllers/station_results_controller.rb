@@ -19,11 +19,16 @@ class StationResultsController < ApplicationController
     #                           disposition: "inline"
     #   end
     # end
-    set_instance_variable
-    if (defined?params[:form_homepage][:examiner_name])
-      @examiner_name = params[:form_homepage][:examiner_name]
+    
+    if can?(:manage, Exam)
+      @station_result = StationResult.find(params[:id])    
+    elsif can?(:edit, CriteriaResult) 
+      set_instance_variable
+      if (defined?params[:form_homepage][:examiner_name])
+        @examiner_name = params[:form_homepage][:examiner_name]
+      end
     end
-    @station_result = StationResult.find(params[:id])
+    
   end
 
   # GET /station_results/1/completed_students
