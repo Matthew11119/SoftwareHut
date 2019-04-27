@@ -1,0 +1,19 @@
+%h1= @exam.name
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Last Name
+      %th First Name
+      %th Username
+      %th Student ID
+      %th
+
+  %tbody
+    - @students.each do |student|
+      %tr
+        %td= student.surname
+        %td= student.forename
+        %td= student.username
+        %td= student.regno
+        %td= link_to 'Details', student_result_url(student_regno: student.regno, exam_code: @exam.exam_code)

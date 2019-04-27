@@ -11,7 +11,9 @@
 #
 
 class Student < ApplicationRecord
-  has_and_belongs_to_many :exams
+  #has_and_belongs_to_many :exams
+  has_many :exams_students
+  has_many :exams, :through => :exams_students
 
   def self.student_import(file)
     students = []

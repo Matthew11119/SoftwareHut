@@ -12,7 +12,9 @@
 #
 
 class Exam < ApplicationRecord
-  has_and_belongs_to_many :students
+  #has_and_belongs_to_many :students
+  has_many :exams_students
+  has_many :students, :through => :exams_students  
 
   has_many :stations, inverse_of: :exam
 
