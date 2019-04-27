@@ -32,9 +32,20 @@ class ExamsController < ApplicationController
     render 'exams/show_module_lead'
   end
 
+  #GET /results
+  def results
+    index_moderator
+  end
+  
   def student_import
     Exam.student_import(params[:file])
     #redirect_to students_path, notice: "Students added successfully"
+  end
+
+  def exam_results
+    @exam = Exam.find(params[:id])
+    @students = @exam.students
+    render :index_student_results
   end
 
   # GET /exams/new

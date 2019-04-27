@@ -23,6 +23,7 @@ class StationResultsController < ApplicationController
     if (defined?params[:form_homepage][:examiner_name])
       @examiner_name = params[:form_homepage][:examiner_name]
     end
+    @station_result = StationResult.find(params[:id])
   end
 
   # GET /station_results/1/completed_students
@@ -54,10 +55,18 @@ class StationResultsController < ApplicationController
   # GET /station_results/new
   def new
     @station_result = StationResult.new
+    @station_result.criteria_results.build
   end
 
   # GET /station_results/1/edit
   def edit
+  end
+
+  # GET /exams/results/EX0099/students/1
+  def student_result
+    @student = Student.find(params[:regno])
+    @exam = Exam.find(params[:exam_code])
+    
   end
 
   # POST /station_results
@@ -106,6 +115,7 @@ class StationResultsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def station_result_params
-      params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio)
+      params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
+        :criteria_result_attributes => [:id, :criteria_feedback_id, :criteria_mark, :answer, :station_id])
     end
 end

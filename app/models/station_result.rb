@@ -14,5 +14,8 @@
 #
 
 class StationResult < ApplicationRecord
-  belongs_to :stations
+  belongs_to :stations, :foreign_key=>:station_id
+
+  has_many :criteria_results, inverse_of: :station_result
+  accepts_nested_attributes_for :criteria_results
 end

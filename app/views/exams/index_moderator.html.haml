@@ -15,6 +15,6 @@
         %td= exam.date
         %td= exam.name
         %td= exam.module_code
-        %td= link_to 'Results', ''
+        %td= link_to 'Results', exam_results_url(exam.exam_code)
 
 %br
