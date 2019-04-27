@@ -21,9 +21,10 @@ class StationResultsController < ApplicationController
     # end
     
     if can?(:manage, Exam)
-      @station_result = StationResult.find(params[:id])    
+      @station_result = StationResult.find(params[:id])
     elsif can?(:edit, CriteriaResult) 
       set_instance_variable
+      @students = 
       if (defined?params[:form_homepage][:examiner_name])
         @examiner_name = params[:form_homepage][:examiner_name]
       end

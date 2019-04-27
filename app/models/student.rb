@@ -26,4 +26,10 @@ class Student < ApplicationRecord
     Student.import(columns, students)
   end
 
+  def self.new_from_ldap(student_username)
+    student = User.new(username:student_username)
+    student.get_info_from_ldap
+    Student.find_or_create_by(forename:student.givenname, surname:student.sn,username:student_username)
+  end
+
 end
