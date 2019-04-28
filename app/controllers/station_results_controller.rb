@@ -161,10 +161,10 @@ class StationResultsController < ApplicationController
         newAnswer = Answer.select("score","id").where("text = ?", crit.answer_before_type_cast).first
         crit.answer = newAnswer.id
         if crit.criteria_mark == 1
-          if crit.answer_before_type_cast == "Not Met"
+          if newAnswer.score = 0
             crit.criteria_mark = -1000
           else
-            crit.criteria_mark = 2
+            crit.criteria_mark = newAnswer.score
           end
         else
           crit.criteria_mark = newAnswer.score
