@@ -31,8 +31,11 @@ class StationResultsController < ApplicationController
 
       if (defined?params[:form_homepage][:examiner_name])        
         @examiner_name = params[:form_homepage][:examiner_name]
-        @exams_students.each do |exam_student|
-          StationResult.find_or_create_by(username: exam_student.student_id, station_id: params[:id])
+        @exams_students.each do |exam_student|          
+          cur_stu = StationResult.find_or_create_by(username: exam_student.student_id, station_id: params[:id])
+          if (cur_stu.examiner_name.nil?)
+            cur_stu.update(examiner_name:@examiner_name)
+          end
         end
         # StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
       end      
@@ -55,6 +58,7 @@ class StationResultsController < ApplicationController
 
   # POST /station_results/1/search_new_student
   def search_new_student
+    
     @new_student = User.new(username: params[:new_student_form][:username])
     @new_student.get_info_from_ldap
     @examiner_name = params[:new_student_form][:examiner_name]
