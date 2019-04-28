@@ -23,10 +23,18 @@ class StationResultsController < ApplicationController
     if can?(:manage, Exam)
       @station_result = StationResult.find(params[:id])
     elsif can?(:edit, CriteriaResult) 
-      set_instance_variable                  
+      set_instance_variable
+      @exams_students = ExamsStudent.select_students(Station.find(params[:id]).exam_id) 
+      @exams_students.each do |exam_student|
+        Student.from_ldap(exam_student.student_id)
+      end
+
       if (defined?params[:form_homepage][:examiner_name])        
         @examiner_name = params[:form_homepage][:examiner_name]
-        StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
+        @exams_students.each do |exam_student|
+          StationResult.find_or_create_by(username: exam_student.student_id, station_id: params[:id])
+        end
+        # StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
       end      
       @students = StationResult.get_remaining_student(params[:id])
     end

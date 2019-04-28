@@ -130,9 +130,9 @@ ExamsStudent.find_or_create_by(student_id: 'aca17scf', exam_id:'EX0001')
 
 
 #Results
-StationResult.find_or_create_by(id: 1, audio: nil, examiner_name: "Jeff", feedback: "Feedback stuff here", mark: 5, username: "s1", station_id: 100)
-s = StationResult.find(1)
-s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1)
-s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 2)
-s.criteria_results.find_or_create_by(answer: 101, criteria_mark: 1, feedback: "Generic Feedback", station_result_id: 3)
-s.criteria_results.find_or_create_by(answer: 102, criteria_mark: 0, feedback: "Generic Feedback", station_result_id: 4)
+# StationResult.find_or_create_by(id: 1, audio: nil, examiner_name: "Jeff", feedback: "Feedback stuff here", mark: 5, username: "s1", station_id: 100)
+# s = StationResult.find(1)
+# s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1)
+# s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 2)
+# s.criteria_results.find_or_create_by(answer: 101, criteria_mark: 1, feedback: "Generic Feedback", station_result_id: 3)
+# s.criteria_results.find_or_create_by(answer: 102, criteria_mark: 0, feedback: "Generic Feedback", station_result_id: 4)
