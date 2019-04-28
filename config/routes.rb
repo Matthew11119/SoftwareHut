@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :exams do
     collection { post :student_import}
-    get 'import'
+    get 'edit/:id', to: 'exams#import', as: 'edit_import'
   end
   resources :archives, except: [:new, :create]
   resources :templates
