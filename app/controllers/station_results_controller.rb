@@ -24,8 +24,8 @@ class StationResultsController < ApplicationController
       @station_result = StationResult.find(params[:id])
     elsif can?(:edit, CriteriaResult) 
       set_instance_variable            
-      if (defined?params[:form_homepage][:examiner_name])
-        set_examiner_name(params[:form_homepage][:examiner_name])     
+      if (defined?params[:form_homepage][:examiner_name])        
+        @examiner_name = params[:form_homepage][:examiner_name]
         StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
       end      
       @students = StationResult.get_remaining_student(params[:id])
@@ -40,13 +40,16 @@ class StationResultsController < ApplicationController
 
   # GET /station_results/1/add_student
   def add_student
+    @examiner_name = params[:examiner_name]
     render layout:false
+    
   end
 
   # POST /station_results/1/search_new_student
   def search_new_student
     @new_student = User.new(username: params[:new_student_form][:username])
     @new_student.get_info_from_ldap
+    @examiner_name = params[:new_student_form][:examiner_name]
     if !(@new_student.sn.nil?)
       render 'search_new_student'
     else 
@@ -58,11 +61,9 @@ class StationResultsController < ApplicationController
   def new_student
     Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])
     # ExamsStudent.find_or_create_by(student_id:params[:hid_stu_infp][:username], exam_id:'EX0001')
-    ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])        
-    # if (defined?params[:form_homepage][:examiner_name])
-          
-    StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
-    # end    
+    ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])
+    @examiner_name = params["hid_stu_info"][:examiner_name]    
+    StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)    
     @students = StationResult.get_remaining_student(params[:id])
     render 'new_student_success'    
   end
@@ -127,7 +128,11 @@ class StationResultsController < ApplicationController
     def set_instance_variable
       @exam_show = Exam.where(:exam_code=>Station.find(params[:id]).exam_id)
       @stations = Station.where(:id=>params[:id])  
-      @examiner_name 
+      @examiner_name = ''
+    end
+
+    def get_examiner
+      @examiner_name
     end
 
     def set_examiner_name(name)

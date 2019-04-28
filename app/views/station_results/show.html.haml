@@ -34,6 +34,6 @@
           -#   %td Lim
           -#   %td Ming
           -#   %td= link_to 'Select'            
-    = link_to 'Add New Student', add_student_station_result_path(params[:id]) , :class=>"btn btn-primary pull-left form-button2 ajax-modal"
+    = link_to 'Add New Student', add_student_station_result_path(params[:id],{:examiner_name=>@examiner_name} ) ,:class=>"btn btn-primary pull-left form-button2 ajax-modal"
       
     
