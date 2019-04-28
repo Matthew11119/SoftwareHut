@@ -26,14 +26,14 @@ class Exam < ApplicationRecord
 
 
   def student_import(file)
-    students = []
-    columns = [:surname, :forename, :username, :regno]
     CSV.foreach(file.path, headers: true) do |row|
-      if !Student.exists?(:username =>row[2])
+      if !Student.exists?(:username =>row['username'])
         self.students << Student.new(row.to_hash)
+
+      elsif (!self.students.exists?(:username =>row['username']))
+        self.students << Student.find(row['username'])
       end
     end
-    Student.import(columns, students)
   end
 
 end
