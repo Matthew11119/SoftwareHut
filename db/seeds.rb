@@ -121,12 +121,10 @@ Criterium.find_or_create_by(number: 4, criteria_description: "Example criteria 4
 Student.find_or_create_by(username:'aca18mjl')
 Student.find_or_create_by(username:'cia18sjc')
 Student.find_or_create_by(username:'aca17zsc')
-Student.find_or_create_by(username:'aca17zsc')
 Student.find_or_create_by(username:'aca17scf')
 
 ExamsStudent.find_or_create_by(student_id: 'aca18mjl', exam_id:'EX0001')
 ExamsStudent.find_or_create_by(student_id: 'cia18sjc', exam_id:'EX0001')
-ExamsStudent.find_or_create_by(student_id: 'acc17lm', exam_id:'EX0001')
 ExamsStudent.find_or_create_by(student_id: 'aca17zsc', exam_id:'EX0001')
 ExamsStudent.find_or_create_by(student_id: 'aca17scf', exam_id:'EX0001')
 
