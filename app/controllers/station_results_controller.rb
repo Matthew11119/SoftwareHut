@@ -57,7 +57,15 @@ class StationResultsController < ApplicationController
 
   # POST /station_results/1
   def new_student
-    render 'new_student_success'
+    Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])
+    # ExamsStudent.find_or_create_by(student_id:params[:hid_stu_infp][:username], exam_id:'EX0001')
+    ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])        
+    if (defined?params[:form_homepage][:examiner_name])
+      @examiner_name = params[:form_homepage][:examiner_name]
+      StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
+    end    
+    @students = StationResult.get_remaining_student(params[:id])
+    render 'new_student_success'    
   end
 
   # GET /station_results/new
