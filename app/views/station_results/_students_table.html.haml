@@ -11,7 +11,7 @@
         %td= student.username
         %td= student.surname
         %td= student.forename
-        %td= link_to 'Select', new_station_result_path(username:student.username, station_id:params[:id])
+        %td= link_to 'Select', new_station_result_path(username:student.username, station_id:params[:id], examiner_name: @examiner_name)
 
 -# %tr
 -#     %td 1

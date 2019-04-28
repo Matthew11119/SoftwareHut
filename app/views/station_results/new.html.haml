@@ -8,6 +8,8 @@
 
     =f.hidden_field :station_id, value: @station.id
     =f.hidden_field :username, value: @student.username
+    =f.hidden_field :examiner_name, value: @examiner_name
+
     !!!
     %head
       = javascript_include_tag 'recordFile'
@@ -29,7 +31,7 @@
       %p{:align => "center"}
 
       =@display_student
-      = f.input :examiner_name
+      =@examiner_name
       %fieldset
         %legend
           - @osces.each do |osce|

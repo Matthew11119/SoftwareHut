@@ -28,7 +28,7 @@
           %th{:scope=>"col"} Surname
           %th{:scope=>"col"} Forename
           %th{:scope=>"col"} Action
-          %td= link_to 'Select', new_station_result_path(username:"jsmith1", station_id:params[:id])
+          %td= link_to 'Select', new_station_result_path(username:"jsmith1", station_id:params[:id], examiner_name: @examiner_name)
 
         %tbody#students-table
           = render 'students_table'

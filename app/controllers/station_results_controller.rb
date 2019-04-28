@@ -80,6 +80,7 @@ class StationResultsController < ApplicationController
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
     @osces = Criterium.where(station_id:params[:station_id])
     @station_result_id = StationResult.all.count + 1
+    @examiner_name = params[:examiner_name]
   end
 
   # GET /station_results/1/edit

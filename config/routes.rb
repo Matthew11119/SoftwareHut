@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'station_results/new/:student_id/:station_id', to: 'station_results#new'
-  post '/station_results/new/:student_id/:station_id', to: 'station_results#new'
+  get 'station_results/new/:student_id/:station_id/examiner_name', to: 'station_results#new'
+  post '/station_results/new/:student_id/:station_id/examiner_name', to: 'station_results#new'
   post '/station_results/:id', to: 'station_results#new_student'
   resources :stations, only: [:new,:edit,:update,:destroy, :show] do
     member do
