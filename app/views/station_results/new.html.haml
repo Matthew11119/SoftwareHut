@@ -41,6 +41,7 @@
             = f.fields_for :criteria_results do |c|
               - if !osce.criteria_critical
                 = c.hidden_field :criteria_mark, value: 1
+              = c.hidden_field :criterium_id, value: osce.id
               .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
                 - @answers.each do |answerCrit|
                   %label.btn.btn-primary

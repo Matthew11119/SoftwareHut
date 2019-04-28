@@ -181,7 +181,7 @@ class StationResultsController < ApplicationController
 
     def post_params
       params.require(:station_result).permit([:id, :station_id, :username, :examiner_name, :mark, :feedback, :audio,
-        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback]}])
+        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback, :criterium_id]}])
     end
 
     def criteria_params
