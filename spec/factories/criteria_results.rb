@@ -9,7 +9,16 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  criterium_id      :integer
-#  station_result_id :integer
+#  station_id        :integer
+#  station_result_id :bigint(8)
+#
+# Indexes
+#
+#  index_criteria_results_on_station_result_id  (station_result_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (station_result_id => station_results.id)
 #
 
 FactoryBot.define do

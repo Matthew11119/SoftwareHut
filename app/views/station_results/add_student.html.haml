@@ -6,8 +6,10 @@
                 %button.close{ type: :button, data: {dismiss: :modal} }
                     %span &times;
                 %h4.modal-title Adding new student
+                #{@examiner_name} asdf
             .modal-body.new-student-body
                 = f.input :username, :placeholder => "Username", :label=>"Student Information"
+                = f.input :examiner_name, :as=>:hidden, :input_html=>{:value=>@examiner_name}
                 %div#modal-footer
                     .pull-left#close-button
                         = dismiss_modal_button

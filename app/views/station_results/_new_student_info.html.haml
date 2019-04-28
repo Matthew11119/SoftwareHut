@@ -10,4 +10,9 @@
             %td #{@new_student.username} 
             %td #{@new_student.givenname} #{@new_student.sn} 
             %td #{@new_student.email}
-= link_to 'Add student', station_result_path(params[:id]), method: :post,class: 'btn form-button2', :remote => true
+= simple_form_for :hid_stu_info, url:station_result_path(params[:id]), remote: :true do |f|
+    = f.input :username, :as => :hidden, :input_html => {:value => @new_student.username}
+    = f.input :forename, :as => :hidden, :input_html => {:value => @new_student.givenname}
+    = f.input :surname, :as => :hidden, :input_html => {:value => @new_student.sn}
+    = f.input :examiner_name, :as => :hidden, :input_html => {:value => @examiner_name}
+    = f.button :submit, 'Add student' ,class: 'btn form-button2'

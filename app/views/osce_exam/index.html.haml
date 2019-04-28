@@ -24,38 +24,24 @@
       %u John Doe
 
   %form
-    %h4
-      %b Washes Hands
+    - @osces.each do |osce|
+      %h4
+        %b= osce.criteria_description
+      %p{:style => "color:red"}Ask candidate what they are observing form
+      %p Comfort, colour, pain, conscious level
+      .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
+        %label.btn.btn-primary.active
+          %input#option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
+          Fully Met
+        %label.btn.btn-primary
+          %input#option2{:autocomplete => "off", :name => "options", :type => "radio"}/
+          Partially Met
+        %label.btn.btn-primary
+          %input#option3{:autocomplete => "off", :name => "options", :type => "radio"}/
+          Not Met
+      %h5 Feedback
+      %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
 
-    .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
-      %label.btn.btn-primary.active
-        %input#option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
-        Fully Met
-      %label.btn.btn-primary
-        %input#option2{:autocomplete => "off", :name => "options", :type => "radio"}/
-        Partially Met
-      %label.btn.btn-primary
-        %input#option3{:autocomplete => "off", :name => "options", :type => "radio"}/
-        Not Met
-    %h5 Feedback
-    %textarea{:rows => "3", :placeholder => "Comments"}
-
-    %h4
-      %b Observes Patients
-    %p{:style => "color:red"}Ask candidate what they are observing form
-    %p Comfort, colour, pain, conscious level
-    .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
-      %label.btn.btn-primary.active
-        %input#option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
-        Fully Met
-      %label.btn.btn-primary
-        %input#option2{:autocomplete => "off", :name => "options", :type => "radio"}/
-        Partially Met
-      %label.btn.btn-primary
-        %input#option3{:autocomplete => "off", :name => "options", :type => "radio"}/
-        Not Met
-    %h5 Feedback
-    %textarea{:style => "width:100%", :rows => "3", :placeholder => "Comments"}
     .btn-group{"aria-label" => "Basic example", :role => "group"}
       %button.btn.btn-danger#record{:type => "button"}record
       %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
@@ -70,4 +56,18 @@
     %textarea{:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :placeholder => "Overall Comments"}
 
     %input#submitButton{:onclick => "location.href='http://google.com';", :type => "button", :value => "Submit", :class => "btn float-right"}
-= link_to 'New Station result', new_station_result_path
+    %p= link_to 'Submit', answers_path
+
+%table
+  %tr
+    %th name
+    %th Criteria discription
+    %th Criteria Critical
+    %th Station id
+
+  - @osces.each do |osce|
+    %tr
+      %td= osce.id
+      %td= osce.criteria_description
+      %td= osce.criteria_critical
+      %td= osce.station_id

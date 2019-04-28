@@ -11,6 +11,10 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  station_id    :integer
+<<<<<<< HEAD
+#  student_id    :string
+=======
+>>>>>>> moderator
 #
 
 require 'rails_helper'

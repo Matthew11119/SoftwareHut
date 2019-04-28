@@ -35,11 +35,13 @@ ActiveRecord::Schema.define(version: 2019_04_28_141429) do
   create_table "criteria_results", force: :cascade do |t|
     t.integer "criteria_mark"
     t.integer "answer"
-    t.integer "station_result_id"
+    t.integer "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "feedback"
+    t.bigint "station_result_id"
     t.integer "criterium_id"
+    t.index ["station_result_id"], name: "index_criteria_results_on_station_result_id"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -69,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_141429) do
   create_table "exams_students", id: false, force: :cascade do |t|
     t.string "student_id", null: false
     t.string "exam_id", null: false
+    t.integer "mark"
     t.index ["exam_id", "student_id"], name: "index_exams_students_on_exam_id_and_student_id"
     t.index ["student_id", "exam_id"], name: "index_exams_students_on_student_id_and_exam_id"
   end
@@ -149,4 +152,5 @@ ActiveRecord::Schema.define(version: 2019_04_28_141429) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "criteria_results", "station_results"
 end
