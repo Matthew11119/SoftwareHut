@@ -23,7 +23,7 @@ class StationResultsController < ApplicationController
     if can?(:manage, Exam)
       @station_result = StationResult.find(params[:id])
     elsif can?(:edit, CriteriaResult) 
-      set_instance_variable            
+      set_instance_variable                  
       if (defined?params[:form_homepage][:examiner_name])        
         @examiner_name = params[:form_homepage][:examiner_name]
         StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
