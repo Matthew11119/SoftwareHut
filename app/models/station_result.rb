@@ -26,7 +26,7 @@ class StationResult < ApplicationRecord
         curStu.update(examiner_name:examinerName)
       end
     end      
-  end
+  end  
 
   def self.get_remaining_student(stationID)
     # remaining_student = self.where(station_id: stationID).where(mark:nil)
