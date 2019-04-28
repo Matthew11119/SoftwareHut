@@ -5,6 +5,8 @@ window.onload = function(){
   var record = document.getElementById("record");
   var stopRecord = document.getElementById("stopRecord");
   var timerButton = document.getElementById("startTimer");
+  var query = window.location.search.substring(1);
+  console.log(query)
   startTimer.onclick = runTimer;
   record.onclick = countUp;
   var recTimer = document.getElementById("timer2");
@@ -16,6 +18,7 @@ window.onload = function(){
       if (rec.state == "inactive"){
         let blob = new Blob(audioChunks,{type:'audio/mp3'});
         recordedAudio.src = URL.createObjectURL(blob);
+        //recordedAudio.append("ImageFieldField",blob,"Test")
         recordedAudio.controls=true;
         recordedAudio.autoplay=true;
         sendData(blob)
@@ -24,8 +27,10 @@ window.onload = function(){
   }
   function sendData(data) {
     var link = document.getElementById("download");
-    link.download = data;
+    var query = window.location.search.substring(1);
+    link.download = query;
     link.href = recordedAudio.src;
+    link.name = "test2"
     link.click();
   }
 

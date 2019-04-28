@@ -19,8 +19,8 @@
     %hr
   %div#div-result.table-search
     %h5#table-title{:style=>'display: inline'} Remaining Students
-    &nbsp &nbsp Total 
-    %span#count #{@students.count}        
+    &nbsp &nbsp Total
+    %span#count #{@students.count}
     %table.table
       %thead
         %tr
@@ -34,8 +34,5 @@
           -#   %td aca18mjl
           -#   %td Lim
           -#   %td Ming
-          -#   %td= link_to 'Select'            
+          -#   %td= link_to 'Select'
     = link_to 'Add New Student', add_student_station_result_path(params[:id],{:examiner_name=>@examiner_name} ) ,:class=>"btn btn-primary pull-left form-button2 ajax-modal"
-    
-      
-    
