@@ -69,7 +69,6 @@ class StationResultsController < ApplicationController
 
   # GET /results/EX0099/s1
   def student_result
-    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     @student = Student.find(params[:username])
     @exam = Exam.find(params[:exam_code])
     @station_results = StationResult.where( username: @student.username, station_id: @exam.stations.pluck(:id) )
@@ -90,7 +89,8 @@ class StationResultsController < ApplicationController
   # PATCH/PUT /station_results/1
   def update
     if @station_result.update(station_result_params)
-      redirect_to @station_result, notice: 'Station result was successfully updated.'
+      redirect_to edit_station_result_url, notice: 'Station result was successfully updated.'
+      #redirect_to student_result_url(exam_code: @station_result.station.exam.exam_code, username: @station_result.username), notice: 'Station result was successfully updated.'
     else
       render :edit
     end
@@ -123,6 +123,6 @@ class StationResultsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def station_result_params
       params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        :criteria_result_attributes => [:id, :criteria_mark, :answer, :station_result_id])
+        :criteria_results_attributes => [:id, :criteria_mark, :answer, :station_result_id, :criterium_id])
     end
 end

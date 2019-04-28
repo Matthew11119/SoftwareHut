@@ -3,11 +3,19 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
+  .form-inputs.form-section
     = f.input :examiner_name
     = f.input :mark
-    = f.input :feedback
-    = f.input :audio
+    = f.input :feedback, :as => "text"
+    = f.input :audio, :label => "Audio Feedback File-Name"
+  
+  = f.simple_fields_for :criteria_results, @station_result.criteria_results do |c|
+    .form-section.form-vertical
+      .form-group
+        %h4= Criterium.find(c.object.criterium_id).criteria_description
+      .form-group.form-inline
+        = c.input :answer, :collection => @station_result.station.answers, :label_method => :text, :value_method => :id,:include_blank => false
+        = c.input :feedback
 
   .form-actions
     = f.button :submit

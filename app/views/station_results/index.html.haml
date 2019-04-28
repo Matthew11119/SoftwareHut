@@ -31,7 +31,7 @@
             %thead
               %tr
                 %th
-                - station_result.station.answers.each do |answer|
+                - station_result.station.answers.order(:score).reverse.each do |answer|
                   %th= answer.text
                 %th Feedback
             %tbody
@@ -39,8 +39,11 @@
                 %tr
                   %td= criterium.criteria_description
                   - station_result.station.answers.each do |answer|
-                    %td 
-                  %td
+                    - if station_result.criteria_results.where(criterium_id: criterium.id).first.answer == answer.id
+                      %td.centred X
+                    -else
+                      %td
+                  %td= station_result.criteria_results.where(criterium_id: criterium.id).first.feedback
                 
   %br
 %br

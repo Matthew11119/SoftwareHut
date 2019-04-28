@@ -8,9 +8,11 @@
 #  feedback          :text
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  criterium_id      :integer
 #  station_result_id :integer
 #
 
 class CriteriaResult < ApplicationRecord
   belongs_to :station_results, :foreign_key=>:station_result_id
+  has_one :criteria, :foreign_key=>:criterium_id
 end

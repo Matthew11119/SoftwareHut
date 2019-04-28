@@ -1,7 +1,7 @@
 %h1 Editing station_result
 
+= link_to 'Back', student_result_url(exam_code: @station_result.station.exam.exam_code, username: @station_result.username), class: "btn btn-default"
+%br
+%br
 = render 'form'
-
-= link_to 'Show', @station_result
-\|
-= link_to 'Back', station_results_path
+%br

@@ -94,10 +94,10 @@ Station.find_or_create_by(id: 100, station_name: 'Station 1', pass_mark: 3, exam
 Answer.find_or_create_by(id: 100, text: 'Fully met',     score: 2, station_id: 100)
 Answer.find_or_create_by(id: 101, text: 'Partially met', score: 1, station_id: 100)
 Answer.find_or_create_by(id: 102, text: 'Not met',       score: 0, station_id: 100)
-Criterium.find_or_create_by(number: 1, criteria_description: "Example criteria 1", criteria_critical: false, station_id: 100)
-Criterium.find_or_create_by(number: 2, criteria_description: "Example criteria 2", criteria_critical: false, station_id: 100)
-Criterium.find_or_create_by(number: 3, criteria_description: "Example criteria 3", criteria_critical: true,  station_id: 100)
-Criterium.find_or_create_by(number: 4, criteria_description: "Example criteria 4", criteria_critical: false, station_id: 100)
+Criterium.find_or_create_by(id: 100, number: 1, criteria_description: "Example criteria 1", criteria_critical: false, station_id: 100)
+Criterium.find_or_create_by(id: 101, number: 2, criteria_description: "Example criteria 2", criteria_critical: false, station_id: 100)
+Criterium.find_or_create_by(id: 102, number: 3, criteria_description: "Example criteria 3", criteria_critical: true,  station_id: 100)
+Criterium.find_or_create_by(id: 103, number: 4, criteria_description: "Example criteria 4", criteria_critical: false, station_id: 100)
 
 
 
@@ -117,7 +117,7 @@ exam.students.find_or_create_by(forename: "Student", surname: "6", username: "s6
 #Results
 StationResult.find_or_create_by(id: 1, audio: nil, examiner_name: "Jeff", feedback: "Feedback stuff here", mark: 5, username: "s1", station_id: 100)
 s = StationResult.find(1)
-s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1)
-s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 2)
-s.criteria_results.find_or_create_by(answer: 101, criteria_mark: 1, feedback: "Generic Feedback", station_result_id: 3)
-s.criteria_results.find_or_create_by(answer: 102, criteria_mark: 0, feedback: "Generic Feedback", station_result_id: 4)
+s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 100)
+s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 101)
+s.criteria_results.find_or_create_by(answer: 101, criteria_mark: 1, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 102)
+s.criteria_results.find_or_create_by(answer: 102, criteria_mark: 0, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 103)
