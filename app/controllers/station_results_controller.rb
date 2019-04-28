@@ -176,13 +176,14 @@ class StationResultsController < ApplicationController
     end
 
     def calculate_mark
-      if @station_result.mark == 2
+      if @station_result.mark.to_i == 2
         @station_result.write_attribute(:mark, @station.pass_mark)
-      elsif @station_result.mark = 0
+      elsif @station_result.mark.to_i == 0
         @station_result.write_attribute(:mark, 0)
       else
         subtotal = 0
         @criteria_result.each do |i|
+          puts i.criteria_mark
           subtotal += i.criteria_mark
         end
         @station_result.write_attribute(:mark, subtotal)
