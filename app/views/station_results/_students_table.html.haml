@@ -1,6 +1,22 @@
+-# - if @students.nil?
+-#     %tr
+-#         %td 
+-#         %td 
+-#         %td 
+-#         %td 
+
+-# - else  
 - @students.each do |student|
     %tr 
         %td= student.username
-        %td= student.sn
-        %td= student.givenname
+        %td= student.surname
+        %td= student.forename
         %td= link_to 'Select'
+
+-# %tr
+-#     %td 1
+-#     %td 2
+-#     %td 3
+-#     %td 4
+
+
