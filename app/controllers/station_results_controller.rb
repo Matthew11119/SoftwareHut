@@ -107,7 +107,7 @@ class StationResultsController < ApplicationController
       i.write_attribute(:criteria_mark, updated_criteria.criteria_mark)
     end
     calculate_mark
-    audio_ref = "Downloads/station_id" + @station_result.station_id.to_s + "&username=" + @station_result.username.to_s
+    audio_ref = "Downloads/examiner_name=" + @examiner_name.to_s + "&station_id=" + @station_result.station_id.to_s + "&username=" + @station_result.username.to_s
     @station_result.write_attribute(:audio, audio_ref)
     @student = Student.where(:username=>params[:student_id]).first
     if @station_result.save
