@@ -60,13 +60,10 @@ class StationResultsController < ApplicationController
   # GET /station_results/new
   def new
     #set_instance_variable
-    puts params[:format]
-    puts params.inspect
-    puts @stations.inspect
     @student = Student.where(username: params[:username]).first
-    puts @student.inspect
     @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
     @station = Station.where(:id=>params[:station_id]).first
+    @answers = Answer.where(:station_id=>params[:station_id])
     @station_result = StationResult.new
     @station_result.criteria_results.build
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
@@ -87,7 +84,6 @@ class StationResultsController < ApplicationController
 
   # POST /station_results
   def create
-    puts "THIS SHOULD CREATE"
     @station_result = StationResult.new(post_params)
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
@@ -99,9 +95,7 @@ class StationResultsController < ApplicationController
     end
     calculate_mark
     @student = Student.where(:username=>params[:student_id]).first
-    puts @station_result.student_id
     if @station_result.save
-      puts "REDIRECT"
       redirect_to completed_students_station_result_path(@station_result.station_id), notice: 'Station result was successfully created.'
     else
       render :new
@@ -157,25 +151,23 @@ class StationResultsController < ApplicationController
     end
 
     def calculate_crit_mark(crit)
-
-      puts crit.inspect
-      if crit.criteria_mark == 1
-        if crit.answer_before_type_cast == "Not Met"
+      if crit.answer_before_type_cast == nil
+        if crit.criteria_mark == 1
           crit.criteria_mark = -1000
         else
-          crit.criteria_mark = 2
+          crit.criteria_mark = 0
         end
       else
-        newAnswer = Answer.select("score").where("text = ?", crit.answer_before_type_cast).first
-        puts newAnswer.inspect
-        puts crit.answer_before_type_cast
-        crit.criteria_mark = newAnswer.score
-        if crit.answer_before_type_cast == "Fully met"
-          crit.answer = 0
-        elsif crit.answer_before_type_cast == "Partially met"
-          crit.answer = 1
+        newAnswer = Answer.select("score","id").where("text = ?", crit.answer_before_type_cast).first
+        crit.answer = newAnswer.id
+        if crit.criteria_mark == 1
+          if crit.answer_before_type_cast == "Not Met"
+            crit.criteria_mark = -1000
+          else
+            crit.criteria_mark = 2
+          end
         else
-          crit.answer = 2
+          crit.criteria_mark = newAnswer.score
         end
       end
       return crit

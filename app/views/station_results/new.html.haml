@@ -40,15 +40,12 @@
               - if !osce.criteria_critical
                 = c.hidden_field :criteria_mark, value: 1
               .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
-                %label.btn.btn-primary
-                  = c.radio_button :answer, 'Fully met'
-                  Fully Met
-                %label.btn.btn-primary
-                  = c.radio_button :answer, 'Partially met'
-                  Partially Met
-                %label.btn.btn-primary
-                  = c.radio_button :answer, 'Not met'
-                  Not Met
+                - @answers.each do |answerCrit|
+                  %label.btn.btn-primary
+                    = c.radio_button :answer, answerCrit.text
+                    = answerCrit.text
+
+
               %h5 Feedback
               = c.input :feedback, as: :text, :input_html => {:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Feedback"}, label: false
       .btn-group{"aria-label" => "Basic example", :role => "group"}
