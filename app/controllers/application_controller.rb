@@ -28,7 +28,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound do
     render template: 'errors/error_404', status: 404
   end
-  rescue_from CanCan::AccessDenied do
+  rescue_from CanCan::AccessDenied do |exception|
+    @exception = exception
     render template: 'errors/error_403', status: 403
   end
 

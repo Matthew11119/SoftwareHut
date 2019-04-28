@@ -37,9 +37,9 @@ Rails.application.routes.draw do
   resources :answers, only: [:new,:edit,:update,:destroy]
   post 'answers/:id', to: 'answers#create'
 
-  get 'results', to: 'exams#results', as: 'results'
-  get 'exams/:id/results', to: 'exams#exam_results', as: 'exam_results'
-  get 'exams/:exam_code/results/:username', to: 'station_results#student_result', as: 'student_result'
+  get 'results', to: 'exams#results', as: :results
+  get 'results/:exam_code', to: 'exams#exam_results', as: :exam_results
+  get 'results/:exam_code/:username', to: 'station_results#student_result', as: :student_result
   resources :station_results, only: [:show, :new, :edit, :update, :destroy]
   resources :criteria_results, only: [:new, :edit, :update, :destroy]
 

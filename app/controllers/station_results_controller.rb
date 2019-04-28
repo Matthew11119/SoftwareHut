@@ -1,5 +1,5 @@
 class StationResultsController < ApplicationController
-  before_action :set_station_result, only: [:edit, :update, :destroy]
+  before_action :set_station_result, only: [:index, :edit, :update, :destroy]
   authorize_resource
   # GET /station_results
   def index
@@ -67,11 +67,12 @@ class StationResultsController < ApplicationController
   def edit
   end
 
-  # GET /exams/results/EX0099/students/1
+  # GET /results/EX0099/s1
   def student_result
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     @student = Student.find(params[:username])
     @exam = Exam.find(params[:exam_code])
-    @station_results = StationResult.where( username: @student.username, station_id: @exam.stations.collect(&:id) )
+    @station_results = StationResult.where( username: @student.username, station_id: @exam.stations.pluck(:id) )
     render :index
   end
 

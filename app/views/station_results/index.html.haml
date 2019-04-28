@@ -3,8 +3,9 @@
 - @station_results.each do |station_result|
   %div.form-section
     %h4= "Station: " + Station.find(station_result.id).station_name.to_s
-    = link_to 'Edit', edit_station_result_path(station_result), class: 'btn btn-default'
-    = link_to 'Delete', station_result, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
+    - if can?(:edit, StationResult)
+      = link_to 'Edit', edit_station_result_path(station_result), class: 'btn btn-default'
+      = link_to 'Delete', station_result, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
     %table.table
       %thead
         %tr

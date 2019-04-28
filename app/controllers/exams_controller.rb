@@ -43,7 +43,7 @@ class ExamsController < ApplicationController
   end
 
   def exam_results
-    @exam = Exam.find(params[:id])
+    @exam = Exam.find(params[:exam_code])
     @students = @exam.students
     render :index_student_results
   end
