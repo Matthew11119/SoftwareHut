@@ -14,7 +14,7 @@
 class Exam < ApplicationRecord
   #has_and_belongs_to_many :students
   has_many :exams_students
-  has_many :students, :through => :exams_students  
+  has_many :students, :through => :exams_students
 
   has_many :stations, inverse_of: :exam
 
@@ -29,8 +29,11 @@ class Exam < ApplicationRecord
     students = []
     columns = [:surname, :forename, :username, :regno]
     CSV.foreach(file.path, headers: true) do |row|
-      if !Student.exists?(:username =>row[2])
+      if !Student.exists?(:username =>row['username'])
         self.students << Student.new(row.to_hash)
+
+      elsif (!self.students.exists?(:username =>row['username']))
+        self.students << Student.find(row['username'])
       end
     end
     Student.import(columns, students)

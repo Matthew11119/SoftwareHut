@@ -19,7 +19,7 @@ class Student < ApplicationRecord
     students = []
     columns = [:surname, :forename, :username, :regno]
     CSV.foreach(file.path, headers: true) do |row|
-      if !Student.exists?(:regno =>row[3])
+      if !Student.exists?(:username =>row['username'])
         students << Student.new(row.to_hash)
       end
     end

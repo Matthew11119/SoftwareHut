@@ -31,7 +31,7 @@ class StudentsController < ApplicationController
   end
 
   def destroy_multiple
-    Student.delete(params[:student_regnos])
+    Student.delete(params[:student_users])
     respond_to do |format|
       format.html { redirect_to students_url, notice: 'Students were successfully deleted' }
       format.json { head :no_content }

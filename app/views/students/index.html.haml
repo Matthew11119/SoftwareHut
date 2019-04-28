@@ -22,8 +22,9 @@
         %td= student.username
         %td= student.regno
         -# %td= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' }
-        %td= check_box_tag "student_regnos[]", student.regno, false, class: 'selectable'
+        %td= check_box_tag "student_users[]", student.username, false, class: 'selectable'
 
+= link_to 'Import or create new students', new_student_path, class: 'ajax-modal'
 
 %h2 Modules
 
