@@ -33,9 +33,9 @@ class StationResultsController < ApplicationController
         @examiner_name = params[:form_homepage][:examiner_name]
         @exams_students.each do |exam_student|          
           cur_stu = StationResult.find_or_create_by(username: exam_student.student_id, station_id: params[:id])
-          if (cur_stu.examiner_name.nil?)
-            cur_stu.update(examiner_name:@examiner_name)
-          end
+          # if (cur_stu.examiner_name.nil?)
+          #   cur_stu.update(examiner_name:@examiner_name)
+          # end
         end
         # StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
       end      
@@ -47,6 +47,7 @@ class StationResultsController < ApplicationController
   # GET /station_results/1/completed_students
   def completed_students
     set_instance_variable
+    @students = StationResult.get_completed_student(params[:id],params[:examiner_name])
   end
 
   # GET /station_results/1/add_student

@@ -17,3 +17,17 @@
                 = f.button :submit, 'Search', class: 'btn btn-primary pull-right form-button ajax-modal'
                 = link_to 'Reset', completed_students_station_result_path(params[:id]), class:'btn pull-right', style:'color:#22A7F0'
     %hr
+    %div#div-result.table-search
+        %h5#table-title{:style=>'display: inline'} Remaining Students
+        &nbsp &nbsp Total 
+        %span#count #{@students.count}    
+        %table.table
+            %thead
+                %tr
+                    %th{:scope=>"col"} Username
+                    %th{:scope=>"col"} Surname
+                    %th{:scope=>"col"} Forename
+                    %th{:scope=>"col"} Action
+            %tbody#students-table
+                = render 'students_table'
+        
