@@ -9,7 +9,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  criterium_id      :integer
-#  station_result_id :integer
+#  station_id        :integer
 #  station_result_id :bigint(8)
 #
 # Indexes

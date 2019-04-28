@@ -2,6 +2,7 @@
 #
 # Table name: exams_students
 #
+#  mark       :integer
 #  exam_id    :string           not null
 #  student_id :string           not null
 #
