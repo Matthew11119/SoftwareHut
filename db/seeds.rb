@@ -20,7 +20,7 @@ UniModule.find_or_create_by(module_code:'COM1001',module_name:'Computer Science 
 UniModule.find_or_create_by(module_code:'COM1002',module_name:'Computer Science 2')
 UniModule.find_or_create_by(module_code:'COM1003',module_name:'Computer Science 3')
 
-Exam.find_or_create_by(date:'2019-04-27', exam_code:'EX0001', module_code:'COM1001', name:'Examination name 01', status:1)
+Exam.find_or_create_by(date:'2019-04-28', exam_code:'EX0001', module_code:'COM1001', name:'Examination name 01', status:1)
 Exam.find_or_create_by(date:'2019-3-20', exam_code:'EX001',  module_code:'COM1001', name:'Examination name 1',  status: 0)
 Exam.find_or_create_by(date:'2019-3-20', exam_code:'EX002',  module_code:'COM1002', name:'Examination name 2',  status: 1)
 Exam.find_or_create_by(date:'2019-3-21', exam_code:'EX003',  module_code:'COM1003', name:'Examination name 3',  status: 0)
@@ -103,15 +103,30 @@ Criterium.find_or_create_by(id: 103, number: 4, criteria_description: "Example c
 
 
 #Students
-exam = Exam.find("EX0099")
-exam.students.find_or_create_by(forename: "Student", surname: "1", username: "s1", regno: 000001)
-exam.students.find_or_create_by(forename: "Student", surname: "2", username: "s2", regno: 000002)
-exam.students.find_or_create_by(forename: "Student", surname: "3", username: "s3", regno: 000003)
-exam.students.find_or_create_by(forename: "Student", surname: "4", username: "s4", regno: 000004)
-exam.students.find_or_create_by(forename: "Student", surname: "5", username: "s5", regno: 000005)
-exam.students.find_or_create_by(forename: "Student", surname: "6", username: "s6", regno: 000006)
+# exam = Exam.find("EX0099")
+# exam.students.find_or_create_by(forename: "Student", surname: "1", username: "s1", regno: 000001)
+# exam.students.find_or_create_by(forename: "Student", surname: "2", username: "s2", regno: 000002)
+# exam.students.find_or_create_by(forename: "Student", surname: "3", username: "s3", regno: 000003)
+# exam.students.find_or_create_by(forename: "Student", surname: "4", username: "s4", regno: 000004)
+# exam.students.find_or_create_by(forename: "Student", surname: "5", username: "s5", regno: 000005)
+# exam.students.find_or_create_by(forename: "Student", surname: "6", username: "s6", regno: 000006)
 
+# exam2 = Exam.find("EX0001")
+# exam2.students.find_or_create_by(forename: "Student 2", surname: "11", username: "ss1")
+# exam2.students.find_or_create_by(forename: "Student 2", surname: "22", username: "ss2")
+# exam2.students.find_or_create_by(forename: "Student 2", surname: "33", username: "ss3")
+# exam2.students.find_or_create_by(forename: "Student 2", surname: "44", username: "ss4")
+# exam2.students.find_or_create_by(forename: "Student 2", surname: "55", username: "ss5")
 
+Student.find_or_create_by(username:'aca18mjl')
+Student.find_or_create_by(username:'cia18sjc')
+Student.find_or_create_by(username:'aca17zsc')
+Student.find_or_create_by(username:'aca17scf')
+
+ExamsStudent.find_or_create_by(student_id: 'aca18mjl', exam_id:'EX0001')
+ExamsStudent.find_or_create_by(student_id: 'cia18sjc', exam_id:'EX0001')
+ExamsStudent.find_or_create_by(student_id: 'aca17zsc', exam_id:'EX0001')
+ExamsStudent.find_or_create_by(student_id: 'aca17scf', exam_id:'EX0001')
 
 
 #Results

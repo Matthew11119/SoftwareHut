@@ -8,14 +8,6 @@ window.onload = function(){
   startTimer.onclick = runTimer;
   record.onclick = countUp;
   var recTimer = document.getElementById("timer2");
-  //recTimer.onclick = countUp;
-  var resBut = document.getElementById("resultButton");
-  resBut.onclick = changePass;
-
-
-
-
-
 
   function handlerFunction(stream) {
     rec = new MediaRecorder(stream);
@@ -116,15 +108,4 @@ function stopRec(intValue){
   rec.stop();
   document.getElementById("timer2").innerHTML = "Recording finished";
   document.getElementById("record").onclick = countUp;
-}
-
-function changePass()
-{
-    if (this.value=="Pass"){
-      this.value = "Fail";
-      document.getElementById("resultButton").innerHTML = "Fail";
-    } else {
-      this.value = "Pass";
-      document.getElementById("resultButton").innerHTML = "Pass";
-    }
 }
