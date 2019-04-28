@@ -10,9 +10,9 @@
             %td #{@new_student.username} 
             %td #{@new_student.givenname} #{@new_student.sn} 
             %td #{@new_student.email}
-= simple_form_for :hid_stu_info, url:station_result_path(params[:id]), remote: true do |f|
+= simple_form_for :hid_stu_info, url:station_result_path(params[:id]), remote: :true do |f|
     = f.input :username, :as => :hidden, :input_html => {:value => @new_student.username}
     = f.input :forename, :as => :hidden, :input_html => {:value => @new_student.givenname}
     = f.input :surname, :as => :hidden, :input_html => {:value => @new_student.givenname}
-    = f.input :examiner_name, :as => :hidden, :input_html => {:value => params[:show][:examiner_name]}
+    = f.input :examiner_name, :as => :hidden, :input_html => {:value => @examiner_name}
     = f.button :submit, 'Add student' ,class: 'btn form-button2'

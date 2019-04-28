@@ -23,12 +23,11 @@ class StationResultsController < ApplicationController
     if can?(:manage, Exam)
       @station_result = StationResult.find(params[:id])
     elsif can?(:edit, CriteriaResult) 
-      set_instance_variable      
+      set_instance_variable            
       if (defined?params[:form_homepage][:examiner_name])
-        @examiner_name = params[:form_homepage][:examiner_name]
+        set_examiner_name(params[:form_homepage][:examiner_name])     
         StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
-      end
-      
+      end      
       @students = StationResult.get_remaining_student(params[:id])
     end
     
@@ -60,10 +59,10 @@ class StationResultsController < ApplicationController
     Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])
     # ExamsStudent.find_or_create_by(student_id:params[:hid_stu_infp][:username], exam_id:'EX0001')
     ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])        
-    if (defined?params[:form_homepage][:examiner_name])
-      @examiner_name = params[:form_homepage][:examiner_name]
-      StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
-    end    
+    # if (defined?params[:form_homepage][:examiner_name])
+          
+    StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
+    # end    
     @students = StationResult.get_remaining_student(params[:id])
     render 'new_student_success'    
   end
@@ -124,10 +123,15 @@ class StationResultsController < ApplicationController
       @station_result = StationResult.find(params[:id])
     end
 
-    # For EXAMINER
+    # For EXAMINER, variables for view
     def set_instance_variable
       @exam_show = Exam.where(:exam_code=>Station.find(params[:id]).exam_id)
-      @stations = Station.where(:id=>params[:id])   
+      @stations = Station.where(:id=>params[:id])  
+      @examiner_name 
+    end
+
+    def set_examiner_name(name)
+      @examiner_name = name
     end
 
     # Only allow a trusted parameter "white list" through.
