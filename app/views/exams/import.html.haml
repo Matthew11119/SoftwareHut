@@ -3,11 +3,13 @@
     .modal-header
       %button.close{ type: :button, data: { dismiss: :modal } }
         %span &times;
-      %h2.modal-title Import from CSV 
+      %h3= @exam.exam_code
+      %h3.modal-title Import students from CSV
     .modal-body
-      = form_tag student_import_exams_path, multipart: true do
+      = form_tag student_import_exams_path(@exam.exam_code), multipart: true do
         .pull-left
           = file_field_tag :file
+          = hidden_field_tag "exam_code", @exam.exam_code
         .pull-right
           = submit_tag "Upload Students"
       %br

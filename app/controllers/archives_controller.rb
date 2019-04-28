@@ -1,9 +1,11 @@
 class ArchivesController < ApplicationController
-  before_action :set_archive, only: [:show, :edit, :update, :destroy]
-  authorize_resource
+  before_action :set_archive, only: [:read, :edit, :update, :destroy]
+  skip_load_and_authorize_resource
+  
   # GET /archives
   def index
     @archives = Exam.archive
+    render :index
   end
 
   # GET /archives/1/edit
@@ -28,7 +30,7 @@ class ArchivesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_archive
-      @archive = Archive.find(params[:id])
+      @archive = Exam.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

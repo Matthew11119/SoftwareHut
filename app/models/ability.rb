@@ -10,9 +10,9 @@ class Ability
       can [:read, :edit, :update, :create], [CriteriaResult]
       can [:ready_screen, :show, :completed_students, :add_student, :search_new_student, :new_student, :new, :create], [StationResult]
       can [:index, :show], [Exam]
+      can [:read, :results, :exam_results, :student_result], [StationResult, CriteriaResult, Exam, Station, Criterium, Answer]
     elsif user.user_type == "Moderator"
-      can [:read], [StationResult, CriteriaResult]
-      can [:index], [Exam]
+      can [:read, :student_result], [StationResult, CriteriaResult, Exam, Station, Criterium, Answer]
     end
 
   end

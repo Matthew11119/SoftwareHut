@@ -1,4 +1,27 @@
-= render 'form'
+%div
+  .left-section
+    = render 'form'
+  .right-section.form-section
+
+    %h3 Students
+    %table.table
+      %thead
+        %tr
+          %th Name
+          %th Username
+          %th Registration Number
+          %th
+          %th
+      %tbody
+        - @exam.students.each do |student|
+          %tr
+            %td= student.forename.to_s+" "+student.surname.to_s
+            %td= student.username
+            %td= student.regno
+            %td= link_to 'Edit', edit_student_path(student.username)
+            %td= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' }
+    = link_to 'Import or create new students', exam_edit_import_path(@exam.exam_code), class: 'ajax-modal'
+
 %br
 
 .form-section

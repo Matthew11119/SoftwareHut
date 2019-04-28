@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_152030) do
+ActiveRecord::Schema.define(version: 2019_04_28_141429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,10 +35,12 @@ ActiveRecord::Schema.define(version: 2019_04_27_152030) do
   create_table "criteria_results", force: :cascade do |t|
     t.integer "criteria_mark"
     t.integer "answer"
+    t.integer "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "feedback"
     t.bigint "station_result_id"
+    t.integer "criterium_id"
     t.index ["station_result_id"], name: "index_criteria_results_on_station_result_id"
   end
 

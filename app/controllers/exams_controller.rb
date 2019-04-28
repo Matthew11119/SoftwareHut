@@ -37,13 +37,18 @@ class ExamsController < ApplicationController
     index_moderator
   end
   
+  def import
+    @exam = Exam.find(params[:id])
+  end
+  
   def student_import
-    Exam.student_import(params[:file])
-    #redirect_to students_path, notice: "Students added successfully"
+    @exam = Exam.find(params[:exam_code])
+    @exam.student_import(params[:file])
+    redirect_to edit_exam_path(@exam), notice: "Students added successfully"
   end
 
   def exam_results
-    @exam = Exam.find(params[:id])
+    @exam = Exam.find(params[:exam_code])
     @students = @exam.students
     render :index_student_results
   end
