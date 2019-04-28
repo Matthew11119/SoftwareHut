@@ -42,10 +42,11 @@ Rails.application.routes.draw do
   post 'answers/:id', to: 'answers#create'
 
   get 'results', to: 'exams#results', as: 'results'
-  get 'exams/results/:id', to: 'exams#exam_results', as: 'exam_results'
+  get 'exams/:id/results', to: 'exams#exam_results', as: 'exam_results'
+  get 'exams/:exam_code/results/:username', to: 'station_results#student_result', as: 'student_result'
   resources :station_results, only: [:show, :new, :edit, :update, :destroy]
-  get 'exams/results/:exam_code/students/:student_regno', to: 'station_results#student_result', as: 'student_result'
   resources :criteria_results, only: [:new, :edit, :update, :destroy]
+
 
   root to: "pages#home"
   devise_for :users

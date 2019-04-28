@@ -16,4 +16,4 @@
         %td= student.forename
         %td= student.username
         %td= student.regno
-        %td= link_to 'Details', student_result_url(student_regno: student.regno, exam_code: @exam.exam_code)
+        %td= link_to 'Details', student_result_url(username: student.username, exam_code: @exam.exam_code)

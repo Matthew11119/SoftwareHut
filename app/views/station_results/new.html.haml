@@ -7,7 +7,7 @@
   .form-inputs
 
     =f.hidden_field :station_id, value: @station.id
-    =f.hidden_field :student_id, value: @student.username
+    =f.hidden_field :username, value: @student.username
     !!!
     %head
       = javascript_include_tag 'recordFile'

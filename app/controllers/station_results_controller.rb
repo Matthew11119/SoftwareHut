@@ -26,7 +26,9 @@ class StationResultsController < ApplicationController
       set_instance_variable
       if (defined?params[:form_homepage][:examiner_name])
         @examiner_name = params[:form_homepage][:examiner_name]
+        StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
       end
+      @students = StationResult.get_remaining_student(params[:id])
     end
 
   end
@@ -38,13 +40,16 @@ class StationResultsController < ApplicationController
 
   # GET /station_results/1/add_student
   def add_student
+    @examiner_name = params[:examiner_name]
     render layout:false
+
   end
 
   # POST /station_results/1/search_new_student
   def search_new_student
     @new_student = User.new(username: params[:new_student_form][:username])
     @new_student.get_info_from_ldap
+    @examiner_name = params[:new_student_form][:examiner_name]
     if !(@new_student.sn.nil?)
       render 'search_new_student'
     else
@@ -54,6 +59,12 @@ class StationResultsController < ApplicationController
 
   # POST /station_results/1
   def new_student
+    Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])
+    # ExamsStudent.find_or_create_by(student_id:params[:hid_stu_infp][:username], exam_id:'EX0001')
+    ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])
+    @examiner_name = params["hid_stu_info"][:examiner_name]
+    StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
+    @students = StationResult.get_remaining_student(params[:id])
     render 'new_student_success'
   end
 
@@ -77,9 +88,10 @@ class StationResultsController < ApplicationController
 
   # GET /exams/results/EX0099/students/1
   def student_result
-    @student = Student.find(params[:regno])
+    @student = Student.find(params[:username])
     @exam = Exam.find(params[:exam_code])
-
+    @station_results = StationResult.where( username: @student.username, station_id: @exam.stations.collect(&:id) )
+    render :index
   end
 
   # POST /station_results
@@ -94,11 +106,11 @@ class StationResultsController < ApplicationController
       i.write_attribute(:criteria_mark, updated_criteria.criteria_mark)
     end
     calculate_mark
-    audio_ref = "Downloads/station_id" + @station_result.station_id.to_s + "&username=" + @station_result.student_id.to_s
+    audio_ref = "Downloads/station_id" + @station_result.station_id.to_s + "&username=" + @station_result.username.to_s
     @station_result.write_attribute(:audio, audio_ref)
     @student = Student.where(:username=>params[:student_id]).first
     if @station_result.save
-      redirect_to completed_students_station_result_path(@station_result.station_id), notice: 'Station result was successfully created.'
+      redirect_to station_result_path(@station_result.station_id), notice: 'Station result was successfully created.'
     else
       render :new
     end
@@ -131,20 +143,29 @@ class StationResultsController < ApplicationController
       @station_result = StationResult.find(params[:id])
     end
 
-    # For EXAMINER
+    # For EXAMINER, variables for view
     def set_instance_variable
       @exam_show = Exam.where(:exam_code=>Station.find(params[:id]).exam_id)
       @stations = Station.where(:id=>params[:id])
+      @examiner_name = ''
+    end
+
+    def get_examiner
+      @examiner_name
+    end
+
+    def set_examiner_name(name)
+      @examiner_name = name
     end
 
     # Only allow a trusted parameter "white list" through.
     def station_result_params
       params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        :criteria_result_attributes => [:id, :criteria_feedback_id, :criteria_mark, :answer, :station_id])
+        :criteria_result_attributes => [:id, :criteria_mark, :answer, :station_result_id])
     end
 
     def post_params
-      params.require(:station_result).permit([:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
+      params.require(:station_result).permit([:id, :station_id, :username, :examiner_name, :mark, :feedback, :audio,
         {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback]}])
     end
 

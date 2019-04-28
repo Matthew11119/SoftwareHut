@@ -1,33 +1,45 @@
-%h1 Listing station_results
+%h1= @exam.name.to_s + " results for " + @student.forename.to_s + " " + @student.surname.to_s
 
-%table.table.table-hover
-  %thead
-    %tr
-      %th Result
-      %th Station
-      %th Student
-      %th Examiner name
-      %th Mark
-      %th Feedback
-      %th Audio
-      %th
-      %th
-      %th
+- @station_results.each do |station_result|
+  %div.form-section
+    %h4= "Station: " + Station.find(station_result.id).station_name.to_s
+    = link_to 'Edit', edit_station_result_path(station_result), class: 'btn btn-default'
+    = link_to 'Delete', station_result, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
+    %table.table
+      %thead
+        %tr
+          %th Passed
+          %th Mark
+          %th Pass Mark
+          %th Examiner
+          %th Feedback
+      %tbody
+        %tr
+          - if station_result.mark >= station_result.station.pass_mark
+            %td Pass
+          - else
+            %td Fail
+          %td= station_result.mark.to_s
+          %td= station_result.station.pass_mark.to_s
+          %td= station_result.examiner_name
+          %td= station_result.feedback
+          
 
-  %tbody
-    - @station_results.each do |station_result|
-      %tr
-        %td= station_result.id
-        %td= station_result.station_id
-        %td= station_result.student_id
-        %td= station_result.examiner_name
-        %td= station_result.mark
-        %td= station_result.feedback
-        %td= station_result.audio
-        %td= link_to 'Show', station_result
-        %td= link_to 'Edit', edit_station_result_path(station_result)
-        %td= link_to 'Destroy', station_result, method: :delete, data: { confirm: 'Are you sure?' }
-
+          %br
+          %table.table.table-bordered
+            %thead
+              %tr
+                %th
+                - station_result.station.answers.each do |answer|
+                  %th= answer.text
+                %th Feedback
+            %tbody
+              - station_result.station.criteria.each do |criterium|
+                %tr
+                  %td= criterium.criteria_description
+                  - station_result.station.answers.each do |answer|
+                    %td 
+                  %td
+                
+  %br
 %br
-
-= link_to 'New Station result', new_station_result_path
