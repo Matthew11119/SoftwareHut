@@ -9,7 +9,7 @@ class StationResultsController < ApplicationController
   end
 
   # GET /station_results/1
-  def show  
+  def show
     if can?(:manage, Exam)
       @station_result = StationResult.find(params[:id])
     elsif can?(:edit, CriteriaResult)
@@ -24,7 +24,7 @@ class StationResultsController < ApplicationController
         @exams_students.each do |exam_student|
           cur_stu = StationResult.find_or_initialize_by(username: exam_student.student_id, station_id: params[:id])
           cur_stu.save
-        end        
+        end
       end
       @students = StationResult.get_remaining_student(params[:id])
     end
@@ -57,7 +57,7 @@ class StationResultsController < ApplicationController
 
   # POST /station_results/1
   def new_student
-    Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])    
+    Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])
     ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])
     @examiner_name = params["hid_stu_info"][:examiner_name]
     StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
@@ -66,7 +66,7 @@ class StationResultsController < ApplicationController
   end
 
   # GET /station_results/new
-  def new    
+  def new
     @student = Student.where(username: params[:username]).first
     @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
     @station = Station.where(:id=>params[:station_id]).first
@@ -179,6 +179,9 @@ class StationResultsController < ApplicationController
       params.require(:criteria_results).permit(:id, :answer, :criteria_mark, :station_id)
     end
 
+    # Calculates if anything any critical criteria has been marked wrong, if so gives a low mark
+    # Calculates the mark for each criteria
+    # If answer isn't selected, gives 0 marks for that criterium
     def calculate_crit_mark(crit)
       if crit.answer_before_type_cast == nil
         if crit.criteria_mark == 1
@@ -202,6 +205,9 @@ class StationResultsController < ApplicationController
       return crit
     end
 
+    #Calculates the total mark by checking if theres been an override, and if not, adding all criteria marks up
+    #If there is a manual pass, gives enough marks to pass
+    #If there is a fail, gives the student 0 marks for that exam
     def calculate_mark
       if @station_result.mark.to_i == 2
         @station_result.write_attribute(:mark, @station.pass_mark)
