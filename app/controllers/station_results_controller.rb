@@ -9,19 +9,7 @@ class StationResultsController < ApplicationController
   end
 
   # GET /station_results/1
-  def show
-    # @station_result = StationResult.find(params[:id])
-    # respond_to do |format|
-    #   format.html
-    #   format.pdf do
-    #     pdf = Prawn::Document.new
-    #     pdf.text "Hello World"
-    #     send_data pdf.render, filename: "{@station_result.student_id}.pdf",
-    #                           type: "application/pdf",
-    #                           disposition: "inline"
-    #   end
-    # end
-
+  def show  
     if can?(:manage, Exam)
       @station_result = StationResult.find(params[:id])
     elsif can?(:edit, CriteriaResult)
