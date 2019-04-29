@@ -16,6 +16,7 @@ class ExamsStudent < ApplicationRecord
   belongs_to :student
   belongs_to :exam
 
+  # Select students in an exam, returns exams_students record  
   def self.select_students(exam)  
     ExamsStudent.joins(:student).where("exam_id='?'",exam)
   end
