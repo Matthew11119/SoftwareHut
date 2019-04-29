@@ -16,8 +16,7 @@ class ExamsStudent < ApplicationRecord
   belongs_to :student
   belongs_to :exam
 
-  def self.select_students(exam)
-    ex_id = "'"+exam+"'"
-    ExamsStudent.joins(:student).where("exam_id="+ex_id)
+  def self.select_students(exam)  
+    ExamsStudent.joins(:student).where("exam_id='?'",exam)
   end
 end
