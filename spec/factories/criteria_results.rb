@@ -23,7 +23,6 @@
 
 FactoryBot.define do
   factory :criteria_result do
-    criteria_feedback_id { 1 }
     criteria_mark { 1 }
     answer { 1 }
     station_id { 1 }

@@ -18,4 +18,10 @@ require 'rails_helper'
 
 RSpec.describe StationResult, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
+
+  it "creates with FactoryBot" do
+    station_result = FactoryBot.build(:station_result)
+    expect(station_result).to be_valid
+  end
+
 end

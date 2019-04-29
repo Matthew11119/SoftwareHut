@@ -16,9 +16,9 @@
 
 FactoryBot.define do
   factory :station_result do
-    result_id { 1 }
+    id { 1 }
     station_id { 1 }
-    student_id { 1 }
+    #student_id { 1 }
     examiner_name { "MyString" }
     mark { 1 }
     feedback { "MyString" }
