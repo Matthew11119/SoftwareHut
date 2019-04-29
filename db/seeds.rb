@@ -12,7 +12,7 @@ User.find_or_create_by(username: "acc17lm",  user_type:"Admin")
 User.find_or_create_by(username: "aca17zsc", user_type:"Admin")
 User.find_or_create_by(username: "aca17scf", user_type:"Admin")
 User.find_or_create_by(username: "aca17mjs", user_type:"Admin")
-User.find_or_create_by(username: "aca18mjl", user_type:"Moderator")
+User.find_or_create_by(username: "aca18mjl", user_type:"Module Lead")
 
 User.find_or_create_by(username: "nr1jcd", user_type:"Admin")
 
