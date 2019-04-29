@@ -3,6 +3,10 @@
 %table.table.table-hover
   %thead
     %tr
+      %th Exam code
+      %th Exam date
+      %th Exam name
+      %th Module code
       %th
       %th
       %th
@@ -10,8 +14,13 @@
   %tbody
     - @archives.each do |archive|
       %tr
+        %td= archive.exam_code
+        %td= archive.date
+        %td= archive.name
+        %td= archive.module_code
         %td= link_to 'Show', archive
-        %td= link_to 'Edit', edit_archive_path(archive)
+        %td= link_to('Move to Complete', exam_path(archive, :exam => {:status => 2} ), :method => :put)
+        %td= link_to 'Results', exam_results_url(archive.exam_code)
         %td= link_to 'Destroy', archive, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
