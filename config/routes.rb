@@ -21,11 +21,12 @@ Rails.application.routes.draw do
       get 'completed_students'
       get 'add_student'
       post 'search_new_student'
+      post 'search_students'
     end
   end
 
-  get 'station_results/new/:student_id/:station_id', to: 'station_results#new'
-
+  get 'station_results/new/:student_id/:station_id/examiner_name', to: 'station_results#new'
+  post '/station_results/new/:student_id/:station_id/examiner_name', to: 'station_results#new'
   post '/station_results/:id', to: 'station_results#new_student'
   resources :stations, only: [:new,:edit,:update,:destroy, :show] do
     member do
@@ -47,7 +48,7 @@ Rails.application.routes.draw do
   resources :station_results, only: [:show, :new, :edit, :update, :destroy]
   resources :criteria_results, only: [:new, :edit, :update, :destroy]
 
-  
+
   root to: "pages#home"
   devise_for :users
   resources :users

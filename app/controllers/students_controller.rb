@@ -5,6 +5,9 @@ class StudentsController < ApplicationController
   def index
     @students = Student.all
     @modules = UniModule.all
+    respond_to do |format|
+      format.csv { send_data  @students.to_csv }
+    end
   end
 
 
@@ -31,7 +34,7 @@ class StudentsController < ApplicationController
   end
 
   def destroy_multiple
-    Student.delete(params[:student_regnos])
+    Student.delete(params[:student_users])
     respond_to do |format|
       format.html { redirect_to students_url, notice: 'Students were successfully deleted' }
       format.json { head :no_content }

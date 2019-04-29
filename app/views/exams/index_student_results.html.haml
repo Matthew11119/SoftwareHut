@@ -17,3 +17,6 @@
         %td= student.username
         %td= student.regno
         %td= link_to 'Details', student_result_url(username: student.username, exam_code: @exam.exam_code)
+
+%h4
+  = link_to "Download results CSV", exam_results_path(format: 'csv')

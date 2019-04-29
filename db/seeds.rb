@@ -20,7 +20,7 @@ UniModule.find_or_create_by(module_code:'COM1001',module_name:'Computer Science 
 UniModule.find_or_create_by(module_code:'COM1002',module_name:'Computer Science 2')
 UniModule.find_or_create_by(module_code:'COM1003',module_name:'Computer Science 3')
 
-Exam.find_or_create_by(date:'2019-04-28', exam_code:'EX0001', module_code:'COM1001', name:'Examination name 01', status:1)
+Exam.find_or_create_by(date:'2019-04-29', exam_code:'EX0001', module_code:'COM1001', name:'Examination name 01', status:1)
 Exam.find_or_create_by(date:'2019-3-20', exam_code:'EX001',  module_code:'COM1001', name:'Examination name 1',  status: 0)
 Exam.find_or_create_by(date:'2019-3-20', exam_code:'EX002',  module_code:'COM1002', name:'Examination name 2',  status: 1)
 Exam.find_or_create_by(date:'2019-3-21', exam_code:'EX003',  module_code:'COM1003', name:'Examination name 3',  status: 0)
@@ -51,7 +51,7 @@ Exam.find_or_create_by(date:'2019-4-29', exam_code:'EX0027', module_code:'COM100
 Exam.find_or_create_by(date:'2019-5-1',  exam_code:'EX0028', module_code:'COM1003', name:'Examination name 28', status: 0)
 Exam.find_or_create_by(date:'2019-5-2',  exam_code:'EX0029', module_code:'COM1002', name:'Examination name 29', status: 0)
 
-Station.find_or_create_by(station_name: 'Station 1', pass_mark: 3, exam_id: 'EX001')
+Station.find_or_create_by(station_name: 'Station 1', pass_mark: 3, exam_id: 'EX0001')
 Answer.find_or_create_by(text: 'Fully met',     score: 2, station_id: 1)
 Answer.find_or_create_by(text: 'Partially met', score: 1, station_id: 1)
 Answer.find_or_create_by(text: 'Not met',       score: 0, station_id: 1)
@@ -60,7 +60,7 @@ Criterium.find_or_create_by(number: 2, criteria_description: "Example criteria 2
 Criterium.find_or_create_by(number: 3, criteria_description: "Example criteria 3", criteria_critical: true, station_id: 1)
 Criterium.find_or_create_by(number: 4, criteria_description: "Example criteria 4", criteria_critical: false, station_id: 1)
 
-Station.find_or_create_by(station_name: 'Station 2', pass_mark: 1, exam_id: 'EX001')
+Station.find_or_create_by(station_name: 'Station 2', pass_mark: 1, exam_id: 'EX0001')
 Answer.find_or_create_by(text: 'Fully met',     score: 2, station_id: 2)
 Answer.find_or_create_by(text: 'Partially met', score: 1, station_id: 2)
 Answer.find_or_create_by(text: 'Not met',       score: 0, station_id: 2)
@@ -118,15 +118,15 @@ exam.students.find_or_create_by(forename: "Student", surname: "6", username: "s6
 # exam2.students.find_or_create_by(forename: "Student 2", surname: "44", username: "ss4")
 # exam2.students.find_or_create_by(forename: "Student 2", surname: "55", username: "ss5")
 
-#Student.find_or_create_by(username:'aca18mjl')
-#Student.find_or_create_by(username:'cia18sjc')
-#Student.find_or_create_by(username:'aca17zsc')
-#Student.find_or_create_by(username:'aca17scf')
+Student.find_or_create_by(username:'aca18mjl')
+Student.find_or_create_by(username:'cia18sjc')
+Student.find_or_create_by(username:'aca17zsc')
+Student.find_or_create_by(username:'aca17scf')
 
-#ExamsStudent.find_or_create_by(student_id: 'aca18mjl', exam_id:'EX0001')
-#ExamsStudent.find_or_create_by(student_id: 'cia18sjc', exam_id:'EX0001')
-#ExamsStudent.find_or_create_by(student_id: 'aca17zsc', exam_id:'EX0001')
-#ExamsStudent.find_or_create_by(student_id: 'aca17scf', exam_id:'EX0001')
+ExamsStudent.find_or_create_by(student_id: 'aca18mjl', exam_id:'EX0001')
+ExamsStudent.find_or_create_by(student_id: 'cia18sjc', exam_id:'EX0001')
+ExamsStudent.find_or_create_by(student_id: 'aca17zsc', exam_id:'EX0001')
+ExamsStudent.find_or_create_by(student_id: 'aca17scf', exam_id:'EX0001')
 
 
 #Results

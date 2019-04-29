@@ -1,4 +1,4 @@
-= simple_form_for(@station_result) do |f|
+= simple_form_for(@station_result)  do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
   - @station_result.errors.full_messages.each do |message|
@@ -7,6 +7,8 @@
   .form-inputs
 
     =f.hidden_field :station_id, value: @station.id
+    =f.hidden_field :username, value: @student.username
+    =f.hidden_field :examiner_name, value: @examiner_name
 
     !!!
     %head
@@ -23,60 +25,57 @@
           %b
             Station
             =@station.id
-        %h5{:align => "right"}
+        %h5#osceh5{:align => "right"}
           #demo
           %button.btn.btn-secondary#startTimer{:display => "block", :type => "button"}Start timer
-      %p{:align => "center"}
+      %p#oscep{:align => "center"}
 
       =@display_student
 
-      = f.input :examiner_name
+      =@examiner_name
       %fieldset
         %legend
           - @osces.each do |osce|
             %h4
               %b= osce.criteria_description
-            %p{:style => "color:red"}Ask candidate what they are observing form
+            %p#oscep{:style => "color:red"}Ask candidate what they are observing form
             = f.fields_for :criteria_results do |c|
               - if !osce.criteria_critical
                 = c.hidden_field :criteria_mark, value: 1
+              = c.hidden_field :criterium_id, value: osce.id
               .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
-                %label.btn.btn-primary
-                  = c.radio_button :answer, 'Fully met'
-                  Fully Met
-                %label.btn.btn-primary
-                  = c.radio_button :answer, 'Partially met'
-                  Partially Met
-                %label.btn.btn-primary
-                  = c.radio_button :answer, 'Not met'
-                  Not Met
-              %h5 Feedback
+                - @answers.each do |answerCrit|
+                  %label.btn.btn-primary#oscelabel
+                    = c.radio_button :answer, answerCrit.text, :id => "osceRadio"
+                    = answerCrit.text
+
+
+              %h5#osceh5 Feedback
               = c.input :feedback, as: :text, :input_html => {:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Feedback"}, label: false
       .btn-group{"aria-label" => "Basic example", :role => "group"}
         %button.btn.btn-danger#record{:type => "button"}record
         %button.btn.btn-danger#stopRecord{:type => "button"}stop recording
       #timer2
       %a#download
-      %p
-        = f.file_field :audio, id:"#recordedAudio"
+      %p#oscep
         %audio#recordedAudio
-      %p Manual Pass/Fail
+      %p#oscep Manual Pass/Fail
       .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
-        %label.btn.btn-primary
+        %label.btn.btn-primary#oscelabel
           No override
-          = f.radio_button :mark, 1, :input_html => {:checked => 1}
-        %label.btn.btn-primary
+          = f.radio_button :mark, 1, :input_html => {:checked => 1}, :id => "osceRadio"
+        %label.btn.btn-primary#oscelabel
           Pass
-          = f.radio_button :mark, 2
-        %label.btn.btn-primary
+          = f.radio_button :mark, 2, :id => "osceRadio"
+        %label.btn.btn-primary#oscelabel
           Fail
-          = f.radio_button :mark, 0
+          = f.radio_button :mark, 0, :id => "osceRadio"
 
       %h4{:style => "padding-top: 2em"}
         %b Overall Feedback
-      = f.input :feedback, as: :text, :input_html => {:style => "width:150%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Overall Comments"}, label: false
+      = f.input :feedback, as: :text, :input_html => {:style => "width:100%; padding-top: 2em; padding-bottom:1em", :rows => "3", :columns => "100", :placeholder => "Overall Comments"}, label: false
 
   .form-actions
     = f.submit "Submit", :class => "btn float-right", :id => "submitButton"
 
-%p= link_to 'Back', station_results_path
+%p= link_to 'Back', station_results_path, :id => "oscep"

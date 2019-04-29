@@ -19,29 +19,29 @@ class StationResultsController < ApplicationController
     #                           disposition: "inline"
     #   end
     # end
-    
+
     if can?(:manage, Exam)
       @station_result = StationResult.find(params[:id])
-    elsif can?(:edit, CriteriaResult) 
+    elsif can?(:edit, CriteriaResult)
       set_instance_variable
-      @exams_students = ExamsStudent.select_students(Station.find(params[:id]).exam_id) 
+      @exams_students = ExamsStudent.select_students(Station.find(params[:id]).exam_id)
       @exams_students.each do |exam_student|
         Student.from_ldap(exam_student.student_id)
       end
 
-      if (defined?params[:form_homepage][:examiner_name])        
+      if (defined?params[:form_homepage][:examiner_name])
         @examiner_name = params[:form_homepage][:examiner_name]
-        @exams_students.each do |exam_student|          
+        @exams_students.each do |exam_student|
           cur_stu = StationResult.find_or_create_by(username: exam_student.student_id, station_id: params[:id])
           # if (cur_stu.examiner_name.nil?)
           #   cur_stu.update(examiner_name:@examiner_name)
           # end
         end
         # StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
-      end      
+      end
       @students = StationResult.get_remaining_student(params[:id])
     end
-    
+
   end
 
   # GET /station_results/1/completed_students
@@ -54,12 +54,12 @@ class StationResultsController < ApplicationController
   def add_student
     @examiner_name = params[:examiner_name]
     render layout:false
-    
+
   end
 
   # POST /station_results/1/search_new_student
   def search_new_student
-    
+
     @new_student = User.new(username: params[:new_student_form][:username])
     @new_student.get_info_from_ldap
     @examiner_name = params[:new_student_form][:examiner_name]
@@ -75,31 +75,35 @@ class StationResultsController < ApplicationController
     Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])
     # ExamsStudent.find_or_create_by(student_id:params[:hid_stu_infp][:username], exam_id:'EX0001')
     ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])
-    @examiner_name = params["hid_stu_info"][:examiner_name]    
-    StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)    
+    @examiner_name = params["hid_stu_info"][:examiner_name]
+    StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
     @students = StationResult.get_remaining_student(params[:id])
-    render 'new_student_success'    
+    render 'new_student_success'
   end
 
   # GET /station_results/new
-  def new
+  def newb
     #set_instance_variable
-    puts params[:format]
-    puts params.inspect
-    puts @stations.inspect
     @student = Student.where(username: params[:username]).first
-    puts @student.inspect
     @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
     @station = Station.where(:id=>params[:station_id]).first
+    @answers = Answer.where(:station_id=>params[:station_id])
     @station_result = StationResult.new
     @station_result.criteria_results.build
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
     @osces = Criterium.where(station_id:params[:station_id])
     @station_result_id = StationResult.all.count + 1
+    @examiner_name = params[:examiner_name]
   end
 
   # GET /station_results/1/edit
   def edit
+  end
+
+  # GET/station_results/1/search_students
+  def search_students
+    @students = Student.joins("INNER JOIN station_results ON station_results.username = students.username").where("students.username= '"+params[:form_search][:student_id]+"'").limit(1)
+    render 'search_students'
   end
 
   # GET /results/EX0099/s1
@@ -115,19 +119,18 @@ class StationResultsController < ApplicationController
     @station_result = StationResult.new(post_params)
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
-    @station = Station.where(:id=>params[:station_id]).first
+    @station = Station.where(:id => params[:station_id]).first
     @criteria_result.each do |i|
       updated_criteria = calculate_crit_mark(i)
       i.write_attribute(:answer, updated_criteria.answer)
       i.write_attribute(:criteria_mark, updated_criteria.criteria_mark)
     end
     calculate_mark
-    @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
-    @student = Student.where(username: params[:username]).first
-    @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
-    @osces = Criterium.where(station_id:1)
+    audio_ref = "Downloads/examiner_name=" + @examiner_name.to_s + "&station_id=" + @station_result.station_id.to_s + "&username=" + @station_result.username.to_s
+    @station_result.write_attribute(:audio, audio_ref)
+    @student = Student.where(:username=>params[:student_id]).first
     if @station_result.save
-      redirect_to @station_result, notice: 'Station result was successfully created.'
+      redirect_to station_result_path(@station_result.station_id), notice: 'Station result was successfully created.'
     else
       render :new
     end
@@ -164,7 +167,7 @@ class StationResultsController < ApplicationController
     # For EXAMINER, variables for view
     def set_instance_variable
       @exam_show = Exam.where(:exam_code=>Station.find(params[:id]).exam_id)
-      @stations = Station.where(:id=>params[:id])  
+      @stations = Station.where(:id=>params[:id])
       @examiner_name = ''
     end
 
@@ -183,8 +186,8 @@ class StationResultsController < ApplicationController
     end
 
     def post_params
-      params.require(:station_result).permit([:station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback]}])
+      params.require(:station_result).permit([:id, :station_id, :username, :examiner_name, :mark, :feedback, :audio,
+        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback, :criterium_id]}])
     end
 
     def criteria_params
@@ -192,38 +195,37 @@ class StationResultsController < ApplicationController
     end
 
     def calculate_crit_mark(crit)
-
-      puts crit.inspect
-      if crit.criteria_mark == 1
-        if crit.answer_before_type_cast == "Not Met"
+      if crit.answer_before_type_cast == nil
+        if crit.criteria_mark == 1
           crit.criteria_mark = -1000
         else
-          crit.criteria_mark = 2
+          crit.criteria_mark = 0
         end
       else
-        newAnswer = Answer.select("score").where("text = ?", crit.answer_before_type_cast).first
-        puts newAnswer.inspect
-        puts crit.answer_before_type_cast
-        crit.criteria_mark = newAnswer.score
-        if crit.answer_before_type_cast == "Fully met"
-          crit.answer = 0
-        elsif crit.answer_before_type_cast == "Partially met"
-          crit.answer = 1
+        newAnswer = Answer.select("score","id").where("text = ?", crit.answer_before_type_cast).first
+        crit.answer = newAnswer.id
+        if crit.criteria_mark == 1
+          if newAnswer.score = 0
+            crit.criteria_mark = -1000
+          else
+            crit.criteria_mark = newAnswer.score
+          end
         else
-          crit.answer = 2
+          crit.criteria_mark = newAnswer.score
         end
       end
       return crit
     end
 
     def calculate_mark
-      if @station_result.mark == 2
+      if @station_result.mark.to_i == 2
         @station_result.write_attribute(:mark, @station.pass_mark)
-      elsif @station_result.mark = 0
+      elsif @station_result.mark.to_i == 0
         @station_result.write_attribute(:mark, 0)
       else
         subtotal = 0
         @criteria_result.each do |i|
+          puts i.criteria_mark
           subtotal += i.criteria_mark
         end
         @station_result.write_attribute(:mark, subtotal)
