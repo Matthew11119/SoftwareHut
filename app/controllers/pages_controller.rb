@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   include ExamsHelper
   skip_authorization_check
 
+  # Redirects user to their appropriate homepage
   def home
     if can?(:manage, Exam)
       index_module_lead

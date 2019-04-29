@@ -1,17 +1,15 @@
 #Stations Controller controls interactions between the Model and Views for Stations
 
-class StationsController < ApplicationController
-  #before_action :set_station, only: [:show, :edit, :update, :destroy]
-  #before_action :create_station_result_detail 
+class StationsController < ApplicationController  
   authorize_resource
+  
   # GET /stations
   def index 
     @stations = Station.all
   end
 
   # GET /stations/1
-  def show
-    # @station = Station.paginate(:page => params[:station], :per_page => 10)
+  def show    
     @station_show = @station.paginate(:page => params[:station], :per_page => 10)
     @exam_show = Exam.where(:exam_code=>params[:id])
   end
@@ -91,8 +89,5 @@ class StationsController < ApplicationController
     def create_station_result_detail
       @station_result_detail = StationResult.new
     end
-
-    # def detail_params1
-    #   params.require(:stations).permit(:examiner_name)
-    # end
+ 
 end
