@@ -133,3 +133,8 @@ function changePass()
       document.getElementById("resultButton").innerHTML = "Pass";
     }
 }
+
+
+$(function() {
+  $("#selectAll").select_all();
+});
