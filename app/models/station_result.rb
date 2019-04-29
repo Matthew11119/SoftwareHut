@@ -14,7 +14,7 @@
 
 class StationResult < ApplicationRecord
   belongs_to :station, :foreign_key=>:station_id, optional: true
-
+  has_one_attached :audio
   has_many :criteria_results, inverse_of: :station_result #, :foreign_key=>:criteria_result_id
   accepts_nested_attributes_for :criteria_results
 

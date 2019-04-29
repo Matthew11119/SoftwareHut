@@ -82,7 +82,7 @@ class StationResultsController < ApplicationController
   end
 
   # GET /station_results/new
-  def newb
+  def new
     #set_instance_variable
     @student = Student.where(username: params[:username]).first
     @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)

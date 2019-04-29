@@ -59,6 +59,8 @@
       %a#download
       %p#oscep
         %audio#recordedAudio
+      =f.label "Audio to upload (This is stored in downloads under station_id=x&username=x)"
+      =f.file_field :audio
       %p#oscep Manual Pass/Fail
       .btn-group.btn-group-toggle{"data-toggle" => "buttons", :style => "width:100%"}
         %label.btn.btn-primary#oscelabel
