@@ -14,8 +14,8 @@
 FactoryBot.define do
   factory :exam do
     exam_code { "" }
-    exam_date { "" }
-    exam_name { "" }
+    date { "" }
+    name { "" }
     module_code { "" }
   end
 end

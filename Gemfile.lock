@@ -426,6 +426,7 @@ DEPENDENCIES
   rails (= 5.2.1)
   ransack
   responders
+  rspec
   rspec-instafail
   rspec-rails
   sass-rails
@@ -445,4 +446,4 @@ RUBY VERSION
    ruby 2.4.4p296
 
 BUNDLED WITH
-   1.16.2
+   2.0.1

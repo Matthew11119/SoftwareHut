@@ -15,4 +15,11 @@ require 'rails_helper'
 
 RSpec.describe Station, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
+
+  it "creates with exam" do
+    exam = FactoryBot.build(:exam)
+    exam.save
+    station = Station.new
+    expect(station).to be_valid
+  end
 end

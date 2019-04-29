@@ -14,4 +14,11 @@ require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
+
+  it "doesn't create without station" do
+    answer = Answer.new
+    expect(answer).to_not be_valid
+  end
+
+  
 end
