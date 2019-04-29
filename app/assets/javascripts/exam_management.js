@@ -1,3 +1,4 @@
+// JAVASCRIPT for OSCE page
 
 window.onload = function(){
   var timerButton = document.getElementById("startTimer");
