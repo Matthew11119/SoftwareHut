@@ -8,14 +8,14 @@ Rails.application.routes.draw do
   end
   resources :archives, except: [:new, :create]
   resources :templates
-  resources :students do
+  resources :students, except: [:index] do
     collection { post :student_import}
     collection do
       delete 'destroy_multiple'
     end
   end
   resources :uni_modules
-  resources :station_results do
+  resources :station_results do #, except: [:edit] do
     member do
       get 'ready_screen'
       get 'completed_students'
@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get 'results', to: 'exams#results', as: :results
   get 'results/:exam_code', to: 'exams#exam_results', as: :exam_results
   get 'results/:exam_code/:username', to: 'station_results#student_result', as: :student_result
+  #get 'results/:exam_code/:username/:station_id', 'station_results#edit', as: :edit_station_result
   resources :station_results, only: [:show, :new, :edit, :update, :destroy]
   resources :criteria_results, only: [:new, :edit, :update, :destroy]
 

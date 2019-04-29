@@ -4,7 +4,7 @@
   %div.form-section
     %h4= "Station: " + Station.find(station_result.id).station_name.to_s
     - if can?(:edit, StationResult)
-      = link_to 'Edit', edit_station_result_path(station_result), class: 'btn btn-default'
+      = link_to 'Edit', edit_station_result_path(station_result.id), class: 'btn btn-default'
       = link_to 'Delete', station_result, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
     %table.table
       %thead
@@ -16,8 +16,6 @@
           %th Feedback
       %tbody
         %tr
-          - puts "!!!!!!!!"+station_result.mark.to_s
-
           - if station_result.mark >= station_result.station.pass_mark
             %td Pass
           - else

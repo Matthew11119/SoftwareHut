@@ -1,9 +1,10 @@
 class Ability
   include CanCan::Ability
 
+  # authorize permissions to appropriate user
+  # user type Admin, Module Lead, Moderator
   def initialize(user)
-
-    user ||= User.new
+    user ||= User.new  
     if user.user_type == "Admin"
       can :manage, :all
     elsif user.user_type == "Module Lead"
@@ -12,9 +13,7 @@ class Ability
       can [:index, :show], [Exam]
       can [:read, :results, :exam_results, :student_result], [StationResult, CriteriaResult, Exam, Station, Criterium, Answer]
     elsif user.user_type == "Moderator"
-      can [:read,:exam_results,:results, :student_result], [StationResult, CriteriaResult, Exam, Station, Criterium, Answer]
-      
+      can [:read,:exam_results,:results, :student_result], [StationResult, CriteriaResult, Exam, Station, Criterium, Answer]      
     end
-
   end
 end

@@ -1,16 +1,27 @@
 -# frozen_string_literal: true
-= simple_form_for(@station_result) do |f|
+= simple_form_for @station_result do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs.form-section
+
+    = f.input :id, :as=> :hidden
+    = f.input :station_id, :as=> :hidden
+    = f.input :username, :as=> :hidden
+    
     = f.input :examiner_name
     = f.input :mark
     = f.input :feedback, :as => "text"
-    = f.input :audio, :label => "Audio Feedback File-Name"
   
+
   = f.simple_fields_for :criteria_results, @station_result.criteria_results do |c|
-    .form-section.form-vertical
+    .form-inputs.form-section.form-vertical
+      = c.input :id, :as=> :hidden, :value=>c.object.id
+      = c.input :criteria_mark, :as=> :hidden
+      = c.input :criterium_id, :as=> :hidden
+      = c.input :station_id, :as=> :hidden
+      = c.input :station_result_id, :as=> :hidden
+      
       .form-group
         %h4= Criterium.find(c.object.criterium_id).criteria_description
       .form-group.form-inline
