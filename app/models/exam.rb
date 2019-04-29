@@ -23,6 +23,9 @@ class Exam < ApplicationRecord
   scope :templates, -> { where(status: 4).order(:date) }
 
   # CSV import
+  # Params: file - CSV file containing students
+  # No return
+  # Adds students contained within CSV ot the Exam instance
   def student_import(file)
     CSV.foreach(file.path, headers: true) do |row|
       if !Student.exists?(:username =>row['username'])

@@ -1,3 +1,5 @@
+#Answers Controller controls interactions between the user and Views for archived exams
+
 class ArchivesController < ApplicationController
   before_action :set_archive, only: [:read, :edit, :update, :destroy]
   skip_load_and_authorize_resource

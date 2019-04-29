@@ -1,3 +1,5 @@
+#Contains methods to route to the correct pages, depending on user type
+
 class PagesController < ApplicationController
   include ExamsHelper
   skip_authorization_check

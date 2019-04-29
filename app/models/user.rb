@@ -28,6 +28,7 @@
 class User < ApplicationRecord
   include EpiCas::DeviseHelper
 
+  #scopes for the different exam Statuses
   scope :admins,       -> { where(user_type: "Admin") }
   scope :module_leads, -> { where(user_type: "Module Lead") }
   scope :moderators,    -> { where(user_type: "Moderator") }

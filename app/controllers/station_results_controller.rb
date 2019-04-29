@@ -1,3 +1,5 @@
+#Station Results Controller controls interactions between the Model and Views for Station Results
+
 class StationResultsController < ApplicationController
   before_action :set_station_result, only: [:index, :edit, :update, :destroy]
   authorize_resource

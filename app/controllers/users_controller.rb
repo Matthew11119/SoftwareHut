@@ -1,3 +1,5 @@
+#Users Controller controls interactions between the Model and Views for Users
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   authorize_resource

@@ -1,3 +1,5 @@
+#Stations Controller controls interactions between the Model and Views for Stations
+
 class StationsController < ApplicationController
   #before_action :set_station, only: [:show, :edit, :update, :destroy]
   #before_action :create_station_result_detail 
@@ -29,6 +31,7 @@ class StationsController < ApplicationController
   def create
     @station = Station.new
 
+    #created blank, user fills in values in edit view
     @station.station_name = "New Station"
     @station.pass_mark = 0
     @station.exam_id = params[:id]

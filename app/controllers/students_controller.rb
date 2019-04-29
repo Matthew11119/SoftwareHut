@@ -1,3 +1,5 @@
+#Students Controller controls interactions between the Model and Views for Students
+
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   authorize_resource

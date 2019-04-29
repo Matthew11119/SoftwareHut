@@ -15,6 +15,9 @@ class Student < ApplicationRecord
   has_many :exams_students
   has_many :exams, :through => :exams_students
 
+  #Generates a csv file from Student object data
+  #No params
+  #Returns a csv file
   def self.to_csv
     columns = %w{forename surname username regno}
     CSV.generate(headers: true) do |csv|
@@ -25,6 +28,9 @@ class Student < ApplicationRecord
     end
   end
 
+  #Params: file - CSV file containing students data
+  #No return values
+  #Uses a csv file to populate students table
   def self.student_import(file)
     students = []
     columns = [:surname, :forename, :username, :regno]
@@ -36,6 +42,9 @@ class Student < ApplicationRecord
     Student.import(columns, students)
   end
 
+  #Populates user fields from LDAP request
+  #No params
+  #No return values
   def self.from_ldap(student_username)
     studentUser = User.new(username:student_username)
     studentUser.get_info_from_ldap

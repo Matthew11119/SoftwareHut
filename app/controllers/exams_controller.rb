@@ -1,3 +1,5 @@
+#Exams Controller controls interactions between the Model and Views for Exams
+
 class ExamsController < ApplicationController
   include ExamsHelper
 
@@ -34,19 +36,21 @@ class ExamsController < ApplicationController
 
   #GET /results
   def results
-    index_moderator
+    index_moderator # in exam helper
   end
 
   def import
     @exam = Exam.find(params[:id])
   end
 
+  #post student_import
   def student_import
     @exam = Exam.find(params[:exam_code])
     @exam.student_import(params[:file])
     redirect_to edit_exam_path(@exam), notice: "Students added successfully"
   end
 
+  #get 'results/:exam_code'
   def exam_results
     @exam = Exam.find(params[:exam_code])
     @students = @exam.students

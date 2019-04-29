@@ -1,3 +1,5 @@
+#Defines what different user types are allowed to do within the system
+
 class Ability
   include CanCan::Ability
 

@@ -1,8 +1,12 @@
+-# Edit view for Exam
+  can edit values for exam, add new stations, or choose a station to edit
+
 %div
   .left-section
     = render 'form'
   .right-section.form-section
 
+    -# List of students linked to exam
     %h3 Students
     %table.table
       %thead
@@ -24,6 +28,7 @@
 
 %br
 
+-# List of stations in exam, with view of what the OCSE form will look like for each
 .form-section
   %h3
     Stations
@@ -36,6 +41,8 @@
         = link_to 'Edit', edit_station_path(station), class: 'btn btn-default'
         = link_to 'Delete', station_path(station['id']), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
 
+
+      -# Table to show the OSCE form, criteria down side, answers along top
       %table.table.thead-dark.table-bordered
         %thead
           %tr

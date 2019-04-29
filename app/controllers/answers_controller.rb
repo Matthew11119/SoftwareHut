@@ -1,3 +1,5 @@
+#Answers Controller controls interactions between the Model and Views for Answers
+
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
   authorize_resource
@@ -23,14 +25,7 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new
     
-    #if :from == 0  
-    #else
-    #  puts "new via copy"
-    #  @answer[:text]       = 'Copied text' #Answer.find(params[:from])[:text]
-    #  @answer[:score]      = 1000 #Answer.find(params[:from])[:score]
-    #end
-
-
+    #creates blank answer for user to edit in edit view
     @answer[:text]       = ''
     @answer[:score]      = 0
     @answer[:station_id] = params[:id]

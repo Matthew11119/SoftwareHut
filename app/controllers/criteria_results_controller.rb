@@ -1,3 +1,5 @@
+#Criteria Results Controller controls interactions between the Model and Views for Criteria Results
+
 class CriteriaResultsController < ApplicationController
   before_action :set_criteria_result, only: [:show, :edit, :update, :destroy]
   authorize_resource

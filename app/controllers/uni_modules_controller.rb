@@ -1,3 +1,6 @@
+#Modules Controller controls interactions between the Model and Views for Modules
+#Not used
+
 class UniModulesController < ApplicationController
   before_action :set_uni_module, only: [:show, :edit, :update, :destroy]
   authorize_resource

@@ -1,3 +1,5 @@
+#Criteria Controller controls interactions between the Model and Views for Criteria
+
 class CriteriaController < ApplicationController
   before_action :set_criterium, only: [:show, :edit, :update, :destroy]
   authorize_resource
@@ -23,6 +25,7 @@ class CriteriaController < ApplicationController
   def create
     @criterium = Criterium.new
 
+    #created blank, user fills in values in edit view
     @criterium[:number] = 0
     @criterium[:criteria_description] = ''
     @criterium[:criteria_critical] = false

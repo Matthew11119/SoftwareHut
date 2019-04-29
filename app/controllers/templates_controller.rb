@@ -1,3 +1,6 @@
+#Unimplemented as of yet
+#Templates Controller controls interactions between the Model and Views for Templates
+
 class TemplatesController < ApplicationController
   before_action :set_template, only: [:show, :edit, :update, :destroy]
   authorize_resource
