@@ -27,10 +27,19 @@ class StudentsController < ApplicationController
     end
   end
 
+  def update
+    @student = Student.find params[:id]
+    if @student.update(student_params)
+      redirect_to edit_student_path(@student.id), notice: 'Student was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   # DELETE /students/1
   def destroy
     @student.destroy
-    redirect_to students_url, notice: 'Student was successfully destroyed.'
+    redirect_to exam_edit_path, notice: 'Student was successfully deleted.'
   end
 
   def destroy_multiple

@@ -3,6 +3,9 @@
 -#
   un-deployed:0, deployed:1, completed:2, archive:3, template:4
 
+%br
+= link_to 'New Exam', new_exam_path, class:"btn btn-default"
+
 %h1 Un-Deployed Exams
 
 %table.table
@@ -30,8 +33,6 @@
         %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
-
-= link_to 'New Exam', new_exam_path
 
 %h1 Deployed Exams
 
