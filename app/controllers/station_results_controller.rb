@@ -24,8 +24,7 @@ class StationResultsController < ApplicationController
         @exams_students.each do |exam_student|
           cur_stu = StationResult.find_or_initialize_by(username: exam_student.student_id, station_id: params[:id])
           cur_stu.save
-        end
-        # StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
+        end        
       end
       @students = StationResult.get_remaining_student(params[:id])
     end
@@ -42,12 +41,10 @@ class StationResultsController < ApplicationController
   def add_student
     @examiner_name = params[:examiner_name]
     render layout:false
-
   end
 
   # POST /station_results/1/search_new_student
   def search_new_student
-
     @new_student = User.new(username: params[:new_student_form][:username])
     @new_student.get_info_from_ldap
     @examiner_name = params[:new_student_form][:examiner_name]
@@ -60,8 +57,7 @@ class StationResultsController < ApplicationController
 
   # POST /station_results/1
   def new_student
-    Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])
-    # ExamsStudent.find_or_create_by(student_id:params[:hid_stu_infp][:username], exam_id:'EX0001')
+    Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])    
     ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])
     @examiner_name = params["hid_stu_info"][:examiner_name]
     StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
@@ -70,8 +66,7 @@ class StationResultsController < ApplicationController
   end
 
   # GET /station_results/new
-  def new
-    #set_instance_variable
+  def new    
     @student = Student.where(username: params[:username]).first
     @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
     @station = Station.where(:id=>params[:station_id]).first
