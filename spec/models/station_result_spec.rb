@@ -24,4 +24,13 @@ RSpec.describe StationResult, type: :model do
     expect(station_result).to be_valid
   end
 
+  describe '.get_remaining_student' do
+    it "gives none for a station with no students registered" do
+      station = Station.new
+      station_result = StationResult.new
+      stationID = station.id
+      expect(StationResult.get_remaining_student(stationID)).to eq 0
+    end
+  end
+
 end
