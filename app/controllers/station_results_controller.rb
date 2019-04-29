@@ -102,7 +102,7 @@ class StationResultsController < ApplicationController
 
   # GET/station_results/1/search_students
   def search_students
-    @students = Student.joins("INNER JOIN station_results ON station_results.username = students.username").where("students.username= '"+params[:form_search][:student_id]+"'")
+    @students = Student.joins("INNER JOIN station_results ON station_results.username = students.username").where("students.username= '"+params[:form_search][:student_id]+"'").limit(1)
     render 'search_students'
   end
 
