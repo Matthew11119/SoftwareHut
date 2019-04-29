@@ -1,3 +1,4 @@
+// JAVASCRIPT for OSCE page
 
 window.onload = function(){
   var timerButton = document.getElementById("startTimer");
@@ -132,3 +133,8 @@ function changePass()
       document.getElementById("resultButton").innerHTML = "Pass";
     }
 }
+
+
+$(function() {
+  $("#selectAll").select_all();
+});

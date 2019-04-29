@@ -21,8 +21,9 @@ class StationResult < ApplicationRecord
   # Creates record for student in station_record if does not exist
   def self.write_students(examinerName,stationID, examID)
     examsStudent = ExamsStudent.select_students(examID)
-    examsStudent.each do |examStudent|
-      curStu = StationResult.find_or_create_by(username: examStudent.student_id, station_id: stationID)
+    examsStudent.each do |examStudent|      
+      curStu = StationResult.find_or_initialize_by(username: examStudent.student_id, station_id: stationID) 
+      curStu.save
     end
   end
 
