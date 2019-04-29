@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'completed_students'
       get 'add_student'
       post 'search_new_student'
+      post 'search_students'
     end
   end
 

@@ -10,9 +10,9 @@
         %li= link_to 'Remaining', station_result_path({:id=>params[:id],:examiner_name=>@examiner_name} ), id: 'bold-select'
         %li= link_to 'Completed', completed_students_station_result_path({:id=>params[:id],:examiner_name=>@examiner_name})
   %div#div-search
-    = simple_form_for :form_search, remote:true do |f|
+    = simple_form_for :form_search, url: search_students_station_result_path, remote:true do |f|
       = f.input :student_id, :placeholder => "Student ID", :label=>"Search by"
-      = f.input :student_surname, :placeholder => "Surname", :label=>false
+      -# = f.input :student_surname, :placeholder => "Surname", :label=>false
       %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
         = f.button :submit, 'Search', class: 'btn btn-primary pull-right form-button ajax-modal'
         = link_to 'Reset', station_result_path(params[:id]), class: 'btn pull-right', style:'color:#22A7F0'

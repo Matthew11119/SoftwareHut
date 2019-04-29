@@ -82,7 +82,7 @@ class StationResultsController < ApplicationController
   end
 
   # GET /station_results/new
-  def new
+  def newb
     #set_instance_variable
     @student = Student.where(username: params[:username]).first
     @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
@@ -98,6 +98,12 @@ class StationResultsController < ApplicationController
 
   # GET /station_results/1/edit
   def edit
+  end
+
+  # GET/station_results/1/search_students
+  def search_students
+    @students = Student.joins("INNER JOIN station_results ON station_results.username = students.username").where("students.username= '"+params[:form_search][:student_id]+"'")
+    render 'search_students'
   end
 
   # GET /results/EX0099/s1
