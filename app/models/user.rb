@@ -31,6 +31,5 @@ class User < ApplicationRecord
   scope :admins,       -> { where(user_type: "Admin") }
   scope :module_leads, -> { where(user_type: "Module Lead") }
   scope :moderators,    -> { where(user_type: "Moderator") }
-
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
   end
