@@ -81,6 +81,7 @@ class StationResultsController < ApplicationController
 
   # GET /station_results/1/edit
   def edit
+    @station_result = StationResult.find(params[:id])
   end
 
   # GET/station_results/1/search_students
@@ -129,13 +130,15 @@ class StationResultsController < ApplicationController
 
   # PATCH/PUT /station_results/1
   def update
+    @station_result = StationResult.find(params[:id])
     if @station_result.update(station_result_params)
-      redirect_to edit_station_result_url, notice: 'Station result was successfully updated.'
+      redirect_to edit_station_result_url(@station_result.id), notice: 'Station result was successfully updated.'
       #redirect_to student_result_url(exam_code: @station_result.station.exam.exam_code, username: @station_result.username), notice: 'Station result was successfully updated.'
     else
       render :edit
     end
   end
+
 
   # DELETE /station_results/1
   def destroy
@@ -172,14 +175,15 @@ class StationResultsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def station_result_params
-      params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
-        :criteria_results_attributes => [:id, :criteria_mark, :answer, :station_result_id, :criterium_id])
+      params.require(:station_result).permit([:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio, :username,
+        :criteria_results_attributes => [:id, :criteria_mark, :answer, :station_result_id, :criterium_id, :feedback, :station_id]])
     end
 
     def post_params
-      params.require(:station_result).permit([:id, :station_id, :username, :examiner_name, :mark, :feedback, :audio,
-        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback, :criterium_id]}])
+      params.require(:station_result).permit(:id, :station_id, :username, :examiner_name, :mark, :feedback, :audio,
+        :criteria_results_attributes=> [:id, :answer, :criteria_mark, :station_result_id, :feedback, :criterium_id])
     end
+
 
     def criteria_params
       params.require(:criteria_results).permit(:id, :answer, :criteria_mark, :station_id)
