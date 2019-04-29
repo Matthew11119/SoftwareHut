@@ -14,10 +14,10 @@
 
 class StationResult < ApplicationRecord
   belongs_to :station, :foreign_key=>:station_id
-
   has_many :criteria_results, inverse_of: :station_result
   accepts_nested_attributes_for :criteria_results
 
+  # Creates record for student in station_record if does not exist
   def self.write_students(examinerName,stationID, examID)
     examsStudent = ExamsStudent.select_students(examID)
     examsStudent.each do |examStudent|
@@ -25,11 +25,12 @@ class StationResult < ApplicationRecord
     end
   end
 
-  def self.get_remaining_student(stationID)
-    # remaining_student = self.where(station_id: stationID).where(mark:nil)
-    remaining_student = Student.joins("INNER JOIN station_results ON students.username = station_results.username").where("station_id ="+stationID+"AND mark IS NULL")
+  # Selects remaining student for a stationID, returns Student
+  # Student is not examined if the mark is empty
+  def self.get_remaining_student(stationID)        
+    remaining_student = Student.joins("INNER JOIN station_results ON students.username = station_results.username").where("station_id = ? AND mark IS NULL", stationID)
   end
-
+  
   def self.get_completed_student(stationID,examinerName)
     completed_student = Student.joins("INNER JOIN station_results ON students.username = station_results.username").where("station_id ="+stationID+"AND mark IS NOT NULL")
   end
