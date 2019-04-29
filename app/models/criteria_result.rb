@@ -24,7 +24,5 @@
 class CriteriaResult < ApplicationRecord
   belongs_to :station_result, :foreign_key=>:station_result_id
   has_one :criterium, :foreign_key=>:criterium_id
-  attr_accessor :criteria_mark
-
-  #validates :criterium_id, uniqueness: true
+  attr_accessor :criteria_mark  
 end
