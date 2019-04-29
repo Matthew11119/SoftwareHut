@@ -15,6 +15,7 @@ class Student < ApplicationRecord
   has_many :exams_students
   has_many :exams, :through => :exams_students
 
+  # CSV
   def self.to_csv
     columns = %w{forename surname username regno}
     CSV.generate(headers: true) do |csv|
@@ -25,6 +26,7 @@ class Student < ApplicationRecord
     end
   end
 
+  # Imports student
   def self.student_import(file)
     students = []
     columns = [:surname, :forename, :username, :regno]
@@ -36,6 +38,7 @@ class Student < ApplicationRecord
     Student.import(columns, students)
   end
 
+  # Retrieves student information and updates database  
   def self.from_ldap(student_username)
     studentUser = User.new(username:student_username)
     studentUser.get_info_from_ldap
