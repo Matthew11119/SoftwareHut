@@ -71,7 +71,7 @@ class ExamsController < ApplicationController
     @exam = Exam.new({:status => 0}.merge(exam_params))
 
     if @exam.save
-      redirect_to edit_exam_path, notice: 'Exam was successfully created.'
+      redirect_to edit_exam_path(@exam.exam_code), notice: 'Exam was successfully created.'
     else
       render :new
     end

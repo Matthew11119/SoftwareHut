@@ -13,5 +13,5 @@
 
 class Criterium < ApplicationRecord
   belongs_to :station, :foreign_key=>:station_id
-  has_many :criteria_results
+  has_many :criteria_results, inverse_of: :criterium
 end

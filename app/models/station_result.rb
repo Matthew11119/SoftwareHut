@@ -13,9 +13,9 @@
 #  station_id    :integer
 
 class StationResult < ApplicationRecord
-  belongs_to :station, :foreign_key=>:station_id, optional: true
+  belongs_to :station, :foreign_key=>:station_id
 
-  has_many :criteria_results, inverse_of: :station_result #, :foreign_key=>:criteria_result_id
+  has_many :criteria_results, inverse_of: :station_result
   accepts_nested_attributes_for :criteria_results
 
   def self.write_students(examinerName,stationID, examID)
@@ -34,7 +34,7 @@ class StationResult < ApplicationRecord
   end
 
   def self.get_completed_student(stationID,examinerName)
-    completed_student = Student.joins("INNER JOIN station_results ON students.username = station_results.username").where("station_id ="+stationID+"AND mark IS NOT NULL AND station_results.examiner_name = '"+examinerName+"'")
+    completed_student = Student.joins("INNER JOIN station_results ON students.username = station_results.username").where("station_id ="+stationID+"AND mark IS NOT NULL")
   end
 
 end
