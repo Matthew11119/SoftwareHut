@@ -26,13 +26,15 @@ class StationResult < ApplicationRecord
   end
 
   # Selects remaining student for a stationID, returns Student
-  # Student is not examined if the mark is empty
+  # Student is not examined if mark is empty
   def self.get_remaining_student(stationID)        
     remaining_student = Student.joins("INNER JOIN station_results ON students.username = station_results.username").where("station_id = ? AND mark IS NULL", stationID)
   end
   
-  def self.get_completed_student(stationID,examinerName)
-    completed_student = Student.joins("INNER JOIN station_results ON students.username = station_results.username").where("station_id ="+stationID+"AND mark IS NOT NULL")
+  # Selects completed student for a station ID by examinerName, returns Student
+  # Student is examined if mark is not empty
+  def self.get_completed_student(stationID,examinerName)    
+    completed_student = Student.joins("INNER JOIN station_results ON students.username = station_results.username").where("station_id = ? AND mark IS NOT NULL", stationID)
   end
 
 end
