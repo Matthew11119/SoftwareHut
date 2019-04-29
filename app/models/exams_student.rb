@@ -18,6 +18,6 @@ class ExamsStudent < ApplicationRecord
 
   # Select students in an exam, returns exams_students record  
   def self.select_students(exam)  
-    ExamsStudent.joins(:student).where("exam_id='?'",exam)
+    ExamsStudent.joins(:student).where("exam_id=?",exam)
   end
 end
