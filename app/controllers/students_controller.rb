@@ -5,6 +5,9 @@ class StudentsController < ApplicationController
   def index
     @students = Student.all
     @modules = UniModule.all
+    respond_to do |format|
+      format.csv { send_data  @students.to_csv }
+    end
   end
 
 

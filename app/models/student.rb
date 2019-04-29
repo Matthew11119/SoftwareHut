@@ -15,6 +15,16 @@ class Student < ApplicationRecord
   has_many :exams_students
   has_many :exams, :through => :exams_students
 
+  def self.to_csv
+    columns = %w{forename surname username regno}
+    CSV.generate(headers: true) do |csv|
+      csv << columns
+      all.each do |student|
+        csv << student.attributes.values_at(*columns)
+      end
+    end
+  end
+
   def self.student_import(file)
     students = []
     columns = [:surname, :forename, :username, :regno]
@@ -27,12 +37,12 @@ class Student < ApplicationRecord
   end
 
   def self.from_ldap(student_username)
-    studentUser = User.new(username:student_username)    
+    studentUser = User.new(username:student_username)
     studentUser.get_info_from_ldap
     student = Student.find(student_username)
     student.update(forename:studentUser.givenname, surname:studentUser.sn)
     # Student.find_or_create_by(forename:student.givenname, surname:student.sn,username:student_username)
-    
+
   end
 
 end
