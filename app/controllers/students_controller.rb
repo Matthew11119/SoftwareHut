@@ -3,6 +3,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   authorize_resource
+  
   # GET /students
   def index
     @students = Student.all
@@ -11,7 +12,6 @@ class StudentsController < ApplicationController
       format.csv { send_data  @students.to_csv }
     end
   end
-
 
   # GET /students/new
   def new
@@ -44,6 +44,7 @@ class StudentsController < ApplicationController
     redirect_to exam_edit_path, notice: 'Student was successfully deleted.'
   end
 
+  # deletes multiple students
   def destroy_multiple
     Student.delete(params[:student_users])
     respond_to do |format|
@@ -52,6 +53,7 @@ class StudentsController < ApplicationController
     end
   end
 
+  # imports student
   def student_import
     Student.student_import(params[:file])
     redirect_to students_path, notice: "Students added successfully"
