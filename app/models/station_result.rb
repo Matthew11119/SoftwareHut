@@ -21,10 +21,7 @@ class StationResult < ApplicationRecord
   def self.write_students(examinerName,stationID, examID)
     examsStudent = ExamsStudent.select_students(examID)
     examsStudent.each do |examStudent|
-      curStu = StationResult.find_or_create_by(username: examStudent.student_id, station_id: stationID)
-      # if curStu.examiner_name.nil?
-      #   curStu.update(examiner_name:examinerName)
-      # end
+      curStu = StationResult.find_or_create_by(username: examStudent.student_id, station_id: stationID) 
     end
   end
 
