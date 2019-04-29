@@ -12,7 +12,8 @@ class Ability
       can [:index, :show], [Exam]
       can [:read, :results, :exam_results, :student_result], [StationResult, CriteriaResult, Exam, Station, Criterium, Answer]
     elsif user.user_type == "Moderator"
-      can [:read, :student_result], [StationResult, CriteriaResult, Exam, Station, Criterium, Answer]
+      can [:read,:exam_results,:results, :student_result], [StationResult, CriteriaResult, Exam, Station, Criterium, Answer]
+      
     end
 
   end
