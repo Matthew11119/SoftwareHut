@@ -23,7 +23,7 @@ class StationResult < ApplicationRecord
     examsStudent = ExamsStudent.select_students(examID)
     examsStudent.each do |examStudent|      
       curStu = StationResult.find_or_initialize_by(username: examStudent.student_id, station_id: stationID) 
-      curStu.save      
+      curStu.save
     end
   end
 

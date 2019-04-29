@@ -130,7 +130,7 @@ ExamsStudent.find_or_create_by(student_id: 'aca17scf', exam_id:'EX0001')
 
 
 #Results
-StationResult.find_or_create_by(id: 1, audio: nil, examiner_name: "Jeff", feedback: "Feedback stuff here", mark: 5, username: "s1", station_id: 100)
+# StationResult.find_or_create_by(id: 1, audio: nil, examiner_name: "Jeff", feedback: "Feedback stuff here", mark: 5, username: "s1", station_id: 100)
 CriteriaResult.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 100)
 CriteriaResult.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 101)
 CriteriaResult.find_or_create_by(answer: 101, criteria_mark: 1, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 102)
