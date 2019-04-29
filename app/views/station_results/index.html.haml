@@ -26,7 +26,7 @@
           %td= station_result.station.pass_mark.to_s
           %td= station_result.examiner_name
           %td= station_result.feedback
-          
+
 
           %br
           %table.table.table-bordered
@@ -46,6 +46,7 @@
                     -else
                       %td
                   %td= station_result.criteria_results.where(criterium_id: criterium.id).first.feedback
-                
+
   %br
 %br
+= link_to "Results PDF", student_result_path(@exam, @student, format: "pdf")

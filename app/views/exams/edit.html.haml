@@ -25,7 +25,6 @@
             %td= link_to 'Edit', edit_student_path(student.username)
             %td= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' }
     = link_to 'Import or create new students', exam_edit_import_path(@exam.exam_code), class: 'ajax-modal'
-
 %br
 
 -# List of stations in exam, with view of what the OCSE form will look like for each

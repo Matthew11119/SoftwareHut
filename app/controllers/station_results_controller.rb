@@ -81,7 +81,6 @@ class StationResultsController < ApplicationController
 
   # GET /station_results/1/edit
   def edit
-    @station_result = StationResult.find(params[:id])
   end
 
   # GET/station_results/1/search_students
@@ -95,7 +94,15 @@ class StationResultsController < ApplicationController
     @student = Student.find(params[:username])
     @exam = Exam.find(params[:exam_code])
     @station_results = StationResult.where( username: @student.username, station_id: @exam.stations.pluck(:id) )
-    render :index
+    respond_to do |format|
+      format.html { render :index }
+      format.pdf do
+        pdf = ResultPdf.new(@student, @exam)
+        send_data pdf.render, filename: "#{@exam.exam_code}_#{@student.username}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   # POST /station_results
@@ -122,9 +129,8 @@ class StationResultsController < ApplicationController
 
   # PATCH/PUT /station_results/1
   def update
-    @station_result = StationResult.find(params[:id])
     if @station_result.update(station_result_params)
-      redirect_to edit_station_result_url(@station_result.id), notice: 'Station result was successfully updated.'
+      redirect_to edit_station_result_url, notice: 'Station result was successfully updated.'
       #redirect_to student_result_url(exam_code: @station_result.station.exam.exam_code, username: @station_result.username), notice: 'Station result was successfully updated.'
     else
       render :edit
@@ -166,13 +172,13 @@ class StationResultsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def station_result_params
-      params.require(:station_result).permit([:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio, :username,
-        :criteria_results_attributes => [:id, :criteria_mark, :answer, :station_result_id, :criterium_id, :feedback, :station_id]])
+      params.require(:station_result).permit(:id, :station_id, :student_id, :examiner_name, :mark, :feedback, :audio,
+        :criteria_results_attributes => [:id, :criteria_mark, :answer, :station_result_id, :criterium_id])
     end
 
     def post_params
-      params.require(:station_result).permit(:id, :station_id, :username, :examiner_name, :mark, :feedback, :audio,
-        :criteria_results_attributes=> [:id, :answer, :criteria_mark, :station_result_id, :feedback, :criterium_id])
+      params.require(:station_result).permit([:id, :station_id, :username, :examiner_name, :mark, :feedback, :audio,
+        {criteria_results_attributes: [:id, :answer, :criteria_mark, :station_result_id, :feedback, :criterium_id]}])
     end
 
     def criteria_params

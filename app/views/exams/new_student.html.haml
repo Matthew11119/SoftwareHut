@@ -1,0 +1,21 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{ type: :button, data: { dismiss: :modal } }
+        %span &times;
+    = simple_form_for(@student) do |f|
+      .modal-header
+        %h2.modal-title New student
+        = f.error_notification
+        = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+      .modal-body
+        = f.input :forename
+        = f.input :surname
+        = f.input :username
+        = f.input :regno
+
+      .modal-footer
+        .pull-left
+          = dismiss_modal_button
+        = f.button :submit

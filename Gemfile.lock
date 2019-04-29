@@ -239,6 +239,8 @@ GEM
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
+    prawn-table (0.2.2)
+      prawn (>= 1.3.0, < 3.0.0)
     public_suffix (3.0.3)
     rack (2.0.5)
     rack-test (1.1.0)
@@ -423,6 +425,7 @@ DEPENDENCIES
   poltergeist
   polyamorous
   prawn
+  prawn-table
   rails (= 5.2.1)
   ransack
   responders
@@ -445,4 +448,4 @@ RUBY VERSION
    ruby 2.4.4p296
 
 BUNDLED WITH
-   1.16.2
+   2.0.1

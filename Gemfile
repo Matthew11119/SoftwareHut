@@ -10,6 +10,7 @@ end
 
 #custom rubygems
 gem 'prawn'
+gem 'prawn-table'
 gem 'activerecord-import'
 gem 'select_all-rails'
 
