@@ -103,13 +103,13 @@ Criterium.find_or_create_by(id: 103, number: 4, criteria_description: "Example c
 
 
 #Students
-# exam = Exam.find("EX0099")
-# exam.students.find_or_create_by(forename: "Student", surname: "1", username: "s1", regno: 000001)
-# exam.students.find_or_create_by(forename: "Student", surname: "2", username: "s2", regno: 000002)
-# exam.students.find_or_create_by(forename: "Student", surname: "3", username: "s3", regno: 000003)
-# exam.students.find_or_create_by(forename: "Student", surname: "4", username: "s4", regno: 000004)
-# exam.students.find_or_create_by(forename: "Student", surname: "5", username: "s5", regno: 000005)
-# exam.students.find_or_create_by(forename: "Student", surname: "6", username: "s6", regno: 000006)
+exam = Exam.find("EX0099")
+exam.students.find_or_create_by(forename: "Student", surname: "1", username: "s1", regno: 000001)
+exam.students.find_or_create_by(forename: "Student", surname: "2", username: "s2", regno: 000002)
+exam.students.find_or_create_by(forename: "Student", surname: "3", username: "s3", regno: 000003)
+exam.students.find_or_create_by(forename: "Student", surname: "4", username: "s4", regno: 000004)
+exam.students.find_or_create_by(forename: "Student", surname: "5", username: "s5", regno: 000005)
+exam.students.find_or_create_by(forename: "Student", surname: "6", username: "s6", regno: 000006)
 
 # exam2 = Exam.find("EX0001")
 # exam2.students.find_or_create_by(forename: "Student 2", surname: "11", username: "ss1")
@@ -130,9 +130,8 @@ Criterium.find_or_create_by(id: 103, number: 4, criteria_description: "Example c
 
 
 #Results
-#StationResult.find_or_create_by(id: 1, audio: nil, examiner_name: "Jeff", feedback: "Feedback stuff here", mark: 5, username: "s1", station_id: 100)
-#s = StationResult.find(1)
-#s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 100)
-#s.criteria_results.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 101)
-#s.criteria_results.find_or_create_by(answer: 101, criteria_mark: 1, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 102)
-#s.criteria_results.find_or_create_by(answer: 102, criteria_mark: 0, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 103)
+StationResult.find_or_create_by(id: 1, audio: nil, examiner_name: "Jeff", feedback: "Feedback stuff here", mark: 5, username: "s1", station_id: 100)
+CriteriaResult.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 100)
+CriteriaResult.find_or_create_by(answer: 100, criteria_mark: 2, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 101)
+CriteriaResult.find_or_create_by(answer: 101, criteria_mark: 1, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 102)
+CriteriaResult.find_or_create_by(answer: 102, criteria_mark: 0, feedback: "Generic Feedback", station_result_id: 1, criterium_id: 103)

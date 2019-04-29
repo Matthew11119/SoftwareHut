@@ -16,6 +16,8 @@
           %th Feedback
       %tbody
         %tr
+          - puts "!!!!!!!!"+station_result.mark.to_s
+
           - if station_result.mark >= station_result.station.pass_mark
             %td Pass
           - else

@@ -15,10 +15,7 @@
 class StationResult < ApplicationRecord
   belongs_to :station, :foreign_key=>:station_id, optional: true
 
-  has_many :criteria_results, :foreign_key=>:id
-  accepts_nested_attributes_for :criteria_results
-  attr_accessor :mark
-
+  has_many :criteria_results, inverse_of: :station_result #, :foreign_key=>:criteria_result_id
   accepts_nested_attributes_for :criteria_results
 
   def self.write_students(examinerName,stationID, examID)
