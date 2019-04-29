@@ -22,15 +22,6 @@ class AnswersController < ApplicationController
   # POST /answers
   def create
     @answer = Answer.new
-    
-    #if :from == 0  
-    #else
-    #  puts "new via copy"
-    #  @answer[:text]       = 'Copied text' #Answer.find(params[:from])[:text]
-    #  @answer[:score]      = 1000 #Answer.find(params[:from])[:score]
-    #end
-
-
     @answer[:text]       = ''
     @answer[:score]      = 0
     @answer[:station_id] = params[:id]
