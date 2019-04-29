@@ -72,11 +72,6 @@
                   = fa_icon 'users'
                   Users
 
-              - if can?(:read, Student)
-                = navbar_link_to '/students', title: "Go to the students page", identifier: :users do
-                  = fa_icon 'graduation-cap'
-                  Students
-
               - if can?(:read, CriteriaResult)
                 = navbar_link_to results_url, title: "Go to the results page", identifier: :criteria_result do
                   = fa_icon 'bar-chart'

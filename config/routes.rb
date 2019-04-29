@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   resources :archives, except: [:new, :create]
   resources :templates
-  resources :students do
+  resources :students, except: [:index] do
     collection { post :student_import}
     collection do
       delete 'destroy_multiple'
