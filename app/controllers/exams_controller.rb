@@ -3,11 +3,11 @@ class ExamsController < ApplicationController
 
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
   authorize_resource
-  
+
   # GET /exams
   def index
     if can?(:manage, Exam)
-      index_admin    
+      index_admin
     else
       render template: 'errors/error_403', status: 403
     end
@@ -36,11 +36,11 @@ class ExamsController < ApplicationController
   def results
     index_moderator
   end
-  
+
   def import
     @exam = Exam.find(params[:id])
   end
-  
+
   def student_import
     @exam = Exam.find(params[:exam_code])
     @exam.student_import(params[:file])
@@ -50,7 +50,10 @@ class ExamsController < ApplicationController
   def exam_results
     @exam = Exam.find(params[:exam_code])
     @students = @exam.students
-    render :index_student_results
+    respond_to do |format|
+      format.csv { send_data  @students.to_csv }
+      format.html { render :index_student_results }
+    end
   end
 
   # GET /exams/new
