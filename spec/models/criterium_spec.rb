@@ -14,7 +14,6 @@
 require 'rails_helper'
 
 RSpec.describe Criterium, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
 
   it "Factory bot requires station to exist" do
     criteria = FactoryBot.build(:criterium)
