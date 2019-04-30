@@ -32,6 +32,5 @@ RSpec.describe CriteriaResult, type: :model do
   end
 
   it { should belong_to :station_result }
-  it { should have_one :criteria }
 
 end
