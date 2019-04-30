@@ -20,4 +20,8 @@ RSpec.describe Station, type: :model do
     station = FactoryBot.build(:station)
     expect(station).to_not be_valid
   end
+
+  it { should belong_to :exam }
+  it { should have_many :answers }
+  it { should have_many :criteria }
 end

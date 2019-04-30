@@ -21,4 +21,8 @@ RSpec.describe ExamsStudent, type: :model do
     exam_student = FactoryBot.build(:exams_student)
     expect(exam_student).to_not be_valid
   end
+
+  it { should belong_to :student }
+  it { should belong_to :exam }
+  
 end

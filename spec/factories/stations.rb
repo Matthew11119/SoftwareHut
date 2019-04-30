@@ -16,6 +16,6 @@ FactoryBot.define do
     id { 1 }
     station_name { "MyString" }
     pass_mark { 1 }
-    exam_id { 1 }
+    exam_id { 'EX1' }
   end
 end

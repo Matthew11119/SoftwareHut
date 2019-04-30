@@ -17,6 +17,17 @@ RSpec.describe Exam, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 
   it "has a valid factory" do
-    FactoryBot.build(:exam).should be_valid
+    exam = FactoryBot.build(:exam)
+    expect(exam).to be_valid
+  end
+
+  it { should have_many :exams_students }
+  it { should have_many(:students).through(:exams_students) }
+  it { should have_many :stations }
+
+  describe "#student_import" do
+    #it "adds student if it doesn't exist" do
+    #  let(:header) {}
+    #end
   end
 end

@@ -31,4 +31,7 @@ RSpec.describe CriteriaResult, type: :model do
     expect(criteria_result).to be_valid
   end
 
+  it { should belong_to :station_result }
+  it { should have_one :criteria }
+
 end
