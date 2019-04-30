@@ -27,6 +27,7 @@
 
 FactoryBot.define do
   factory :user do
-    
+    username {"aaa"}
+    user_type {"Admin"}
   end
 end

@@ -12,7 +12,7 @@
 
 FactoryBot.define do
   factory :student do
-    student_id { "MyString" }
+    username { "MyString" }
     forename { "MyString" }
     surname { "MyString" }
     regno { 1 }

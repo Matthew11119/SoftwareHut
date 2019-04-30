@@ -24,5 +24,12 @@
 require 'rails_helper'
 
 RSpec.describe CriteriaResult, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it "Factory bot creates" do
+    criteria_result = FactoryBot.build(:criteria_result)
+    expect(criteria_result).to be_valid
+  end
+
+  it { should belong_to :station_result }
+
 end
