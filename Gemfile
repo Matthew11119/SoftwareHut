@@ -79,8 +79,9 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'rspec-instafail', require: false
-
+  gem 'rspec'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'simplecov'
+  gem 'rails-controller-testing'
 end

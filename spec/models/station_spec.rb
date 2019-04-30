@@ -15,4 +15,13 @@ require 'rails_helper'
 
 RSpec.describe Station, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
+
+  it "doesn't create without exam" do
+    station = FactoryBot.build(:station)
+    expect(station).to_not be_valid
+  end
+
+  it { should belong_to :exam }
+  it { should have_many :answers }
+  it { should have_many :criteria }
 end

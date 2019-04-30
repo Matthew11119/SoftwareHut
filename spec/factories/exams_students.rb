@@ -14,7 +14,7 @@
 
 FactoryBot.define do
   factory :exams_student do
-    student { nil }
-    client { nil }
+    student_id { nil }
+    exam_id { nil }
   end
 end

@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :criterium do
-    criteria_id { 1 }
+    id { 1 }
     criteria_description { "MyText" }
     criteria_critical { false }
     station_id { 1 }
