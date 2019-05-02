@@ -2,9 +2,10 @@
 = simple_form_for(@station) do |station|
 
   .form-actions
+    %p Please save before adding new answers or criteria
     = link_to 'Back', edit_exam_path(@station.exam_id), class: 'btn btn-default'
     = link_to 'View', @station.exam, class: 'btn btn-default'
-    = station.button :submit, 'Save'
+    = station.button :submit, 'Save', class: 'btn btn-default'  
   %br
 
   .form-section
