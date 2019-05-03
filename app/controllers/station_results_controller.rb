@@ -94,7 +94,8 @@ class StationResultsController < ApplicationController
   def student_result
     @student = Student.find(params[:username])
     @exam = Exam.find(params[:exam_code])
-    @station_results = StationResult.where( username: @student.username, station_id: @exam.stations.pluck(:id) )
+    @station_results = StationResult.where( username: @student.username, station_id: @exam.stations.pluck(:id) ).to_a
+
     respond_to do |format|
       format.html { render :index }
       format.pdf do
