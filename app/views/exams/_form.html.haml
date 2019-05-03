@@ -12,8 +12,8 @@
   -# Exam Fields
   .exam.form-inputs.form-section
     %h3 Exam
+    = exam.input :exam_code, readonly: exam.object.persisted?
     = exam.input :name
-    = exam.input :exam_code
     = exam.input :date
     = exam.input :module_code
 

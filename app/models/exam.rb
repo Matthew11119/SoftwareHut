@@ -20,7 +20,6 @@ class Exam < ApplicationRecord
   scope :deployed, -> { where(status: 1).order(:date) }
   scope :completed, -> { where(status: 2).order(:date) }
   scope :archive, -> { where(status: 3).order(:date) }
-  scope :templates, -> { where(status: 4).order(:date) }
 
   # CSV import
   # Params: file - CSV file containing students

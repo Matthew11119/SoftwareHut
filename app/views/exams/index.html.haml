@@ -56,7 +56,6 @@
         %td= exam.name
         %td= exam.module_code
         %td= link_to 'View', exam
-        %td= link_to 'Edit', edit_exam_path(exam)
         %td= link_to('Un-Deploy',        exam_path(exam, :exam => {:status => 0} ), :method => :put)
         %td= link_to('Move to Complete', exam_path(exam, :exam => {:status => 2} ), :method => :put)
         %td= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' }
@@ -74,6 +73,8 @@
       %th
       %th
       %th
+      %th
+      %th
 
   %tbody
     - @completed.each do |exam|
@@ -83,7 +84,6 @@
         %td= exam.name
         %td= exam.module_code
         %td= link_to 'View', exam
-        %td= link_to 'Edit', edit_exam_path(exam)
         %td= link_to 'Results', exam_results_url(exam.exam_code)
         %td= link_to 'Move to Deployed', exam_path(exam, :exam => {:status => 1} ), :method => :put
         %td= link_to 'Move to Archive', exam_path(exam, :exam => {:status => 3} ), :method => :put
