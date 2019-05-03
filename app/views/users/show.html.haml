@@ -19,7 +19,7 @@
       - if @user.givenname.blank? or @user.sn.blank?
         %td Available after first login
       - else
-        %td= @user.givenname.to_s + " " + @user.sn.to_s
+        %td= @user.email
 
 = link_to 'Edit', edit_user_path(@user)
 \|
