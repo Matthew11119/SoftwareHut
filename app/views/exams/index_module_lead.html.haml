@@ -41,5 +41,5 @@
                     %td= exam_upcoming.exam_code
                     %td= exam_upcoming.name
                     %td= exam_upcoming.date
-                    %td= link_to 'Select'
+                    %td= link_to 'Select', exam_path(exam_upcoming.exam_code)
         = will_paginate @exam_upcoming, :param_name => 'exam_upcoming_page' ,:renderer => WillPaginate::ActionView::LinkRenderer, :class=>"text-center"
