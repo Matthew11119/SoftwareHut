@@ -56,7 +56,7 @@ class ExamsController < ApplicationController
     @students = @exam.students
     respond_to do |format|
       format.csv { send_data  @students.to_csv }
-      format.html { render :index_student_results }
+      format.html { render :index_results }
     end
   end
 
