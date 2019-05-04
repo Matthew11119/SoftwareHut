@@ -19,13 +19,13 @@ class StationResultsController < ApplicationController
         Student.from_ldap(exam_student.student_id)
       end
 
-      if (defined?params[:form_homepage][:examiner_name])
-        @examiner_name = params[:form_homepage][:examiner_name]
-        @exams_students.each do |exam_student|
-          cur_stu = StationResult.find_or_initialize_by(username: exam_student.student_id, station_id: params[:id])
-          cur_stu.save
-        end
-      end
+      # if (defined?params[:form_homepage][:examiner_name])
+      #   @examiner_name = params[:form_homepage][:examiner_name]
+      #   @exams_students.each do |exam_student|
+      #     cur_stu = StationResult.find_or_initialize_by(username: exam_student.student_id, station_id: params[:id])
+      #     cur_stu.save
+      #   end
+      # end
       @students = StationResult.get_remaining_student(params[:id])
     end
 
@@ -59,8 +59,7 @@ class StationResultsController < ApplicationController
   def new_student
     Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])
     ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])
-    @examiner_name = params["hid_stu_info"][:examiner_name]
-    StationResult.write_students(@examiner_name, params[:id], Station.find(params[:id]).exam_id)
+    @examiner_name = params["hid_stu_info"][:examiner_name]    
     @students = StationResult.get_remaining_student(params[:id])
     render 'new_student_success'
   end
