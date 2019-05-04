@@ -18,7 +18,7 @@
             -# = f.hidden_field :title, :value=> "values"
             %div{:style=>'padding-top:1.250em;padding-bottom:3.781em'}
                 = f.button :submit, 'Continue',class: 'btn btn-primary pull-right form-button'
-                = link_to 'Back', exam_path(:id=>@exam_show.first.exam_code), class: 'btn pull-right',style:'color:#22A7F0'
+                -#= link_to 'Back', exam_path(:id=>@exam_show.first.exam_code), class: 'btn pull-right',style:'color:#22A7F0'
     %p.text-center{:style=>'color:#9E9E9E;padding-bottom:1.375em'} To proceed, please enter your name for future references
-= link_to 'Back to View Station Page', exam_path(:id=>@exam_show.first.exam_code), class:'pull-right', style:'color:#313131'
+-#= link_to 'Back to View Station Page', exam_path(:id=>@exam_show.first.exam_code), class:'pull-right', style:'color:#313131'
 
