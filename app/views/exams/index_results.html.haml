@@ -1,7 +1,10 @@
+= link_to 'Back', results_url, class: "btn btn-default"
+
 %h1= @exam.name
 
 %h4
   = link_to "Download results CSV", exam_results_path(format: 'csv')
 
+%br
 = render 'index_student_results'
 = render 'index_stations'
