@@ -60,9 +60,9 @@
                       = navbar_link_to '/exams', title: "Go to the exams page", identifier: :exams do
                         = fa_icon 'file-o'
                         Exams
-                      = navbar_link_to '/templates', title: "Go to the templates page", identifier: :templates do
-                        = fa_icon 'copy'
-                        Templates
+                      -# = navbar_link_to '/templates', title: "Go to the templates page", identifier: :templates do
+                      -#   = fa_icon 'copy'
+                      -#   Templates
                       = navbar_link_to '/archives', title: "Go to the archive page", identifier: :archive do
                         = fa_icon 'file-archive-o'
                         Archive
@@ -86,11 +86,7 @@
                   %ul.dropdown-menu
                     %li
                       = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
-                        = fa_icon 'sign-out', text: 'Log out'
-            -# - if (user_signed_in? && current_page?(:action=>'detail'))
-            -#   %ul.nav.navbar-nav.navbar_right
-            -#     %li
-            -#       = fa_icon 'user', text: 'READY SCREEN'                  
+                        = fa_icon 'sign-out', text: 'Log out'               
                 
 
       #main-container.container
