@@ -46,7 +46,7 @@ $border_color_1: #000000;
 
 #resultButton {
 	width: 15em;
-	background-color: $background_color_1;
+	background-color: $background_color_4;
 }
 
 #submitButton {
@@ -63,6 +63,10 @@ $border_color_1: #000000;
 	border-style: solid;
 	border-color: $border_color_1;
 	height: 5em;
+}
+
+#oscelabel.active {
+    background-color: red;
 }
 
 .header {
