@@ -27,8 +27,10 @@
           %td= station_result.station.pass_mark.to_s
           %td= station_result.examiner_name
           %td= station_result.feedback
-          %td= link_to 'Audio link', rails_blob_path(ActiveStorage::Attachment.find(station_result.id), disposition: 'attachment'), label: 'Audio file'
-
+          - begin
+            %td= link_to 'Audio link', rails_blob_path(ActiveStorage::Attachment.find_by_record_id(station_result.id), disposition: 'attachment'), label: 'Audio file'
+          - rescue
+            %td No audio found
 
           %br
           %table.table.table-bordered
