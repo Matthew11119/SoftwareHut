@@ -59,7 +59,7 @@ class StationResultsController < ApplicationController
   def new_student
     Student.find_or_create_by(forename:params[:hid_stu_info][:forename], username:params[:hid_stu_info][:username],surname:params[:hid_stu_info][:surname])
     ExamsStudent.find_or_create_by(exam_id: Station.find(params[:id]).exam_id, student_id: params[:hid_stu_info][:username])
-    @examiner_name = params["hid_stu_info"][:examiner_name]    
+    @examiner_name = params["hid_stu_info"][:examiner_name]
     @students = StationResult.get_remaining_student(params[:id])
     render 'new_student_success'
   end
@@ -81,6 +81,7 @@ class StationResultsController < ApplicationController
   # GET /station_results/1/edit
   def edit
     @station_result = StationResult.find(params[:id])
+
   end
 
   # GET/station_results/1/search_students
@@ -94,7 +95,6 @@ class StationResultsController < ApplicationController
     @student = Student.find(params[:username])
     @exam = Exam.find(params[:exam_code])
     @station_results = StationResult.where( username: @student.username, station_id: @exam.stations.pluck(:id) ).to_a
-
     respond_to do |format|
       format.html { render :index }
       format.pdf do

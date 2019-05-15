@@ -2,7 +2,6 @@
 = link_to 'Back', exam_results_url(@exam.exam_code), class: "btn btn-default"
 
 %h1= @exam.name.to_s + " results for " + @student.forename.to_s + " " + @student.surname.to_s
-
 - @station_results.each do |station_result|
   %div.form-section
     %h4= "Station: " + Station.find(station_result.station_id).station_name.to_s
@@ -17,6 +16,7 @@
           %th Pass Mark
           %th Examiner
           %th Feedback
+          %th Audio
       %tbody
         %tr
           - if station_result.mark >= station_result.station.pass_mark
@@ -27,6 +27,7 @@
           %td= station_result.station.pass_mark.to_s
           %td= station_result.examiner_name
           %td= station_result.feedback
+          %td= link_to 'Audio link', rails_blob_path(ActiveStorage::Attachment.find(station_result.id), disposition: 'attachment'), label: 'Audio file'
 
 
           %br
