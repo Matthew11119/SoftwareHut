@@ -41,7 +41,7 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   def destroy
     @student.destroy
-    redirect_to exam_edit_path, notice: 'Student was successfully deleted.'
+    redirect_to edit_exam_path(params[:exam_code]), notice: 'Student was successfully deleted.'
   end
 
   # deletes multiple students
