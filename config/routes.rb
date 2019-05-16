@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   get 'results', to: 'exams#results', as: :results
   get 'results/:exam_code', to: 'exams#exam_results', as: :exam_results
+
+  get 'results/:exam_code/exam_pdfs', to: 'exams#exam_pdfs', as: :exam_pdfs
   get 'results/:exam_code/:username', to: 'station_results#student_result', as: :student_result
   #get 'results/:exam_code/:username/:station_id', 'station_results#edit', as: :edit_station_result
   resources :station_results, only: [:show, :new, :edit, :update, :destroy]

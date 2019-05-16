@@ -316,6 +316,7 @@ GEM
       sexp_processor (~> 4.9)
     rubycas-client (2.3.9)
       activesupport
+    rubyzip (1.2.2)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -441,6 +442,7 @@ DEPENDENCIES
   rspec
   rspec-instafail
   rspec-rails
+  rubyzip
   sass-rails
   select2-rails
   select_all-rails

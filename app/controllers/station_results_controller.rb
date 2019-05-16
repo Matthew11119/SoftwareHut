@@ -99,9 +99,9 @@ class StationResultsController < ApplicationController
       format.html { render :index }
       format.pdf do
         pdf = ResultPdf.new(@student, @exam)
-        send_data pdf.render, filename: "#{@exam.exam_code}_#{@student.username}.pdf",
+        send_data pdf.render, filename: "#{@exam.exam_code}_#{@exam.date}_#{@student.username}.pdf",
                               type: "application/pdf",
-                              disposition: "inline"
+                              dispostion: "inline"
       end
     end
   end

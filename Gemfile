@@ -13,6 +13,7 @@ gem 'prawn'
 gem 'prawn-table'
 gem 'activerecord-import'
 gem 'select_all-rails'
+gem 'rubyzip'
 
 gem 'rails', '5.2.1'
 gem 'bootsnap'
