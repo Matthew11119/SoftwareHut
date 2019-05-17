@@ -32,7 +32,7 @@ class Exam < ApplicationRecord
     CSV.generate(headers: true) do |csv|
       csv << columns1 + columns2
       students.each do |student|
-        csv << student.attributes.values_at(*columns1) + [" ", "Yes", " "] +  [ feedback(student) ]
+        csv << student.attributes.values_at(*columns1) + [" ", "Yes", " ", "#{pass_exam(student)} ", "SMART_TEXT" ] +  export_format(student) + ["HTML"]
       end
     end
   end
@@ -54,16 +54,27 @@ class Exam < ApplicationRecord
     end
   end
 
+  def export_format(student)
+    pdf = "<p><a alt="""" href=""@X@EmbeddedFile.cslocation@X@#{self.exam_code}_#{self.date}_#{student.username}.pdf"" target=""_blank"">#{student.forename} #{student.surname} #{self.exam_code}_#{self.date}_#{student.username}.pdf</a>&nbsp;</p>"
+    format = pdf
+    self.stations.each do |station|
+      station_result = StationResult.where( username: student.username, station_id: station.id )
+      mp3 =  "<p><a alt="""" href=""@X@EmbeddedFile.cslocation@X@examiner_name={examiner_name}&station_id=#{station.id}&username=#{student.username}.mp3"" target=""_blank"">#{student.forename} #{student.surname} examiner_name={examiner_name}&station_id=#{station.id}&username=#{student.username}.mp3</a>&nbsp;</p>"
+      format = format + mp3
+    end
+    [format]
+  end
+
   def feedback(student)
     feedback = []
     station_results = StationResult.where( username: student.username, station_id: self.stations.pluck(:id) )
     station_results.each do |station_result|
-      station_feedback = [station_result.feedback]
-      feedback.concat station_feedback
+      station_feedback = station_result.feedback
+      feedback.concat ["<p>#{station_feedback}</p>"]
     end
     feedback
   end
-  # CSV import
+  #CSV import
   # Params: file - CSV file containing students
   # No return
   # Adds students contained within CSV ot the Exam instance
