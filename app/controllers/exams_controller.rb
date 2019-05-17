@@ -2,6 +2,8 @@
 
 class ExamsController < ApplicationController
   include ExamsHelper
+  require 'fileutils'
+  require 'zip'
 
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
   authorize_resource
@@ -34,6 +36,9 @@ class ExamsController < ApplicationController
     render 'exams/show_module_lead'
   end
 
+
+
+
   #GET /results
   def results
     index_moderator # in exam helper
@@ -55,10 +60,83 @@ class ExamsController < ApplicationController
     @exam = Exam.find(params[:exam_code])
     @students = @exam.students
     respond_to do |format|
-      format.csv { send_data  @students.to_csv }
+      format.csv { send_data  @exam.to_csv }
       format.html { render :index_results }
     end
   end
+
+  def exam_pdfs
+    @exam = Exam.find(params[:exam_code])
+    @students = @exam.students
+    dirname = "tmp/exams/#{@exam.exam_code}_#{@exam.date}"
+    @students.each do |student|
+      unless Dir.exist?(dirname)
+        FileUtils.mkdir_p(dirname)
+      end
+      unless File.file?("#{@exam.exam_code}_#{@exam.date}_#{student.username}.pdf")
+        pdf = ResultPdf.new(student, @exam)
+        pdf.render_file("tmp/exams/#{@exam.exam_code}_#{@exam.date}/#{@exam.exam_code}_#{@exam.date}_#{student.username}.pdf")
+      end
+      #station_results = StationResult.where( username: student.username, station_id: @exam.stations.pluck(:id) )
+      #station_results.each do |station_result|
+      #  attachment = (ActiveStorage::Attachment.find_by_record_id(station_result.id)).filename
+
+      #end
+      #station_results.map do |audio|
+      #  filename = audio.filename.to_csv
+      #  filepath = File.join dirname, filename
+      #  File.open(filepath, 'wb') { |f| f.write(audio.download) }
+      #  filepath
+      #end
+      station_results = StationResult.where( username: student.username, station_id: @exam.stations.pluck(:id) )
+      station_results.each do |station_result|
+        puts station_result.id
+        begin
+          attachment = (ActiveStorage::Attachment.find_by_record_id(station_result.id)).filename.to_s
+          filepath = File.join(dirname, attachment)
+          File.open(filepath, 'wb') { |f| f.write(ActiveStorage::Attachment.find_by_record_id(station_result.id).download) }
+          filepath
+        rescue
+        end
+      end
+    end
+
+    zipfile_name = "tmp/exams/#{@exam.exam_code}_#{@exam.date}/#{@exam.exam_code}_#{@exam.date}45.zip"
+    input_filenames = Dir.entries(dirname).select {|f| !File.directory? f}
+    input_filenames.each do |i|
+      puts "Input filenames are " + i
+    end
+    unless File.file?(zipfile_name)
+      puts "Unless run"
+      Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+        puts "Open run"
+        input_filenames.each do |filename|
+          puts "Each run"
+          puts "FILENAME = " + filename
+          unless (File.extname(filename) == ".zip")
+            unless (File.extname(filename) == ".pdf")
+              zipfile.add(filename, File.join(dirname, filename))
+            end
+            #zipfile.add(filename, File.join(dirname, filename))
+            zipfile.each do |i|
+              puts i
+            end
+          end
+        end
+        #send_data(zipfile, :type => 'application/zip')
+
+      end
+    end
+
+    send_file( File.join(dirname, "#{@exam.exam_code}_#{@exam.date}.zip"),
+      :type => 'application/zip',
+      :disposition => 'attachment',
+     :filename => "#{@exam.exam_code}_#{@exam.date}.zip")
+
+  end
+
+
+
 
   # GET /exams/new
   def new
@@ -73,7 +151,6 @@ class ExamsController < ApplicationController
   # POST /exams
   def create
     @exam = Exam.new({:status => 0}.merge(exam_params))
-
     if @exam.save
       redirect_to edit_exam_path(@exam.exam_code), notice: 'Exam was successfully created.'
     else
