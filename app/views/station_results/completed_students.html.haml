@@ -7,7 +7,7 @@
     %nav.navbar.navbar-default.navbar-static-top
         %div.container
             %ul.nav.navbar-nav.navbar-center
-                %li= link_to 'Remaining', station_result_path(params[:id])
+                %li= link_to 'Remaining', station_result_path({:id=>params[:id],:examiner_name=>params[:examiner_name]})
                 %li= link_to 'Completed', completed_students_station_result_path(params[:id]) ,id: 'bold-select'
     -# %div#div-search
     -#     = simple_form_for :form_search do |f|
@@ -19,8 +19,8 @@
     -# %hr
     %div#div-result.table-search
         %h5#table-title{:style=>'display: inline'} Completed Students
-        &nbsp &nbsp Total 
-        %span#count #{@students.count}    
+        &nbsp &nbsp Total
+        %span#count #{@students.count}
         %table.table
             %thead
                 %tr
@@ -30,4 +30,3 @@
                     %th{:scope=>"col"} Action
             %tbody#students-table
                 = render 'students_table'
-        

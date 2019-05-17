@@ -5,62 +5,10 @@ window.onload = function(){
   startTimer.onclick = runTimer;
   var timerButton = document.getElementById("record");
   record.onclick = countUp;
-  var fullButton = document.getElementById("full");
-  fullButton.onclick = changeFull;
-  var partButton = document.getElementById("part");
-  partButton.onclick = changePart;
-  var notButton = document.getElementById("not");
-  notButton.onclick = changeNot;
-  //These will be removed / refactored when OCSEs are available
-  var fullButton2 = document.getElementById("full2");
-  fullButton2.onclick = changeFull2;
-  var partButton2 = document.getElementById("part2");
-  partButton2.onclick = changePart2;
-  var notButton2 = document.getElementById("not2");
-  notButton2.onclick = changeNot2;
-
   var recTimer = document.getElementById("timer2");
   recTimer.onclick = countUp;
   var resBut = document.getElementById("resultButton");
   resBut.onclick = changePass;
-}
-
-
-
-function changeFull(){
-  document.getElementById("fullbox").style.backgroundColor = '#00AAAA';
-  document.getElementById("partbox").style.backgroundColor = '#333388';
-  document.getElementById("notbox").style.backgroundColor = '#333388';
-}
-
-function changePart(){
-  document.getElementById("fullbox").style.backgroundColor = '#333388';
-  document.getElementById("partbox").style.backgroundColor = '#00AAAA';
-  document.getElementById("notbox").style.backgroundColor = '#333388';
-}
-
-function changeNot() {
-  document.getElementById("fullbox").style.backgroundColor = '#333388';
-  document.getElementById("partbox").style.backgroundColor = '#333388';
-  document.getElementById("notbox").style.backgroundColor = '#00AAAA';
-}
-
-function changeFull2(){
-  document.getElementById("fullbox2").style.backgroundColor = '#00AAAA';
-  document.getElementById("partbox2").style.backgroundColor = '#333388';
-  document.getElementById("notbox2").style.backgroundColor = '#333388';
-}
-
-function changePart2(){
-  document.getElementById("fullbox2").style.backgroundColor = '#333388';
-  document.getElementById("partbox2").style.backgroundColor = '#00AAAA';
-  document.getElementById("notbox2").style.backgroundColor = '#333388';
-}
-
-function changeNot2() {
-  document.getElementById("fullbox2").style.backgroundColor = '#333388';
-  document.getElementById("partbox2").style.backgroundColor = '#333388';
-  document.getElementById("notbox2").style.backgroundColor = '#00AAAA';
 }
 
 function runTimer(){

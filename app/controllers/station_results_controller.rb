@@ -37,6 +37,9 @@ class StationResultsController < ApplicationController
   def completed_students
     set_instance_variable
     @students = StationResult.get_completed_student(params[:id],params[:examiner_name])
+    #@name = @students.first.examiner_name
+    #puts "Name is " + @name.to_s
+
   end
 
   # GET /station_results/1/add_student
@@ -68,6 +71,14 @@ class StationResultsController < ApplicationController
 
   # GET /station_results/new
   def new
+    if params[:examiner_name] == nil
+      @examiner_name = ""
+      #@students = StationResult.get_completed_student(params[:station_id],"")
+      #@students.each do |student|
+      #@examiner_name = student.examiner_name
+      #end
+
+    end
     @student = Student.where(username: params[:username]).first
     @exam_show = Exam.where(:exam_code=>Station.find(params[:station_id]).exam_id)
     @station = Station.where(:id=>params[:station_id]).first
@@ -77,7 +88,6 @@ class StationResultsController < ApplicationController
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
     @osces = Criterium.where(station_id:params[:station_id])
     @station_result_id = StationResult.all.count + 1
-    puts "Examiner name = " + params[:examiner_name]
     @examiner_name = params[:examiner_name]
   end
 
@@ -114,7 +124,6 @@ class StationResultsController < ApplicationController
     @station_result = StationResult.new(post_params)
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
-    #puts params[:station_id]
     @station = Station.where(:id => @station_result.station_id).first
     puts @station_result.station_id
     puts "Station in create = " + @station.to_s
@@ -128,7 +137,7 @@ class StationResultsController < ApplicationController
     @station_result.write_attribute(:audio, audio_ref)
     @student = Student.where(:username=>params[:student_id]).first
     if @station_result.save
-      redirect_to station_result_path(@station_result.station_id), notice: 'Station result was successfully created.'
+      redirect_to station_result_path({:id => @station_result.station_id, :examiner_name => @station_result.examiner_name}), notice: 'Station result was successfully created.'
     else
       render :new
     end
