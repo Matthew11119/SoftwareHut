@@ -69,31 +69,21 @@ class ExamsController < ApplicationController
     @exam = Exam.find(params[:exam_code])
     @students = @exam.students
     dirname = "tmp/exams/#{@exam.exam_code}_#{@exam.date}"
+    unless Dir.exist?(dirname)
+      FileUtils.mkdir_p(dirname)
+    end
     @students.each do |student|
-      unless Dir.exist?(dirname)
-        FileUtils.mkdir_p(dirname)
-      end
       unless File.file?("#{@exam.exam_code}_#{@exam.date}_#{student.username}.pdf")
         pdf = ResultPdf.new(student, @exam)
         pdf.render_file("tmp/exams/#{@exam.exam_code}_#{@exam.date}/#{@exam.exam_code}_#{@exam.date}_#{student.username}.pdf")
       end
-      #station_results = StationResult.where( username: student.username, station_id: @exam.stations.pluck(:id) )
-      #station_results.each do |station_result|
-      #  attachment = (ActiveStorage::Attachment.find_by_record_id(station_result.id)).filename
 
-      #end
-      #station_results.map do |audio|
-      #  filename = audio.filename.to_csv
-      #  filepath = File.join dirname, filename
-      #  File.open(filepath, 'wb') { |f| f.write(audio.download) }
-      #  filepath
-      #end
       station_results = StationResult.where( username: student.username, station_id: @exam.stations.pluck(:id) )
       station_results.each do |station_result|
         puts station_result.id
         begin
           attachment = (ActiveStorage::Attachment.find_by_record_id(station_result.id)).filename.to_s
-          filepath = File.join(dirname, attachment)
+          filepath = File.join(dirname, "#{attachment}.mp3")
           File.open(filepath, 'wb') { |f| f.write(ActiveStorage::Attachment.find_by_record_id(station_result.id).download) }
           filepath
         rescue
@@ -101,7 +91,7 @@ class ExamsController < ApplicationController
       end
     end
 
-    zipfile_name = "tmp/exams/#{@exam.exam_code}_#{@exam.date}/#{@exam.exam_code}_#{@exam.date}45.zip"
+    zipfile_name = "tmp/exams/#{@exam.exam_code}_#{@exam.date}.zip"
     input_filenames = Dir.entries(dirname).select {|f| !File.directory? f}
     input_filenames.each do |i|
       puts "Input filenames are " + i
@@ -113,28 +103,22 @@ class ExamsController < ApplicationController
         input_filenames.each do |filename|
           puts "Each run"
           puts "FILENAME = " + filename
-          unless (File.extname(filename) == ".zip")
-            unless (File.extname(filename) == ".pdf")
-              zipfile.add(filename, File.join(dirname, filename))
-            end
-            #zipfile.add(filename, File.join(dirname, filename))
-            zipfile.each do |i|
-              puts i
-            end
-          end
+          zipfile.add(filename, File.join(dirname, filename))
         end
-        #send_data(zipfile, :type => 'application/zip')
-
       end
     end
 
-    send_file( File.join(dirname, "#{@exam.exam_code}_#{@exam.date}.zip"),
+    send_file( File.join("tmp/exams/", "#{@exam.exam_code}_#{@exam.date}.zip"),
       :type => 'application/zip',
       :disposition => 'attachment',
      :filename => "#{@exam.exam_code}_#{@exam.date}.zip")
 
+     #remove_folder
   end
 
+  def remove_folder
+    FileUtils.rm_rf(Dir['tmp/exams/*'])
+  end
 
 
 
