@@ -111,7 +111,10 @@ class StationResultsController < ApplicationController
     @station_result = StationResult.new(post_params)
     @osces = Criterium.all
     @criteria_result = @station_result.criteria_results
-    @station = Station.where(:id => params[:station_id]).first
+    #puts params[:station_id]
+    @station = Station.where(:id => @station_result.station_id).first
+    puts @station_result.station_id
+    puts "Station in create = " + @station.to_s
     @criteria_result.each do |i|
       updated_criteria = calculate_crit_mark(i)
       i.write_attribute(:answer, updated_criteria.answer)
@@ -220,6 +223,7 @@ class StationResultsController < ApplicationController
     #If there is a fail, gives the student 0 marks for that exam
     def calculate_mark
       if @station_result.mark.to_i == 2
+        puts "Station = " + @station.to_s
         @station_result.write_attribute(:mark, @station.pass_mark)
       elsif @station_result.mark.to_i == 0
         @station_result.write_attribute(:mark, 0)
