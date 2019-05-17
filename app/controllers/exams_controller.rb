@@ -79,23 +79,60 @@ class ExamsController < ApplicationController
       end
       #station_results = StationResult.where( username: student.username, station_id: @exam.stations.pluck(:id) )
       #station_results.each do |station_result|
-          #attachment = (ActiveStorage::Attachment.find_by_record_id(station_result.id)).filename
-          #File.join(dirname, attachment)
-      #end
-    end
+      #  attachment = (ActiveStorage::Attachment.find_by_record_id(station_result.id)).filename
 
-    zipfile_name = "tmp/exams/#{@exam.exam_code}_#{@exam.date}/#{@exam.exam_code}_#{@exam.date}.zip"
-    input_filenames = Dir.entries(dirname).select {|f| !File.directory? f}
-    unless File.file?(zipfile_name)
-      Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
-        input_filenames.each do |filename|
-          zipfile.add(filename, File.join(dirname, filename))
+      #end
+      #station_results.map do |audio|
+      #  filename = audio.filename.to_csv
+      #  filepath = File.join dirname, filename
+      #  File.open(filepath, 'wb') { |f| f.write(audio.download) }
+      #  filepath
+      #end
+      station_results = StationResult.where( username: student.username, station_id: @exam.stations.pluck(:id) )
+      station_results.each do |station_result|
+        puts station_result.id
+        begin
+          attachment = (ActiveStorage::Attachment.find_by_record_id(station_result.id)).filename.to_s
+          filepath = File.join(dirname, attachment)
+          File.open(filepath, 'wb') { |f| f.write(ActiveStorage::Attachment.find_by_record_id(station_result.id).download) }
+          filepath
+        rescue
         end
       end
     end
+
+    zipfile_name = "tmp/exams/#{@exam.exam_code}_#{@exam.date}/#{@exam.exam_code}_#{@exam.date}45.zip"
+    input_filenames = Dir.entries(dirname).select {|f| !File.directory? f}
+    input_filenames.each do |i|
+      puts "Input filenames are " + i
+    end
+    unless File.file?(zipfile_name)
+      puts "Unless run"
+      Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+        puts "Open run"
+        input_filenames.each do |filename|
+          puts "Each run"
+          puts "FILENAME = " + filename
+          unless (File.extname(filename) == ".zip")
+            unless (File.extname(filename) == ".pdf")
+              zipfile.add(filename, File.join(dirname, filename))
+            end
+            #zipfile.add(filename, File.join(dirname, filename))
+            zipfile.each do |i|
+              puts i
+            end
+          end
+        end
+        #send_data(zipfile, :type => 'application/zip')
+
+      end
+    end
+
     send_file( File.join(dirname, "#{@exam.exam_code}_#{@exam.date}.zip"),
       :type => 'application/zip',
-      :filename => "#{@exam.exam_code}_#{@exam.date}.zip")
+      :disposition => 'attachment',
+     :filename => "#{@exam.exam_code}_#{@exam.date}.zip")
+
   end
 
 
