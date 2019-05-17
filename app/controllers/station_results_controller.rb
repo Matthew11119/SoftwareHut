@@ -12,6 +12,8 @@ class StationResultsController < ApplicationController
   def show
     if can?(:manage, Exam)
       @station_result = StationResult.find(params[:id])
+      @examiner_name = params[:form_homepage]
+      puts "PARAMS + " + params.to_s
     elsif can?(:edit, CriteriaResult)
       set_instance_variable
       @exams_students = ExamsStudent.select_students(Station.find(params[:id]).exam_id)
@@ -75,6 +77,7 @@ class StationResultsController < ApplicationController
     @display_student = @student.forename + " " + @student.surname + "              " + @student.regno.to_s
     @osces = Criterium.where(station_id:params[:station_id])
     @station_result_id = StationResult.all.count + 1
+    puts "Examiner name = " + params[:examiner_name]
     @examiner_name = params[:examiner_name]
   end
 
